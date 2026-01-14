@@ -52,6 +52,10 @@ dist/
 dist-ssr/
 *.local
 
+# Large video files (host separately)
+*.mp4
+client/public/home page/
+
 # Environment
 .env
 .env.local
