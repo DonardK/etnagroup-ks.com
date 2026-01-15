@@ -9,13 +9,11 @@ export const Footer = () => {
           {/* Logo and Company Info */}
           <div className="flex items-center gap-4">
             <img
-              src="/brand/Logo.png"
+              src={`${import.meta.env.BASE_URL}brand/Logo.png`}
               alt="Etna Group Logo"
               className="h-10 w-auto"
-              onError={(e) => {
-                console.error('Footer logo failed to load:', e.currentTarget.src)
-                e.currentTarget.src = '/brand/Logo.png'
-              }}
+              loading="lazy"
+              decoding="async"
             />
             <div>
               <div className="text-xs text-[#657432]/60">

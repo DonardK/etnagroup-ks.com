@@ -18,17 +18,11 @@ export const Navbar = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3">
             <img
-              src="/brand/Logo.png"
+              src={`${import.meta.env.BASE_URL}brand/Logo.png`}
               alt="Etna Group Logo"
               className="h-12 w-auto"
-              onError={(e) => {
-                console.error('Logo failed to load:', e.currentTarget.src)
-                // Try alternative path
-                e.currentTarget.src = '/brand/Logo.png'
-              }}
-              onLoad={() => {
-                console.log('Logo loaded successfully')
-              }}
+              loading="eager"
+              decoding="async"
             />
           </Link>
 
