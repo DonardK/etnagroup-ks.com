@@ -1,5 +1,7 @@
 # Etna Group - Premium Real Estate Platform
 
+🌐 **Live Website**: [https://donardk.github.io/etnagroup-ks.com/](https://donardk.github.io/etnagroup-ks.com/)
+
 A modern, interactive real estate platform for Etna Group's residential complexes in Pristina, Kosovo. Built to outperform competitors through aggressive visual dominance and interactivity.
 
 ## 🎯 Project Overview

@@ -1,17 +1,9 @@
-import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { projects } from '../data/projects'
 
 export const HomePage = () => {
-  const [currentSlide, setCurrentSlide] = useState(0)
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % projects.length)
-    }, 5000)
-    return () => clearInterval(interval)
-  }, [])
+  // Auto-slide functionality removed - using static video hero instead
 
   return (
     <div className="min-h-screen bg-[#F8F2DD]">
