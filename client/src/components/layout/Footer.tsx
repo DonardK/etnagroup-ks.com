@@ -12,6 +12,10 @@ export const Footer = () => {
               src="/brand/Logo.png"
               alt="Etna Group Logo"
               className="h-10 w-auto"
+              onError={(e) => {
+                console.error('Footer logo failed to load:', e.currentTarget.src)
+                e.currentTarget.src = '/brand/Logo.png'
+              }}
             />
             <div>
               <div className="text-xs text-[#657432]/60">
