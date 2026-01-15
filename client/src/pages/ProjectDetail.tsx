@@ -6,17 +6,17 @@ import { useFilteredUnits } from '../hooks/useUnits'
 import { UnitType, UnitStatus } from '../types'
 
 const unitTypes = [
-  { value: UnitType.Penthouse, label: 'Penthouse', icon: '🏢' },
-  { value: UnitType.Loft, label: 'Loft', icon: '🏘️' },
-  { value: UnitType.TypeA, label: 'Tipi A', icon: '🏠' },
-  { value: UnitType.TypeB, label: 'Tipi B', icon: '🏡' },
+  { value: UnitType.Penthouse, label: 'Penthouse', icon: '👑' },
+  { value: UnitType.Loft, label: 'Banesë', icon: '🏢' },
+  { value: UnitType.TypeA, label: 'Garazhë', icon: '🅿️' },
+  { value: UnitType.TypeB, label: 'Lokal', icon: '🏪' },
 ]
 
 const unitTypeLabels: Record<UnitType, string> = {
   [UnitType.Penthouse]: 'Penthouse',
-  [UnitType.Loft]: 'Loft',
-  [UnitType.TypeA]: 'Tipi A',
-  [UnitType.TypeB]: 'Tipi B',
+  [UnitType.Loft]: 'Banesë',
+  [UnitType.TypeA]: 'Garazhë',
+  [UnitType.TypeB]: 'Lokal',
 }
 
 const statusLabels: Record<UnitStatus, string> = {

@@ -4,10 +4,10 @@ import { useFilteredUnits } from '../hooks/useUnits'
 import { UnitType, UnitStatus } from '../types'
 
 const unitTypes = [
-  { value: UnitType.Penthouse, label: 'Penthouse', icon: '🏢' },
-  { value: UnitType.Loft, label: 'Loft', icon: '🏘️' },
-  { value: UnitType.TypeA, label: 'Type A', icon: '🏠' },
-  { value: UnitType.TypeB, label: 'Type B', icon: '🏡' },
+  { value: UnitType.Penthouse, label: 'Penthouse', icon: '👑' },
+  { value: UnitType.Loft, label: 'Banesë', icon: '🏢' },
+  { value: UnitType.TypeA, label: 'Garazhë', icon: '🅿️' },
+  { value: UnitType.TypeB, label: 'Lokal', icon: '🏪' },
 ]
 
 export const UnitConfigurator = () => {
