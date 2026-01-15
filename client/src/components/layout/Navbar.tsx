@@ -21,18 +21,7 @@ export const Navbar = () => {
               src="/brand/Logo.png"
               alt="Etna Group Logo"
               className="h-12 w-auto"
-              onError={(e) => {
-                // Fallback to text if image doesn't load
-                e.currentTarget.style.display = 'none'
-                const fallback = e.currentTarget.nextElementSibling as HTMLElement
-                if (fallback) fallback.style.display = 'flex'
-              }}
             />
-            <div className="hidden items-center gap-2">
-              <div className="text-xl font-bold text-[#657432]">ETNA</div>
-              <div className="h-6 w-px bg-[#657432]/30" />
-              <div className="text-xs font-medium text-[#657432]/80">GROUP</div>
-            </div>
           </Link>
 
           {/* Desktop Menu */}

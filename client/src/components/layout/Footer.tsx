@@ -12,12 +12,8 @@ export const Footer = () => {
               src="/brand/Logo.png"
               alt="Etna Group Logo"
               className="h-10 w-auto"
-              onError={(e) => {
-                e.currentTarget.style.display = 'none'
-              }}
             />
             <div>
-              <div className="font-bold text-[#657432]">Etna Group</div>
               <div className="text-xs text-[#657432]/60">
                 Hapësira Rezidenciale Premium
               </div>
