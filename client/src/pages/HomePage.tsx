@@ -19,31 +19,28 @@ export const HomePage = () => {
       <section className="relative h-screen w-full overflow-hidden bg-[#F8F2DD]">
         {/* Video Container - fills entire width and height */}
         <div className="absolute inset-0 h-full w-full bg-[#F8F2DD]">
-          {/* Video - scaled to fill entire width, may crop top/bottom */}
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
-            style={{ 
-              minWidth: '100vw',
-              minHeight: '100vh',
-              width: '100vw',
-              height: '100vh',
-              objectFit: 'cover',
-              objectPosition: 'center'
-            }}
-            poster="/buildings/etna-hero.jpg"
-          >
-            <source src="/home page/Animacioni Elsa Residence.mp4" type="video/mp4" />
-          </video>
           {/* Fallback image - behind video */}
           <div
             className="absolute inset-0 h-full w-full bg-cover bg-center"
             style={{
               backgroundImage: `url(/buildings/etna-hero.jpg)`,
             }}
+          />
+          {/* YouTube Video Embed - scaled to fill entire width, may crop top/bottom */}
+          <iframe
+            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+            style={{ 
+              width: '100vw',
+              height: '56.25vw', // 16:9 aspect ratio
+              minHeight: '100vh',
+              minWidth: '177.77777778vh', // Maintain aspect ratio when height is limiting
+              border: 'none',
+              pointerEvents: 'none'
+            }}
+            src="https://www.youtube.com/embed/osp9j6GWdmw?autoplay=1&loop=1&playlist=osp9j6GWdmw&mute=1&controls=0&modestbranding=1&playsinline=1&rel=0&showinfo=0&start=0"
+            title="Etna Group Hero Video"
+            allow="autoplay; encrypted-media"
+            allowFullScreen
           />
           {/* Subtle Overlay for text readability */}
           <div className="absolute inset-0 bg-gradient-to-b from-[#F8F2DD]/30 via-transparent to-[#F8F2DD]/50" />
