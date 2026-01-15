@@ -18,7 +18,26 @@ export const HomePage = () => {
               backgroundImage: `url(/buildings/etna-hero.jpg)`,
             }}
           />
-          {/* YouTube Video Embed - scaled to fill entire width, may crop top/bottom */}
+          {/* Video - using YouTube embed */}
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="absolute inset-0 h-full w-full object-cover object-center"
+            style={{ 
+              objectFit: 'cover', 
+              objectPosition: 'center',
+              minWidth: '100vw',
+              minHeight: '100vh',
+              width: '100vw',
+              height: '100vh'
+            }}
+            poster="/buildings/etna-hero.jpg"
+          >
+            <source src="https://www.youtube.com/embed/T1IwAUDIvrs?autoplay=1&loop=1&playlist=T1IwAUDIvrs&mute=1&controls=0&modestbranding=1&playsinline=1&rel=0&showinfo=0&start=0" type="video/mp4" />
+          </video>
+          {/* YouTube iframe as fallback */}
           <iframe
             className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
             style={{ 
