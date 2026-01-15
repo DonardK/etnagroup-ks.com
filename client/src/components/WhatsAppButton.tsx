@@ -16,7 +16,7 @@ export const WhatsAppButton = () => {
         left: '24px',
         zIndex: 9999
       }}
-      className="flex h-14 w-14 items-center justify-center rounded-full bg-transparent shadow-lg transition-all hover:shadow-xl"
+      className="flex h-14 w-14 items-center justify-center rounded-full bg-transparent transition-all"
       aria-label="Contact us on WhatsApp"
     >
       <svg
