@@ -38,7 +38,7 @@ export const HomePage = () => {
           <div className="absolute inset-0 bg-gradient-to-b from-[#F8F2DD]/30 via-transparent to-[#F8F2DD]/50" />
         </div>
 
-        {/* Company Name Overlay */}
+        {/* Company Logo and Name Overlay */}
         <div className="relative z-10 flex h-full items-center justify-center">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
@@ -46,6 +46,18 @@ export const HomePage = () => {
             transition={{ duration: 1 }}
             className="text-center"
           >
+            <motion.img
+              src="/brand/Logo.png"
+              alt="Etna Group Logo"
+              className="mx-auto mb-6 h-24 w-auto drop-shadow-2xl md:h-32"
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 0.8 }}
+              onError={(e) => {
+                // Fallback if logo doesn't load
+                e.currentTarget.style.display = 'none'
+              }}
+            />
             <h1 className="mb-4 text-6xl font-bold text-[#F8F2DD] md:text-8xl drop-shadow-lg" style={{ textShadow: '0 2px 10px rgba(101, 116, 50, 0.3)' }}>
               ETNA GROUP
             </h1>
