@@ -18,7 +18,7 @@ export const HomePage = () => {
       {/* Video Hero Section */}
       <section className="relative h-screen w-full overflow-hidden bg-[#F8F2DD]">
         {/* Video Container - fills entire width and height */}
-        <div className="absolute inset-0 h-full w-full bg-[#F8F2DD]">
+        <div className="absolute inset-0 h-full w-full bg-[#F8F2DD] overflow-hidden">
           {/* Fallback image - behind video */}
           <div
             className="absolute inset-0 h-full w-full bg-cover bg-center"

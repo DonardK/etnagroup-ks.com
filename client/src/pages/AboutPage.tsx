@@ -1,30 +1,10 @@
-import { motion, useScroll, useSpring } from 'framer-motion'
-import { useRef } from 'react'
+import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { projects } from '../data/projects'
 
 export const AboutPage = () => {
-  const containerRef = useRef<HTMLDivElement>(null)
-
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ['start end', 'end start'],
-  })
-
-  const scaleX = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001,
-  })
-
-
   return (
-    <div ref={containerRef} className="min-h-screen bg-[#F8F2DD]">
-      {/* Scroll Progress Bar */}
-      <motion.div
-        className="fixed top-20 left-0 right-0 z-50 h-1 origin-left bg-[#657432]"
-        style={{ scaleX }}
-      />
+    <div className="min-h-screen bg-[#F8F2DD] overflow-x-hidden">
 
       {/* Hero Section */}
       <section className="relative min-h-[60vh] bg-gradient-to-br from-[#F8F2DD] via-[#F8F2DD] to-[#F8F2DD] flex items-center justify-center overflow-hidden border-b border-[#657432]/20">

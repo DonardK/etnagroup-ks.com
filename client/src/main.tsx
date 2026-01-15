@@ -16,10 +16,13 @@ const queryClient = new QueryClient({
   },
 })
 
+// Get base path for GitHub Pages
+const basePath = import.meta.env.BASE_URL || '/'
+
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <ErrorBoundary>
-      <BrowserRouter>
+      <BrowserRouter basename={basePath}>
         <QueryClientProvider client={queryClient}>
           <App />
         </QueryClientProvider>

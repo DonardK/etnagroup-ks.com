@@ -21,10 +21,12 @@ body {
   margin: 0;
   min-height: 100vh;
   background-color: #F8F2DD;
+  overflow-x: hidden;
 }
 
 #root {
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 /* Custom Scrollbar */
