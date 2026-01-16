@@ -45,7 +45,7 @@ export const ProjectDetail = () => {
         {
           id: 'building-a',
           name: 'Blloku A',
-          image: `${import.meta.env.BASE_URL}SVG Residences/Elsa Residence Blloku A.svg`,
+          image: `${import.meta.env.BASE_URL}SVG Residences/${encodeURIComponent('Elsa Residence Blloku A')}.svg`,
           clickableArea: { x: 10, y: 60, width: 18, height: 30 }, // TODO: Update with actual coordinates
         },
         {

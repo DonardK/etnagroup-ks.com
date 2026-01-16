@@ -132,13 +132,18 @@ export const InteractiveBuildingSelector = ({
                   : 'border-[#657432]/20 bg-[#657432]/5 hover:border-[#657432]/40'
               }`}
             >
-              <div className="mb-3 aspect-video overflow-hidden rounded-xl bg-[#657432]/10">
+              <div className="mb-3 aspect-video overflow-hidden rounded-xl bg-[#657432]/10 flex items-center justify-center">
                 <img
                   src={building.image}
                   alt={building.name}
-                  className="h-full w-full object-cover"
+                  className="h-full w-full object-contain"
                   onError={(e) => {
-                    e.currentTarget.src = 'https://via.placeholder.com/400x300?text=' + building.name
+                    // Hide image on error, show placeholder div instead
+                    e.currentTarget.style.display = 'none'
+                    const placeholder = document.createElement('div')
+                    placeholder.className = 'text-center text-[#657432]/50'
+                    placeholder.innerHTML = `<div class="text-4xl mb-2">🏢</div><div class="text-sm">${building.name}</div>`
+                    e.currentTarget.parentElement?.appendChild(placeholder)
                   }}
                 />
               </div>
