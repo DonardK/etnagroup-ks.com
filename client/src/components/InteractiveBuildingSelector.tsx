@@ -44,15 +44,16 @@ export const InteractiveBuildingSelector = ({
         {/* SVG Image */}
         <div className="relative aspect-video w-full overflow-hidden rounded-3xl bg-[#657432]/10">
           <img
-            src={`/SVG Residences/${projectName}.svg`}
+            src={`${import.meta.env.BASE_URL}SVG Residences/${encodeURIComponent(projectName)}.svg`}
             alt={`${projectName} Buildings`}
             data-project-id={projectId}
             className="h-full w-full object-contain"
             onError={(e) => {
+              console.error('SVG failed to load:', e.currentTarget.src)
               // Fallback to placeholder
               e.currentTarget.style.display = 'none'
               const placeholder = e.currentTarget.nextElementSibling as HTMLElement
-              if (placeholder) placeholder.style.display = 'block'
+              if (placeholder) placeholder.style.display = 'flex'
             }}
           />
           {/* Placeholder fallback */}

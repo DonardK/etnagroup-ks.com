@@ -38,60 +38,63 @@ export const ProjectDetail = () => {
     const buildings: Building[] = []
     
     // Elsa Residence: 6 buildings (A, B, C, D, E, F)
+    // TODO: Update coordinates based on actual SVG building outlines
+    // Coordinates are percentages: x = left %, y = top %, width = width %, height = height %
     if (project.id === 'elsa') {
       buildings.push(
         {
           id: 'building-a',
           name: 'Blloku A',
-          image: `/SVG Residences/Elsa Residence Blloku A.svg`,
-          clickableArea: { x: 10, y: 60, width: 18, height: 30 }, // Bottom left
+          image: `${import.meta.env.BASE_URL}SVG Residences/Elsa Residence Blloku A.svg`,
+          clickableArea: { x: 10, y: 60, width: 18, height: 30 }, // TODO: Update with actual coordinates
         },
         {
           id: 'building-b',
           name: 'Blloku B',
-          image: `/SVG Residences/Elsa Residence Blloku BCD.svg`,
-          clickableArea: { x: 28, y: 55, width: 15, height: 35 }, // Behind A
+          image: `${import.meta.env.BASE_URL}SVG Residences/Elsa Residence Blloku BCD.svg`,
+          clickableArea: { x: 28, y: 55, width: 15, height: 35 }, // TODO: Update with actual coordinates
         },
         {
           id: 'building-c',
           name: 'Blloku C',
-          image: `/SVG Residences/Elsa Residence Blloku BCD.svg`,
-          clickableArea: { x: 43, y: 55, width: 15, height: 35 }, // Attached to B
+          image: `${import.meta.env.BASE_URL}SVG Residences/Elsa Residence Blloku BCD.svg`,
+          clickableArea: { x: 43, y: 55, width: 15, height: 35 }, // TODO: Update with actual coordinates
         },
         {
           id: 'building-d',
           name: 'Blloku D',
-          image: `/SVG Residences/Elsa Residence Blloku BCD.svg`,
-          clickableArea: { x: 58, y: 55, width: 15, height: 35 }, // Attached to B
+          image: `${import.meta.env.BASE_URL}SVG Residences/Elsa Residence Blloku BCD.svg`,
+          clickableArea: { x: 58, y: 55, width: 15, height: 35 }, // TODO: Update with actual coordinates
         },
         {
           id: 'building-e',
           name: 'Blloku E',
-          image: `/SVG Residences/Elsa Residence Blloku EF.svg`,
-          clickableArea: { x: 40, y: 15, width: 18, height: 30 }, // Top, shorter
+          image: `${import.meta.env.BASE_URL}SVG Residences/Elsa Residence Blloku EF.svg`,
+          clickableArea: { x: 40, y: 15, width: 18, height: 30 }, // TODO: Update with actual coordinates
         },
         {
           id: 'building-f',
           name: 'Blloku F',
-          image: `/SVG Residences/Elsa Residence Blloku EF.svg`,
-          clickableArea: { x: 58, y: 10, width: 18, height: 40 }, // Top, taller
+          image: `${import.meta.env.BASE_URL}SVG Residences/Elsa Residence Blloku EF.svg`,
+          clickableArea: { x: 58, y: 10, width: 18, height: 40 }, // TODO: Update with actual coordinates
         }
       )
     }
     // Tiani Residence: 2 buildings (A left, B right)
+    // TODO: Update coordinates based on actual SVG building outlines
     else if (project.id === 'tiani') {
       buildings.push(
         {
           id: 'building-a',
           name: 'Blloku A',
-          image: `/SVG Residences/Tiani Residence.svg`,
-          clickableArea: { x: 5, y: 20, width: 45, height: 60 }, // Left side
+          image: `${import.meta.env.BASE_URL}SVG Residences/Tiani Residence.svg`,
+          clickableArea: { x: 5, y: 20, width: 45, height: 60 }, // TODO: Update with actual coordinates
         },
         {
           id: 'building-b',
           name: 'Blloku B',
-          image: `/SVG Residences/Tiani Residence.svg`,
-          clickableArea: { x: 50, y: 20, width: 45, height: 60 }, // Right side
+          image: `${import.meta.env.BASE_URL}SVG Residences/Tiani Residence.svg`,
+          clickableArea: { x: 50, y: 20, width: 45, height: 60 }, // TODO: Update with actual coordinates
         }
       )
     }
@@ -101,7 +104,7 @@ export const ProjectDetail = () => {
         buildings.push({
           id: `building-${i}`,
           name: `Ndërtesa ${i}`,
-          image: `/SVG Residences/${project.name}.svg`,
+          image: `${import.meta.env.BASE_URL}SVG Residences/${encodeURIComponent(project.name)}.svg`,
           clickableArea: {
             x: (i - 1) * (100 / project.buildingCount) + 5,
             y: 20,
