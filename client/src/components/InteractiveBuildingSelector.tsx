@@ -46,6 +46,7 @@ export const InteractiveBuildingSelector = ({
           <img
             src={`/SVG Residences/${projectName}.svg`}
             alt={`${projectName} Buildings`}
+            data-project-id={projectId}
             className="h-full w-full object-contain"
             onError={(e) => {
               // Fallback to placeholder
