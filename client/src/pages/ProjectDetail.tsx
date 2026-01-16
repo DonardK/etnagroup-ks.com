@@ -36,20 +36,82 @@ export const ProjectDetail = () => {
     if (project.buildingCount === 1) return []
     
     const buildings: Building[] = []
-    for (let i = 1; i <= project.buildingCount; i++) {
-      buildings.push({
-        id: `building-${i}`,
-        name: project.buildingCount === 2 ? (i === 1 ? 'Blloku A' : 'Blloku B') : `Ndërtesa ${i}`,
-        image: `/buildings/${project.id}-building-${i}.jpg`,
-        clickableArea: {
-          // Placeholder coordinates - will be updated with actual SVG coordinates
-          x: (i - 1) * (100 / project.buildingCount) + 5,
-          y: 20,
-          width: 90 / project.buildingCount,
-          height: 60,
+    
+    // Elsa Residence: 6 buildings (A, B, C, D, E, F)
+    if (project.id === 'elsa') {
+      buildings.push(
+        {
+          id: 'building-a',
+          name: 'Blloku A',
+          image: `/SVG Residences/Elsa Residence Blloku A.svg`,
+          clickableArea: { x: 10, y: 60, width: 18, height: 30 }, // Bottom left
         },
-      })
+        {
+          id: 'building-b',
+          name: 'Blloku B',
+          image: `/SVG Residences/Elsa Residence Blloku BCD.svg`,
+          clickableArea: { x: 28, y: 55, width: 15, height: 35 }, // Behind A
+        },
+        {
+          id: 'building-c',
+          name: 'Blloku C',
+          image: `/SVG Residences/Elsa Residence Blloku BCD.svg`,
+          clickableArea: { x: 43, y: 55, width: 15, height: 35 }, // Attached to B
+        },
+        {
+          id: 'building-d',
+          name: 'Blloku D',
+          image: `/SVG Residences/Elsa Residence Blloku BCD.svg`,
+          clickableArea: { x: 58, y: 55, width: 15, height: 35 }, // Attached to B
+        },
+        {
+          id: 'building-e',
+          name: 'Blloku E',
+          image: `/SVG Residences/Elsa Residence Blloku EF.svg`,
+          clickableArea: { x: 40, y: 15, width: 18, height: 30 }, // Top, shorter
+        },
+        {
+          id: 'building-f',
+          name: 'Blloku F',
+          image: `/SVG Residences/Elsa Residence Blloku EF.svg`,
+          clickableArea: { x: 58, y: 10, width: 18, height: 40 }, // Top, taller
+        }
+      )
     }
+    // Tiani Residence: 2 buildings (A left, B right)
+    else if (project.id === 'tiani') {
+      buildings.push(
+        {
+          id: 'building-a',
+          name: 'Blloku A',
+          image: `/SVG Residences/Tiani Residence.svg`,
+          clickableArea: { x: 5, y: 20, width: 45, height: 60 }, // Left side
+        },
+        {
+          id: 'building-b',
+          name: 'Blloku B',
+          image: `/SVG Residences/Tiani Residence.svg`,
+          clickableArea: { x: 50, y: 20, width: 45, height: 60 }, // Right side
+        }
+      )
+    }
+    // Other projects with multiple buildings
+    else {
+      for (let i = 1; i <= project.buildingCount; i++) {
+        buildings.push({
+          id: `building-${i}`,
+          name: `Ndërtesa ${i}`,
+          image: `/SVG Residences/${project.name}.svg`,
+          clickableArea: {
+            x: (i - 1) * (100 / project.buildingCount) + 5,
+            y: 20,
+            width: 90 / project.buildingCount,
+            height: 60,
+          },
+        })
+      }
+    }
+    
     return buildings
   }
 
@@ -59,6 +121,7 @@ export const ProjectDetail = () => {
     const floors: Floor[] = []
     const floorCount = 8 // Default floor count
     
+    // Add regular floors
     for (let i = 1; i <= floorCount; i++) {
       floors.push({
         id: `${buildingId}-floor-${i}`,
@@ -69,7 +132,16 @@ export const ProjectDetail = () => {
       })
     }
     
-    return floors.reverse() // Show penthouse first
+    // Add Lokali (commercial spaces) for every building
+    floors.push({
+      id: `${buildingId}-lokali`,
+      number: 0,
+      label: 'Lokali',
+      image: `/buildings/${project.id}-${buildingId}-lokali.jpg`,
+      availableUnits: undefined,
+    })
+    
+    return floors.reverse() // Show penthouse first, then regular floors, then Lokali
   }
 
   // Generate apartments for selected floor
@@ -263,6 +335,7 @@ export const ProjectDetail = () => {
                     buildings={buildings}
                     onBuildingSelect={handleBuildingSelect}
                     projectName={project.name}
+                    projectId={project.id}
                   />
                 </motion.div>
               )}

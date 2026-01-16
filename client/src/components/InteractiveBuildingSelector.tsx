@@ -18,12 +18,14 @@ interface InteractiveBuildingSelectorProps {
   buildings: Building[]
   onBuildingSelect: (buildingId: string) => void
   projectName: string
+  projectId: string
 }
 
 export const InteractiveBuildingSelector = ({
   buildings,
   onBuildingSelect,
   projectName,
+  projectId,
 }: InteractiveBuildingSelectorProps) => {
   const [hoveredBuilding, setHoveredBuilding] = useState<string | null>(null)
 
@@ -39,10 +41,10 @@ export const InteractiveBuildingSelector = ({
       </div>
 
       <div className="relative mx-auto max-w-5xl">
-        {/* Placeholder image - will be replaced with actual SVG/image */}
+        {/* SVG Image */}
         <div className="relative aspect-video w-full overflow-hidden rounded-3xl bg-[#657432]/10">
           <img
-            src={`/buildings/${projectName.toLowerCase()}-buildings.svg`}
+            src={`/SVG Residences/${projectName}.svg`}
             alt={`${projectName} Buildings`}
             className="h-full w-full object-contain"
             onError={(e) => {
