@@ -29,7 +29,7 @@ export const HomePage = () => {
               border: 'none',
               pointerEvents: 'none'
             }}
-            src="https://www.youtube.com/embed/VGucYTJ-GoQ?autoplay=1&loop=1&playlist=VGucYTJ-GoQ&mute=1&controls=0&modestbranding=1&playsinline=1&rel=0&showinfo=0&start=0"
+            src="https://www.youtube.com/embed/YUvScr_mMFc?autoplay=1&loop=1&playlist=YUvScr_mMFc&mute=1&controls=0&modestbranding=1&playsinline=1&rel=0&showinfo=0&start=0&vq=highres"
             title="Etna Group Hero Video"
             allow="autoplay; encrypted-media"
             allowFullScreen
