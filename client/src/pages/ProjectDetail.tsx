@@ -51,31 +51,31 @@ export const ProjectDetail = () => {
         {
           id: 'building-b',
           name: 'Blloku B',
-          image: `${import.meta.env.BASE_URL}SVG Residences/Elsa Residence Blloku BCD.svg`,
+          image: `${import.meta.env.BASE_URL}SVG Residences/${encodeURIComponent('Elsa Residence Blloku BCD')}.svg`,
           clickableArea: { x: 28, y: 55, width: 15, height: 35 }, // TODO: Update with actual coordinates
         },
         {
           id: 'building-c',
           name: 'Blloku C',
-          image: `${import.meta.env.BASE_URL}SVG Residences/Elsa Residence Blloku BCD.svg`,
+          image: `${import.meta.env.BASE_URL}SVG Residences/${encodeURIComponent('Elsa Residence Blloku BCD')}.svg`,
           clickableArea: { x: 43, y: 55, width: 15, height: 35 }, // TODO: Update with actual coordinates
         },
         {
           id: 'building-d',
           name: 'Blloku D',
-          image: `${import.meta.env.BASE_URL}SVG Residences/Elsa Residence Blloku BCD.svg`,
+          image: `${import.meta.env.BASE_URL}SVG Residences/${encodeURIComponent('Elsa Residence Blloku BCD')}.svg`,
           clickableArea: { x: 58, y: 55, width: 15, height: 35 }, // TODO: Update with actual coordinates
         },
         {
           id: 'building-e',
           name: 'Blloku E',
-          image: `${import.meta.env.BASE_URL}SVG Residences/Elsa Residence Blloku EF.svg`,
+          image: `${import.meta.env.BASE_URL}SVG Residences/${encodeURIComponent('Elsa Residence Blloku EF')}.svg`,
           clickableArea: { x: 40, y: 15, width: 18, height: 30 }, // TODO: Update with actual coordinates
         },
         {
           id: 'building-f',
           name: 'Blloku F',
-          image: `${import.meta.env.BASE_URL}SVG Residences/Elsa Residence Blloku EF.svg`,
+          image: `${import.meta.env.BASE_URL}SVG Residences/${encodeURIComponent('Elsa Residence Blloku EF')}.svg`,
           clickableArea: { x: 58, y: 10, width: 18, height: 40 }, // TODO: Update with actual coordinates
         }
       )
@@ -87,13 +87,13 @@ export const ProjectDetail = () => {
         {
           id: 'building-a',
           name: 'Blloku A',
-          image: `${import.meta.env.BASE_URL}SVG Residences/Tiani Residence.svg`,
+          image: `${import.meta.env.BASE_URL}SVG Residences/${encodeURIComponent('Tiani Residence')}.svg`,
           clickableArea: { x: 5, y: 20, width: 45, height: 60 }, // TODO: Update with actual coordinates
         },
         {
           id: 'building-b',
           name: 'Blloku B',
-          image: `${import.meta.env.BASE_URL}SVG Residences/Tiani Residence.svg`,
+          image: `${import.meta.env.BASE_URL}SVG Residences/${encodeURIComponent('Tiani Residence')}.svg`,
           clickableArea: { x: 50, y: 20, width: 45, height: 60 }, // TODO: Update with actual coordinates
         }
       )
