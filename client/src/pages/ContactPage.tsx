@@ -19,9 +19,6 @@ export const ContactPage = () => {
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
-  const [selectedMap, setSelectedMap] = useState<string>(
-    'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2091.3746604644157!2d21.17503175369921!3d42.64081244414135!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x135499c18d0c14a1%3A0x2e34f7987ae9d3d8!2sETNA%20Group!5e0!3m2!1sen!2s!4v1768562309605!5m2!1sen!2s'
-  )
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -328,48 +325,6 @@ export const ContactPage = () => {
                     </p>
                   </div>
                 </div>
-              </div>
-            </div>
-
-            {/* Map Section */}
-            <div className="rounded-3xl bg-[#F8F2DD] p-8 shadow-xl border border-[#657432]/20">
-              <h3 className="mb-6 text-2xl font-bold text-[#657432]">Lokacionet</h3>
-              <div className="mb-4">
-                <select
-                  id="location-select"
-                  value={selectedMap}
-                  onChange={(e) => setSelectedMap(e.target.value)}
-                  className="w-full rounded-lg border border-[#657432]/30 bg-[#F8F2DD] px-4 py-3 text-[#657432] focus:border-[#657432] focus:outline-none focus:ring-2 focus:ring-[#657432]/20"
-                >
-                  <option value="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2091.3746604644157!2d21.17503175369921!3d42.64081244414135!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x135499c18d0c14a1%3A0x2e34f7987ae9d3d8!2sETNA%20Group!5e0!3m2!1sen!2s!4v1768562309605!5m2!1sen!2s">
-                    Elsa Residence & Zyrë Prishtinë
-                  </option>
-                  <option value="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d574.6707271881615!2d20.72553285387877!3d42.22137887565017!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1353950a12f4301f%3A0xda0e2e9b8d3d5850!2sPrizren%2020000!5e0!3m2!1sen!2s!4v1768562857693!5m2!1sen!2s">
-                    Zyrë Prizren
-                  </option>
-                  <option value="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1598.433687670586!2d20.72099588751829!3d42.225010482551475!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1353950a12f4301f%3A0xda0e2e9b8d3d5850!2sPrizren%2020000!5e1!3m2!1sen!2s!4v1768562982109!5m2!1sen!2s">
-                    Tara Residence
-                  </option>
-                  <option value="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1507.4967021016403!2d20.70275421152505!3d42.204117073228566!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1353950a12f4301f%3A0xda0e2e9b8d3d5850!2sPrizren%2020000!5e1!3m2!1sen!2s!4v1768563174017!5m2!1sen!2s">
-                    Tiani Residence
-                  </option>
-                  <option value="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d837.8455864122014!2d20.732583028583758!3d42.487289807849564!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x13539fd8ce994875%3A0x5a623408c7d18295!2sMalishev%C3%AB%2024000!5e1!3m2!1sen!2s!4v1768563291232!5m2!1sen!2s">
-                    Joni Residence
-                  </option>
-                </select>
-              </div>
-              <div className="overflow-hidden rounded-lg">
-                <iframe
-                  id="location-map"
-                  src={selectedMap}
-                  width="100%"
-                  height="450"
-                  style={{ border: 0 }}
-                  allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  className="w-full"
-                />
               </div>
             </div>
 

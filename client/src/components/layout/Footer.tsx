@@ -1,7 +1,27 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 
 export const Footer = () => {
+  // Map URLs with markers - using coordinates with q parameter to show pins
+  // Format: https://www.google.com/maps/embed?pb=...&q=lat,lng
+  // Coordinates from user:
+  // Elsa/Prishtina: (42.64081244414135, 21.17503175369921)
+  // Prizren Office: (42.22137887565017, 20.72553285387877)
+  // Tara: (42.225010482551475, 20.72099588751829)
+  // Tiani: (42.204117073228566, 20.70275421152505)
+  // Joni: (42.487289807849564, 20.732583028583758)
+  
+  const mapUrls = {
+    elsa: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2091.3746604644157!2d21.17503175369921!3d42.64081244414135!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x135499c18d0c14a1%3A0x2e34f7987ae9d3d8!2sETNA%20Group!5e0!3m2!1sen!2s!4v1768562309605!5m2!1sen!2s&q=42.64081244414135,21.17503175369921',
+    prizren: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d574.6707271881615!2d20.72553285387877!3d42.22137887565017!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1353950a12f4301f%3A0xda0e2e9b8d3d5850!2sPrizren%2020000!5e0!3m2!1sen!2s!4v1768562857693!5m2!1sen!2s&q=42.22137887565017,20.72553285387877',
+    tara: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1598.433687670586!2d20.72099588751829!3d42.225010482551475!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1353950a12f4301f%3A0xda0e2e9b8d3d5850!2sPrizren%2020000!5e1!3m2!1sen!2s!4v1768562982109!5m2!1sen!2s&q=42.225010482551475,20.72099588751829',
+    tiani: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1507.4967021016403!2d20.70275421152505!3d42.204117073228566!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1353950a12f4301f%3A0xda0e2e9b8d3d5850!2sPrizren%2020000!5e1!3m2!1sen!2s!4v1768563174017!5m2!1sen!2s&q=42.204117073228566,20.70275421152505',
+    joni: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d837.8455864122014!2d20.732583028583758!3d42.487289807849564!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x13539fd8ce994875%3A0x5a623408c7d18295!2sMalishev%C3%AB%2024000!5e1!3m2!1sen!2s!4v1768563291232!5m2!1sen!2s&q=42.487289807849564,20.732583028583758',
+  }
+
+  const [selectedMap, setSelectedMap] = useState<string>(mapUrls.elsa)
+
   return (
     <footer className="border-t border-[#657432]/20 bg-[#F8F2DD] text-[#657432]">
       <div className="mx-auto max-w-7xl px-4 py-6">
@@ -84,6 +104,36 @@ export const Footer = () => {
                 <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z" />
               </svg>
             </motion.a>
+          </div>
+        </div>
+
+        {/* Map Section */}
+        <div className="mt-8 border-t border-[#657432]/20 pt-6">
+          <div className="mb-4 text-center">
+            <h3 className="mb-2 text-lg font-bold text-[#657432]">Lokacionet Tona</h3>
+            <select
+              value={selectedMap}
+              onChange={(e) => setSelectedMap(e.target.value)}
+              className="rounded-lg border border-[#657432]/30 bg-[#F8F2DD] px-4 py-2 text-sm text-[#657432] focus:border-[#657432] focus:outline-none focus:ring-2 focus:ring-[#657432]/20"
+            >
+              <option value={mapUrls.elsa}>Elsa Residence & Zyrë Prishtinë</option>
+              <option value={mapUrls.prizren}>Zyrë Prizren</option>
+              <option value={mapUrls.tara}>Tara Residence</option>
+              <option value={mapUrls.tiani}>Tiani Residence</option>
+              <option value={mapUrls.joni}>Joni Residence</option>
+            </select>
+          </div>
+          <div className="overflow-hidden rounded-lg">
+            <iframe
+              src={selectedMap}
+              width="100%"
+              height="300"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              className="w-full"
+            />
           </div>
         </div>
 
