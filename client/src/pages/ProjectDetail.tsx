@@ -8,6 +8,8 @@ import { FloorSelector } from '../components/FloorSelector'
 import type { Floor } from '../components/FloorSelector'
 import { FloorPlanViewer } from '../components/FloorPlanViewer'
 import type { Apartment } from '../components/FloorPlanViewer'
+import { VisualGallery } from '../components/VisualGallery'
+import { getResidenceVisuals, getResidenceHeroImage } from '../data/residenceVisuals'
 
 type ViewState = 'building' | 'floor' | 'plan'
 
@@ -207,6 +209,9 @@ export const ProjectDetail = () => {
   const apartments = selectedFloor ? generateApartments(selectedFloor) : []
   const selectedFloorData = floors.find((f) => f.id === selectedFloor)
   const selectedBuildingData = buildings.find((b) => b.id === selectedBuilding)
+  
+  // Use first visual as fallback hero image if hero image doesn't exist
+  const heroImage = project.heroImage || getResidenceHeroImage(project.id) || ''
 
   return (
     <div className="min-h-screen bg-[#F8F2DD]">
@@ -214,7 +219,7 @@ export const ProjectDetail = () => {
       <section className="relative h-[60vh] overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${project.heroImage})` }}
+          style={{ backgroundImage: `url(${heroImage})` }}
         >
           <div className="absolute inset-0 bg-gradient-to-b from-[#F8F2DD]/80 to-[#F8F2DD]" />
         </div>
@@ -282,146 +287,58 @@ export const ProjectDetail = () => {
         </div>
       </section>
 
-      {/* Interactive Plans Section */}
-      {project.hasInteractivePlans ? (
-        <section className="bg-gradient-to-b from-[#F8F2DD] to-[#F8F2DD] py-20">
-          <div className="mx-auto max-w-7xl px-4">
-            {/* Navigation breadcrumb */}
-            {(viewState === 'floor' || viewState === 'plan') && (
-              <motion.div
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="mb-6 flex items-center gap-4"
-              >
-                <button
-                  onClick={handleBack}
-                  className="flex items-center gap-2 rounded-lg bg-[#657432]/10 px-4 py-2 text-[#657432] transition-all hover:bg-[#657432]/20"
-                >
-                  <svg
-                    className="h-5 w-5"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M15 19l-7-7 7-7"
-                    />
-                  </svg>
-                  Kthehu
-                </button>
-                <div className="text-[#657432]/70">
-                  {viewState === 'floor' && project.buildingCount > 1 && selectedBuildingData && (
-                    <span>{selectedBuildingData.name}</span>
-                  )}
-                  {viewState === 'plan' && selectedFloorData && (
-                    <span>
-                      {selectedBuildingData ? `${selectedBuildingData.name} - ` : ''}
-                      {selectedFloorData.label}
-                    </span>
-                  )}
-                </div>
-              </motion.div>
-            )}
-
-            <AnimatePresence mode="wait">
-              {viewState === 'building' && project.buildingCount > 1 && (
-                <motion.div
-                  key="building-selector"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                >
-                  <InteractiveBuildingSelector
-                    buildings={buildings}
-                    onBuildingSelect={handleBuildingSelect}
-                    projectName={project.name}
-                    projectId={project.id}
-                  />
-                </motion.div>
-              )}
-
-              {viewState === 'floor' && (
-                <motion.div
-                  key="floor-selector"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                >
-                  <FloorSelector
-                    floors={floors.length > 0 ? floors : generateFloors('main')}
-                    selectedFloor={selectedFloor}
-                    onFloorSelect={handleFloorSelect}
-                    buildingName={
-                      selectedBuildingData
-                        ? selectedBuildingData.name
-                        : project.buildingCount === 1
-                        ? project.name
-                        : 'Ndërtesa Kryesore'
-                    }
-                  />
-                </motion.div>
-              )}
-
-              {viewState === 'plan' && selectedFloor && (
-                <motion.div
-                  key="floor-plan"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                >
-                  <FloorPlanViewer
-                    floorPlanImage={`/buildings/${project.id}-${selectedFloor}-plan.jpg`}
-                    apartments={apartments}
-                    floorLabel={selectedFloorData?.label || 'Kati'}
-                    buildingName={
-                      selectedBuildingData
-                        ? selectedBuildingData.name
-                        : project.buildingCount === 1
-                        ? project.name
-                        : 'Ndërtesa Kryesore'
-                    }
-                  />
-                </motion.div>
-              )}
-            </AnimatePresence>
-
-            {/* Initialize floor selector for single building projects */}
-            {project.buildingCount === 1 && viewState === 'building' && (
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                onAnimationComplete={() => setViewState('floor')}
-              >
-                <FloorSelector
-                  floors={generateFloors('main')}
-                  selectedFloor={selectedFloor}
-                  onFloorSelect={handleFloorSelect}
-                  buildingName={project.name}
-                />
-              </motion.div>
-            )}
-          </div>
-        </section>
-      ) : (
-        // For Etna Residence (all sold) or projects without interactive plans
-        <section className="bg-gradient-to-b from-[#F8F2DD] to-[#F8F2DD] py-20">
-          <div className="mx-auto max-w-7xl px-4 text-center">
-            <h2 className="mb-4 text-4xl font-bold text-[#657432] md:text-5xl">
-              {project.status === 'completed' && project.availableUnits === 0
-                ? 'Të Gjitha Njësitë Janë Shitur'
-                : 'Planimetria Së Shpejti'}
-            </h2>
-            <p className="text-lg text-[#657432]/70">
-              {project.status === 'completed' && project.availableUnits === 0
-                ? 'Etna Residence është i përfunduar dhe të gjitha njësitë janë shitur. Faleminderit për interesin tuaj!'
-                : 'Planimetria interaktive do të jetë e disponueshme së shpejti.'}
-            </p>
-          </div>
-        </section>
+      {/* Visual Gallery Section */}
+      {getResidenceVisuals(project.id).length > 0 && (
+        <VisualGallery
+          images={getResidenceVisuals(project.id)}
+          title={`Vizualizime - ${project.name}`}
+        />
       )}
+
+      {/* Apartment Selection Section - Under Construction */}
+      <section className="bg-gradient-to-b from-[#F8F2DD] to-[#F8F2DD] py-20">
+        <div className="mx-auto max-w-7xl px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-center"
+          >
+            <div className="mb-8 flex justify-center">
+              <div className="rounded-full bg-[#657432]/10 p-8">
+                <svg
+                  className="h-24 w-24 text-[#657432]"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
+                  />
+                </svg>
+              </div>
+            </div>
+            <h2 className="mb-4 text-4xl font-bold text-[#657432] md:text-5xl">
+              Në Ndërtim
+            </h2>
+            <p className="mx-auto max-w-2xl text-lg text-[#657432]/70 mb-8">
+              Seksioni për zgjedhjen e banesave është në zhvillim dhe do të jetë i disponueshëm së shpejti.
+            </p>
+            <p className="text-[#657432]/80">
+              Për informacion më të detajuar, ju lutem{' '}
+              <Link
+                to="/kontakt"
+                className="font-semibold text-[#657432] underline hover:text-[#657432]/80"
+              >
+                na kontaktoni
+              </Link>
+              .
+            </p>
+          </motion.div>
+        </div>
+      </section>
     </div>
   )
 }

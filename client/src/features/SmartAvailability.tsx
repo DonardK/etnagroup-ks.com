@@ -146,9 +146,6 @@ export const SmartAvailability = () => {
                       src={unit.plan2DUrl}
                       alt={`Unit ${unit.unitNumber}`}
                       className="h-full w-full object-cover"
-                      onError={(e) => {
-                        e.currentTarget.src = `https://via.placeholder.com/400x300?text=Unit+${unit.unitNumber}`
-                      }}
                     />
                     {/* Status Badge */}
                     <div

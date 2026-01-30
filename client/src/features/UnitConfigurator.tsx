@@ -114,10 +114,6 @@ export const UnitConfigurator = () => {
                     src={show3D ? selectedUnit.plan3DUrl : selectedUnit.plan2DUrl}
                     alt={`${selectedType} plan`}
                     className="h-full w-full object-cover"
-                    onError={(e) => {
-                      e.currentTarget.src = 'https://via.placeholder.com/800x600?text=' + 
-                        (show3D ? '3D+Plan' : '2D+Plan')
-                    }}
                   />
                 </motion.div>
               ) : (

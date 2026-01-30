@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
+import emailjs from '@emailjs/browser'
 
 interface FormData {
   name: string
@@ -31,26 +32,90 @@ export const ContactPage = () => {
     setIsSubmitting(true)
     setSubmitStatus('idle')
 
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1500))
+    try {
+      // EmailJS configuration
+      // NOTE: You need to set up EmailJS account and get these values:
+      // 1. Go to https://www.emailjs.com/
+      // 2. Create a free account
+      // 3. Create an email service (Gmail, Outlook, etc.)
+      // 4. Create an email template
+      // 5. Get your Public Key, Service ID, and Template ID
+      // 6. Replace the values below
+      
+      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID
+      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID
+      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY
 
-    // In production, this would send to your API
-    console.log('Form submitted:', formData)
-    
-    setIsSubmitting(false)
-    setSubmitStatus('success')
-    
-    // Reset form after 3 seconds
-    setTimeout(() => {
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        project: '',
-        message: '',
+      // Check if EmailJS is configured
+      if (!serviceId || !templateId || !publicKey || 
+          serviceId === 'YOUR_SERVICE_ID' || 
+          templateId === 'YOUR_TEMPLATE_ID' || 
+          publicKey === 'YOUR_PUBLIC_KEY') {
+        // Fallback to mailto if EmailJS is not configured
+        const subject = encodeURIComponent(`Kontakt nga ${formData.name} - ${formData.project || 'Informacion i Përgjithshëm'}`)
+        const body = encodeURIComponent(
+          `Emri: ${formData.name}\n` +
+          `Email: ${formData.email}\n` +
+          `Telefoni: ${formData.phone}\n` +
+          `Projekti: ${formData.project || 'N/A'}\n\n` +
+          `Mesazhi:\n${formData.message}`
+        )
+        window.location.href = `mailto:info@etnagroup-ks.com?subject=${subject}&body=${body}`
+        
+        setIsSubmitting(false)
+        setSubmitStatus('success')
+        
+        setTimeout(() => {
+          setFormData({
+            name: '',
+            email: '',
+            phone: '',
+            project: '',
+            message: '',
+          })
+          setSubmitStatus('idle')
+        }, 3000)
+        return
+      }
+
+      // Initialize EmailJS
+      emailjs.init(publicKey)
+
+      // Send email via EmailJS
+      await emailjs.send(serviceId, templateId, {
+        to_email: 'info@etnagroup-ks.com',
+        from_name: formData.name,
+        from_email: formData.email,
+        phone: formData.phone,
+        project: formData.project || 'N/A',
+        message: formData.message,
+        reply_to: formData.email,
       })
-      setSubmitStatus('idle')
-    }, 3000)
+
+      setIsSubmitting(false)
+      setSubmitStatus('success')
+
+      // Reset form after 3 seconds
+      setTimeout(() => {
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          project: '',
+          message: '',
+        })
+        setSubmitStatus('idle')
+      }, 3000)
+    } catch (error) {
+      console.error('Error sending email:', error)
+      setIsSubmitting(false)
+      setSubmitStatus('error')
+
+      // Show error for 5 seconds
+      setTimeout(() => {
+        setSubmitStatus('idle')
+      }, 5000)
+    }
   }
 
   return (
@@ -185,9 +250,20 @@ export const ContactPage = () => {
                 <motion.div
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="rounded-lg bg-[#657432]/20 p-4 text-[#657432]"
+                  className="rounded-lg bg-green-100 border border-green-400 p-4 text-green-800"
                 >
                   ✓ Mesazhi u dërgua me sukses! Do t'ju kontaktojmë së shpejti.
+                </motion.div>
+              )}
+
+              {/* Error Message */}
+              {submitStatus === 'error' && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="rounded-lg bg-red-100 border border-red-400 p-4 text-red-800"
+                >
+                  ✗ Dërgimi dështoi. Ju lutem provoni përsëri ose na kontaktoni direkt në info@etnagroup-ks.com
                 </motion.div>
               )}
             </form>
