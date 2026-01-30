@@ -44,6 +44,6 @@ jobs:
           personal_token: ${{ secrets.DEPLOY_TO_USER_PAGES_TOKEN }}
           external_repository: donardk/donardk.github.io
           publish_dir: ./client/dist
-          publish_branch: main
+          publish_branch: gh-pages
           user_name: 'github-actions[bot]'
           user_email: 'github-actions[bot]@users.noreply.github.com'
