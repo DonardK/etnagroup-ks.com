@@ -46,6 +46,10 @@ jobs:
             cp public/404.html dist/404.html
           fi
 
+      - name: Verify visuals in build
+        working-directory: ./client
+        run: ls -la dist/ && ls dist/visuals 2>/dev/null || echo "No visuals dir"
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
