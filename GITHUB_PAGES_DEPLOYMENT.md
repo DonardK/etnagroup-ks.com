@@ -97,6 +97,21 @@ To serve the Etna Group site at **https://donardk.github.io/** (instead of `/etn
 
 ---
 
+## Custom domain (etnagroup-ks.com)
+
+To avoid a blank white screen on your custom domain:
+
+1. **CNAME is included in the deploy**  
+   The repo has `client/public/CNAME` with `etnagroup-ks.com`. Vite copies it into `dist/`, and the workflow deploys that, so the published site root includes **index.html** and **CNAME**. If your custom domain is different (e.g. `www.etnagroup-ks.com`), edit `client/public/CNAME` to that exact domain (one line, no `https://`).
+
+2. **GitHub Pages settings**  
+   In the **donardk.github.io** repo: **Settings → Pages → Custom domain**. Enter your domain (e.g. `etnagroup-ks.com`) and save. GitHub will show DNS instructions if needed.
+
+3. **Root structure**  
+   The workflow publishes the **contents** of `client/dist/` to the **root** of the `gh-pages` branch, so **index.html** is at the top level (not inside a subfolder). Asset paths in the built HTML use `/assets/...` so they work on both donardk.github.io and your custom domain.
+
+---
+
 ## Notes
 
 - The website will be available at: `https://donardk.github.io/etnagroup-ks.com/` (project site) and, after the one-time setup above, at **https://donardk.github.io/** (root).
