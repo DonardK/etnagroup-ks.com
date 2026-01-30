@@ -2,6 +2,7 @@
   "name": "etnagroup-client",
   "private": true,
   "version": "1.0.0",
+  "homepage": "https://etnagroup-ks.com",
   "type": "module",
   "description": "Etna Group Premium Real Estate Platform - Frontend",
   "author": "Etna Group",

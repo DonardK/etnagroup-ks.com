@@ -2,9 +2,9 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
 // https://vite.dev/config/
-// BASE_PATH set in GitHub Actions for Pages (e.g. /etnagroup-ks.com/); default / for local
+// base '/' so assets load from /assets/ on custom domain and donardk.github.io root
 export default defineConfig(({ mode }) => ({
-  base: process.env.BASE_PATH || '/',
+  base: '/',
   plugins: [react()],
   server: {
     port: 5173,
