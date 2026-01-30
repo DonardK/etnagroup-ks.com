@@ -1,0 +1,49 @@
+# Deploy Etna Group site to the root of donardk.github.io
+# Requires secret: DEPLOY_TO_USER_PAGES_TOKEN (PAT with repo scope for donardk/donardk.github.io)
+name: Deploy to donardk.github.io (root)
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy-to-user-pages:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: client/package-lock.json
+
+      - name: Install dependencies
+        working-directory: ./client
+        run: npm ci
+
+      # Build with base / so site works at https://donardk.github.io/
+      - name: Build for root URL
+        working-directory: ./client
+        run: npm run build
+
+      - name: Copy 404 for SPA fallback
+        working-directory: ./client
+        run: |
+          if [ -f "public/404.html" ]; then
+            cp public/404.html dist/404.html
+          fi
+
+      - name: Deploy to donardk.github.io
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          personal_token: ${{ secrets.DEPLOY_TO_USER_PAGES_TOKEN }}
+          external_repository: donardk/donardk.github.io
+          publish_dir: ./client/dist
+          publish_branch: main
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'

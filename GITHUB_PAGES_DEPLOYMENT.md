@@ -65,8 +65,40 @@ npm run build
 npm run preview
 ```
 
+## Deploy Etna site to root: https://donardk.github.io/
+
+To serve the Etna Group site at **https://donardk.github.io/** (instead of `/etnagroup-ks.com/`), a second workflow deploys the built site into the **donardk.github.io** repository.
+
+### One-time setup: Personal Access Token (PAT)
+
+1. **Create a PAT** (GitHub → Settings → Developer settings → Personal access tokens):
+   - **Classic** token with scope **repo** (or at least write access to `donardk/donardk.github.io`).
+   - Copy the token; you won’t see it again.
+
+2. **Add the token as a secret** in the **etnagroup-ks.com** repo:
+   - Repo **etnagroup-ks.com** → **Settings** → **Secrets and variables** → **Actions**.
+   - **New repository secret**:
+     - Name: `DEPLOY_TO_USER_PAGES_TOKEN`
+     - Value: paste the PAT.
+
+3. **Default branch of donardk.github.io**:  
+   The workflow pushes to the `main` branch. If your **donardk.github.io** repo uses `master` as the default branch, edit `.github/workflows/deploy-user-pages.yml` and set `publish_branch: master`.
+
+### What runs
+
+- On every push to `main`, the workflow **Deploy to donardk.github.io (root)** runs.
+- It builds the app with base `/` and pushes the contents of `client/dist` to the root of **donardk/donardk.github.io**.
+- **Warning:** This overwrites whatever is currently in that repo. If you had another site there, it will be replaced by the Etna site.
+
+### URLs after setup
+
+- **Root (user site):** https://donardk.github.io/ → Etna Group site.
+- **Project site (optional):** https://donardk.github.io/etnagroup-ks.com/ → same app from the other workflow, if you keep it.
+
+---
+
 ## Notes
 
-- The website will be available at: `https://donardk.github.io/etnagroup-ks.com/`
+- The website will be available at: `https://donardk.github.io/etnagroup-ks.com/` (project site) and, after the one-time setup above, at **https://donardk.github.io/** (root).
 - The backend API needs to be deployed separately (consider Railway, Render, or another host for the .NET API)
 - For production, update API endpoints in your frontend code to point to your deployed backend URL
