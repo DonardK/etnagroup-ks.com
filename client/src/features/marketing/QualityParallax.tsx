@@ -1,5 +1,6 @@
 import { useScroll, useTransform, motion } from 'framer-motion'
 import { useRef } from 'react'
+import { assetUrl } from '../../utils/assetUrl'
 
 interface QualityFeature {
   title: string
@@ -91,7 +92,7 @@ export const QualityParallax = () => {
                 <div
                   className="h-full w-full bg-cover bg-center"
                   style={{
-                    backgroundImage: `url(${feature.image})`,
+                    backgroundImage: `url(${assetUrl(feature.image)})`,
                     backgroundSize: 'cover',
                   }}
                 >

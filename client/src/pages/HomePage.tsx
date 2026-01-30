@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { projects } from '../data/projects'
+import { assetUrl } from '../utils/assetUrl'
 
 export const HomePage = () => {
   // Auto-slide functionality removed - using static video hero instead
@@ -15,7 +16,7 @@ export const HomePage = () => {
           <div
             className="absolute inset-0 h-full w-full bg-cover bg-center"
             style={{
-              backgroundImage: `url(/buildings/etna-hero.jpg)`,
+              backgroundImage: `url(${assetUrl('/buildings/etna-hero.jpg')})`,
             }}
           />
           {/* YouTube Video Embed - scaled to fill entire width, may crop top/bottom */}
@@ -104,7 +105,7 @@ export const HomePage = () => {
                   {/* Image – cardImage for cards, heroImage only on detail page */}
                   <div className="relative h-80 overflow-hidden bg-[#657432]/10">
                     <img
-                      src={encodeURI(project.cardImage || project.heroImage)}
+                      src={encodeURI(assetUrl(project.cardImage || project.heroImage))}
                       alt=""
                       className="h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-110"
                       loading="lazy"

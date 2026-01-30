@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { projects } from '../data/projects'
+import { assetUrl } from '../utils/assetUrl'
 
 interface BuildingArea {
   id: string
@@ -68,11 +69,11 @@ export const InteractiveBuildingMap = ({
     <div className={`relative ${className}`}>
       {/* Base Image */}
       <img
-        src={imageUrl}
+        src={imageUrl.startsWith('/') ? assetUrl(imageUrl) : imageUrl}
         alt="Etna Group Buildings"
         className="w-full h-auto"
         onError={(e) => {
-          e.currentTarget.src = '/buildings/etna-hero.jpg'
+          e.currentTarget.src = assetUrl('/buildings/etna-hero.jpg')
         }}
       />
 

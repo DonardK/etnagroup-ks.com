@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { assetUrl } from '../utils/assetUrl'
 
 export const InteractiveLivingHero = () => {
   return (
@@ -7,7 +8,7 @@ export const InteractiveLivingHero = () => {
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: `url('/buildings/etna-hero.jpg')`,
+          backgroundImage: `url('${assetUrl('/buildings/etna-hero.jpg')}')`,
         }}
       >
         {/* Dark Overlay */}

@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { projects } from '../data/projects'
+import { assetUrl } from '../utils/assetUrl'
 
 export const AboutPage = () => {
   return (
@@ -96,7 +97,7 @@ export const AboutPage = () => {
                           <div className="group relative overflow-hidden rounded-2xl bg-[#F8F2DD] shadow-2xl border border-[#657432]/20">
                             <div className="aspect-[4/3] overflow-hidden bg-[#657432]/10">
                               <img
-                                src={encodeURI(project.cardImage || project.heroImage)}
+                                src={encodeURI(assetUrl(project.cardImage || project.heroImage))}
                                 alt=""
                                 className="h-full w-full object-cover object-center transition-transform duration-700 group-hover:scale-110"
                                 loading="lazy"

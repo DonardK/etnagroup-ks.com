@@ -2,6 +2,7 @@ import { useParams, Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { getProjectById } from '../data/projects'
 import { getResidenceHeroImage } from '../data/residenceVisuals'
+import { assetUrl } from '../utils/assetUrl'
 
 export const ProjectDetail = () => {
   const { id } = useParams<{ id: string }>()
@@ -29,7 +30,7 @@ export const ProjectDetail = () => {
       <section className="relative h-[60vh] overflow-hidden">
         {heroImage && (
           <img
-            src={encodeURI(heroImage)}
+            src={encodeURI(assetUrl(heroImage))}
             alt=""
             className="absolute inset-0 h-full w-full object-cover object-center"
             aria-hidden
