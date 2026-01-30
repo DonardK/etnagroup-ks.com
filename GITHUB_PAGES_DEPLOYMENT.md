@@ -68,5 +68,5 @@ npm run preview
 ## Notes
 
 - The website will be available at: `https://donardk.github.io/etnagroup-ks.com/`
-- The backend API needs to be deployed separately (consider Vercel, Railway, or Render for the .NET API)
+- The backend API needs to be deployed separately (consider Railway, Render, or another host for the .NET API)
 - For production, update API endpoints in your frontend code to point to your deployed backend URL

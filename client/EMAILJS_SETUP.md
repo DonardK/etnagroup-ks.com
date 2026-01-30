@@ -79,6 +79,6 @@ If EmailJS is not configured, the form will fall back to opening the user's emai
 ## Production Deployment
 
 For production deployment:
-1. Set the environment variables in your hosting platform (Hostinger, Vercel, etc.)
+1. Set the environment variables in your hosting platform (Hostinger, Netlify, etc.)
 2. Restart your application
 3. Test the contact form on the live site

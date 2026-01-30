@@ -2,43 +2,7 @@
 
 This guide shows you how to temporarily deploy your site so employees can access it and find images. **This is NOT for production** - just for internal review.
 
-## 🚀 Option 1: Vercel (Easiest - Recommended)
-
-**Free, takes 5 minutes, gives you a shareable URL**
-
-### Steps:
-
-1. **Install Vercel CLI** (if you don't have it):
-   ```bash
-   npm install -g vercel
-   ```
-
-2. **Navigate to client folder**:
-   ```bash
-   cd client
-   ```
-
-3. **Deploy**:
-   ```bash
-   vercel
-   ```
-   
-   - It will ask you to login (create free account if needed)
-   - Press Enter to accept defaults
-   - It will give you a URL like: `https://etnagroup-ks-com.vercel.app`
-
-4. **Share the URL** with your employees!
-
-5. **To update** (when you make changes):
-   ```bash
-   vercel --prod
-   ```
-
-**Note**: The first deployment creates a preview URL. Use `--prod` flag for a stable URL.
-
----
-
-## 🌐 Option 2: Netlify (Also Easy)
+## 🌐 Option 1: Netlify
 
 **Free, drag-and-drop or CLI**
 
@@ -67,7 +31,7 @@ This guide shows you how to temporarily deploy your site so employees can access
 
 ---
 
-## 🔗 Option 3: Cloudflare Pages (Free)
+## 🔗 Option 2: Cloudflare Pages (Free)
 
 1. Go to https://pages.cloudflare.com
 2. Connect your GitHub repository (or upload manually)
@@ -78,7 +42,7 @@ This guide shows you how to temporarily deploy your site so employees can access
 
 ---
 
-## 🏠 Option 4: Local Network Access (If employees are nearby)
+## 🏠 Option 3: Local Network Access (If employees are nearby)
 
 If your employees are on the same network (same office/WiFi):
 
@@ -98,7 +62,7 @@ If your employees are on the same network (same office/WiFi):
 
 ---
 
-## 🔐 Option 5: ngrok (Tunnel to localhost)
+## 🔐 Option 4: ngrok (Tunnel to localhost)
 
 **Makes your localhost accessible from anywhere**
 
@@ -127,7 +91,6 @@ If your employees are on the same network (same office/WiFi):
 
 | Option | Setup Time | Cost | URL Stability | Best For |
 |--------|------------|------|---------------|----------|
-| **Vercel** | 5 min | Free | Stable | Quick preview |
 | **Netlify** | 5 min | Free | Stable | Quick preview |
 | **Cloudflare Pages** | 10 min | Free | Stable | Quick preview |
 | **Local Network** | 2 min | Free | Stable | Same office |
@@ -137,35 +100,9 @@ If your employees are on the same network (same office/WiFi):
 
 ---
 
-## 🎯 Recommended: Vercel
-
-**Why?**
-- ✅ Fastest setup
-- ✅ Free
-- ✅ Stable URL
-- ✅ Easy updates
-- ✅ No credit card needed
-
-**Quick Start:**
-```bash
-npm install -g vercel
-cd client
-vercel
-```
-
-Then share the URL you get!
-
----
-
 ## 🔄 Updating the Preview
 
 When you make changes:
-
-**Vercel:**
-```bash
-cd client
-vercel --prod
-```
 
 **Netlify:**
 ```bash
@@ -181,7 +118,7 @@ netlify deploy --prod --dir=dist
 - These are **preview/staging** environments - NOT production
 - Free tiers may have limitations (bandwidth, build time)
 - URLs are public - don't share sensitive data
-- You can password-protect Vercel/Netlify deployments if needed
+- You can password-protect Netlify deployments if needed
 
 ---
 

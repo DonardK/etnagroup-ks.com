@@ -249,13 +249,6 @@ sudo systemctl restart nginx
 3. Set environment variable: `VITE_API_BASE_URL`
 4. Deploy
 
-### Vercel (Frontend only)
-
-1. Import project from GitHub
-2. Configure framework preset: Vite
-3. Set environment variables
-4. Deploy
-
 ## SSL/HTTPS Setup
 
 ### Let's Encrypt (Free)

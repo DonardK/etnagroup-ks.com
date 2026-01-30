@@ -278,7 +278,7 @@ buildings/
 3. Publish: `dotnet publish -c Release`
 4. Deploy to hosting service
 
-### Frontend (Netlify, Vercel, etc.)
+### Frontend (Netlify, GitHub Pages, etc.)
 
 1. Build: `npm run build`
 2. Upload `dist/` folder to hosting

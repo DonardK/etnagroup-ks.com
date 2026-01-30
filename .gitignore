@@ -82,5 +82,4 @@ coverage/
 .hypothesis/
 .pytest_cache/
 
-.vercel
 .env*.local

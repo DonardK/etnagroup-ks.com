@@ -31,23 +31,7 @@ git push -u origin main
 
 ## Step 3: Deploy from GitHub
 
-### Option A: Vercel (Recommended - Easiest)
-
-1. Go to https://vercel.com
-2. Sign up/Login with GitHub
-3. Click **"Add New Project"**
-4. Import your repository: `YOUR_USERNAME/etnagroup-ks`
-5. Configure:
-   - **Framework Preset**: Vite
-   - **Root Directory**: `client` (click "Edit" and set to `client`)
-   - **Build Command**: `npm run build` (auto-detected)
-   - **Output Directory**: `dist` (auto-detected)
-6. Click **"Deploy"**
-7. Wait 2-3 minutes
-8. **Copy the URL** (e.g., `https://etnagroup-ks.vercel.app`)
-9. **Share this URL with your employees!**
-
-### Option B: Netlify
+### Option A: Netlify
 
 1. Go to https://netlify.com
 2. Sign up/Login with GitHub
@@ -60,7 +44,7 @@ git push -u origin main
 6. Click **"Deploy site"**
 7. **Copy the URL** and share it!
 
-### Option C: Cloudflare Pages
+### Option B: Cloudflare Pages
 
 1. Go to https://pages.cloudflare.com
 2. Sign up/Login with GitHub
@@ -103,17 +87,6 @@ If Git asks for authentication:
 
 - [ ] Created GitHub repository
 - [ ] Pushed code to GitHub
-- [ ] Deployed to Vercel/Netlify/Cloudflare
+- [ ] Deployed to Netlify/Cloudflare/GitHub Pages
 - [ ] Got the preview URL
 - [ ] Shared URL with employees
-
-## 🎯 Recommended: Vercel
-
-**Why Vercel?**
-- ✅ Easiest setup
-- ✅ Free
-- ✅ Auto-deploys on every push
-- ✅ Fast
-- ✅ Stable URL
-
-**Time to deploy**: ~5 minutes total!

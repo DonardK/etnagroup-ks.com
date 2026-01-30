@@ -40,7 +40,7 @@ Your website currently has **two data sources**:
 ### How it works:
 1. Data stays in `client/src/data/projects.ts`
 2. When you build: `npm run build` → data is bundled into the app
-3. Deploy: Just upload the `dist` folder to any static hosting (Netlify, Vercel, etc.)
+3. Deploy: Just upload the `dist` folder to any static hosting (Netlify, GitHub Pages, etc.)
 
 ### To update data:
 1. Edit `client/src/data/projects.ts`

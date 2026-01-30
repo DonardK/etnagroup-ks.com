@@ -94,12 +94,13 @@ export const AboutPage = () => {
                       >
                         <Link to={`/projektet/${project.id}`}>
                           <div className="group relative overflow-hidden rounded-2xl bg-[#F8F2DD] shadow-2xl border border-[#657432]/20">
-                            <div
-                              className="aspect-[4/3] bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
-                              style={{
-                                backgroundImage: `url(${project.heroImage})`,
-                              }}
-                            >
+                            <div className="aspect-[4/3] overflow-hidden bg-[#657432]/10">
+                              <img
+                                src={encodeURI(project.cardImage || project.heroImage)}
+                                alt=""
+                                className="h-full w-full object-cover object-center transition-transform duration-700 group-hover:scale-110"
+                                loading="lazy"
+                              />
                               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                             </div>
 

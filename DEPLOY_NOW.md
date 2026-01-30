@@ -16,35 +16,26 @@ Since you've connected Cursor to GitHub:
 
 ---
 
-## Step 2: Deploy to Vercel (Get Live URL)
+## Step 2: Deploy (Get Live URL)
 
-Once your code is on GitHub:
+Once your code is on GitHub, use **GitHub Pages** or **Netlify**:
 
-### Option A: Quick Deploy (Recommended)
+### Option A: GitHub Pages
 
-1. Go to: **https://vercel.com/new**
-2. Click **"Import Git Repository"**
-3. Select your GitHub repository: `etnagroup-ks`
-4. Configure:
-   - **Root Directory**: Click "Edit" → Set to `client`
-   - **Framework Preset**: Vite (auto-detected)
-   - **Build Command**: `npm run build` (auto-detected)
-   - **Output Directory**: `dist` (auto-detected)
-5. Click **"Deploy"**
-6. Wait 2-3 minutes
-7. **Copy the URL** (e.g., `https://etnagroup-ks.vercel.app`)
-8. **Share this URL with your employees!** 🎉
+1. In your repo go to **Settings** → **Pages**
+2. Under **Source**, select branch (e.g. `main`) and folder (e.g. `/ (root)` or the folder that contains your built site)
+3. If using a separate build step, use a GitHub Action to build and publish `client/dist`
+4. Your site will be at: `https://YOUR_USERNAME.github.io/etnagroup-ks`
 
-### Option B: Via Vercel CLI
+### Option B: Netlify
 
-```bash
-cd client
-vercel --prod
-```
+1. Go to **https://netlify.com** → Add new site → Import from Git
+2. Select your repo, set **Base directory**: `client`, **Build command**: `npm run build`, **Publish directory**: `client/dist`
+3. Deploy and copy the URL
 
 ---
 
-## Step 3: Enable GitHub Pages (Alternative)
+## Step 3: Custom domain (optional)
 
 If you prefer GitHub Pages:
 
@@ -63,10 +54,8 @@ If you prefer GitHub Pages:
 
 ## ✅ What You'll Get
 
-- **Vercel**: `https://etnagroup-ks.vercel.app` (or similar)
 - **GitHub Pages**: `https://YOUR_USERNAME.github.io/etnagroup-ks`
-
-**Vercel is recommended** - faster, easier, and better for React apps!
+- **Netlify**: `https://your-site.netlify.app` (or similar)
 
 ---
 
@@ -79,4 +68,4 @@ git commit -m "Update website"
 git push
 ```
 
-Vercel will automatically redeploy in 1-2 minutes!
+GitHub Pages or Netlify will redeploy automatically if connected to your repo.

@@ -5,14 +5,16 @@ export interface Project {
   description: string
   location: string
   heroImage: string
+  /** Image for cards on Home/About – different from hero so same image isn’t reused */
+  cardImage?: string
   logo?: string
   features: string[]
   totalUnits: number
   availableUnits: number
   status: 'completed' | 'under-construction' | 'planning'
   completionDate?: string
-  buildingCount: number // Number of buildings in the complex
-  hasInteractivePlans: boolean // Whether to show interactive building/floor selection
+  buildingCount: number
+  hasInteractivePlans: boolean
 }
 
 export const projects: Project[] = [
@@ -23,7 +25,8 @@ export const projects: Project[] = [
     description:
       'Elsa Residence është një kompleks rezidencial premium në qendër të Prishtinës, që kombinon elegancën moderne me rehatinë maksimale. Çdo njësi është projektuar me kujdes për të ofruar një jetesë luksoze në një ambient të sigurt dhe të përshtatshëm.',
     location: 'Prishtinë, Rr. Malush Kosova',
-    heroImage: '/buildings/elsa-hero.jpg',
+    heroImage: '/visuals/ElsaResidenceVisuals/Renderi 1.jpg',
+    cardImage: '/visuals/ElsaResidenceVisuals/Renderi 2.jpg',
     features: [
       'Terraza private integrale',
       'Siguri 24/7',
@@ -46,7 +49,8 @@ export const projects: Project[] = [
     description:
       'Tiani Residence është një kompleks rezidencial i ri që kombinon dizajnin bashkëkohor me teknologjinë më të fundit. Me 8 kate dhe njësi të larmishme, ofron mundësi për çdo stil jetese.',
     location: 'Prizren, Rr. Tahir Sinani',
-    heroImage: '/buildings/tiani-hero.jpg',
+    heroImage: '/visuals/TianiResidenceVisuals/01_1 - Photo.jpg',
+    cardImage: '/visuals/TianiResidenceVisuals/01_2 - Photo.jpg',
     features: [
       'Loft apartments me hapësirë të hapur',
       'Garden area',
@@ -69,7 +73,8 @@ export const projects: Project[] = [
     description:
       'Tara Residence përfaqëson kulmin e arkitekturës moderne dhe jetës premium. Me 8 kate dhe njësi të dizajnuara me sofistikim, ky kompleks ofron një eksperiencë jetese të pazakontë në zemër të Prizrenit.',
     location: 'Prizren, Rr. 5 Maji',
-    heroImage: '/buildings/tara-hero.jpg',
+    heroImage: '/visuals/TaraResidenceVisuals/A1.jpg',
+    cardImage: '/visuals/TaraResidenceVisuals/A2.jpg',
     features: [
       'Penthouse me terrazë panoramike',
       'Rooftop terrace',
@@ -92,7 +97,8 @@ export const projects: Project[] = [
     description:
       'Joni Residence është një kompleks rezidencial i ri që po zhvillohet në Malishevë. Ky projekt premium ofron mundësi për një jetesë moderne dhe komode në një ambient të sigurt dhe të përshtatshëm.',
     location: 'Malishevë, Rr. Imer Krasniqi',
-    heroImage: '/buildings/joni-hero.jpg',
+    heroImage: '/visuals/JoniResidenceVisuals/01_3 - Photo.jpg',
+    cardImage: '/visuals/JoniResidenceVisuals/01_4 - Photo.jpg',
     features: [
       'Terraza private',
       'Siguri 24/7',

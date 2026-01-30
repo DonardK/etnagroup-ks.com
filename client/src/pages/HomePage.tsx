@@ -101,17 +101,15 @@ export const HomePage = () => {
                 className="group relative overflow-hidden rounded-3xl bg-[#F8F2DD] border border-[#657432]/20"
               >
                 <Link to={`/projektet/${project.id}`}>
-                  {/* Image */}
-                  <div className="relative h-80 overflow-hidden">
-                    <div
-                      className="h-full w-full bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
-                      style={{
-                        backgroundImage: `url(${project.heroImage})`,
-                      }}
-                    >
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#F8F2DD] via-transparent to-transparent" />
-                    </div>
-
+                  {/* Image – cardImage for cards, heroImage only on detail page */}
+                  <div className="relative h-80 overflow-hidden bg-[#657432]/10">
+                    <img
+                      src={encodeURI(project.cardImage || project.heroImage)}
+                      alt=""
+                      className="h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-110"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#F8F2DD] via-transparent to-transparent" />
                     {/* Status Badge */}
                     <div className="absolute right-4 top-4">
                       <div

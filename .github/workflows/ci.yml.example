@@ -76,5 +76,4 @@ jobs:
       # - Azure Web App
       # - AWS S3/CloudFront
       # - Netlify
-      # - Vercel
       # etc.

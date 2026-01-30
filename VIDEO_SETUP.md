@@ -14,11 +14,6 @@ The video file `Animacioni Elsa Residence.mp4` (145 MB) is too large for GitHub 
    <source src="YOUR_CLOUDINARY_VIDEO_URL" type="video/mp4" />
    ```
 
-### Using Vercel Blob Storage:
-
-1. After deploying to Vercel, you can upload large files
-2. Or use Vercel's file upload API
-
 ### Using AWS S3 / CloudFront:
 
 1. Upload video to S3 bucket
@@ -27,7 +22,7 @@ The video file `Animacioni Elsa Residence.mp4` (145 MB) is too large for GitHub 
 
 ## Option 2: Add Video After Deployment
 
-1. After deploying to Vercel/Netlify
+1. After deploying to Netlify or your host
 2. Manually upload the video file to the hosting platform
 3. Update the path in your code
 

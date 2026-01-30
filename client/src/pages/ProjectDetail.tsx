@@ -1,24 +1,11 @@
-import { useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { getProjectById } from '../data/projects'
-import { InteractiveBuildingSelector } from '../components/InteractiveBuildingSelector'
-import type { Building } from '../components/InteractiveBuildingSelector'
-import { FloorSelector } from '../components/FloorSelector'
-import type { Floor } from '../components/FloorSelector'
-import { FloorPlanViewer } from '../components/FloorPlanViewer'
-import type { Apartment } from '../components/FloorPlanViewer'
-import { VisualGallery } from '../components/VisualGallery'
-import { getResidenceVisuals, getResidenceHeroImage } from '../data/residenceVisuals'
-
-type ViewState = 'building' | 'floor' | 'plan'
+import { getResidenceHeroImage } from '../data/residenceVisuals'
 
 export const ProjectDetail = () => {
   const { id } = useParams<{ id: string }>()
   const project = id ? getProjectById(id) : null
-  const [viewState, setViewState] = useState<ViewState>('building')
-  const [selectedBuilding, setSelectedBuilding] = useState<string | null>(null)
-  const [selectedFloor, setSelectedFloor] = useState<string | null>(null)
 
   if (!project) {
     return (
@@ -33,196 +20,22 @@ export const ProjectDetail = () => {
     )
   }
 
-  // Generate buildings based on project
-  const generateBuildings = (): Building[] => {
-    if (project.buildingCount === 1) return []
-    
-    const buildings: Building[] = []
-    
-    // Elsa Residence: 6 buildings (A, B, C, D, E, F)
-    // TODO: Update coordinates based on actual SVG building outlines
-    // Coordinates are percentages: x = left %, y = top %, width = width %, height = height %
-    if (project.id === 'elsa') {
-      buildings.push(
-        {
-          id: 'building-a',
-          name: 'Blloku A',
-          image: `${import.meta.env.BASE_URL}SVG Residences/${encodeURIComponent('Elsa Residence Blloku A')}.svg`,
-          clickableArea: { x: 10, y: 60, width: 18, height: 30 }, // TODO: Update with actual coordinates
-        },
-        {
-          id: 'building-b',
-          name: 'Blloku B',
-          image: `${import.meta.env.BASE_URL}SVG Residences/${encodeURIComponent('Elsa Residence Blloku BCD')}.svg`,
-          clickableArea: { x: 28, y: 55, width: 15, height: 35 }, // TODO: Update with actual coordinates
-        },
-        {
-          id: 'building-c',
-          name: 'Blloku C',
-          image: `${import.meta.env.BASE_URL}SVG Residences/${encodeURIComponent('Elsa Residence Blloku BCD')}.svg`,
-          clickableArea: { x: 43, y: 55, width: 15, height: 35 }, // TODO: Update with actual coordinates
-        },
-        {
-          id: 'building-d',
-          name: 'Blloku D',
-          image: `${import.meta.env.BASE_URL}SVG Residences/${encodeURIComponent('Elsa Residence Blloku BCD')}.svg`,
-          clickableArea: { x: 58, y: 55, width: 15, height: 35 }, // TODO: Update with actual coordinates
-        },
-        {
-          id: 'building-e',
-          name: 'Blloku E',
-          image: `${import.meta.env.BASE_URL}SVG Residences/${encodeURIComponent('Elsa Residence Blloku EF')}.svg`,
-          clickableArea: { x: 40, y: 15, width: 18, height: 30 }, // TODO: Update with actual coordinates
-        },
-        {
-          id: 'building-f',
-          name: 'Blloku F',
-          image: `${import.meta.env.BASE_URL}SVG Residences/${encodeURIComponent('Elsa Residence Blloku EF')}.svg`,
-          clickableArea: { x: 58, y: 10, width: 18, height: 40 }, // TODO: Update with actual coordinates
-        }
-      )
-    }
-    // Tiani Residence: 2 buildings (A left, B right)
-    // TODO: Update coordinates based on actual SVG building outlines
-    else if (project.id === 'tiani') {
-      buildings.push(
-        {
-          id: 'building-a',
-          name: 'Blloku A',
-          image: `${import.meta.env.BASE_URL}SVG Residences/${encodeURIComponent('Tiani Residence')}.svg`,
-          clickableArea: { x: 5, y: 20, width: 45, height: 60 }, // TODO: Update with actual coordinates
-        },
-        {
-          id: 'building-b',
-          name: 'Blloku B',
-          image: `${import.meta.env.BASE_URL}SVG Residences/${encodeURIComponent('Tiani Residence')}.svg`,
-          clickableArea: { x: 50, y: 20, width: 45, height: 60 }, // TODO: Update with actual coordinates
-        }
-      )
-    }
-    // Other projects with multiple buildings
-    else {
-      for (let i = 1; i <= project.buildingCount; i++) {
-        buildings.push({
-          id: `building-${i}`,
-          name: `Ndërtesa ${i}`,
-          image: `${import.meta.env.BASE_URL}SVG Residences/${encodeURIComponent(project.name)}.svg`,
-          clickableArea: {
-            x: (i - 1) * (100 / project.buildingCount) + 5,
-            y: 20,
-            width: 90 / project.buildingCount,
-            height: 60,
-          },
-        })
-      }
-    }
-    
-    return buildings
-  }
-
-  // Generate floors for selected building
-  const generateFloors = (buildingId: string): Floor[] => {
-    // Placeholder floors - will be updated with actual data
-    const floors: Floor[] = []
-    const floorCount = 8 // Default floor count
-    
-    // Add regular floors
-    for (let i = 1; i <= floorCount; i++) {
-      floors.push({
-        id: `${buildingId}-floor-${i}`,
-        number: i,
-        label: i === floorCount ? 'Penthouse' : `Kati ${i}`,
-        image: `/buildings/${project.id}-${buildingId}-floor-${i}.jpg`,
-        availableUnits: Math.floor(Math.random() * 5), // Placeholder
-      })
-    }
-    
-    // Add Lokali (commercial spaces) for every building
-    floors.push({
-      id: `${buildingId}-lokali`,
-      number: 0,
-      label: 'Lokali',
-      image: `/buildings/${project.id}-${buildingId}-lokali.jpg`,
-      availableUnits: undefined,
-    })
-    
-    return floors.reverse() // Show penthouse first, then regular floors, then Lokali
-  }
-
-  // Generate apartments for selected floor
-  const generateApartments = (floorId: string): Apartment[] => {
-    // Placeholder apartments - will be updated with actual data
-    const apartments: Apartment[] = []
-    const apartmentCount = 6 // Default apartments per floor
-    
-    for (let i = 1; i <= apartmentCount; i++) {
-      apartments.push({
-        id: `${floorId}-apt-${i}`,
-        unitNumber: `A${i}`,
-        area: 80 + Math.random() * 40, // 80-120 m²
-        bedrooms: Math.floor(Math.random() * 3) + 1, // 1-3 bedrooms
-        bathrooms: Math.floor(Math.random() * 2) + 1, // 1-2 bathrooms
-        floor: parseInt(floorId.split('-')[2]) || 1,
-        status: Math.random() > 0.5 ? 'available' : 'reserved',
-        pdfUrl: `/pdfs/${project.id}-${floorId}-apt-${i}.pdf`,
-        clickableArea: {
-          // Placeholder coordinates - will be updated with actual floor plan coordinates
-          x: ((i - 1) % 3) * 33 + 5,
-          y: Math.floor((i - 1) / 3) * 50 + 10,
-          width: 25,
-          height: 40,
-        },
-      })
-    }
-    
-    return apartments
-  }
-
-  const handleBuildingSelect = (buildingId: string) => {
-    setSelectedBuilding(buildingId)
-    setViewState('floor')
-    setSelectedFloor(null)
-  }
-
-  const handleFloorSelect = (floorId: string) => {
-    setSelectedFloor(floorId)
-    setViewState('plan')
-  }
-
-  const handleBack = () => {
-    if (viewState === 'plan') {
-      setViewState('floor')
-      setSelectedFloor(null)
-    } else if (viewState === 'floor') {
-      if (project.buildingCount > 1) {
-        setViewState('building')
-        setSelectedBuilding(null)
-      } else {
-        // Single building, can't go back further
-        setViewState('floor')
-      }
-    }
-  }
-
-  const buildings = generateBuildings()
-  const floors = selectedBuilding ? generateFloors(selectedBuilding) : []
-  const apartments = selectedFloor ? generateApartments(selectedFloor) : []
-  const selectedFloorData = floors.find((f) => f.id === selectedFloor)
-  const selectedBuildingData = buildings.find((b) => b.id === selectedBuilding)
-  
-  // Use first visual as fallback hero image if hero image doesn't exist
+  // Hero image for the top section (paths with spaces encoded so they load)
   const heroImage = project.heroImage || getResidenceHeroImage(project.id) || ''
 
   return (
     <div className="min-h-screen bg-[#F8F2DD]">
-      {/* Hero Section */}
+      {/* Hero Section - background image */}
       <section className="relative h-[60vh] overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${heroImage})` }}
-        >
-          <div className="absolute inset-0 bg-gradient-to-b from-[#F8F2DD]/80 to-[#F8F2DD]" />
-        </div>
+        {heroImage && (
+          <img
+            src={encodeURI(heroImage)}
+            alt=""
+            className="absolute inset-0 h-full w-full object-cover object-center"
+            aria-hidden
+          />
+        )}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#F8F2DD]/80 to-[#F8F2DD]" />
         <div className="relative z-10 flex h-full items-end">
           <div className="mx-auto w-full max-w-7xl px-4 pb-12">
             <h1 className="mb-4 text-5xl font-bold text-[#657432] md:text-6xl">
@@ -286,14 +99,6 @@ export const ProjectDetail = () => {
           </div>
         </div>
       </section>
-
-      {/* Visual Gallery Section */}
-      {getResidenceVisuals(project.id).length > 0 && (
-        <VisualGallery
-          images={getResidenceVisuals(project.id)}
-          title={`Vizualizime - ${project.name}`}
-        />
-      )}
 
       {/* Apartment Selection Section - Under Construction */}
       <section className="bg-gradient-to-b from-[#F8F2DD] to-[#F8F2DD] py-20">

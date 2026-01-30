@@ -6,7 +6,7 @@ This guide will walk you through deploying your website to Hostinger or any host
 
 - Node.js installed (v18 or higher)
 - Git installed (optional, for version control)
-- Hosting account (Hostinger, Vercel, Netlify, etc.)
+- Hosting account (Hostinger, Netlify, GitHub Pages, etc.)
 - Domain name (if using custom domain)
 
 ---
@@ -89,47 +89,7 @@ This ensures React Router works correctly with direct URLs.
 
 ---
 
-## Option 2: Deploy to Vercel (Recommended - Easiest)
-
-### Step 1: Install Vercel CLI
-
-```bash
-npm install -g vercel
-```
-
-### Step 2: Deploy
-
-1. Navigate to the client directory:
-   ```bash
-   cd client
-   ```
-
-2. Run deployment:
-   ```bash
-   vercel
-   ```
-
-3. Follow the prompts:
-   - Login to Vercel (or create account)
-   - Link to existing project or create new
-   - Confirm settings
-
-4. **For production deployment**:
-   ```bash
-   vercel --prod
-   ```
-
-### Step 3: Configure Custom Domain (Optional)
-
-1. Go to Vercel dashboard
-2. Select your project
-3. Go to **Settings** → **Domains**
-4. Add your custom domain
-5. Update DNS records as instructed
-
----
-
-## Option 3: Deploy to Netlify
+## Option 2: Deploy to Netlify
 
 ### Step 1: Build Settings
 

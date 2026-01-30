@@ -58,7 +58,7 @@ export const getResidenceVisuals = (projectId: string): string[] => {
       `${basePath}/TaraResidenceVisuals/a17.jpg`,
       `${basePath}/TaraResidenceVisuals/a18.jpg`,
       `${basePath}/TaraResidenceVisuals/a19.jpg`,
-      `${basePath}/TaraResidenceVisuals/A20.jpg`,
+      `${basePath}/TaraResidenceVisuals/a20.jpg`,
       `${basePath}/TaraResidenceVisuals/A21.jpg`,
       `${basePath}/TaraResidenceVisuals/A22.jpg`,
       `${basePath}/TaraResidenceVisuals/A23.jpg`,
