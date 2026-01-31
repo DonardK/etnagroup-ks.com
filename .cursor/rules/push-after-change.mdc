@@ -1,0 +1,14 @@
+---
+description: Push changes to GitHub after every code change
+alwaysApply: true
+---
+
+# Push to GitHub After Changes
+
+After making any code or config changes to this project:
+
+1. Stage changes: `git add -A` (or stage only the files you changed).
+2. Commit with a clear message: `git commit -m "Brief description of change"`.
+3. Push to GitHub: `git push origin main`.
+
+Do this at the end of your response whenever you have modified files, unless the user explicitly asks not to push.
