@@ -368,10 +368,6 @@ export const ContactPage = () => {
                       <a href="mailto:info@etnagroup-ks.com" className="hover:text-[#657432] text-[#657432]">
                         info@etnagroup-ks.com
                       </a>
-                      <br />
-                      <a href="mailto:sales@etnagroup-ks.com" className="hover:text-[#657432] text-[#657432]">
-                        sales@etnagroup-ks.com
-                      </a>
                     </p>
                   </div>
                 </div>
