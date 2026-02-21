@@ -102,7 +102,7 @@ export const ProjectDetail = () => {
       </section>
 
       {/* Apartment Selection Section - Under Construction */}
-      <section className="bg-gradient-to-b from-[#F8F2DD] to-[#F8F2DD] py-20">
+      <section className="hidden bg-gradient-to-b from-[#F8F2DD] to-[#F8F2DD] py-20">
         <div className="mx-auto max-w-7xl px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
