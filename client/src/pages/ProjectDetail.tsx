@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import { getProjectById } from '../data/projects'
 import { getResidenceHeroImage } from '../data/residenceVisuals'
 import { assetUrl } from '../utils/assetUrl'
+import { ElsaResidenceBuildingMap } from '../components/ElsaResidenceBuildingMap'
 
 export const ProjectDetail = () => {
   const { id } = useParams<{ id: string }>()
@@ -100,6 +101,28 @@ export const ProjectDetail = () => {
           </div>
         </div>
       </section>
+
+      {/* Interactive Building Map – Elsa Residence */}
+      {project.id === 'elsa' && (
+        <section className="bg-[#F8F2DD] py-20">
+          <div className="mx-auto max-w-7xl px-4">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              <h2 className="mb-2 text-center text-3xl font-bold text-[#657432] md:text-4xl">
+                Zgjidhni Bllokun
+              </h2>
+              <p className="mb-10 text-center text-[#657432]/70">
+                Klikoni mbi bllokun për të parë detajet
+              </p>
+              <ElsaResidenceBuildingMap />
+            </motion.div>
+          </div>
+        </section>
+      )}
 
       {/* Apartment Selection Section - Under Construction */}
       <section className="hidden bg-gradient-to-b from-[#F8F2DD] to-[#F8F2DD] py-20">
