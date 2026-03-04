@@ -6,6 +6,9 @@ import { HomePage } from './pages/HomePage'
 import { ProjectDetail } from './pages/ProjectDetail'
 import { AboutPage } from './pages/AboutPage'
 import { ContactPage } from './pages/ContactPage'
+import { ElsaBlockEF } from './pages/ElsaBlockEF'
+import { ElsaBlockBCD } from './pages/ElsaBlockBCD'
+import { ElsaBlockA } from './pages/ElsaBlockA'
 
 function App() {
   return (
@@ -17,6 +20,9 @@ function App() {
           <Route path="/projektet/:id" element={<ProjectDetail />} />
           <Route path="/per-ne" element={<AboutPage />} />
           <Route path="/kontakt" element={<ContactPage />} />
+          <Route path="/elsaresidence-blloku-ef" element={<ElsaBlockEF />} />
+          <Route path="/elsaresidence-blloku-bcd" element={<ElsaBlockBCD />} />
+          <Route path="/elsaresidence-blloku-a" element={<ElsaBlockA />} />
         </Routes>
       </div>
       <Footer />
