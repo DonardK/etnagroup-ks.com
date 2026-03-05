@@ -83,11 +83,7 @@ export const FloorSelector = ({
                     </motion.div>
                   )}
                 </div>
-                {floor.availableUnits !== undefined && (
-                  <p className="text-sm text-[#657432]/70">
-                    {floor.availableUnits} njësi të disponueshme
-                  </p>
-                )}
+                
               </div>
 
               {/* Selected indicator */}

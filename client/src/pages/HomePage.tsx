@@ -136,19 +136,11 @@ export const HomePage = () => {
                     <h3 className="mb-2 text-3xl font-bold text-[#657432]">{project.name}</h3>
                     <p className="mb-6 text-[#657432]/70">{project.description}</p>
 
-                    {/* Details Grid */}
-                    <div className="grid grid-cols-2 gap-4">
-                      <div className="rounded-xl bg-[#657432]/10 p-4 backdrop-blur-sm">
-                        <div className="text-sm text-[#657432]/60">Lokacioni</div>
-                        <div className="text-lg font-semibold text-[#657432]">
-                          {project.location}
-                        </div>
-                      </div>
-                      <div className="rounded-xl bg-[#657432]/10 p-4 backdrop-blur-sm">
-                        <div className="text-sm text-[#657432]/60">Njësi të Lira</div>
-                        <div className="text-lg font-semibold text-[#657432]">
-                          {project.availableUnits} / {project.totalUnits}
-                        </div>
+                    {/* Details */}
+                    <div className="rounded-xl bg-[#657432]/10 p-4 backdrop-blur-sm">
+                      <div className="text-sm text-[#657432]/60">Lokacioni</div>
+                      <div className="text-lg font-semibold text-[#657432]">
+                        {project.location}
                       </div>
                     </div>
 

@@ -25,7 +25,7 @@ const apartments: Apartment[] = [
 export const TianiBlockA = () => (
   <ApartmentList
     title="Tiani Residence — Blloku A"
-    subtitle="16 banesa të disponueshme"
+    subtitle="Tipet e banesave në Bllokun A"
     backLink="/projektet/tiani"
     backLabel="Kthehu te Tiani Residence"
     apartments={apartments}

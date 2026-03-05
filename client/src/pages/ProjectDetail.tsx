@@ -69,15 +69,9 @@ export const ProjectDetail = () => {
               </div>
             </div>
             <div className="rounded-2xl bg-[#657432]/10 p-6 backdrop-blur-sm">
-              <div className="mb-2 text-sm text-[#657432]/60">Njësi të Disponueshme</div>
+              <div className="mb-2 text-sm text-[#657432]/60">Ndërtesat</div>
               <div className="text-xl font-semibold text-[#657432]">
-                {project.availableUnits > 0
-                  ? `${project.availableUnits} / ${project.totalUnits}`
-                  : project.status === 'under-construction'
-                  ? 'Në Ndërtim'
-                  : project.status === 'planning'
-                  ? 'Në Planifikim'
-                  : 'Të Shitura'}
+                {project.buildingCount} {project.buildingCount === 1 ? 'Ndërtesë' : 'Ndërtesa'}
               </div>
             </div>
           </div>
@@ -119,8 +113,8 @@ export const ProjectDetail = () => {
               </h2>
               <p className="mb-10 text-center text-[#657432]/70">
                 {project.id === 'tara'
-                  ? 'Klikoni për të parë banesat e disponueshme'
-                  : 'Klikoni mbi bllokun për të parë detajet'}
+                  ? 'Klikoni për të parë tipet e banesave'
+                  : 'Klikoni mbi bllokun për të parë tipet e banesave'}
               </p>
               {project.id === 'elsa' && <ElsaResidenceBuildingMap />}
               {project.id === 'tiani' && <TianiResidenceBuildingMap />}

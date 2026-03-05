@@ -174,21 +174,8 @@ export const AboutPage = () => {
                           ))}
                         </div>
 
-                        {/* Stats */}
-                        <div className="grid grid-cols-3 gap-4 pt-4 border-t border-[#657432]/20">
-                          <div>
-                            <div className="text-2xl font-bold text-[#0B1C2C]">
-                              {project.totalUnits}
-                            </div>
-                            <div className="text-xs text-[#657432]/60">Njësi Totale</div>
-                          </div>
-                          <div>
-                            <div className="text-2xl font-bold text-[#657432]">
-                              {project.availableUnits}
-                            </div>
-                            <div className="text-xs text-[#657432]/60">Të Lira</div>
-                          </div>
-                        </div>
+                        {/* Divider */}
+                        <div className="border-t border-[#657432]/20 pt-4" />
 
                         {/* CTA Button */}
                         <Link

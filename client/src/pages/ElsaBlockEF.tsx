@@ -32,7 +32,7 @@ const apartments: Apartment[] = [
 export const ElsaBlockEF = () => (
   <ApartmentList
     title="Elsa Residence — Blloku E dhe F"
-    subtitle="19 banesa të disponueshme"
+    subtitle="Tipet e banesave në Bllokun E dhe F"
     backLink="/projektet/elsa"
     backLabel="Kthehu te Elsa Residence"
     apartments={apartments}
