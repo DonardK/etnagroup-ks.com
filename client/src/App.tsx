@@ -1,4 +1,5 @@
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, useLocation } from 'react-router-dom'
+import { useEffect } from 'react'
 import { Navbar } from './components/layout/Navbar'
 import { Footer } from './components/layout/Footer'
 import { WhatsAppButton } from './components/WhatsAppButton'
@@ -13,9 +14,18 @@ import { TianiBlockA } from './pages/TianiBlockA'
 import { TianiBlockB } from './pages/TianiBlockB'
 import { TaraApartments } from './pages/TaraApartments'
 
+function ScrollToTop() {
+  const { pathname } = useLocation()
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [pathname])
+  return null
+}
+
 function App() {
   return (
     <div className="min-h-screen bg-[#F8F2DD] flex flex-col overflow-x-hidden">
+      <ScrollToTop />
       <Navbar />
       <div className="pt-20 flex-grow">
         <Routes>
