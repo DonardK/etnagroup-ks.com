@@ -4,6 +4,8 @@ import { getProjectById } from '../data/projects'
 import { getResidenceHeroImage } from '../data/residenceVisuals'
 import { assetUrl } from '../utils/assetUrl'
 import { ElsaResidenceBuildingMap } from '../components/ElsaResidenceBuildingMap'
+import { TianiResidenceBuildingMap } from '../components/TianiResidenceBuildingMap'
+import { TaraResidenceBuildingMap } from '../components/TaraResidenceBuildingMap'
 
 export const ProjectDetail = () => {
   const { id } = useParams<{ id: string }>()
@@ -102,8 +104,8 @@ export const ProjectDetail = () => {
         </div>
       </section>
 
-      {/* Interactive Building Map – Elsa Residence */}
-      {project.id === 'elsa' && (
+      {/* Interactive Building Map */}
+      {['elsa', 'tiani', 'tara'].includes(project.id) && (
         <section className="bg-[#F8F2DD] py-20">
           <div className="mx-auto max-w-7xl px-4">
             <motion.div
@@ -113,12 +115,16 @@ export const ProjectDetail = () => {
               transition={{ duration: 0.5 }}
             >
               <h2 className="mb-2 text-center text-3xl font-bold text-[#657432] md:text-4xl">
-                Zgjidhni Bllokun
+                {project.id === 'tara' ? 'Zgjidhni Banesën' : 'Zgjidhni Bllokun'}
               </h2>
               <p className="mb-10 text-center text-[#657432]/70">
-                Klikoni mbi bllokun për të parë detajet
+                {project.id === 'tara'
+                  ? 'Klikoni për të parë banesat e disponueshme'
+                  : 'Klikoni mbi bllokun për të parë detajet'}
               </p>
-              <ElsaResidenceBuildingMap />
+              {project.id === 'elsa' && <ElsaResidenceBuildingMap />}
+              {project.id === 'tiani' && <TianiResidenceBuildingMap />}
+              {project.id === 'tara' && <TaraResidenceBuildingMap />}
             </motion.div>
           </div>
         </section>

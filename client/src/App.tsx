@@ -9,6 +9,9 @@ import { ContactPage } from './pages/ContactPage'
 import { ElsaBlockEF } from './pages/ElsaBlockEF'
 import { ElsaBlockBCD } from './pages/ElsaBlockBCD'
 import { ElsaBlockA } from './pages/ElsaBlockA'
+import { TianiBlockA } from './pages/TianiBlockA'
+import { TianiBlockB } from './pages/TianiBlockB'
+import { TaraApartments } from './pages/TaraApartments'
 
 function App() {
   return (
@@ -23,6 +26,9 @@ function App() {
           <Route path="/elsaresidence-blloku-ef" element={<ElsaBlockEF />} />
           <Route path="/elsaresidence-blloku-bcd" element={<ElsaBlockBCD />} />
           <Route path="/elsaresidence-blloku-a" element={<ElsaBlockA />} />
+          <Route path="/tianiresidence-blloku-a" element={<TianiBlockA />} />
+          <Route path="/tianiresidence-blloku-b" element={<TianiBlockB />} />
+          <Route path="/tararesidence-apartments" element={<TaraApartments />} />
         </Routes>
       </div>
       <Footer />
