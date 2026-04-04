@@ -13,6 +13,7 @@ import { ElsaBlockA } from './pages/ElsaBlockA'
 import { TianiBlockA } from './pages/TianiBlockA'
 import { TianiBlockB } from './pages/TianiBlockB'
 import { TaraApartments } from './pages/TaraApartments'
+import { JoniApartments } from './pages/JoniApartments'
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -39,6 +40,7 @@ function App() {
           <Route path="/tianiresidence-blloku-a" element={<TianiBlockA />} />
           <Route path="/tianiresidence-blloku-b" element={<TianiBlockB />} />
           <Route path="/tararesidence-apartments" element={<TaraApartments />} />
+          <Route path="/joniresidence-apartments" element={<JoniApartments />} />
         </Routes>
       </div>
       <Footer />
