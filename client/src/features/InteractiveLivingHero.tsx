@@ -1,5 +1,8 @@
 import { motion } from 'framer-motion'
+import { getProjectById } from '../data/projects'
 import { assetUrl } from '../utils/assetUrl'
+
+const etnaHeroImage = getProjectById('etna')?.heroImage ?? ''
 
 export const InteractiveLivingHero = () => {
   return (
@@ -8,7 +11,9 @@ export const InteractiveLivingHero = () => {
       <div
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: `url('${assetUrl('/buildings/etna-hero.jpg')}')`,
+          backgroundImage: etnaHeroImage
+            ? `url('${encodeURI(assetUrl(etnaHeroImage))}')`
+            : undefined,
         }}
       >
         {/* Dark Overlay */}

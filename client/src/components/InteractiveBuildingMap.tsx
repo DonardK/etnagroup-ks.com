@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import { projects } from '../data/projects'
+import { getProjectById, projects } from '../data/projects'
 import { assetUrl } from '../utils/assetUrl'
 
 interface BuildingArea {
@@ -73,7 +73,8 @@ export const InteractiveBuildingMap = ({
         alt="Etna Group Buildings"
         className="w-full h-auto"
         onError={(e) => {
-          e.currentTarget.src = assetUrl('/buildings/etna-hero.jpg')
+          const fallback = getProjectById('etna')?.heroImage
+          if (fallback) e.currentTarget.src = encodeURI(assetUrl(fallback))
         }}
       />
 

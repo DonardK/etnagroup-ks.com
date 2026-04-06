@@ -67,6 +67,11 @@ export const getResidenceVisuals = (projectId: string): string[] => {
       `${basePath}/TaraResidenceVisuals/A26.jpg`,
       `${basePath}/TaraResidenceVisuals/A27.jpg`,
     ],
+    etna: [
+      `${basePath}/EtnaResidenceVisuals/BG_SLIDE1.jpg`,
+      `${basePath}/EtnaResidenceVisuals/objekti-scaled.jpg`,
+      `${basePath}/EtnaResidenceVisuals/image_pro_2.jpg`,
+    ],
     tiani: [
       `${basePath}/TianiResidenceVisuals/01_1 - Photo.jpg`,
       `${basePath}/TianiResidenceVisuals/01_2 - Photo.jpg`,

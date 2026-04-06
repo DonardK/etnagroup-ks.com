@@ -121,7 +121,8 @@ export const projects: Project[] = [
     description:
       'Etna Residence është projekti flagë i Etna Group, që përfshin më të mirën e arkitekturës moderne dhe teknologjisë së avancuar. Ky kompleks premium ofron një standard jetese të lartë në një lokacion strategjik. Të gjitha njësitë janë shitur.',
     location: 'Fushë Kosovë, Rr. Rexhep Mala',
-    heroImage: '/buildings/etna-hero.jpg',
+    heroImage: '/visuals/EtnaResidenceVisuals/BG_SLIDE1.jpg',
+    cardImage: '/visuals/EtnaResidenceVisuals/objekti-scaled.jpg',
     features: [
       'Integrated private terraces',
       '24/7 security',

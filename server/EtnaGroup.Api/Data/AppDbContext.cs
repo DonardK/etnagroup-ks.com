@@ -100,7 +100,7 @@ public class AppDbContext : DbContext
                 City = "Pristina",
                 Country = "Kosovo",
                 Description = "Premium residential complex offering modern living spaces with world-class amenities",
-                HeroImageUrl = "/buildings/etna-hero.jpg",
+                HeroImageUrl = "/visuals/EtnaResidenceVisuals/BG_SLIDE1.jpg",
                 CreatedAt = DateTime.UtcNow,
                 UpdatedAt = DateTime.UtcNow
             }
