@@ -1,9 +1,7 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import { getProjectById, projects } from '../data/projects'
+import { projects } from '../data/projects'
 import { assetUrl } from '../utils/assetUrl'
-
-const etnaHeroImage = getProjectById('etna')?.heroImage ?? ''
 
 export const HomePage = () => {
   // Auto-slide functionality removed - using static video hero instead
@@ -14,15 +12,6 @@ export const HomePage = () => {
       <section className="relative h-screen w-full overflow-hidden bg-[#F8F2DD]">
         {/* Video Container - fills entire width and height */}
         <div className="absolute inset-0 h-full w-full bg-[#F8F2DD] overflow-hidden">
-          {/* Fallback image - behind video */}
-          <div
-            className="absolute inset-0 h-full w-full bg-cover bg-center"
-            style={{
-              backgroundImage: etnaHeroImage
-                ? `url(${encodeURI(assetUrl(etnaHeroImage))})`
-                : undefined,
-            }}
-          />
           {/* YouTube Video Embed - scaled to fill entire width, may crop top/bottom */}
           <iframe
             className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
