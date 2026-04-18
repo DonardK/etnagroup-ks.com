@@ -20,7 +20,7 @@ export const elsaBllokuBApartments: Apartment[] = [
   { name: 'B-53.35 m²', area: '53.35 m²', pdfPath: `${B}/53.35m2.pdf` },
   { name: 'B-66.26 m²', area: '66.26 m²', pdfPath: `${B}/66.26m2.pdf` },
   { name: 'B-84.34 m²', area: '84.34 m²', pdfPath: `${B}/84.34m2.pdf` },
-  { name: 'B-90.65 m²', area: '90.65 m²', pdfPath: `${B}/90.65m2.pdf` },
+  { name: 'B-90.65 m²', area: '90.65 m²', pdfPath: `${B}/B-90.65 m2.pdf` },
   { name: 'B-91.11 m²', area: '91.11 m²', pdfPath: `${B}/91.11m2.pdf` },
   { name: 'B-99.65 m²', area: '99.65 m²', pdfPath: `${B}/99.65m2.pdf` },
   { name: 'B-113.40 m²', area: '113.40 m²', pdfPath: `${B}/113.40m2.pdf` },
@@ -28,14 +28,12 @@ export const elsaBllokuBApartments: Apartment[] = [
   { name: 'B-115.41 m²', area: '115.41 m²', pdfPath: `${B}/115.41m2.pdf` },
   { name: 'B-115.99 m²', area: '115.99 m²', pdfPath: `${B}/115.99m2.pdf` },
   { name: 'B-127.11 m²', area: '127.11 m²', pdfPath: `${B}/127.11m2.pdf` },
-  { name: 'B-90.65 m² (variant)', area: '90.65 m²', pdfPath: `${B}/B-90.65 m2.pdf` },
   { name: 'B-132.21 m²', area: '132.21 m²', pdfPath: `${B}/B-132.21m2.pdf` },
 ]
 
 export const elsaBllokuCApartments: Apartment[] = [
   { name: 'C-53.35 m²', area: '53.35 m²', pdfPath: `${C}/C-53.35m2.pdf` },
   { name: 'C-66.26 m²', area: '66.26 m²', pdfPath: `${C}/C-66.26m2.pdf` },
-  { name: 'C-66.26 m² (variant)', area: '66.26 m²', pdfPath: `${C}/-C-66.26m2.pdf` },
   { name: 'C-67.98 m²', area: '67.98 m²', pdfPath: `${C}/C-67.98m2.pdf` },
   { name: 'C-84.34 m²', area: '84.34 m²', pdfPath: `${C}/C-84.34m2.pdf` },
   { name: 'C-91.11 m²', area: '91.11 m²', pdfPath: `${C}/C-91.11m2.pdf` },
@@ -51,12 +49,10 @@ export const elsaBllokuCApartments: Apartment[] = [
 export const elsaBllokuDApartments: Apartment[] = [
   { name: 'D-53.35 m²', area: '53.35 m²', pdfPath: `${D}/D-53.35 m2.pdf` },
   { name: 'D-66.26 m²', area: '66.26 m²', pdfPath: `${D}/D-66.26 m2.pdf` },
-  { name: 'D-66.26 m² (variant)', area: '66.26 m²', pdfPath: `${D}/-D-66.26 m2.pdf` },
   { name: 'D-67.98 m²', area: '67.98 m²', pdfPath: `${D}/D-67.98 m2.pdf` },
   { name: 'D-84.34 m²', area: '84.34 m²', pdfPath: `${D}/D-84.34 m2.pdf` },
   { name: 'D-91.11 m²', area: '91.11 m²', pdfPath: `${D}/D - 91.11m2.pdf` },
   { name: 'D-99.65 m²', area: '99.65 m²', pdfPath: `${D}/D-99.65 m2.pdf` },
-  { name: 'D-99.65 m² (variant)', area: '99.65 m²', pdfPath: `${D}/-D-99.65 m2.pdf` },
   { name: 'D-104.46 m²', area: '104.46 m²', pdfPath: `${D}/D-104.46 m2.pdf` },
   { name: 'D-113.97 m²', area: '113.97 m²', pdfPath: `${D}/D-113.97 m2.pdf` },
   { name: 'D-115.9 m²', area: '115.9 m²', pdfPath: `${D}/D-115.9 m2.pdf` },

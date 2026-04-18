@@ -4,8 +4,8 @@ import type { Apartment } from '../components/ApartmentList'
 const BASE = 'Residences Apartments/Tiani Residence PDF/Tiani Blloku B'
 
 const apartments: Apartment[] = [
-  { name: 'B-88.0 m² (variant)', area: '88.0 m²', pdfPath: `${BASE}/-B-88.0m2-.pdf` },
-  { name: 'B-88.0 m² (variant 2)', area: '88.0 m²', pdfPath: `${BASE}/-B-88.0m2.pdf` },
+  { name: '-B-88.0m2-', area: '88.0 m²', pdfPath: `${BASE}/-B-88.0m2-.pdf` },
+  { name: '-B-88.0 m²', area: '88.0 m²', pdfPath: `${BASE}/-B-88.0m2.pdf` },
   { name: 'B-68.6 m²', area: '68.6 m²', pdfPath: `${BASE}/B-68.6m2.pdf` },
   { name: 'B-84.9 m²', area: '84.9 m²', pdfPath: `${BASE}/B-84.9m2.pdf` },
   { name: 'B-87.8 m²', area: '87.8 m²', pdfPath: `${BASE}/B-87.8m2.pdf` },
