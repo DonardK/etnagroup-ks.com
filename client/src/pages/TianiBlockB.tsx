@@ -4,19 +4,19 @@ import type { Apartment } from '../components/ApartmentList'
 const BASE = 'Residences Apartments/Tiani Residence PDF/Tiani Blloku B'
 
 const apartments: Apartment[] = [
-  { name: 'B-01', pdfPath: `${BASE}/B01.pdf` },
-  { name: 'B-02', pdfPath: `${BASE}/B02.pdf` },
-  { name: 'B-03', pdfPath: `${BASE}/B03.pdf` },
-  { name: 'B-04', pdfPath: `${BASE}/B04.pdf` },
-  { name: 'B-05', pdfPath: `${BASE}/B05.pdf` },
-  { name: 'B-06', pdfPath: `${BASE}/B06.pdf` },
-  { name: 'B-07', pdfPath: `${BASE}/B07.pdf` },
-  { name: 'B-08', pdfPath: `${BASE}/B08.pdf` },
-  { name: 'B-14', pdfPath: `${BASE}/B14.pdf` },
-  { name: 'B-32', pdfPath: `${BASE}/B32.pdf` },
-  { name: 'B-48', pdfPath: `${BASE}/B48.pdf` },
-  { name: 'B-49', pdfPath: `${BASE}/B49.pdf` },
-  { name: 'B-50', pdfPath: `${BASE}/B50.pdf` },
+  { name: 'B-88.0 m² (variant)', area: '88.0 m²', pdfPath: `${BASE}/-B-88.0m2-.pdf` },
+  { name: 'B-88.0 m² (variant 2)', area: '88.0 m²', pdfPath: `${BASE}/-B-88.0m2.pdf` },
+  { name: 'B-68.6 m²', area: '68.6 m²', pdfPath: `${BASE}/B-68.6m2.pdf` },
+  { name: 'B-84.9 m²', area: '84.9 m²', pdfPath: `${BASE}/B-84.9m2.pdf` },
+  { name: 'B-87.8 m²', area: '87.8 m²', pdfPath: `${BASE}/B-87.8m2.pdf` },
+  { name: 'B-88.0 m²', area: '88.0 m²', pdfPath: `${BASE}/B-88.0m2.pdf` },
+  { name: 'B-88.7 m²', area: '88.7 m²', pdfPath: `${BASE}/B-88.7m2.pdf` },
+  { name: 'B-88.8 m²', area: '88.8 m²', pdfPath: `${BASE}/B-88.8m2.pdf` },
+  { name: 'B-90.0 m²', area: '90.0 m²', pdfPath: `${BASE}/B-90.0m2.pdf` },
+  { name: 'B-92.6 m²', area: '92.6 m²', pdfPath: `${BASE}/B-92.6m2.pdf` },
+  { name: 'B-144.7 m²', area: '144.7 m²', pdfPath: `${BASE}/B-144.7m2.pdf` },
+  { name: 'B-150.5 m²', area: '150.5 m²', pdfPath: `${BASE}/B-150.5m2.pdf` },
+  { name: 'B-179.1 m²', area: '179.1 m²', pdfPath: `${BASE}/B-179.1m2.pdf` },
 ]
 
 export const TianiBlockB = () => (
