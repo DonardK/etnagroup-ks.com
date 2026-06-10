@@ -45,8 +45,16 @@ jobs:
             cp public/CNAME dist/CNAME
           fi
 
+      - name: Verify deploy token secret
+        run: |
+          if [ -z "${{ secrets.DEPLOY_TO_USER_PAGES_TOKEN }}" ]; then
+            echo "::error::Missing repository secret DEPLOY_TO_USER_PAGES_TOKEN."
+            echo "::error::Create a GitHub PAT with write access to donardk/donardk.github.io and add it under Settings → Secrets and variables → Actions."
+            exit 1
+          fi
+
       - name: Deploy to donardk.github.io
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v4
         with:
           personal_token: ${{ secrets.DEPLOY_TO_USER_PAGES_TOKEN }}
           external_repository: donardk/donardk.github.io
