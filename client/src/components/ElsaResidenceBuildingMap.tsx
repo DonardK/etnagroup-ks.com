@@ -19,8 +19,8 @@ const BLOCKS: BuildingBlock[] = [
   },
   {
     id: 'b',
-    label: 'Blloku B',
-    path: '/elsaresidence-bllokub',
+    label: 'Blloku D',
+    path: '/elsaresidence-bllokud',
     coordsRaw:
       '1353,3117,1372,3908,744,4199,639,4102,624,4067,593,4001,531,3939,531,3920,461,3831,438,3780,407,3726,353,3672,326,3610,283,3551,221,3447,178,3396,178,2636,546,2466,570,2489,744,2411,1302,2989,1306,3063',
   },
@@ -33,8 +33,8 @@ const BLOCKS: BuildingBlock[] = [
   },
   {
     id: 'd',
-    label: 'Blloku D',
-    path: '/elsaresidence-bllokud',
+    label: 'Blloku B',
+    path: '/elsaresidence-bllokub',
     coordsRaw:
       '2860,3238,3089,3133,3093,2769,3348,2652,3348,2513,3484,2443,3484,2063,3383,1958,3368,1970,3019,1598,3019,1582,2918,1470,2872,1439,2825,1431,2302,1671,2302,2296,2860,2893,2860,2892',
   },
