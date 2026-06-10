@@ -7,11 +7,11 @@ const D = 'Residences Apartments/Elsa Residence PDF/Elsa Blloku D'
 
 /** Filenames match `client/public/Residences Apartments/...` (spaces encoded in URLs). */
 export const elsaBllokuAApartments: Apartment[] = [
-  { name: 'A-62.6 m²', area: '62.6 m²', pdfPath: `${A}/A-62.6m2.pdf` },
-  { name: 'A-72.2 m²', area: '72.2 m²', pdfPath: `${A}/A-72.2m2.pdf` },
+  { name: 'A-66.39 m²', area: '66.39 m²', pdfPath: `${A}/A-66.39m2.pdf` },
   { name: 'A-74.4 m²', area: '74.4 m²', pdfPath: `${A}/A-74.4m2.pdf` },
+  { name: 'A-74.43 m²', area: '74.43 m²', pdfPath: `${A}/A-74.43 m2.pdf` },
   { name: 'A-82.3 m²', area: '82.3 m²', pdfPath: `${A}/A-82.3m2.pdf` },
-  { name: 'A-93 m²', area: '93 m²', pdfPath: `${A}/A-93m2.pdf` },
+  { name: 'A-93.08 m²', area: '93.08 m²', pdfPath: `${A}/A-93.08m2.pdf` },
   { name: 'A-108.4 m²', area: '108.4 m²', pdfPath: `${A}/A-108.4m2.pdf` },
   { name: 'A-114 m²', area: '114 m²', pdfPath: `${A}/A-114m2.pdf` },
 ]
