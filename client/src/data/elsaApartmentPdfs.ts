@@ -17,18 +17,16 @@ export const elsaBllokuAApartments: Apartment[] = [
 ]
 
 export const elsaBllokuBApartments: Apartment[] = [
-  { name: 'B-53.35 m²', area: '53.35 m²', pdfPath: `${B}/53.35m2.pdf` },
-  { name: 'B-66.26 m²', area: '66.26 m²', pdfPath: `${B}/66.26m2.pdf` },
-  { name: 'B-84.34 m²', area: '84.34 m²', pdfPath: `${B}/84.34m2.pdf` },
-  { name: 'B-90.65 m²', area: '90.65 m²', pdfPath: `${B}/B-90.65 m2.pdf` },
-  { name: 'B-91.11 m²', area: '91.11 m²', pdfPath: `${B}/91.11m2.pdf` },
-  { name: 'B-99.65 m²', area: '99.65 m²', pdfPath: `${B}/99.65m2.pdf` },
-  { name: 'B-113.40 m²', area: '113.40 m²', pdfPath: `${B}/113.40m2.pdf` },
-  { name: 'B-113.97 m²', area: '113.97 m²', pdfPath: `${B}/113.97m2.pdf` },
-  { name: 'B-115.41 m²', area: '115.41 m²', pdfPath: `${B}/115.41m2.pdf` },
-  { name: 'B-115.99 m²', area: '115.99 m²', pdfPath: `${B}/115.99m2.pdf` },
-  { name: 'B-127.11 m²', area: '127.11 m²', pdfPath: `${B}/127.11m2.pdf` },
-  { name: 'B-132.21 m²', area: '132.21 m²', pdfPath: `${B}/B-132.21m2.pdf` },
+  { name: 'B-53.35 m²', area: '53.35 m²', pdfPath: `${B}/B_53.35m².pdf` },
+  { name: 'B-66.26 m²', area: '66.26 m²', pdfPath: `${B}/B_66.26m².pdf` },
+  { name: 'B-84.34 m²', area: '84.34 m²', pdfPath: `${B}/B_ 84.34m².pdf` },
+  { name: 'B-90.65 m²', area: '90.65 m²', pdfPath: `${B}/B_90.65 m2.pdf` },
+  { name: 'B-91.11 m²', area: '91.11 m²', pdfPath: `${B}/B_91.11m².pdf` },
+  { name: 'B-99.65 m²', area: '99.65 m²', pdfPath: `${B}/B_99.65m².pdf` },
+  { name: 'B-113.40 m²', area: '113.40 m²', pdfPath: `${B}/B_113.40m².pdf` },
+  { name: 'B-115.99 m²', area: '115.99 m²', pdfPath: `${B}/B_115.99m².pdf` },
+  { name: 'B-127.11 m²', area: '127.11 m²', pdfPath: `${B}/B_127.11m2.pdf` },
+  { name: 'B-132.21 m²', area: '132.21 m²', pdfPath: `${B}/B_132.21 m2.pdf` },
 ]
 
 export const elsaBllokuCApartments: Apartment[] = [
