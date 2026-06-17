@@ -1,13 +1,13 @@
-import { Navigate, useParams } from 'react-router-dom'
 import { ApartmentList } from '../components/ApartmentList'
 import { getJoniKatiApartments } from '../data/joniApartmentPdfs'
 
-export const JoniKati = () => {
-  const { kati } = useParams()
-  const floor = Number(kati)
+interface JoniKatiProps {
+  floor: number
+}
 
+export const JoniKati = ({ floor }: JoniKatiProps) => {
   if (!Number.isInteger(floor) || floor < 1 || floor > 6) {
-    return <Navigate to="/projektet/joni" replace />
+    return null
   }
 
   return (

@@ -47,7 +47,12 @@ function App() {
           <Route path="/tianiresidence-blloku-a" element={<TianiBlockA />} />
           <Route path="/tianiresidence-blloku-b" element={<TianiBlockB />} />
           <Route path="/tararesidence-apartments" element={<TaraApartments />} />
-          <Route path="/joniresidence-kati-:kati" element={<JoniKati />} />
+          <Route path="/joniresidence-kati-1" element={<JoniKati floor={1} />} />
+          <Route path="/joniresidence-kati-2" element={<JoniKati floor={2} />} />
+          <Route path="/joniresidence-kati-3" element={<JoniKati floor={3} />} />
+          <Route path="/joniresidence-kati-4" element={<JoniKati floor={4} />} />
+          <Route path="/joniresidence-kati-5" element={<JoniKati floor={5} />} />
+          <Route path="/joniresidence-kati-6" element={<JoniKati floor={6} />} />
           <Route path="/joniresidence-apartments" element={<Navigate to="/projektet/joni" replace />} />
         </Routes>
       </div>
