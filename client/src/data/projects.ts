@@ -39,7 +39,7 @@ export const projects: Project[] = [
     availableUnits: 0,
     status: 'under-construction',
     completionDate: 'Në Ndërtim',
-    buildingCount: 6,
+    buildingCount: 5,
     hasInteractivePlans: true,
   },
   {
