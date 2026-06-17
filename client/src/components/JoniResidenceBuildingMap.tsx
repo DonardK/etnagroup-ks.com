@@ -1,7 +1,58 @@
 import { useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-/** Comma-separated pairs from image-map.net → SVG polygon `points` */
+interface FloorArea {
+  id: string
+  label: string
+  path: string
+  coordsRaw: string
+}
+
+const FLOORS: FloorArea[] = [
+  {
+    id: '1',
+    label: 'Kati 1',
+    path: '/joniresidence-kati-1',
+    coordsRaw:
+      '169,1269,2343,1271,2339,1362,479,1366,479,1403,124,1405,124,1348,172,1348',
+  },
+  {
+    id: '2',
+    label: 'Kati 2',
+    path: '/joniresidence-kati-2',
+    coordsRaw:
+      '127,1262,2429,1265,2427,1217,2345,1215,2343,1140,172,1136,172,1208,129,1208',
+  },
+  {
+    id: '3',
+    label: 'Kati 3',
+    path: '/joniresidence-kati-3',
+    coordsRaw:
+      '127,1124,2427,1131,2422,1075,2343,1077,2343,998,169,1000,169,1063,120,1068',
+  },
+  {
+    id: '4',
+    label: 'Kati 4',
+    path: '/joniresidence-kati-4',
+    coordsRaw:
+      '122,984,2427,993,2429,937,2345,935,2341,860,172,869,174,926,124,928',
+  },
+  {
+    id: '5',
+    label: 'Kati 5',
+    path: '/joniresidence-kati-5',
+    coordsRaw:
+      '2424,851,131,853,122,788,167,790,169,733,2343,733,2341,794,2427,797',
+  },
+  {
+    id: '6',
+    label: 'Kati 6',
+    path: '/joniresidence-kati-6',
+    coordsRaw:
+      '2427,717,131,713,124,652,163,654,160,575,2341,581,2343,661,2427,663',
+  },
+]
+
 function imageMapCoordsToPolygonPoints(raw: string): string {
   const nums = raw.split(',').map((s) => Number(s.trim()))
   const parts: string[] = []
@@ -13,26 +64,26 @@ function imageMapCoordsToPolygonPoints(raw: string): string {
 
 export const JoniResidenceBuildingMap = () => {
   const navigate = useNavigate()
-  const [isHovered, setIsHovered] = useState(false)
+  const [hoveredFloor, setHoveredFloor] = useState<string | null>(null)
 
-  const points = useMemo(
+  const floorsWithPoints = useMemo(
     () =>
-      imageMapCoordsToPolygonPoints(
-        '340,359,2093,382,2098,475,2367,482,2369,515,2382,511,2382,572,2346,588,2349,660,2430,658,2430,719,2349,746,2349,800,2428,798,2432,857,2349,882,2351,936,2432,938,2434,992,2349,1015,2351,1074,2430,1076,2432,1133,2353,1144,2349,1214,2423,1212,2430,1266,2349,1275,2351,1354,2457,1361,2459,1594,157,1591,157,1406,130,1406,126,1354,168,1347,171,1275,157,1275,128,1266,126,1216,171,1214,171,1144,123,1121,126,1065,173,1069,173,1001,126,990,123,934,173,929,171,868,128,841,123,787,175,789,171,732,123,705,130,649,171,651,180,615,126,556,123,497,139,488,137,461,361,461,343,425'
-      ),
+      FLOORS.map((floor) => ({
+        ...floor,
+        points: imageMapCoordsToPolygonPoints(floor.coordsRaw),
+      })),
     []
   )
 
-  const { cx, cy } = useMemo(() => {
+  const getCentroid = (points: string) => {
     const pairs = points.split(' ').map((p) => {
       const [x, y] = p.split(',').map(Number)
       return { x, y }
     })
-    return {
-      cx: pairs.reduce((s, p) => s + p.x, 0) / pairs.length,
-      cy: pairs.reduce((s, p) => s + p.y, 0) / pairs.length,
-    }
-  }, [points])
+    const cx = pairs.reduce((sum, p) => sum + p.x, 0) / pairs.length
+    const cy = pairs.reduce((sum, p) => sum + p.y, 0) / pairs.length
+    return { cx, cy }
+  }
 
   return (
     <div className="relative mx-auto w-full max-w-5xl">
@@ -49,40 +100,49 @@ export const JoniResidenceBuildingMap = () => {
         xmlns="http://www.w3.org/2000/svg"
         preserveAspectRatio="xMidYMid meet"
       >
-        <polygon
-          points={points}
-          fill={isHovered ? 'rgba(101, 116, 50, 0.35)' : 'transparent'}
-          stroke={isHovered ? '#657432' : 'transparent'}
-          strokeWidth={isHovered ? 4 : 0}
-          className="cursor-pointer transition-all duration-300"
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-          onClick={() => navigate('/joniresidence-apartments')}
-        />
+        {floorsWithPoints.map((floor) => {
+          const isHovered = hoveredFloor === floor.id
+          const { cx, cy } = getCentroid(floor.points)
 
-        {isHovered && (
-          <g style={{ pointerEvents: 'none' }}>
-            <rect
-              x={cx - 130}
-              y={cy - 40}
-              width={260}
-              height={50}
-              rx={10}
-              fill="#657432"
-            />
-            <text
-              x={cx}
-              y={cy - 10}
-              textAnchor="middle"
-              fill="#F8F2DD"
-              fontSize={26}
-              fontWeight={600}
-              fontFamily="system-ui, sans-serif"
-            >
-              Joni Residence
-            </text>
-          </g>
-        )}
+          return (
+            <g key={floor.id}>
+              <polygon
+                points={floor.points}
+                fill={isHovered ? 'rgba(101, 116, 50, 0.35)' : 'transparent'}
+                stroke={isHovered ? '#657432' : 'transparent'}
+                strokeWidth={isHovered ? 4 : 0}
+                className="cursor-pointer transition-all duration-300"
+                onMouseEnter={() => setHoveredFloor(floor.id)}
+                onMouseLeave={() => setHoveredFloor(null)}
+                onClick={() => navigate(floor.path)}
+              />
+
+              {isHovered && (
+                <g style={{ pointerEvents: 'none' }}>
+                  <rect
+                    x={cx - 70}
+                    y={cy - 40}
+                    width={140}
+                    height={50}
+                    rx={10}
+                    fill="#657432"
+                  />
+                  <text
+                    x={cx}
+                    y={cy - 10}
+                    textAnchor="middle"
+                    fill="#F8F2DD"
+                    fontSize={26}
+                    fontWeight={600}
+                    fontFamily="system-ui, sans-serif"
+                  >
+                    {floor.label}
+                  </text>
+                </g>
+              )}
+            </g>
+          )
+        })}
       </svg>
     </div>
   )

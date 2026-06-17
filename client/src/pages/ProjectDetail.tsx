@@ -110,14 +110,18 @@ export const ProjectDetail = () => {
               transition={{ duration: 0.5 }}
             >
               <h2 className="mb-2 text-center text-3xl font-bold text-[#657432] md:text-4xl">
-                {project.id === 'tara' || project.id === 'joni'
-                  ? 'Zgjidhni Banesën'
-                  : 'Zgjidhni Bllokun'}
+                {project.id === 'joni'
+                  ? 'Zgjedhni Katin Tuaj'
+                  : project.id === 'tara'
+                    ? 'Zgjidhni Banesën'
+                    : 'Zgjidhni Bllokun'}
               </h2>
               <p className="mb-10 text-center text-[#657432]/70">
-                {project.id === 'tara' || project.id === 'joni'
-                  ? 'Klikoni për të parë tipet e banesave'
-                  : 'Klikoni mbi bllokun për të parë tipet e banesave'}
+                {project.id === 'joni'
+                  ? 'Klikoni mbi katin për të parë tipet e banesave'
+                  : project.id === 'tara'
+                    ? 'Klikoni për të parë tipet e banesave'
+                    : 'Klikoni mbi bllokun për të parë tipet e banesave'}
               </p>
               {project.id === 'elsa' && <ElsaResidenceBuildingMap />}
               {project.id === 'tiani' && <TianiResidenceBuildingMap />}

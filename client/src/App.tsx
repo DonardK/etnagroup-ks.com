@@ -15,7 +15,7 @@ import { ElsaBlockE } from './pages/ElsaBlockE'
 import { TianiBlockA } from './pages/TianiBlockA'
 import { TianiBlockB } from './pages/TianiBlockB'
 import { TaraApartments } from './pages/TaraApartments'
-import { JoniApartments } from './pages/JoniApartments'
+import { JoniKati } from './pages/JoniKati'
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -47,7 +47,8 @@ function App() {
           <Route path="/tianiresidence-blloku-a" element={<TianiBlockA />} />
           <Route path="/tianiresidence-blloku-b" element={<TianiBlockB />} />
           <Route path="/tararesidence-apartments" element={<TaraApartments />} />
-          <Route path="/joniresidence-apartments" element={<JoniApartments />} />
+          <Route path="/joniresidence-kati-:kati" element={<JoniKati />} />
+          <Route path="/joniresidence-apartments" element={<Navigate to="/projektet/joni" replace />} />
         </Routes>
       </div>
       <Footer />
