@@ -116,19 +116,19 @@ export const ElsaResidenceBuildingMap = () => {
               {isHighlighted && (
                 <g style={{ pointerEvents: 'none' }}>
                   <rect
-                    x={cx - block.label.length * 14}
-                    y={cy - 50}
-                    width={block.label.length * 28}
-                    height={60}
-                    rx={12}
+                    x={cx - block.label.length * 28}
+                    y={cy - 100}
+                    width={block.label.length * 56}
+                    height={120}
+                    rx={24}
                     fill="#657432"
                   />
                   <text
                     x={cx}
-                    y={cy - 14}
+                    y={cy - 28}
                     textAnchor="middle"
                     fill="#F8F2DD"
-                    fontSize={32}
+                    fontSize={64}
                     fontWeight={600}
                     fontFamily="system-ui, sans-serif"
                   >

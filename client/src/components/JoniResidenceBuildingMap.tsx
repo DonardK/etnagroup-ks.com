@@ -122,19 +122,19 @@ export const JoniResidenceBuildingMap = () => {
               {isHighlighted && (
                 <g style={{ pointerEvents: 'none' }}>
                   <rect
-                    x={cx - 70}
-                    y={cy - 40}
-                    width={140}
-                    height={50}
-                    rx={10}
+                    x={cx - 140}
+                    y={cy - 80}
+                    width={280}
+                    height={100}
+                    rx={20}
                     fill="#657432"
                   />
                   <text
                     x={cx}
-                    y={cy - 10}
+                    y={cy - 20}
                     textAnchor="middle"
                     fill="#F8F2DD"
-                    fontSize={26}
+                    fontSize={52}
                     fontWeight={600}
                     fontFamily="system-ui, sans-serif"
                   >

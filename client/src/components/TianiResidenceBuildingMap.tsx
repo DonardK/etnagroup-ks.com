@@ -76,19 +76,19 @@ export const TianiResidenceBuildingMap = () => {
               {isHighlighted && (
                 <g style={{ pointerEvents: 'none' }}>
                   <rect
-                    x={cx - block.label.length * 12}
-                    y={cy - 40}
-                    width={block.label.length * 24}
-                    height={50}
-                    rx={10}
+                    x={cx - block.label.length * 24}
+                    y={cy - 80}
+                    width={block.label.length * 48}
+                    height={100}
+                    rx={20}
                     fill="#657432"
                   />
                   <text
                     x={cx}
-                    y={cy - 10}
+                    y={cy - 20}
                     textAnchor="middle"
                     fill="#F8F2DD"
-                    fontSize={26}
+                    fontSize={52}
                     fontWeight={600}
                     fontFamily="system-ui, sans-serif"
                   >
