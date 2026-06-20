@@ -1,8 +1,10 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useTouchDevice } from '../hooks/useTouchDevice'
 
 export const TaraResidenceBuildingMap = () => {
   const navigate = useNavigate()
+  const alwaysShowZones = useTouchDevice()
   const [isHovered, setIsHovered] = useState(false)
 
   const points =
@@ -19,6 +21,7 @@ export const TaraResidenceBuildingMap = () => {
   }
 
   const { cx, cy } = getCentroid()
+  const isHighlighted = alwaysShowZones || isHovered
 
   return (
     <div className="relative mx-auto w-full max-w-5xl">
@@ -37,16 +40,16 @@ export const TaraResidenceBuildingMap = () => {
       >
         <polygon
           points={points}
-          fill={isHovered ? 'rgba(101, 116, 50, 0.35)' : 'transparent'}
-          stroke={isHovered ? '#657432' : 'transparent'}
-          strokeWidth={isHovered ? 4 : 0}
+          fill={isHighlighted ? 'rgba(101, 116, 50, 0.35)' : 'transparent'}
+          stroke={isHighlighted ? '#657432' : 'transparent'}
+          strokeWidth={isHighlighted ? 4 : 0}
           className="cursor-pointer transition-all duration-300"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
           onClick={() => navigate('/tararesidence-apartments')}
         />
 
-        {isHovered && (
+        {isHighlighted && (
           <g style={{ pointerEvents: 'none' }}>
             <rect
               x={cx - 130}

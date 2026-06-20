@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useTouchDevice } from '../hooks/useTouchDevice'
 
 interface BuildingBlock {
   id: string
@@ -27,6 +28,7 @@ const BLOCKS: BuildingBlock[] = [
 
 export const TianiResidenceBuildingMap = () => {
   const navigate = useNavigate()
+  const alwaysShowZones = useTouchDevice()
   const [hoveredBlock, setHoveredBlock] = useState<string | null>(null)
 
   const getCentroid = (points: string) => {
@@ -55,23 +57,23 @@ export const TianiResidenceBuildingMap = () => {
         preserveAspectRatio="xMidYMid meet"
       >
         {BLOCKS.map((block) => {
-          const isHovered = hoveredBlock === block.id
+          const isHighlighted = alwaysShowZones || hoveredBlock === block.id
           const { cx, cy } = getCentroid(block.points)
 
           return (
             <g key={block.id}>
               <polygon
                 points={block.points}
-                fill={isHovered ? 'rgba(101, 116, 50, 0.35)' : 'transparent'}
-                stroke={isHovered ? '#657432' : 'transparent'}
-                strokeWidth={isHovered ? 4 : 0}
+                fill={isHighlighted ? 'rgba(101, 116, 50, 0.35)' : 'transparent'}
+                stroke={isHighlighted ? '#657432' : 'transparent'}
+                strokeWidth={isHighlighted ? 4 : 0}
                 className="cursor-pointer transition-all duration-300"
                 onMouseEnter={() => setHoveredBlock(block.id)}
                 onMouseLeave={() => setHoveredBlock(null)}
                 onClick={() => navigate(block.path)}
               />
 
-              {isHovered && (
+              {isHighlighted && (
                 <g style={{ pointerEvents: 'none' }}>
                   <rect
                     x={cx - block.label.length * 12}

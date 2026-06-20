@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useTouchDevice } from '../hooks/useTouchDevice'
 
 interface FloorArea {
   id: string
@@ -64,6 +65,7 @@ function imageMapCoordsToPolygonPoints(raw: string): string {
 
 export const JoniResidenceBuildingMap = () => {
   const navigate = useNavigate()
+  const alwaysShowZones = useTouchDevice()
   const [hoveredFloor, setHoveredFloor] = useState<string | null>(null)
 
   const floorsWithPoints = useMemo(
@@ -101,23 +103,23 @@ export const JoniResidenceBuildingMap = () => {
         preserveAspectRatio="xMidYMid meet"
       >
         {floorsWithPoints.map((floor) => {
-          const isHovered = hoveredFloor === floor.id
+          const isHighlighted = alwaysShowZones || hoveredFloor === floor.id
           const { cx, cy } = getCentroid(floor.points)
 
           return (
             <g key={floor.id}>
               <polygon
                 points={floor.points}
-                fill={isHovered ? 'rgba(101, 116, 50, 0.35)' : 'transparent'}
-                stroke={isHovered ? '#657432' : 'transparent'}
-                strokeWidth={isHovered ? 4 : 0}
+                fill={isHighlighted ? 'rgba(101, 116, 50, 0.35)' : 'transparent'}
+                stroke={isHighlighted ? '#657432' : 'transparent'}
+                strokeWidth={isHighlighted ? 4 : 0}
                 className="cursor-pointer transition-all duration-300"
                 onMouseEnter={() => setHoveredFloor(floor.id)}
                 onMouseLeave={() => setHoveredFloor(null)}
                 onClick={() => navigate(floor.path)}
               />
 
-              {isHovered && (
+              {isHighlighted && (
                 <g style={{ pointerEvents: 'none' }}>
                   <rect
                     x={cx - 70}
