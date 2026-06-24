@@ -58,7 +58,7 @@ const LINKS = [
   },
   {
     label: 'Zyrë Prizren',
-    href: 'https://maps.app.goo.gl/Pkvf2DgEucbhJkBK9',
+    href: 'https://maps.app.goo.gl/YRBJfi4keBQrrCbA8',
     description: 'Hap në Google Maps',
     external: true,
     icon: (
