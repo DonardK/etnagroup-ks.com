@@ -16,6 +16,9 @@ import { TianiBlockA } from './pages/TianiBlockA'
 import { TianiBlockB } from './pages/TianiBlockB'
 import { TaraApartments } from './pages/TaraApartments'
 import { JoniKati } from './pages/JoniKati'
+import { QrCodePage } from './pages/QrCodePage'
+
+const HIDDEN_LAYOUT_PATHS = ['/qr-code']
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -26,11 +29,14 @@ function ScrollToTop() {
 }
 
 function App() {
+  const { pathname } = useLocation()
+  const hideSiteLayout = HIDDEN_LAYOUT_PATHS.includes(pathname)
+
   return (
     <div className="min-h-screen bg-[#F8F2DD] flex flex-col overflow-x-hidden">
       <ScrollToTop />
-      <Navbar />
-      <div className="pt-20 flex-grow">
+      {!hideSiteLayout && <Navbar />}
+      <div className={hideSiteLayout ? 'flex-grow' : 'pt-20 flex-grow'}>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/projektet/:id" element={<ProjectDetail />} />
@@ -54,10 +60,11 @@ function App() {
           <Route path="/joniresidence-kati-5" element={<JoniKati floor={5} />} />
           <Route path="/joniresidence-kati-6" element={<JoniKati floor={6} />} />
           <Route path="/joniresidence-apartments" element={<Navigate to="/projektet/joni" replace />} />
+          <Route path="/qr-code" element={<QrCodePage />} />
         </Routes>
       </div>
-      <Footer />
-      <WhatsAppButton />
+      {!hideSiteLayout && <Footer />}
+      {!hideSiteLayout && <WhatsAppButton />}
     </div>
   )
 }
