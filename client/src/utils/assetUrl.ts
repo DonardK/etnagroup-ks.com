@@ -4,9 +4,6 @@ export const MEDIA_BASE_URL = (
 ).replace(/\/$/, '')
 
 export const HERO_VIDEO_URL = `${MEDIA_BASE_URL}/hero-video.mp4`
-/** Smaller H.264 loop for phones (~10–25 MB). Upload alongside hero-video.mp4. */
-export const HERO_VIDEO_MOBILE_URL = `${MEDIA_BASE_URL}/hero-video-mobile.mp4`
-export const HERO_POSTER_URL = `${MEDIA_BASE_URL}/visuals/ElsaResidenceVisuals/Renderi 1.jpg`
 
 /**
  * Resolves a site media path to the R2 CDN URL.
