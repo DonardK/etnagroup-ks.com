@@ -2,18 +2,10 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { projects } from '../data/projects'
-import { useTouchDevice } from '../hooks/useTouchDevice'
-import {
-  assetUrl,
-  HERO_POSTER_URL,
-  HERO_VIDEO_MOBILE_URL,
-  HERO_VIDEO_URL,
-} from '../utils/assetUrl'
+import { assetUrl, HERO_POSTER_URL, HERO_VIDEO_URL } from '../utils/assetUrl'
 
 export const HomePage = () => {
-  const isTouchDevice = useTouchDevice()
   const [videoFailed, setVideoFailed] = useState(false)
-  const heroVideoSrc = isTouchDevice ? HERO_VIDEO_MOBILE_URL : HERO_VIDEO_URL
   const heroPoster = encodeURI(HERO_POSTER_URL)
 
   return (
@@ -34,13 +26,13 @@ export const HomePage = () => {
               muted
               loop
               playsInline
-              preload="metadata"
+              preload="auto"
               poster={heroPoster}
               onError={() => setVideoFailed(true)}
               className="absolute left-1/2 top-1/2 h-full w-full -translate-x-1/2 -translate-y-1/2 object-cover"
               aria-label="Etna Group Hero Video"
             >
-              <source src={heroVideoSrc} type="video/mp4" />
+              <source src={HERO_VIDEO_URL} type="video/mp4" />
             </video>
           )}
           {/* Subtle Overlay for text readability */}
