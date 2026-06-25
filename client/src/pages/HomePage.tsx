@@ -1,10 +1,20 @@
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { projects } from '../data/projects'
-import { assetUrl, HERO_VIDEO_URL } from '../utils/assetUrl'
+import { useTouchDevice } from '../hooks/useTouchDevice'
+import {
+  assetUrl,
+  HERO_POSTER_URL,
+  HERO_VIDEO_MOBILE_URL,
+  HERO_VIDEO_URL,
+} from '../utils/assetUrl'
 
 export const HomePage = () => {
-  // Auto-slide functionality removed - using static video hero instead
+  const isTouchDevice = useTouchDevice()
+  const [videoFailed, setVideoFailed] = useState(false)
+  const heroVideoSrc = isTouchDevice ? HERO_VIDEO_MOBILE_URL : HERO_VIDEO_URL
+  const heroPoster = encodeURI(HERO_POSTER_URL)
 
   return (
     <div className="min-h-screen bg-[#F8F2DD]">
@@ -12,17 +22,27 @@ export const HomePage = () => {
       <section className="relative h-screen w-full overflow-hidden bg-[#F8F2DD]">
         {/* Video Container - fills entire width and height */}
         <div className="absolute inset-0 h-full w-full bg-[#F8F2DD] overflow-hidden">
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="auto"
-            className="absolute left-1/2 top-1/2 h-full w-full -translate-x-1/2 -translate-y-1/2 object-cover"
-            aria-label="Etna Group Hero Video"
-          >
-            <source src={HERO_VIDEO_URL} type="video/mp4" />
-          </video>
+          <img
+            src={heroPoster}
+            alt=""
+            className="absolute inset-0 h-full w-full object-cover"
+            aria-hidden
+          />
+          {!videoFailed && (
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              poster={heroPoster}
+              onError={() => setVideoFailed(true)}
+              className="absolute left-1/2 top-1/2 h-full w-full -translate-x-1/2 -translate-y-1/2 object-cover"
+              aria-label="Etna Group Hero Video"
+            >
+              <source src={heroVideoSrc} type="video/mp4" />
+            </video>
+          )}
           {/* Subtle Overlay for text readability */}
           <div className="absolute inset-0 bg-gradient-to-b from-[#F8F2DD]/30 via-transparent to-[#F8F2DD]/50" />
         </div>
