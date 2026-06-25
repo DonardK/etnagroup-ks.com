@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { motion } from 'framer-motion'
+import { assetUrl } from '../utils/assetUrl'
 
 const LINKS = [
   {
@@ -152,7 +153,7 @@ export const QrCodePage = () => {
       >
         <div className="mb-10 text-center">
           <img
-            src={`${import.meta.env.BASE_URL}brand/Logo.png`}
+            src={encodeURI(assetUrl('brand/Logo.png'))}
             alt="Etna Group"
             className="mx-auto mb-6 h-20 w-auto"
           />

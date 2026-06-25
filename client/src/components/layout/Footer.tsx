@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
+import { assetUrl } from '../../utils/assetUrl'
 
 export const Footer = () => {
   // Map URLs with markers - using coordinates with q parameter to show pins
@@ -59,7 +60,7 @@ export const Footer = () => {
           {/* Logo and Company Info */}
           <div className="flex items-center gap-4">
             <img
-              src={`${import.meta.env.BASE_URL}brand/Logo.png`}
+              src={encodeURI(assetUrl('brand/Logo.png'))}
               alt="Etna Group Logo"
               className="h-10 w-auto"
               loading="lazy"

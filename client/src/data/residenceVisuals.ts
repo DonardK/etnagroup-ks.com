@@ -1,6 +1,6 @@
 /**
- * Maps residence project IDs to their visual image paths
- * Images are stored in /visuals/{ResidenceName}Visuals/
+ * Maps residence project IDs to their visual image paths.
+ * Media is served from Cloudflare R2 at https://media.etnagroup-ks.com/visuals/
  */
 
 export const getResidenceVisuals = (projectId: string): string[] => {

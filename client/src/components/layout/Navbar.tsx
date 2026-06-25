@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Link } from 'react-router-dom'
+import { assetUrl } from '../../utils/assetUrl'
 import { projects } from '../../data/projects'
 
 export const Navbar = () => {
@@ -18,7 +19,7 @@ export const Navbar = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3">
             <img
-              src={`${import.meta.env.BASE_URL}brand/Logo.png`}
+              src={encodeURI(assetUrl('brand/Logo.png'))}
               alt="Etna Group Logo"
               className="h-12 w-auto"
               loading="eager"

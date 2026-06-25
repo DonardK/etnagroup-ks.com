@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { projects } from '../data/projects'
-import { assetUrl } from '../utils/assetUrl'
+import { assetUrl, HERO_VIDEO_URL } from '../utils/assetUrl'
 
 export const HomePage = () => {
   // Auto-slide functionality removed - using static video hero instead
@@ -12,22 +12,17 @@ export const HomePage = () => {
       <section className="relative h-screen w-full overflow-hidden bg-[#F8F2DD]">
         {/* Video Container - fills entire width and height */}
         <div className="absolute inset-0 h-full w-full bg-[#F8F2DD] overflow-hidden">
-          {/* YouTube Video Embed - scaled to fill entire width, may crop top/bottom */}
-          <iframe
-            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
-            style={{ 
-              width: '100vw',
-              height: '56.25vw', // 16:9 aspect ratio
-              minHeight: '100vh',
-              minWidth: '177.77777778vh', // Maintain aspect ratio when height is limiting
-              border: 'none',
-              pointerEvents: 'none'
-            }}
-            src="https://www.youtube.com/embed/YUvScr_mMFc?autoplay=1&loop=1&playlist=YUvScr_mMFc&mute=1&controls=0&modestbranding=1&playsinline=1&rel=0&showinfo=0&start=0&vq=highres"
-            title="Etna Group Hero Video"
-            allow="autoplay; encrypted-media"
-            allowFullScreen
-          />
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            className="absolute left-1/2 top-1/2 h-full w-full -translate-x-1/2 -translate-y-1/2 object-cover"
+            aria-label="Etna Group Hero Video"
+          >
+            <source src={HERO_VIDEO_URL} type="video/mp4" />
+          </video>
           {/* Subtle Overlay for text readability */}
           <div className="absolute inset-0 bg-gradient-to-b from-[#F8F2DD]/30 via-transparent to-[#F8F2DD]/50" />
         </div>

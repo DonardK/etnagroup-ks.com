@@ -52,10 +52,6 @@ dist/
 dist-ssr/
 *.local
 
-# Large video files (host separately)
-*.mp4
-client/public/home page/
-
 # Environment
 .env
 .env.local
@@ -83,3 +79,16 @@ coverage/
 .pytest_cache/
 
 .env*.local
+
+# -----------------------------------------------------------------------------
+# Cloudflare R2 hosted media (https://media.etnagroup-ks.com)
+# Keep heavy assets out of Git — upload to R2 instead.
+# -----------------------------------------------------------------------------
+hero-video.mp4
+*.mp4
+*.webm
+client/public/home page/
+client/public/visuals/
+client/public/buildings/
+client/public/SVG Residences/
+client/public/brand/

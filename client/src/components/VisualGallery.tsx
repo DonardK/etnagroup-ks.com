@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { assetUrl } from '../utils/assetUrl'
 
 interface VisualGalleryProps {
   images: string[]
@@ -84,7 +85,7 @@ export const VisualGallery = ({ images, title = 'Galeria e Vizualizimeve' }: Vis
               >
                 <div className="aspect-[4/3] overflow-hidden">
                   <img
-                    src={image}
+                    src={encodeURI(assetUrl(image))}
                     alt={`Vizualizim ${index + 1}`}
                     className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
                     loading="lazy"
@@ -211,7 +212,7 @@ export const VisualGallery = ({ images, title = 'Galeria e Vizualizimeve' }: Vis
               onClick={(e) => e.stopPropagation()}
             >
               <img
-                src={images[selectedImage]}
+                src={encodeURI(assetUrl(images[selectedImage]))}
                 alt={`Vizualizim ${selectedImage + 1}`}
                 className="max-h-[90vh] max-w-full object-contain"
               />

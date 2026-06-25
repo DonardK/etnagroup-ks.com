@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
+import { assetUrl } from '../utils/assetUrl'
 
 export interface Building {
   id: string
@@ -44,7 +45,7 @@ export const InteractiveBuildingSelector = ({
         {/* SVG Image */}
         <div className="relative aspect-video w-full overflow-hidden rounded-3xl bg-[#657432]/10">
           <img
-            src={`${import.meta.env.BASE_URL}SVG Residences/${encodeURIComponent(projectName)}.svg`}
+            src={encodeURI(assetUrl(`SVG Residences/${projectName}.svg`))}
             alt={`${projectName} Buildings`}
             data-project-id={projectId}
             className="h-full w-full object-contain"

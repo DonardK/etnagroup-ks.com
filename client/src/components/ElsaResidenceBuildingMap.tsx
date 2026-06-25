@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useTouchDevice } from '../hooks/useTouchDevice'
+import { assetUrl } from '../utils/assetUrl'
 
 interface BuildingBlock {
   id: string
@@ -84,7 +85,7 @@ export const ElsaResidenceBuildingMap = () => {
   return (
     <div className="relative mx-auto w-full max-w-5xl">
       <img
-        src={`${import.meta.env.BASE_URL}SVG Residences/Elsa Residence.svg`}
+        src={encodeURI(assetUrl('SVG Residences/Elsa Residence.svg'))}
         alt="Elsa Residence"
         className="block h-auto w-full"
         draggable={false}
