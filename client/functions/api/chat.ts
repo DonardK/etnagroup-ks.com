@@ -1,5 +1,5 @@
 // Cloudflare Pages Function — Etna Group AI assistant ("Etna").
-// Runs on Cloudflare's edge using Workers AI (@cf/meta/llama-3-8b-instruct).
+// Runs on Cloudflare's edge using Workers AI (@cf/meta/llama-3.1-8b-instruct-fast).
 // Endpoint: POST /api/chat  { messages: [{ role, content }] } -> { reply }
 
 interface ChatMessage {
@@ -25,7 +25,10 @@ interface PagesContext {
   env: Env
 }
 
-const MODEL = '@cf/meta/llama-3-8b-instruct'
+// NOTE: @cf/meta/llama-3-8b-instruct was deprecated by Cloudflare on 2026-05-30.
+// This `-fast` 8B variant remains active, is multilingual (Albanian/English),
+// and is the most cost-effective choice for staying within the free tier.
+const MODEL = '@cf/meta/llama-3.1-8b-instruct-fast'
 
 // --- Abuse / free-tier protection limits ---
 const MAX_HISTORY_MESSAGES = 12 // keep only the most recent turns
@@ -152,7 +155,9 @@ export const onRequestPost = async (context: PagesContext): Promise<Response> =>
       'Më vjen keq, nuk munda të gjeneroj një përgjigje. Ju lutem provoni përsëri.'
 
     return json({ reply })
-  } catch {
+  } catch (err) {
+    // Surfaced in `wrangler pages deployment tail` / dashboard real-time logs.
+    console.error('chat function error:', err)
     return json(
       {
         error:
