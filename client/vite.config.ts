@@ -26,12 +26,6 @@ export default defineConfig(() => ({
   plugins: [react(), excludeR2MediaFromDist()],
   server: {
     port: 5173,
-    proxy: {
-      '/api': {
-        target: 'http://localhost:5000',
-        changeOrigin: true,
-      },
-    },
   },
   build: {
     outDir: 'dist',
