@@ -22,18 +22,15 @@ pages_build_output_dir = "./dist"
 binding = "AI"
 
 # ---------------------------------------------------------------------------
-# Rate limiting (optional abuse / free-tier guard).
-# functions/api/chat.ts calls env.RATE_LIMITER ONLY if it is bound, and skips
-# gracefully when it is absent — so the binding is left STUBBED OUT below.
-#
-# To enable per-IP rate limiting (here: 15 requests per 60s), uncomment the
-# block. Choose any unique positive-integer namespace_id for your account.
-# Allowed period values are 10 or 60 (seconds).
-# Docs: https://developers.cloudflare.com/workers/runtime-apis/bindings/rate-limit/
+# Usage / abuse limiting on Cloudflare Pages
 # ---------------------------------------------------------------------------
-# [[ratelimits]]
-# name = "RATE_LIMITER"
-# namespace_id = "1001"
-#   [ratelimits.simple]
-#   limit = 15
-#   period = 60
+# NOTE: The Workers "[[ratelimits]]" binding is NOT supported by Cloudflare
+# Pages Functions (Pages ignores it with a config warning), so it is not
+# declared here. Limit usage instead via:
+#   1. In-code caps in functions/api/chat.ts (max_tokens, history + length
+#      caps) — these bound the cost of every single request.
+#   2. A WAF Rate Limiting rule on the /api/chat path (Cloudflare dashboard ->
+#      your domain -> Security -> WAF -> Rate limiting rules). Recommended.
+#   3. (Optional) A KV-namespace-based per-IP counter in the function code.
+# The function still calls env.RATE_LIMITER if such a binding ever exists and
+# skips gracefully when it does not, so it is safe to leave the code as-is.
