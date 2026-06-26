@@ -96,6 +96,8 @@ All content is static TypeScript data — no database.
 
 Apartment PDFs live in `client/public/Residences Apartments/` and are copied into the build output.
 
+**Naming convention:** `{Building}-{Block}-{area}m².pdf` (e.g. `Elsa-A-66.39m².pdf`, `Tiani-B-88.0m².pdf`). Tara uses `Tara-{area}m².pdf`; Joni uses `Joni-K1-{area}m².pdf` (floor groups: `K1`, `K1-6`, `K2-6`).
+
 ---
 
 ## Media (Cloudflare R2)
