@@ -1,0 +1,253 @@
+import { useEffect, useRef, useState, type KeyboardEvent } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
+
+interface ChatMessage {
+  role: 'user' | 'assistant'
+  text: string
+  ts: number
+}
+
+const GREETING: ChatMessage = {
+  role: 'assistant',
+  text: 'Përshëndetje! Unë jam Etna, asistentja juaj dixhitale e Etna Group. Si mund t’ju ndihmoj? (How can I help you today?)',
+  ts: Date.now(),
+}
+
+const MAX_INPUT_LENGTH = 1000
+
+export const ChatWidget = () => {
+  const [isOpen, setIsOpen] = useState(false)
+  const [messages, setMessages] = useState<ChatMessage[]>([GREETING])
+  const [input, setInput] = useState('')
+  const [loading, setLoading] = useState(false)
+  const scrollRef = useRef<HTMLDivElement>(null)
+  const inputRef = useRef<HTMLInputElement>(null)
+
+  useEffect(() => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollTop = scrollRef.current.scrollHeight
+    }
+  }, [messages, loading, isOpen])
+
+  useEffect(() => {
+    if (isOpen) inputRef.current?.focus()
+  }, [isOpen])
+
+  const sendMessage = async () => {
+    const text = input.trim()
+    if (!text || loading) return
+
+    const userMessage: ChatMessage = { role: 'user', text, ts: Date.now() }
+    const nextMessages = [...messages, userMessage]
+    setMessages(nextMessages)
+    setInput('')
+    setLoading(true)
+
+    try {
+      const res = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({
+          messages: nextMessages.map((m) => ({ role: m.role, content: m.text })),
+        }),
+      })
+
+      const data = (await res.json().catch(() => null)) as
+        | { reply?: string; error?: string }
+        | null
+
+      if (!res.ok || !data) {
+        throw new Error(data?.error || 'Request failed')
+      }
+
+      const reply =
+        data.reply?.trim() || 'Më vjen keq, ndodhi një gabim. Ju lutem provoni përsëri.'
+
+      setMessages((prev) => [...prev, { role: 'assistant', text: reply, ts: Date.now() }])
+    } catch {
+      setMessages((prev) => [
+        ...prev,
+        {
+          role: 'assistant',
+          text:
+            'Më vjen keq, shërbimi nuk është i disponueshëm për momentin. Ju lutem provoni më vonë ose na kontaktoni në info@etnagroup-ks.com. / Sorry, the assistant is unavailable right now — please try again later or contact info@etnagroup-ks.com.',
+          ts: Date.now(),
+        },
+      ])
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault()
+      void sendMessage()
+    }
+  }
+
+  return (
+    <div
+      style={{ position: 'fixed', bottom: '24px', right: '24px', zIndex: 9999 }}
+      className="flex flex-col items-end"
+    >
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: 20, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 20, scale: 0.95 }}
+            transition={{ duration: 0.2, ease: 'easeOut' }}
+            className="mb-4 flex h-[70vh] max-h-[560px] w-[calc(100vw-3rem)] max-w-[380px] flex-col overflow-hidden rounded-2xl border border-[#657432]/20 bg-[#F8F2DD] shadow-2xl"
+            role="dialog"
+            aria-label="Etna Group chat assistant"
+          >
+            <div className="flex items-center justify-between bg-[#657432] px-5 py-4">
+              <div className="flex items-center gap-3">
+                <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[#F8F2DD]/15 text-lg font-bold text-[#F8F2DD]">
+                  E
+                </div>
+                <div>
+                  <div className="font-semibold leading-tight text-[#F8F2DD]">Etna</div>
+                  <div className="text-xs text-[#F8F2DD]/70">Asistente Dixhitale</div>
+                </div>
+              </div>
+              <button
+                onClick={() => setIsOpen(false)}
+                className="rounded-full p-1 text-[#F8F2DD]/80 transition-colors hover:bg-[#F8F2DD]/15 hover:text-[#F8F2DD]"
+                aria-label="Close chat"
+              >
+                <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
+            </div>
+
+            <div ref={scrollRef} className="flex-1 space-y-3 overflow-y-auto px-4 py-4">
+              {messages.map((m, i) => (
+                <div
+                  key={`${m.ts}-${i}`}
+                  className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}
+                >
+                  <div
+                    className={`max-w-[85%] whitespace-pre-wrap break-words rounded-2xl px-4 py-2 text-sm leading-relaxed shadow-sm ${
+                      m.role === 'user'
+                        ? 'rounded-br-sm bg-[#657432] text-[#F8F2DD]'
+                        : 'rounded-bl-sm border border-[#657432]/15 bg-white text-[#3a3a2e]'
+                    }`}
+                  >
+                    {m.text}
+                  </div>
+                </div>
+              ))}
+
+              {loading && (
+                <div className="flex justify-start">
+                  <div className="flex items-center gap-1 rounded-2xl rounded-bl-sm border border-[#657432]/15 bg-white px-4 py-3">
+                    {[0, 1, 2].map((d) => (
+                      <motion.span
+                        key={d}
+                        className="h-2 w-2 rounded-full bg-[#657432]/60"
+                        animate={{ opacity: [0.3, 1, 0.3] }}
+                        transition={{ duration: 1, repeat: Infinity, delay: d * 0.2 }}
+                      />
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+
+            <div className="border-t border-[#657432]/15 bg-[#F8F2DD] p-3">
+              <div className="flex items-end gap-2">
+                <input
+                  ref={inputRef}
+                  type="text"
+                  value={input}
+                  maxLength={MAX_INPUT_LENGTH}
+                  onChange={(e) => setInput(e.target.value)}
+                  onKeyDown={handleKeyDown}
+                  placeholder="Shkruani mesazhin tuaj…"
+                  className="flex-1 rounded-full border border-[#657432]/25 bg-white px-4 py-2.5 text-sm text-[#3a3a2e] outline-none transition-colors placeholder:text-[#657432]/40 focus:border-[#657432]"
+                  aria-label="Type your message"
+                />
+                <button
+                  onClick={() => void sendMessage()}
+                  disabled={loading || !input.trim()}
+                  className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-[#657432] text-[#F8F2DD] transition-all hover:scale-105 disabled:cursor-not-allowed disabled:opacity-40"
+                  aria-label="Send message"
+                >
+                  <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 19V5M5 12l7-7 7 7"
+                    />
+                  </svg>
+                </button>
+              </div>
+              <p className="mt-2 text-center text-[10px] text-[#657432]/50">
+                Etna mund të gabojë. Për çmime &amp; rezervime, na kontaktoni.
+              </p>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <motion.button
+        initial={{ scale: 0 }}
+        animate={{ scale: 1 }}
+        whileHover={{ scale: 1.08 }}
+        whileTap={{ scale: 0.95 }}
+        onClick={() => setIsOpen((v) => !v)}
+        className="flex h-14 w-14 items-center justify-center rounded-full bg-[#657432] text-[#F8F2DD] shadow-lg transition-shadow hover:shadow-xl"
+        aria-label={isOpen ? 'Close chat assistant' : 'Open chat assistant'}
+      >
+        <AnimatePresence mode="wait" initial={false}>
+          {isOpen ? (
+            <motion.svg
+              key="close"
+              initial={{ rotate: -90, opacity: 0 }}
+              animate={{ rotate: 0, opacity: 1 }}
+              exit={{ rotate: 90, opacity: 0 }}
+              className="h-7 w-7"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </motion.svg>
+          ) : (
+            <motion.svg
+              key="open"
+              initial={{ rotate: 90, opacity: 0 }}
+              animate={{ rotate: 0, opacity: 1 }}
+              exit={{ rotate: -90, opacity: 0 }}
+              className="h-7 w-7"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.86 9.86 0 01-4-.8L3 20l1.3-3.9A7.96 7.96 0 013 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+              />
+            </motion.svg>
+          )}
+        </AnimatePresence>
+      </motion.button>
+    </div>
+  )
+}

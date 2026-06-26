@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 import { Navbar } from './components/layout/Navbar'
 import { Footer } from './components/layout/Footer'
 import { WhatsAppButton } from './components/WhatsAppButton'
+import { ChatWidget } from './components/chat/ChatWidget'
 import { HomePage } from './pages/HomePage'
 import { ProjectDetail } from './pages/ProjectDetail'
 import { AboutPage } from './pages/AboutPage'
@@ -65,6 +66,7 @@ function App() {
       </div>
       {!hideSiteLayout && <Footer />}
       {!hideSiteLayout && <WhatsAppButton />}
+      {!hideSiteLayout && <ChatWidget />}
     </div>
   )
 }
