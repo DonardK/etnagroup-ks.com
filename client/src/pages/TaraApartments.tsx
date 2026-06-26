@@ -4,23 +4,13 @@ import type { Apartment } from '../components/ApartmentList'
 const BASE = 'Residences Apartments/Tara Residence PDF'
 
 const apartments: Apartment[] = [
-  { name: '46.10 m²', area: '46.10 m²', pdfPath: `${BASE}/Tara-46.10m².pdf` },
   { name: '46.1 m²', area: '46.1 m²', pdfPath: `${BASE}/Tara-46.1m².pdf` },
-  { name: '64.30 m²', area: '64.30 m²', pdfPath: `${BASE}/Tara-64.30m²-2.pdf` },
-  { name: '64.30 m²', area: '64.30 m²', pdfPath: `${BASE}/Tara-64.30m².pdf` },
-  { name: '64.3 m²', area: '64.3 m²', pdfPath: `${BASE}/Tara-64.3m²-2.pdf` },
-  { name: '64.3 m²', area: '64.3 m²', pdfPath: `${BASE}/Tara-64.3m²-3.pdf` },
   { name: '64.3 m²', area: '64.3 m²', pdfPath: `${BASE}/Tara-64.3m².pdf` },
   { name: '74.13 m²', area: '74.13 m²', pdfPath: `${BASE}/Tara-74.13m².pdf` },
   { name: '74.3 m²', area: '74.3 m²', pdfPath: `${BASE}/Tara-74.3m².pdf` },
-  { name: '76.70 m²', area: '76.70 m²', pdfPath: `${BASE}/Tara-76.70m².pdf` },
-  { name: '76.7 m²', area: '76.7 m²', pdfPath: `${BASE}/Tara-76.7m²-2.pdf` },
   { name: '76.7 m²', area: '76.7 m²', pdfPath: `${BASE}/Tara-76.7m².pdf` },
-  { name: '91.20 m²', area: '91.20 m²', pdfPath: `${BASE}/Tara-91.20m²-2.pdf` },
-  { name: '91.20 m²', area: '91.20 m²', pdfPath: `${BASE}/Tara-91.20m².pdf` },
   { name: '91.2 m²', area: '91.2 m²', pdfPath: `${BASE}/Tara-91.2m².pdf` },
   { name: '93.8 m²', area: '93.8 m²', pdfPath: `${BASE}/Tara-93.8m².pdf` },
-  { name: '115.0 m²', area: '115.0 m²', pdfPath: `${BASE}/Tara-115.0m².pdf` },
   { name: '115 m²', area: '115 m²', pdfPath: `${BASE}/Tara-115m².pdf` },
   { name: '120.1 m²', area: '120.1 m²', pdfPath: `${BASE}/Tara-120.1m².pdf` },
   { name: '122.5 m²', area: '122.5 m²', pdfPath: `${BASE}/Tara-122.5m².pdf` },

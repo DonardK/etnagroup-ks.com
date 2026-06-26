@@ -10,8 +10,6 @@ const apartments: Apartment[] = [
   { name: 'B-68.6 m²', area: '68.6 m²', pdfPath: `${BASE}/Tiani-B-68.6m².pdf` },
   { name: 'B-84.9 m²', area: '84.9 m²', pdfPath: `${BASE}/Tiani-B-84.9m².pdf` },
   { name: 'B-87.8 m²', area: '87.8 m²', pdfPath: `${BASE}/Tiani-B-87.8m².pdf` },
-  { name: 'B-88.0 m²', area: '88.0 m²', pdfPath: `${BASE}/Tiani-B-88.0m²-2.pdf` },
-  { name: 'B-88.0 m²', area: '88.0 m²', pdfPath: `${BASE}/Tiani-B-88.0m²-3.pdf` },
   { name: 'B-88.0 m²', area: '88.0 m²', pdfPath: `${BASE}/Tiani-B-88.0m².pdf` },
   { name: 'B-88.7 m²', area: '88.7 m²', pdfPath: `${BASE}/Tiani-B-88.7m².pdf` },
   { name: 'B-88.8 m²', area: '88.8 m²', pdfPath: `${BASE}/Tiani-B-88.8m².pdf` },
