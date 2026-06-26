@@ -1,0 +1,39 @@
+# Cloudflare Pages configuration — source of truth for the Etna Group site.
+# Docs: https://developers.cloudflare.com/pages/functions/wrangler-configuration/
+#
+# WHY THIS FILE LIVES IN client/:
+# The Cloudflare Pages project's "Root directory" must be set to "client",
+# because the Pages Functions live in client/functions/ and the Vite build
+# outputs to client/dist/. Cloudflare looks for the Wrangler config in that
+# root directory, so this file belongs here (not at the repo root).
+#
+# NOTE: Once this file is in use, it becomes the source of truth — the same
+# fields can no longer be edited from the Cloudflare dashboard.
+
+name = "etnagroup-ks"
+compatibility_date = "2026-06-26"
+
+# Vite production output directory (relative to this file = client/dist).
+pages_build_output_dir = "./dist"
+
+# Workers AI binding — exposes context.env.AI to functions/api/chat.ts.
+# Cloudflare provisions this automatically when deploying with this config.
+[ai]
+binding = "AI"
+
+# ---------------------------------------------------------------------------
+# Rate limiting (optional abuse / free-tier guard).
+# functions/api/chat.ts calls env.RATE_LIMITER ONLY if it is bound, and skips
+# gracefully when it is absent — so the binding is left STUBBED OUT below.
+#
+# To enable per-IP rate limiting (here: 15 requests per 60s), uncomment the
+# block. Choose any unique positive-integer namespace_id for your account.
+# Allowed period values are 10 or 60 (seconds).
+# Docs: https://developers.cloudflare.com/workers/runtime-apis/bindings/rate-limit/
+# ---------------------------------------------------------------------------
+# [[ratelimits]]
+# name = "RATE_LIMITER"
+# namespace_id = "1001"
+#   [ratelimits.simple]
+#   limit = 15
+#   period = 60
