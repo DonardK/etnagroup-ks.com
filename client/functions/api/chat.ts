@@ -1,5 +1,5 @@
 // Cloudflare Pages Function — Etna Group AI assistant ("Etna").
-// Runs on Cloudflare's edge using Workers AI (@cf/meta/llama-3.1-8b-instruct-fast).
+// Runs on Cloudflare's edge using Workers AI (@cf/zai-org/glm-4.7-flash).
 // Endpoint: POST /api/chat  { messages: [{ role, content }] } -> { reply }
 
 interface ChatMessage {
@@ -25,16 +25,17 @@ interface PagesContext {
   env: Env
 }
 
-// NOTE: @cf/meta/llama-3-8b-instruct was deprecated by Cloudflare on 2026-05-30.
-// This `-fast` 8B variant remains active, is multilingual (Albanian/English),
-// and is the most cost-effective choice for staying within the free tier.
-const MODEL = '@cf/meta/llama-3.1-8b-instruct-fast'
+// GLM-4.7-Flash: multilingual dialogue model (100+ languages incl. Albanian).
+// Small Llama variants only officially cover ~8 languages (Albanian NOT among
+// them), which made them hallucinate in Albanian. This "Flash" model is fast,
+// low-cost, and far stronger multilingually.
+const MODEL = '@cf/zai-org/glm-4.7-flash'
 
 // --- Abuse / free-tier protection limits ---
 const MAX_HISTORY_MESSAGES = 12 // keep only the most recent turns
 const MAX_CHARS_PER_MESSAGE = 1500 // reject overly long single messages
 const MAX_TOTAL_CHARS = 6000 // reject very large payloads
-const MAX_OUTPUT_TOKENS = 512 // cap generation to control neuron usage
+const MAX_OUTPUT_TOKENS = 768 // cap generation to control neuron usage
 
 const SYSTEM_PROMPT = `You are "Etna", the premier digital consultant for Etna Group — a top-tier construction and real estate company based in Kosovo. You are warm, professional, concise, and genuinely helpful, like an expert consultant in a luxury showroom.
 
@@ -84,6 +85,14 @@ Etna Group develops premium residential complexes across Kosovo:
 - If you are unsure or lack a detail, say so honestly and direct the user to the sales office rather than guessing.
 
 Keep replies helpful, accurate, and brand-appropriate at all times.`
+
+// Some multilingual/reasoning models emit chain-of-thought wrapped in
+// <think>...</think>. Strip it so the user only sees the final answer.
+const stripReasoning = (text: string): string =>
+  text
+    .replace(/<think>[\s\S]*?<\/think>/gi, '')
+    .replace(/<\/?think>/gi, '')
+    .trim()
 
 const json = (data: unknown, status = 200): Response =>
   new Response(JSON.stringify(data), {
@@ -157,9 +166,10 @@ export const onRequestPost = async (context: PagesContext): Promise<Response> =>
       temperature: 0.3,
     })
 
+    const raw =
+      result && typeof result.response === 'string' ? stripReasoning(result.response) : ''
     const reply =
-      (result && typeof result.response === 'string' && result.response.trim()) ||
-      'Më vjen keq, nuk munda të gjeneroj një përgjigje. Ju lutem provoni përsëri.'
+      raw || 'Më vjen keq, nuk munda të gjeneroj një përgjigje. Ju lutem provoni përsëri.'
 
     return json({ reply })
   } catch (err) {
