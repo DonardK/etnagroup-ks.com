@@ -1,11 +1,63 @@
 import { useEffect, useRef, useState, type KeyboardEvent } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
+import {
+  findApartmentsByArea,
+  parseRequestedArea,
+  type ApartmentMatchGroup,
+} from '../../data/apartmentCatalog'
 
 interface ChatMessage {
   role: 'user' | 'assistant'
   text: string
   ts: number
+  matches?: ApartmentMatchGroup[]
 }
+
+const PDF_BASE = import.meta.env.BASE_URL
+
+const formatArea = (area: number): string => `${area} m²`
+
+const ApartmentButtons = ({ groups }: { groups: ApartmentMatchGroup[] }) => (
+  <div className="space-y-2 pl-1">
+    {groups.map((g) => (
+      <div
+        key={g.projectId}
+        className="rounded-xl border border-[#657432]/15 bg-white/70 p-3"
+      >
+        <div className="mb-2 text-xs font-semibold text-[#657432]">
+          {g.project} · {g.city}
+        </div>
+        <div className="flex flex-wrap gap-2">
+          {g.apartments.map((apt) => (
+            <a
+              key={apt.pdfPath}
+              href={encodeURI(`${PDF_BASE}${apt.pdfPath}`)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 rounded-lg bg-[#657432] px-3 py-1.5 text-xs font-medium text-[#F8F2DD] transition-all hover:bg-[#657432]/85 active:scale-[0.97]"
+            >
+              <svg
+                className="h-3.5 w-3.5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                />
+              </svg>
+              {formatArea(apt.area)}
+              {apt.group ? ` · ${apt.group}` : ''}
+            </a>
+          ))}
+        </div>
+      </div>
+    ))}
+  </div>
+)
 
 const GREETING: ChatMessage = {
   role: 'assistant',
@@ -37,6 +89,7 @@ export const ChatWidget = () => {
     const text = input.trim()
     if (!text || loading) return
 
+    const requestedArea = parseRequestedArea(text)
     const userMessage: ChatMessage = { role: 'user', text, ts: Date.now() }
     const nextMessages = [...messages, userMessage]
     setMessages(nextMessages)
@@ -63,7 +116,13 @@ export const ChatWidget = () => {
       const reply =
         data.reply?.trim() || 'Më vjen keq, ndodhi një gabim. Ju lutem provoni përsëri.'
 
-      setMessages((prev) => [...prev, { role: 'assistant', text: reply, ts: Date.now() }])
+      const matches =
+        requestedArea !== null ? findApartmentsByArea(requestedArea) : undefined
+
+      setMessages((prev) => [
+        ...prev,
+        { role: 'assistant', text: reply, ts: Date.now(), matches },
+      ])
     } catch {
       setMessages((prev) => [
         ...prev,
@@ -130,19 +189,23 @@ export const ChatWidget = () => {
 
             <div ref={scrollRef} className="flex-1 space-y-3 overflow-y-auto px-4 py-4">
               {messages.map((m, i) => (
-                <div
-                  key={`${m.ts}-${i}`}
-                  className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}
-                >
+                <div key={`${m.ts}-${i}`} className="space-y-2">
                   <div
-                    className={`max-w-[85%] whitespace-pre-wrap break-words rounded-2xl px-4 py-2 text-sm leading-relaxed shadow-sm ${
-                      m.role === 'user'
-                        ? 'rounded-br-sm bg-[#657432] text-[#F8F2DD]'
-                        : 'rounded-bl-sm border border-[#657432]/15 bg-white text-[#3a3a2e]'
-                    }`}
+                    className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}
                   >
-                    {m.text}
+                    <div
+                      className={`max-w-[85%] whitespace-pre-wrap break-words rounded-2xl px-4 py-2 text-sm leading-relaxed shadow-sm ${
+                        m.role === 'user'
+                          ? 'rounded-br-sm bg-[#657432] text-[#F8F2DD]'
+                          : 'rounded-bl-sm border border-[#657432]/15 bg-white text-[#3a3a2e]'
+                      }`}
+                    >
+                      {m.text}
+                    </div>
                   </div>
+                  {m.matches && m.matches.length > 0 && (
+                    <ApartmentButtons groups={m.matches} />
+                  )}
                 </div>
               ))}
 
