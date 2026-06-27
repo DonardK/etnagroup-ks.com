@@ -3,6 +3,8 @@
 // projects/cities. Mirrors the per-project data files and the PDFs under
 // client/public/Residences Apartments/. Keep in sync when plans change.
 
+import type { Apartment } from '../components/ApartmentList'
+
 export interface CatalogApartment {
   project: string
   projectId: string
@@ -155,6 +157,48 @@ export const apartmentCatalog: CatalogApartment[] = [
     { area: 106.8, pdfPath: `${JONI_BASE}/Kati 2-6/Joni-K2-6-106.8m².pdf` },
   ]),
 ]
+
+// --- Page-facing helpers (single source of truth for the apartment pages) ---
+
+/** Reproduce the exact area label from the PDF filename, e.g. "127.80 m²". */
+const areaLabelFromPath = (pdfPath: string): string => {
+  const file = pdfPath.split('/').pop() ?? ''
+  const token = file.replace(/\.pdf$/i, '').split('-').pop() ?? ''
+  return token.replace(/m²$/i, ' m²').trim()
+}
+
+const blockLetter = (group: string): string => {
+  const match = group.match(/Blloku\s+([A-Za-z])/)
+  return match ? match[1].toUpperCase() : ''
+}
+
+const toApartment = (apt: CatalogApartment): Apartment => {
+  const areaLabel = areaLabelFromPath(apt.pdfPath)
+  const letter = blockLetter(apt.group)
+  return {
+    name: letter ? `${letter}-${areaLabel}` : areaLabel,
+    area: areaLabel,
+    pdfPath: apt.pdfPath,
+  }
+}
+
+/** Apartments for a project (optionally a single block/group), as the pages expect. */
+export const getApartmentList = (projectId: string, group?: string): Apartment[] =>
+  apartmentCatalog
+    .filter((a) => a.projectId === projectId && (group === undefined || a.group === group))
+    .map(toApartment)
+
+/** Joni floor-specific listing: floor 1 gets "Kati 1" + shared "Kati 1–6"; floors 2–6 get "Kati 2–6" + shared. */
+export const getJoniFloorApartments = (kati: number): Apartment[] => {
+  let groups: string[]
+  if (kati === 1) groups = ['Kati 1', 'Kati 1–6']
+  else if (kati >= 2 && kati <= 6) groups = ['Kati 2–6', 'Kati 1–6']
+  else return []
+  return apartmentCatalog
+    .filter((a) => a.projectId === 'joni' && groups.includes(a.group))
+    .sort((a, b) => a.area - b.area)
+    .map(toApartment)
+}
 
 export interface ApartmentMatchGroup {
   project: string
