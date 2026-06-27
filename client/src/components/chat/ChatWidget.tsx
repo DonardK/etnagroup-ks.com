@@ -1,4 +1,10 @@
-import { useEffect, useRef, useState, type KeyboardEvent } from 'react'
+import {
+  useEffect,
+  useRef,
+  useState,
+  type KeyboardEvent,
+  type ReactNode,
+} from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import {
   findApartmentsByArea,
@@ -43,6 +49,13 @@ interface ChatMessage {
 const PDF_BASE = import.meta.env.BASE_URL
 
 const formatArea = (area: number): string => `${area} m²`
+
+/** Render lightweight markdown bold (**text** or __text__) as <strong>. */
+const renderRichText = (text: string): ReactNode =>
+  text.split(/(\*\*[^*\n]+\*\*|__[^_\n]+__)/g).map((part, i) => {
+    const bold = part.match(/^\*\*([^*\n]+)\*\*$/) || part.match(/^__([^_\n]+)__$/)
+    return bold ? <strong key={i}>{bold[1]}</strong> : part
+  })
 
 const ApartmentButtons = ({ groups }: { groups: ApartmentMatchGroup[] }) => (
   <div className="space-y-2 pl-1">
@@ -233,7 +246,7 @@ export const ChatWidget = () => {
                           : 'rounded-bl-sm border border-[#657432]/15 bg-white text-[#3a3a2e]'
                       }`}
                     >
-                      {m.text}
+                      {renderRichText(m.text)}
                     </div>
                   </div>
                   {m.matches && m.matches.length > 0 && (

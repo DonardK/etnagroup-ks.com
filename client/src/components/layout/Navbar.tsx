@@ -93,12 +93,12 @@ export const Navbar = () => {
 
             <button
               onClick={openChat}
-              className="relative flex items-center gap-1.5 text-[#657432]/90 transition-colors hover:text-[#657432]"
-              aria-label="Hap asistentin AI"
+              className="relative flex items-center gap-1.5 whitespace-nowrap text-[#657432]/90 transition-colors hover:text-[#657432]"
+              aria-label="Bisedo me asistentin AI"
             >
               <span aria-hidden="true">🤖</span>
-              AI
-              <span className="absolute -right-5 -top-2.5 rounded-full bg-red-600 px-1 py-0.5 text-[8px] font-extrabold uppercase leading-none tracking-wide text-white shadow">
+              Bisedo me mua
+              <span className="absolute -right-2 -top-2.5 rounded-full bg-red-600 px-1 py-0.5 text-[8px] font-extrabold uppercase leading-none tracking-wide text-white shadow">
                 New
               </span>
             </button>
@@ -183,10 +183,10 @@ export const Navbar = () => {
                   openChat()
                 }}
                 className="flex items-center gap-2 text-[#657432]/90 hover:text-[#657432]"
-                aria-label="Hap asistentin AI"
+                aria-label="Bisedo me asistentin AI"
               >
                 <span aria-hidden="true">🤖</span>
-                AI
+                Bisedo me mua
                 <span className="rounded-full bg-red-600 px-1.5 py-0.5 text-[9px] font-extrabold uppercase leading-none tracking-wide text-white">
                   New
                 </span>
