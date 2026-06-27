@@ -2,6 +2,7 @@ import {
   useEffect,
   useRef,
   useState,
+  type CSSProperties,
   type KeyboardEvent,
   type ReactNode,
 } from 'react'
@@ -177,21 +178,13 @@ ${REPLY_CLOSING}`,
 
 const MAX_INPUT_LENGTH = 1000
 
-/** Speech-bubble + robot face (SVG only — avoids iOS emoji scaling glitches). */
-const ChatFabIcon = () => (
-  <svg className="h-9 w-9" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-    <path d="M12 3C6.48 3 2 6.86 2 11.5c0 2.3 1.1 4.4 2.9 5.9-.13 1.05-.57 2.3-1.45 3.4-.21.27 0 .66.34.6 1.86-.25 3.52-.92 4.79-1.74.74.16 1.52.24 2.32.24 5.52 0 10-3.86 10-8.4S17.52 3 12 3z" />
-    <circle cx="9.5" cy="10.5" r="1.15" fill="#657432" />
-    <circle cx="14.5" cy="10.5" r="1.15" fill="#657432" />
-    <rect x="8.5" y="13" width="7" height="1.6" rx="0.8" fill="#657432" />
-  </svg>
-)
-
-const FAB_BOTTOM = 'bottom-[max(1.5rem,env(safe-area-inset-bottom))]'
-const FAB_RIGHT = 'right-[max(1.5rem,env(safe-area-inset-right))]'
-const FAB_FIXED = `fixed z-[9999] ${FAB_BOTTOM} ${FAB_RIGHT}`
-/** Panel sits above the 3.5rem FAB + 1rem gap. */
-const PANEL_FIXED = `fixed z-[9999] bottom-[calc(6rem+env(safe-area-inset-bottom,0px))] ${FAB_RIGHT}`
+/** Fixed bottom-right anchor — inline styles so positioning always works (Tailwind can't see dynamic class strings). */
+const WIDGET_ANCHOR_STYLE: CSSProperties = {
+  position: 'fixed',
+  bottom: 'max(24px, env(safe-area-inset-bottom, 0px))',
+  right: 'max(24px, env(safe-area-inset-right, 0px))',
+  zIndex: 9999,
+}
 
 export const ChatWidget = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -299,7 +292,7 @@ export const ChatWidget = () => {
   }
 
   return (
-    <>
+    <div style={WIDGET_ANCHOR_STYLE} className="flex flex-col items-end">
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -307,7 +300,7 @@ export const ChatWidget = () => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.2, ease: 'easeOut' }}
-            className={`${PANEL_FIXED} flex h-[70vh] max-h-[560px] w-[min(380px,calc(100vw-2rem))] flex-col overflow-hidden rounded-2xl border border-[#657432]/20 bg-[#F8F2DD] shadow-2xl`}
+            className="mb-4 flex h-[70vh] max-h-[560px] w-[min(380px,calc(100vw-3rem))] max-w-[380px] flex-col overflow-hidden rounded-2xl border border-[#657432]/20 bg-[#F8F2DD] shadow-2xl"
             role="dialog"
             aria-label="Etna Group chat assistant"
           >
@@ -423,13 +416,12 @@ export const ChatWidget = () => {
 
       <motion.button
         type="button"
-        initial={isTouch ? false : { scale: 0, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
+        initial={isTouch ? false : { scale: 0 }}
+        animate={{ scale: 1 }}
         whileHover={isTouch ? undefined : { scale: 1.08 }}
         whileTap={{ scale: 0.95 }}
         onClick={() => setIsOpen((v) => !v)}
-        className={`${FAB_FIXED} relative flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-full bg-[#657432] text-[#F8F2DD] shadow-lg transition-shadow hover:shadow-xl`}
-        style={{ transformOrigin: 'center center' }}
+        className="relative flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-full bg-[#657432] text-[#F8F2DD] shadow-lg transition-shadow hover:shadow-xl"
         aria-label={isOpen ? 'Close chat assistant' : 'Open AI chat assistant'}
       >
         {isOpen ? (
@@ -448,7 +440,18 @@ export const ChatWidget = () => {
             />
           </svg>
         ) : (
-          <ChatFabIcon />
+          <span className="relative flex h-9 w-9 items-center justify-center">
+            <svg className="h-9 w-9" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 3C6.48 3 2 6.86 2 11.5c0 2.3 1.1 4.4 2.9 5.9-.13 1.05-.57 2.3-1.45 3.4-.21.27 0 .66.34.6 1.86-.25 3.52-.92 4.79-1.74.74.16 1.52.24 2.32.24 5.52 0 10-3.86 10-8.4S17.52 3 12 3z" />
+            </svg>
+            <span
+              className="pointer-events-none absolute inset-0 flex items-center justify-center select-none"
+              style={{ fontSize: '14px', lineHeight: 1, WebkitTextSizeAdjust: '100%' }}
+              aria-hidden="true"
+            >
+              🤖
+            </span>
+          </span>
         )}
 
         {!isOpen && (
@@ -457,6 +460,6 @@ export const ChatWidget = () => {
           </span>
         )}
       </motion.button>
-    </>
+    </div>
   )
 }
