@@ -188,7 +188,7 @@ export const onRequestPost = async (context: PagesContext): Promise<Response> =>
     const systemContent =
       SYSTEM_PROMPT +
       (apartmentContext
-        ? `\n\n# VERIFIED APARTMENT DETAILS FOR THIS QUERY\nThese are real, verified figures for apartments matching the user's requested size. Use ONLY these for room counts, room sizes, types and total areas — do NOT invent any others. The matching floor-plan (planimetri) buttons are shown to the user automatically.\n${apartmentContext}`
+        ? `\n\n# VERIFIED APARTMENT DETAILS FOR THIS QUERY\nThese are real, verified figures for apartments matching the user's request. Use ONLY these for room counts, room sizes, types and total areas — do NOT invent any others.\nEach apartment begins with an id in brackets, e.g. [p1]. To show its floor plan, embed a Markdown link EXACTLY like [Shiko Planimetrinë](apt:p1) right after you mention that apartment, using its matching id. NEVER write a real URL and NEVER use a (#) link.\n${apartmentContext}`
         : '') +
       '\n\n/no_think'
     const messages: ChatMessage[] = [

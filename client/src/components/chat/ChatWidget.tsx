@@ -14,16 +14,36 @@ import {
 } from '../../data/apartmentCatalog'
 import { apartmentSpecs } from '../../data/apartmentSpecs'
 import { OPEN_CHAT_EVENT } from '../../utils/chat'
+import { useTouchDevice } from '../../hooks/useTouchDevice'
 
 const APARTMENT_CONTEXT_CAP = 3500
 
-/** Build a compact, verified spec block for the matched apartments to send to the AI. */
-const buildApartmentContext = (groups: ApartmentMatchGroup[]): string | undefined => {
+const PDF_BASE = import.meta.env.BASE_URL
+
+const formatArea = (area: number): string => `${area} m²`
+
+const PLAN_ICON_PATH =
+  'M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z'
+
+interface ApartmentContext {
+  context: string
+  links: Record<string, string>
+}
+
+/** Build a verified spec block (with [pN] ids) plus a pN -> PDF-url map for the matched apartments. */
+const buildApartmentContext = (
+  groups: ApartmentMatchGroup[],
+): ApartmentContext | undefined => {
   const lines: string[] = []
+  const links: Record<string, string> = {}
+  let n = 0
   for (const g of groups) {
     for (const apt of g.apartments) {
+      n += 1
+      const id = `p${n}`
+      links[id] = encodeURI(`${PDF_BASE}${apt.pdfPath}`)
       const spec = apartmentSpecs[apt.pdfPath]
-      const head = `${g.project} (${g.city})${apt.group ? `, ${apt.group}` : ''}, ${apt.area} m²`
+      const head = `[${id}] ${g.project} (${g.city})${apt.group ? `, ${apt.group}` : ''}, ${apt.area} m²`
       const type = spec?.type ? `, ${spec.type}` : ''
       if (spec && spec.rooms.length > 0) {
         const rooms = spec.rooms
@@ -36,8 +56,10 @@ const buildApartmentContext = (groups: ApartmentMatchGroup[]): string | undefine
     }
   }
   if (lines.length === 0) return undefined
-  const ctx = lines.join('\n')
-  return ctx.length > APARTMENT_CONTEXT_CAP ? ctx.slice(0, APARTMENT_CONTEXT_CAP) : ctx
+  const joined = lines.join('\n')
+  const context =
+    joined.length > APARTMENT_CONTEXT_CAP ? joined.slice(0, APARTMENT_CONTEXT_CAP) : joined
+  return { context, links }
 }
 
 interface ChatMessage {
@@ -45,18 +67,63 @@ interface ChatMessage {
   text: string
   ts: number
   matches?: ApartmentMatchGroup[]
+  links?: Record<string, string>
 }
 
-const PDF_BASE = import.meta.env.BASE_URL
-
-const formatArea = (area: number): string => `${area} m²`
-
-/** Render lightweight markdown bold (**text** or __text__) as <strong>. */
-const renderRichText = (text: string): ReactNode =>
-  text.split(/(\*\*[^*\n]+\*\*|__[^_\n]+__)/g).map((part, i) => {
+/** Render a text segment with **bold** / __bold__ support. */
+const renderInline = (segment: string, keyBase: string): ReactNode[] =>
+  segment.split(/(\*\*[^*\n]+\*\*|__[^_\n]+__)/g).map((part, i) => {
     const bold = part.match(/^\*\*([^*\n]+)\*\*$/) || part.match(/^__([^_\n]+)__$/)
-    return bold ? <strong key={i}>{bold[1]}</strong> : part
+    return bold ? (
+      <strong key={`${keyBase}-${i}`}>{bold[1]}</strong>
+    ) : (
+      <span key={`${keyBase}-${i}`}>{part}</span>
+    )
   })
+
+/** Render markdown bold + [text](href) links. apt:ID hrefs resolve to PDF buttons via the links map. */
+const renderRichText = (text: string, links?: Record<string, string>): ReactNode => {
+  const out: ReactNode[] = []
+  const linkRe = /\[([^\]]+)\]\(([^)\s]+)\)/g
+  let last = 0
+  let k = 0
+  let m: RegExpExecArray | null
+  while ((m = linkRe.exec(text)) !== null) {
+    if (m.index > last) out.push(...renderInline(text.slice(last, m.index), `seg${k}`))
+    const label = m[1]
+    const href = m[2]
+    let url: string | null = null
+    if (href.startsWith('apt:')) url = links?.[href.slice(4)] ?? null
+    else if (/^https?:\/\//i.test(href)) url = href
+    if (url) {
+      out.push(
+        <a
+          key={`lnk${k}`}
+          href={url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="my-1 inline-flex items-center gap-1.5 rounded-lg bg-[#657432] px-2.5 py-1 text-xs font-medium text-[#F8F2DD] no-underline transition-all hover:bg-[#657432]/85 active:scale-[0.97]"
+        >
+          <svg className="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d={PLAN_ICON_PATH}
+            />
+          </svg>
+          {label}
+        </a>,
+      )
+    } else {
+      out.push(...renderInline(label, `lbl${k}`))
+    }
+    last = linkRe.lastIndex
+    k += 1
+  }
+  if (last < text.length) out.push(...renderInline(text.slice(last), `seg${k}`))
+  return out
+}
 
 const ApartmentButtons = ({ groups }: { groups: ApartmentMatchGroup[] }) => (
   <div className="space-y-2 pl-1">
@@ -114,11 +181,20 @@ export const ChatWidget = () => {
   const [input, setInput] = useState('')
   const [loading, setLoading] = useState(false)
   const scrollRef = useRef<HTMLDivElement>(null)
+  const lastMsgRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
+  const isTouch = useTouchDevice()
 
   useEffect(() => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollTop = scrollRef.current.scrollHeight
+    const c = scrollRef.current
+    if (!c) return
+    const last = messages[messages.length - 1]
+    if (loading || last?.role === 'user') {
+      // Sending: jump to bottom so the question + typing indicator are visible.
+      c.scrollTop = c.scrollHeight
+    } else if (last?.role === 'assistant' && lastMsgRef.current) {
+      // Reply arrived: align the START of the answer to the top; user scrolls to read.
+      c.scrollTop = Math.max(0, lastMsgRef.current.offsetTop - 8)
     }
   }, [messages, loading, isOpen])
 
@@ -145,7 +221,8 @@ export const ChatWidget = () => {
             maxPerProject: requestedProjects.length === 1 ? 6 : 4,
           })
         : undefined
-    const apartmentContext = matches ? buildApartmentContext(matches) : undefined
+    const ctx = matches ? buildApartmentContext(matches) : undefined
+    const apartmentContext = ctx?.context
     const userMessage: ChatMessage = { role: 'user', text, ts: Date.now() }
     const nextMessages = [...messages, userMessage]
     setMessages(nextMessages)
@@ -175,7 +252,7 @@ export const ChatWidget = () => {
 
       setMessages((prev) => [
         ...prev,
-        { role: 'assistant', text: reply, ts: Date.now(), matches },
+        { role: 'assistant', text: reply, ts: Date.now(), matches, links: ctx?.links },
       ])
     } catch {
       setMessages((prev) => [
@@ -241,9 +318,16 @@ export const ChatWidget = () => {
               </button>
             </div>
 
-            <div ref={scrollRef} className="flex-1 space-y-3 overflow-y-auto px-4 py-4">
+            <div
+              ref={scrollRef}
+              className="relative flex-1 space-y-3 overflow-y-auto px-4 py-4"
+            >
               {messages.map((m, i) => (
-                <div key={`${m.ts}-${i}`} className="space-y-2">
+                <div
+                  key={`${m.ts}-${i}`}
+                  ref={i === messages.length - 1 ? lastMsgRef : undefined}
+                  className="space-y-2"
+                >
                   <div
                     className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}
                   >
@@ -254,12 +338,14 @@ export const ChatWidget = () => {
                           : 'rounded-bl-sm border border-[#657432]/15 bg-white text-[#3a3a2e]'
                       }`}
                     >
-                      {renderRichText(m.text)}
+                      {renderRichText(m.text, m.links)}
                     </div>
                   </div>
-                  {m.matches && m.matches.length > 0 && (
-                    <ApartmentButtons groups={m.matches} />
-                  )}
+                  {m.matches &&
+                    m.matches.length > 0 &&
+                    !(m.links && /\]\(apt:/.test(m.text)) && (
+                      <ApartmentButtons groups={m.matches} />
+                    )}
                 </div>
               ))}
 
@@ -319,10 +405,10 @@ export const ChatWidget = () => {
       <motion.button
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
-        whileHover={{ scale: 1.08 }}
+        whileHover={isTouch ? undefined : { scale: 1.08 }}
         whileTap={{ scale: 0.95 }}
         onClick={() => setIsOpen((v) => !v)}
-        className="relative flex h-14 w-14 items-center justify-center rounded-full bg-[#657432] text-[#F8F2DD] shadow-lg transition-shadow hover:shadow-xl"
+        className="relative flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-full bg-[#657432] text-[#F8F2DD] shadow-lg transition-shadow hover:shadow-xl"
         aria-label={isOpen ? 'Close chat assistant' : 'Open AI chat assistant'}
       >
         <AnimatePresence mode="wait" initial={false}>
@@ -355,7 +441,11 @@ export const ChatWidget = () => {
               <svg className="h-9 w-9" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 3C6.48 3 2 6.86 2 11.5c0 2.3 1.1 4.4 2.9 5.9-.13 1.05-.57 2.3-1.45 3.4-.21.27 0 .66.34.6 1.86-.25 3.52-.92 4.79-1.74.74.16 1.52.24 2.32.24 5.52 0 10-3.86 10-8.4S17.52 3 12 3z" />
               </svg>
-              <span className="absolute text-[15px] leading-none" aria-hidden="true">
+              <span
+                className="pointer-events-none absolute select-none leading-none"
+                style={{ fontSize: '15px' }}
+                aria-hidden="true"
+              >
                 🤖
               </span>
             </motion.span>
@@ -363,7 +453,7 @@ export const ChatWidget = () => {
         </AnimatePresence>
 
         {!isOpen && (
-          <span className="absolute -right-2 -top-1.5 rounded-full bg-red-600 px-1.5 py-0.5 text-[9px] font-extrabold uppercase leading-none tracking-wide text-white shadow-md ring-2 ring-[#F8F2DD]">
+          <span className="pointer-events-none absolute -right-2 -top-1.5 select-none rounded-full bg-red-600 px-1.5 py-0.5 text-[9px] font-extrabold uppercase leading-none tracking-wide text-white shadow-md ring-2 ring-[#F8F2DD]">
             New
           </span>
         )}
