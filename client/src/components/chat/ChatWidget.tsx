@@ -5,6 +5,32 @@ import {
   parseRequestedArea,
   type ApartmentMatchGroup,
 } from '../../data/apartmentCatalog'
+import { apartmentSpecs } from '../../data/apartmentSpecs'
+
+const APARTMENT_CONTEXT_CAP = 3500
+
+/** Build a compact, verified spec block for the matched apartments to send to the AI. */
+const buildApartmentContext = (groups: ApartmentMatchGroup[]): string | undefined => {
+  const lines: string[] = []
+  for (const g of groups) {
+    for (const apt of g.apartments) {
+      const spec = apartmentSpecs[apt.pdfPath]
+      const head = `${g.project} (${g.city})${apt.group ? `, ${apt.group}` : ''}, ${apt.area} m²`
+      const type = spec?.type ? `, ${spec.type}` : ''
+      if (spec && spec.rooms.length > 0) {
+        const rooms = spec.rooms
+          .map((r) => `${r.name} ${r.area} m²${r.floor ? ` (${r.floor})` : ''}`)
+          .join('; ')
+        lines.push(`- ${head}${type}: ${rooms}`)
+      } else {
+        lines.push(`- ${head}${type}`)
+      }
+    }
+  }
+  if (lines.length === 0) return undefined
+  const ctx = lines.join('\n')
+  return ctx.length > APARTMENT_CONTEXT_CAP ? ctx.slice(0, APARTMENT_CONTEXT_CAP) : ctx
+}
 
 interface ChatMessage {
   role: 'user' | 'assistant'
@@ -90,6 +116,8 @@ export const ChatWidget = () => {
     if (!text || loading) return
 
     const requestedArea = parseRequestedArea(text)
+    const matches = requestedArea !== null ? findApartmentsByArea(requestedArea) : undefined
+    const apartmentContext = matches ? buildApartmentContext(matches) : undefined
     const userMessage: ChatMessage = { role: 'user', text, ts: Date.now() }
     const nextMessages = [...messages, userMessage]
     setMessages(nextMessages)
@@ -102,6 +130,7 @@ export const ChatWidget = () => {
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify({
           messages: nextMessages.map((m) => ({ role: m.role, content: m.text })),
+          apartmentContext,
         }),
       })
 
@@ -115,9 +144,6 @@ export const ChatWidget = () => {
 
       const reply =
         data.reply?.trim() || 'Më vjen keq, ndodhi një gabim. Ju lutem provoni përsëri.'
-
-      const matches =
-        requestedArea !== null ? findApartmentsByArea(requestedArea) : undefined
 
       setMessages((prev) => [
         ...prev,

@@ -36,6 +36,7 @@ const MAX_HISTORY_MESSAGES = 12 // keep only the most recent turns
 const MAX_CHARS_PER_MESSAGE = 1500 // reject overly long single messages
 const MAX_TOTAL_CHARS = 6000 // reject very large payloads
 const MAX_OUTPUT_TOKENS = 1024 // cap generation to control neuron usage
+const MAX_APARTMENT_CONTEXT_CHARS = 4000 // cap injected per-apartment detail
 
 const SYSTEM_PROMPT = `You are "Etna", the premier digital consultant for Etna Group — a top-tier construction and real estate company based in Kosovo. You are warm, professional, concise, and genuinely helpful, like an expert consultant in a luxury showroom.
 
@@ -130,12 +131,18 @@ export const onRequestPost = async (context: PagesContext): Promise<Response> =>
       }
     }
 
-    let body: { messages?: unknown }
+    let body: { messages?: unknown; apartmentContext?: unknown }
     try {
-      body = (await request.json()) as { messages?: unknown }
+      body = (await request.json()) as { messages?: unknown; apartmentContext?: unknown }
     } catch {
       return json({ error: 'Invalid JSON body.' }, 400)
     }
+
+    // Optional verified apartment details for the user's requested size (client-built).
+    const apartmentContext =
+      typeof body.apartmentContext === 'string'
+        ? body.apartmentContext.slice(0, MAX_APARTMENT_CONTEXT_CHARS)
+        : ''
 
     const incoming = body?.messages
     if (!Array.isArray(incoming) || incoming.length === 0) {
@@ -170,8 +177,14 @@ export const onRequestPost = async (context: PagesContext): Promise<Response> =>
     const recent = cleaned.slice(-MAX_HISTORY_MESSAGES)
     // "/no_think" disables Qwen3's reasoning mode so the full token budget goes
     // to the actual answer (and we don't waste it on chain-of-thought).
+    const systemContent =
+      SYSTEM_PROMPT +
+      (apartmentContext
+        ? `\n\n# VERIFIED APARTMENT DETAILS FOR THIS QUERY\nThese are real, verified figures for apartments matching the user's requested size. Use ONLY these for room counts, room sizes, types and total areas — do NOT invent any others. The matching floor-plan (planimetri) buttons are shown to the user automatically.\n${apartmentContext}`
+        : '') +
+      '\n\n/no_think'
     const messages: ChatMessage[] = [
-      { role: 'system', content: `${SYSTEM_PROMPT}\n\n/no_think` },
+      { role: 'system', content: systemContent },
       ...recent,
     ]
 
