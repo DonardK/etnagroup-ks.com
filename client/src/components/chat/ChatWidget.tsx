@@ -177,6 +177,22 @@ ${REPLY_CLOSING}`,
 
 const MAX_INPUT_LENGTH = 1000
 
+/** Speech-bubble + robot face (SVG only — avoids iOS emoji scaling glitches). */
+const ChatFabIcon = () => (
+  <svg className="h-9 w-9" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M12 3C6.48 3 2 6.86 2 11.5c0 2.3 1.1 4.4 2.9 5.9-.13 1.05-.57 2.3-1.45 3.4-.21.27 0 .66.34.6 1.86-.25 3.52-.92 4.79-1.74.74.16 1.52.24 2.32.24 5.52 0 10-3.86 10-8.4S17.52 3 12 3z" />
+    <circle cx="9.5" cy="10.5" r="1.15" fill="#657432" />
+    <circle cx="14.5" cy="10.5" r="1.15" fill="#657432" />
+    <rect x="8.5" y="13" width="7" height="1.6" rx="0.8" fill="#657432" />
+  </svg>
+)
+
+const FAB_BOTTOM = 'bottom-[max(1.5rem,env(safe-area-inset-bottom))]'
+const FAB_RIGHT = 'right-[max(1.5rem,env(safe-area-inset-right))]'
+const FAB_FIXED = `fixed z-[9999] ${FAB_BOTTOM} ${FAB_RIGHT}`
+/** Panel sits above the 3.5rem FAB + 1rem gap. */
+const PANEL_FIXED = `fixed z-[9999] bottom-[calc(6rem+env(safe-area-inset-bottom,0px))] ${FAB_RIGHT}`
+
 export const ChatWidget = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [messages, setMessages] = useState<ChatMessage[]>([GREETING])
@@ -201,8 +217,9 @@ export const ChatWidget = () => {
   }, [messages, loading, isOpen])
 
   useEffect(() => {
-    if (isOpen) inputRef.current?.focus()
-  }, [isOpen])
+    // Programmatic focus on mobile triggers iOS Safari zoom; user taps the field instead.
+    if (isOpen && !isTouch) inputRef.current?.focus()
+  }, [isOpen, isTouch])
 
   useEffect(() => {
     const open = () => setIsOpen(true)
@@ -282,10 +299,7 @@ export const ChatWidget = () => {
   }
 
   return (
-    <div
-      style={{ position: 'fixed', bottom: '24px', right: '24px', zIndex: 9999 }}
-      className="flex flex-col items-end"
-    >
+    <>
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -293,7 +307,7 @@ export const ChatWidget = () => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.2, ease: 'easeOut' }}
-            className="mb-4 flex h-[70vh] max-h-[560px] w-[calc(100vw-3rem)] max-w-[380px] flex-col overflow-hidden rounded-2xl border border-[#657432]/20 bg-[#F8F2DD] shadow-2xl"
+            className={`${PANEL_FIXED} flex h-[70vh] max-h-[560px] w-[min(380px,calc(100vw-2rem))] flex-col overflow-hidden rounded-2xl border border-[#657432]/20 bg-[#F8F2DD] shadow-2xl`}
             role="dialog"
             aria-label="Etna Group chat assistant"
           >
@@ -380,7 +394,7 @@ export const ChatWidget = () => {
                   onChange={(e) => setInput(e.target.value)}
                   onKeyDown={handleKeyDown}
                   placeholder="Shkruani mesazhin tuaj…"
-                  className="flex-1 rounded-full border border-[#657432]/25 bg-white px-4 py-2.5 text-sm text-[#3a3a2e] outline-none transition-colors placeholder:text-[#657432]/40 focus:border-[#657432]"
+                  className="flex-1 rounded-full border border-[#657432]/25 bg-white px-4 py-2.5 text-base text-[#3a3a2e] outline-none transition-colors placeholder:text-[#657432]/40 focus:border-[#657432]"
                   aria-label="Type your message"
                 />
                 <button
@@ -408,54 +422,34 @@ export const ChatWidget = () => {
       </AnimatePresence>
 
       <motion.button
-        initial={{ scale: 0 }}
-        animate={{ scale: 1 }}
+        type="button"
+        initial={isTouch ? false : { scale: 0, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
         whileHover={isTouch ? undefined : { scale: 1.08 }}
         whileTap={{ scale: 0.95 }}
         onClick={() => setIsOpen((v) => !v)}
-        className="relative flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-full bg-[#657432] text-[#F8F2DD] shadow-lg transition-shadow hover:shadow-xl"
+        className={`${FAB_FIXED} relative flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-full bg-[#657432] text-[#F8F2DD] shadow-lg transition-shadow hover:shadow-xl`}
+        style={{ transformOrigin: 'center center' }}
         aria-label={isOpen ? 'Close chat assistant' : 'Open AI chat assistant'}
       >
-        <AnimatePresence mode="wait" initial={false}>
-          {isOpen ? (
-            <motion.svg
-              key="close"
-              initial={{ rotate: -90, opacity: 0 }}
-              animate={{ rotate: 0, opacity: 1 }}
-              exit={{ rotate: 90, opacity: 0 }}
-              className="h-7 w-7"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M6 18L18 6M6 6l12 12"
-              />
-            </motion.svg>
-          ) : (
-            <motion.span
-              key="bubble"
-              initial={{ scale: 0, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0, opacity: 0 }}
-              className="relative flex items-center justify-center"
-            >
-              <svg className="h-9 w-9" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 3C6.48 3 2 6.86 2 11.5c0 2.3 1.1 4.4 2.9 5.9-.13 1.05-.57 2.3-1.45 3.4-.21.27 0 .66.34.6 1.86-.25 3.52-.92 4.79-1.74.74.16 1.52.24 2.32.24 5.52 0 10-3.86 10-8.4S17.52 3 12 3z" />
-              </svg>
-              <span
-                className="pointer-events-none absolute select-none leading-none"
-                style={{ fontSize: '15px' }}
-                aria-hidden="true"
-              >
-                🤖
-              </span>
-            </motion.span>
-          )}
-        </AnimatePresence>
+        {isOpen ? (
+          <svg
+            className="h-7 w-7"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            aria-hidden="true"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        ) : (
+          <ChatFabIcon />
+        )}
 
         {!isOpen && (
           <span className="pointer-events-none absolute -right-2 -top-1.5 select-none rounded-full bg-red-600 px-1.5 py-0.5 text-[9px] font-extrabold uppercase leading-none tracking-wide text-white shadow-md ring-2 ring-[#F8F2DD]">
@@ -463,6 +457,6 @@ export const ChatWidget = () => {
           </span>
         )}
       </motion.button>
-    </div>
+    </>
   )
 }
