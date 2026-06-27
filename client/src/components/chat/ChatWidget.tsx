@@ -13,7 +13,7 @@ import {
   type ApartmentMatchGroup,
 } from '../../data/apartmentCatalog'
 import { apartmentSpecs } from '../../data/apartmentSpecs'
-import { OPEN_CHAT_EVENT, REPLY_CLOSING, appendReplyClosing } from '../../utils/chat'
+import { OPEN_CHAT_EVENT, REPLY_CLOSING, appendReplyClosing, getChatSessionId } from '../../utils/chat'
 import { useTouchDevice } from '../../hooks/useTouchDevice'
 
 const APARTMENT_CONTEXT_CAP = 3500
@@ -236,6 +236,7 @@ export const ChatWidget = () => {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify({
+          sessionId: getChatSessionId(),
           messages: nextMessages.map((m) => ({ role: m.role, content: m.text })),
           apartmentContext,
         }),

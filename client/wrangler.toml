@@ -21,6 +21,14 @@ pages_build_output_dir = "./dist"
 [ai]
 binding = "AI"
 
+# Chat log storage — create the database first (see README), then paste database_id below.
+[[d1_databases]]
+binding = "CHAT_DB"
+database_name = "etna-chat-logs"
+database_id = "31b13378-93aa-4065-a233-4ac57aaef4b3"
+preview_database_id = "CHAT_DB"
+migrations_dir = "migrations"
+
 # ---------------------------------------------------------------------------
 # Usage / abuse limiting on Cloudflare Pages
 # ---------------------------------------------------------------------------

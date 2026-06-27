@@ -1,6 +1,15 @@
 // Cloudflare Pages Function — Etna Group AI assistant ("Etna").
 // Runs on Cloudflare's edge using Workers AI (@cf/qwen/qwen3-30b-a3b-fp8).
-// Endpoint: POST /api/chat  { messages: [{ role, content }] } -> { reply }
+// Endpoint: POST /api/chat  { sessionId?, messages: [{ role, content }] } -> { reply }
+
+interface D1PreparedStatement {
+  bind: (...values: unknown[]) => D1PreparedStatement
+}
+
+interface D1Database {
+  prepare: (query: string) => D1PreparedStatement
+  batch: (statements: D1PreparedStatement[]) => Promise<unknown[]>
+}
 
 interface ChatMessage {
   role: 'system' | 'user' | 'assistant'
@@ -16,6 +25,8 @@ interface Env {
   AI?: {
     run: (model: string, inputs: Record<string, unknown>) => Promise<{ response?: string }>
   }
+  // D1 binding for chat logs (bind as "CHAT_DB" in wrangler.toml).
+  CHAT_DB?: D1Database
   // Optional native rate-limiting binding (bind as "RATE_LIMITER"). Used only if present.
   RATE_LIMITER?: RateLimiter
 }
@@ -23,6 +34,56 @@ interface Env {
 interface PagesContext {
   request: Request
   env: Env
+  waitUntil: (promise: Promise<unknown>) => void
+}
+
+const SESSION_ID_RE =
+  /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i
+
+const parseSessionId = (value: unknown): string | null => {
+  if (typeof value !== 'string') return null
+  const trimmed = value.trim()
+  return SESSION_ID_RE.test(trimmed) ? trimmed : null
+}
+
+interface SessionMeta {
+  country?: string
+  userAgent?: string
+}
+
+/** Persist the latest user turn + assistant reply (non-blocking via waitUntil). */
+const persistChatTurn = async (
+  db: D1Database,
+  sessionId: string,
+  userText: string,
+  assistantText: string,
+  meta: SessionMeta,
+): Promise<void> => {
+  const now = Date.now()
+  await db.batch([
+    db
+      .prepare(
+        `INSERT INTO chat_sessions (id, created_at, updated_at, country, user_agent)
+         VALUES (?, ?, ?, ?, ?)
+         ON CONFLICT(id) DO UPDATE SET
+           updated_at = excluded.updated_at,
+           country = COALESCE(excluded.country, chat_sessions.country),
+           user_agent = COALESCE(excluded.user_agent, chat_sessions.user_agent)`,
+      )
+      .bind(sessionId, now, now, meta.country ?? null, meta.userAgent ?? null),
+    db
+      .prepare(
+        `INSERT INTO chat_messages (session_id, role, content, created_at)
+         VALUES (?, 'user', ?, ?)`,
+      )
+      .bind(sessionId, userText, now),
+    db
+      .prepare(
+        `INSERT INTO chat_messages (session_id, role, content, created_at)
+         VALUES (?, 'assistant', ?, ?)`,
+      )
+      .bind(sessionId, assistantText, now + 1),
+  ])
 }
 
 // Qwen3-30B-A3B: MoE model covering ~119 languages (incl. Albanian), cheap and
@@ -135,7 +196,7 @@ const json = (data: unknown, status = 200): Response =>
   })
 
 export const onRequestPost = async (context: PagesContext): Promise<Response> => {
-  const { request, env } = context
+  const { request, env, waitUntil } = context
 
   try {
     if (!env.AI) {
@@ -154,12 +215,18 @@ export const onRequestPost = async (context: PagesContext): Promise<Response> =>
       }
     }
 
-    let body: { messages?: unknown; apartmentContext?: unknown }
+    let body: { messages?: unknown; apartmentContext?: unknown; sessionId?: unknown }
     try {
-      body = (await request.json()) as { messages?: unknown; apartmentContext?: unknown }
+      body = (await request.json()) as {
+        messages?: unknown
+        apartmentContext?: unknown
+        sessionId?: unknown
+      }
     } catch {
       return json({ error: 'Invalid JSON body.' }, 400)
     }
+
+    const sessionId = parseSessionId(body.sessionId)
 
     // Optional verified apartment details for the user's requested size (client-built).
     const apartmentContext =
@@ -222,6 +289,16 @@ export const onRequestPost = async (context: PagesContext): Promise<Response> =>
     const reply = appendReplyClosing(
       raw || 'Më vjen keq, nuk munda të gjeneroj një përgjigje. Ju lutem provoni përsëri.',
     )
+
+    const lastUser = [...recent].reverse().find((m) => m.role === 'user')
+    if (env.CHAT_DB && sessionId && lastUser) {
+      waitUntil(
+        persistChatTurn(env.CHAT_DB, sessionId, lastUser.content, reply, {
+          country: request.headers.get('CF-IPCountry') ?? undefined,
+          userAgent: request.headers.get('User-Agent')?.slice(0, 512) ?? undefined,
+        }).catch((err) => console.error('chat log persist error:', err)),
+      )
+    }
 
     return json({ reply })
   } catch (err) {
