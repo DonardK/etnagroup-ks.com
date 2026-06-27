@@ -1,5 +1,5 @@
 // Cloudflare Pages Function — Etna Group AI assistant ("Etna").
-// Runs on Cloudflare's edge using Workers AI (@cf/zai-org/glm-4.7-flash).
+// Runs on Cloudflare's edge using Workers AI (@cf/qwen/qwen3-30b-a3b-fp8).
 // Endpoint: POST /api/chat  { messages: [{ role, content }] } -> { reply }
 
 interface ChatMessage {
@@ -25,17 +25,17 @@ interface PagesContext {
   env: Env
 }
 
-// GLM-4.7-Flash: multilingual dialogue model (100+ languages incl. Albanian).
-// Small Llama variants only officially cover ~8 languages (Albanian NOT among
-// them), which made them hallucinate in Albanian. This "Flash" model is fast,
-// low-cost, and far stronger multilingually.
-const MODEL = '@cf/zai-org/glm-4.7-flash'
+// Qwen3-30B-A3B: MoE model covering ~119 languages (incl. Albanian), cheap and
+// fast (only 3B params active per token). It is a reasoning model that emits
+// <think>...</think> by default, so we disable that via the "/no_think" switch
+// appended to the system prompt and strip any residual reasoning from replies.
+const MODEL = '@cf/qwen/qwen3-30b-a3b-fp8'
 
 // --- Abuse / free-tier protection limits ---
 const MAX_HISTORY_MESSAGES = 12 // keep only the most recent turns
 const MAX_CHARS_PER_MESSAGE = 1500 // reject overly long single messages
 const MAX_TOTAL_CHARS = 6000 // reject very large payloads
-const MAX_OUTPUT_TOKENS = 768 // cap generation to control neuron usage
+const MAX_OUTPUT_TOKENS = 1024 // cap generation to control neuron usage
 
 const SYSTEM_PROMPT = `You are "Etna", the premier digital consultant for Etna Group — a top-tier construction and real estate company based in Kosovo. You are warm, professional, concise, and genuinely helpful, like an expert consultant in a luxury showroom.
 
@@ -86,13 +86,13 @@ Etna Group develops premium residential complexes across Kosovo:
 
 Keep replies helpful, accurate, and brand-appropriate at all times.`
 
-// Some multilingual/reasoning models emit chain-of-thought wrapped in
-// <think>...</think>. Strip it so the user only sees the final answer.
-const stripReasoning = (text: string): string =>
-  text
-    .replace(/<think>[\s\S]*?<\/think>/gi, '')
-    .replace(/<\/?think>/gi, '')
-    .trim()
+// Reasoning models (e.g. Qwen3) emit chain-of-thought wrapped in
+// <think>...</think>. Keep only the final answer that follows it.
+const stripReasoning = (text: string): string => {
+  const closeIdx = text.lastIndexOf('</think>')
+  const tail = closeIdx !== -1 ? text.slice(closeIdx + '</think>'.length) : text
+  return tail.replace(/<\/?think>/gi, '').trim()
+}
 
 const json = (data: unknown, status = 200): Response =>
   new Response(JSON.stringify(data), {
@@ -158,7 +158,12 @@ export const onRequestPost = async (context: PagesContext): Promise<Response> =>
     }
 
     const recent = cleaned.slice(-MAX_HISTORY_MESSAGES)
-    const messages: ChatMessage[] = [{ role: 'system', content: SYSTEM_PROMPT }, ...recent]
+    // "/no_think" disables Qwen3's reasoning mode so the full token budget goes
+    // to the actual answer (and we don't waste it on chain-of-thought).
+    const messages: ChatMessage[] = [
+      { role: 'system', content: `${SYSTEM_PROMPT}\n\n/no_think` },
+      ...recent,
+    ]
 
     const result = await env.AI.run(MODEL, {
       messages,
