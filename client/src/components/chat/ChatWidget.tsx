@@ -9,6 +9,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import {
   findApartmentsByArea,
   parseRequestedArea,
+  parseRequestedProjects,
   type ApartmentMatchGroup,
 } from '../../data/apartmentCatalog'
 import { apartmentSpecs } from '../../data/apartmentSpecs'
@@ -136,7 +137,14 @@ export const ChatWidget = () => {
     if (!text || loading) return
 
     const requestedArea = parseRequestedArea(text)
-    const matches = requestedArea !== null ? findApartmentsByArea(requestedArea) : undefined
+    const requestedProjects = parseRequestedProjects(text)
+    const matches =
+      requestedArea !== null
+        ? findApartmentsByArea(requestedArea, {
+            projectIds: requestedProjects,
+            maxPerProject: requestedProjects.length === 1 ? 6 : 4,
+          })
+        : undefined
     const apartmentContext = matches ? buildApartmentContext(matches) : undefined
     const userMessage: ChatMessage = { role: 'user', text, ts: Date.now() }
     const nextMessages = [...messages, userMessage]

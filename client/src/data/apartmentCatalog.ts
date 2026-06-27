@@ -236,6 +236,34 @@ export function parseRequestedArea(text: string): number | null {
   return null
 }
 
+const PROJECT_ALIASES: Record<string, RegExp> = {
+  elsa: /\belsa\b/i,
+  tiani: /\btiani\b/i,
+  tara: /\btara\b/i,
+  joni: /\bjoni\b/i,
+}
+
+const CITY_TO_PROJECTS: { re: RegExp; ids: string[] }[] = [
+  { re: /prishtin/i, ids: ['elsa'] },
+  { re: /prizren/i, ids: ['tiani', 'tara'] },
+  { re: /malishev/i, ids: ['joni'] },
+]
+
+/**
+ * Detect which residence(s)/city the user named in their message.
+ * Returns matching project ids, or an empty array if none were mentioned.
+ */
+export function parseRequestedProjects(text: string): string[] {
+  const ids = new Set<string>()
+  for (const [id, re] of Object.entries(PROJECT_ALIASES)) {
+    if (re.test(text)) ids.add(id)
+  }
+  for (const { re, ids: cityIds } of CITY_TO_PROJECTS) {
+    if (re.test(text)) for (const id of cityIds) ids.add(id)
+  }
+  return [...ids]
+}
+
 /**
  * Find apartments closest to a target area, grouped by project/city.
  * Always returns at least the closest apartment for each project so the user
@@ -243,13 +271,18 @@ export function parseRequestedArea(text: string): number | null {
  */
 export function findApartmentsByArea(
   targetArea: number,
-  opts?: { tolerance?: number; maxPerProject?: number },
+  opts?: { tolerance?: number; maxPerProject?: number; projectIds?: string[] },
 ): ApartmentMatchGroup[] {
   const tolerance = opts?.tolerance ?? 12
   const maxPerProject = opts?.maxPerProject ?? 4
+  const allowed =
+    opts?.projectIds && opts.projectIds.length > 0 ? new Set(opts.projectIds) : null
+  const source = allowed
+    ? apartmentCatalog.filter((a) => allowed.has(a.projectId))
+    : apartmentCatalog
 
   const byProject = new Map<string, CatalogApartment[]>()
-  for (const apt of apartmentCatalog) {
+  for (const apt of source) {
     const list = byProject.get(apt.projectId) ?? []
     list.push(apt)
     byProject.set(apt.projectId, list)
