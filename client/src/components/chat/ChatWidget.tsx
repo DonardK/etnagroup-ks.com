@@ -6,6 +6,7 @@ import {
   type ApartmentMatchGroup,
 } from '../../data/apartmentCatalog'
 import { apartmentSpecs } from '../../data/apartmentSpecs'
+import { OPEN_CHAT_EVENT } from '../../utils/chat'
 
 const APARTMENT_CONTEXT_CAP = 3500
 
@@ -110,6 +111,12 @@ export const ChatWidget = () => {
   useEffect(() => {
     if (isOpen) inputRef.current?.focus()
   }, [isOpen])
+
+  useEffect(() => {
+    const open = () => setIsOpen(true)
+    window.addEventListener(OPEN_CHAT_EVENT, open)
+    return () => window.removeEventListener(OPEN_CHAT_EVENT, open)
+  }, [])
 
   const sendMessage = async () => {
     const text = input.trim()
@@ -294,8 +301,8 @@ export const ChatWidget = () => {
         whileHover={{ scale: 1.08 }}
         whileTap={{ scale: 0.95 }}
         onClick={() => setIsOpen((v) => !v)}
-        className="flex h-14 w-14 items-center justify-center rounded-full bg-[#657432] text-[#F8F2DD] shadow-lg transition-shadow hover:shadow-xl"
-        aria-label={isOpen ? 'Close chat assistant' : 'Open chat assistant'}
+        className="relative flex h-14 w-14 items-center justify-center rounded-full bg-[#657432] text-[#F8F2DD] shadow-lg transition-shadow hover:shadow-xl"
+        aria-label={isOpen ? 'Close chat assistant' : 'Open AI chat assistant'}
       >
         <AnimatePresence mode="wait" initial={false}>
           {isOpen ? (
@@ -317,25 +324,28 @@ export const ChatWidget = () => {
               />
             </motion.svg>
           ) : (
-            <motion.svg
-              key="open"
-              initial={{ rotate: 90, opacity: 0 }}
-              animate={{ rotate: 0, opacity: 1 }}
-              exit={{ rotate: -90, opacity: 0 }}
-              className="h-7 w-7"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
+            <motion.span
+              key="bubble"
+              initial={{ scale: 0, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0, opacity: 0 }}
+              className="relative flex items-center justify-center"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.86 9.86 0 01-4-.8L3 20l1.3-3.9A7.96 7.96 0 013 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
-              />
-            </motion.svg>
+              <svg className="h-9 w-9" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 3C6.48 3 2 6.86 2 11.5c0 2.3 1.1 4.4 2.9 5.9-.13 1.05-.57 2.3-1.45 3.4-.21.27 0 .66.34.6 1.86-.25 3.52-.92 4.79-1.74.74.16 1.52.24 2.32.24 5.52 0 10-3.86 10-8.4S17.52 3 12 3z" />
+              </svg>
+              <span className="absolute text-[15px] leading-none" aria-hidden="true">
+                🤖
+              </span>
+            </motion.span>
           )}
         </AnimatePresence>
+
+        {!isOpen && (
+          <span className="absolute -right-2 -top-1.5 rounded-full bg-red-600 px-1.5 py-0.5 text-[9px] font-extrabold uppercase leading-none tracking-wide text-white shadow-md ring-2 ring-[#F8F2DD]">
+            New
+          </span>
+        )}
       </motion.button>
     </div>
   )
