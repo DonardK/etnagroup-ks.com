@@ -13,7 +13,7 @@ import {
   type ApartmentMatchGroup,
 } from '../../data/apartmentCatalog'
 import { apartmentSpecs } from '../../data/apartmentSpecs'
-import { OPEN_CHAT_EVENT } from '../../utils/chat'
+import { OPEN_CHAT_EVENT, REPLY_CLOSING, appendReplyClosing } from '../../utils/chat'
 import { useTouchDevice } from '../../hooks/useTouchDevice'
 
 const APARTMENT_CONTEXT_CAP = 3500
@@ -169,7 +169,9 @@ const ApartmentButtons = ({ groups }: { groups: ApartmentMatchGroup[] }) => (
 
 const GREETING: ChatMessage = {
   role: 'assistant',
-  text: 'Përshëndetje! Unë jam Etna, asistentja juaj dixhitale e Etna Group. Si mund t’ju ndihmoj? (How can I help you today?)',
+  text: `Përshëndetje! Unë jam Etna, asistentja juaj dixhitale e Etna Group. Si mund t'ju ndihmoj? (How can I help you today?)
+
+${REPLY_CLOSING}`,
   ts: Date.now(),
 }
 
@@ -247,8 +249,9 @@ export const ChatWidget = () => {
         throw new Error(data?.error || 'Request failed')
       }
 
-      const reply =
-        data.reply?.trim() || 'Më vjen keq, ndodhi një gabim. Ju lutem provoni përsëri.'
+      const reply = appendReplyClosing(
+        data.reply?.trim() || 'Më vjen keq, ndodhi një gabim. Ju lutem provoni përsëri.',
+      )
 
       setMessages((prev) => [
         ...prev,
@@ -259,8 +262,9 @@ export const ChatWidget = () => {
         ...prev,
         {
           role: 'assistant',
-          text:
+          text: appendReplyClosing(
             'Më vjen keq, shërbimi nuk është i disponueshëm për momentin. Ju lutem provoni më vonë ose na kontaktoni në info@etnagroup-ks.com. / Sorry, the assistant is unavailable right now — please try again later or contact info@etnagroup-ks.com.',
+          ),
           ts: Date.now(),
         },
       ])

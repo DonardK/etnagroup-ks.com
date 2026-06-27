@@ -103,7 +103,22 @@ The chat interface AUTOMATICALLY shows clickable "Shiko Planimetrinë" buttons w
 - Stay on topic: Etna Group, its residences, apartments, and the buying/visiting process. Politely decline unrelated requests and steer back to how you can help with Etna Group.
 - If you are unsure or lack a detail, say so honestly and direct the user to the sales office rather than guessing.
 
-Keep replies helpful, accurate, and brand-appropriate at all times.`
+Keep replies helpful, accurate, and brand-appropriate at all times. Do NOT write your own sign-off or contact footer — one is appended automatically to every reply.`
+
+/** Appended to every assistant reply (guaranteed in code). */
+const REPLY_CLOSING = `Nëse keni interes, ju lutem kontaktoni ne në numrin e telefonit të mëposhtëm për të marrë më shumë informacione ose për të rezervuar një vizitë:
+
+📞 +383 46 38 38 38 (gjithashtu në WhatsApp)`
+
+const appendReplyClosing = (reply: string): string => {
+  const trimmed = reply.trim()
+  if (!trimmed) return REPLY_CLOSING
+  // Avoid duplicating if the model already included the footer or phone number.
+  if (/383\s*46\s*38\s*38\s*38/.test(trimmed) && /Nëse keni interes/i.test(trimmed)) {
+    return trimmed
+  }
+  return `${trimmed}\n\n${REPLY_CLOSING}`
+}
 
 // Reasoning models (e.g. Qwen3) emit chain-of-thought wrapped in
 // <think>...</think>. Keep only the final answer that follows it.
@@ -204,8 +219,9 @@ export const onRequestPost = async (context: PagesContext): Promise<Response> =>
 
     const raw =
       result && typeof result.response === 'string' ? stripReasoning(result.response) : ''
-    const reply =
-      raw || 'Më vjen keq, nuk munda të gjeneroj një përgjigje. Ju lutem provoni përsëri.'
+    const reply = appendReplyClosing(
+      raw || 'Më vjen keq, nuk munda të gjeneroj një përgjigje. Ju lutem provoni përsëri.',
+    )
 
     return json({ reply })
   } catch (err) {
