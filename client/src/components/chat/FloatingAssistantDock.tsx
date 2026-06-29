@@ -1,14 +1,13 @@
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { FLOATING_DOCK_STYLE } from '../../utils/floatingDock'
-import { OPEN_CHAT_EVENT, dismissChatBanner, isChatBannerDismissed } from '../../utils/chat'
+import { OPEN_CHAT_EVENT } from '../../utils/chat'
 import { ChatPromoBanner } from './ChatPromoBanner'
 import { ChatWidget } from './ChatWidget'
 
 /** Sticky bottom-right dock: promo banner + AI chat (scrolls with viewport). */
 export const FloatingAssistantDock = () => {
   const [isOpen, setIsOpen] = useState(false)
-  const [bannerDismissed, setBannerDismissed] = useState(isChatBannerDismissed)
 
   useEffect(() => {
     const open = () => setIsOpen(true)
@@ -16,19 +15,10 @@ export const FloatingAssistantDock = () => {
     return () => window.removeEventListener(OPEN_CHAT_EVENT, open)
   }, [])
 
-  useEffect(() => {
-    if (isOpen && !bannerDismissed) {
-      dismissChatBanner()
-      setBannerDismissed(true)
-    }
-  }, [isOpen, bannerDismissed])
-
-  const showBanner = !bannerDismissed && !isOpen
-
   return (
     <div style={FLOATING_DOCK_STYLE} className="flex flex-row items-end justify-end">
       <AnimatePresence mode="wait">
-        {showBanner && (
+        {!isOpen && (
           <motion.div
             key="banner"
             initial={{ opacity: 0, x: 12 }}

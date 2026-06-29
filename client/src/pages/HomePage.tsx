@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { projects } from '../data/projects'
@@ -9,6 +10,19 @@ import { getLocalizedProject } from '../data/projects'
 
 export const HomePage = () => {
   const { locale, t } = useLanguage()
+  const heroVideoRef = useRef<HTMLVideoElement>(null)
+
+  useEffect(() => {
+    const video = heroVideoRef.current
+    if (!video) return
+    video.loop = true
+    const restart = () => {
+      video.currentTime = 0
+      void video.play().catch(() => {})
+    }
+    video.addEventListener('ended', restart)
+    return () => video.removeEventListener('ended', restart)
+  }, [])
 
   const statusLabel = (status: (typeof projects)[0]['status']) => t.status[status]
 
@@ -19,6 +33,7 @@ export const HomePage = () => {
       <section className="relative h-screen w-full overflow-hidden bg-[#F8F2DD]">
         <div className="absolute inset-0 h-full w-full bg-[#F8F2DD] overflow-hidden">
           <video
+            ref={heroVideoRef}
             autoPlay
             muted
             loop
@@ -26,6 +41,11 @@ export const HomePage = () => {
             preload="auto"
             className="absolute left-1/2 top-1/2 h-full w-full -translate-x-1/2 -translate-y-1/2 object-cover"
             aria-label="Etna Group Hero Video"
+            onEnded={(e) => {
+              const v = e.currentTarget
+              v.currentTime = 0
+              void v.play().catch(() => {})
+            }}
           >
             <source src={HERO_VIDEO_URL} type="video/mp4" />
           </video>
