@@ -29,9 +29,13 @@ database_id = "31b13378-93aa-4065-a233-4ac57aaef4b3"
 preview_database_id = "CHAT_DB"
 migrations_dir = "migrations"
 
-# ---------------------------------------------------------------------------
-# Usage / abuse limiting on Cloudflare Pages
-# ---------------------------------------------------------------------------
+# Email (contact form + issue reports)
+# Option A — Resend (recommended): https://resend.com — verify etnagroup-ks.com, create API key.
+# Option B — Mailchannels (free): add SPF TXT on etnagroup-ks.com:
+#   v=spf1 a mx include:relay.mailchannels.net ~all
+# Emails are sent from donard@etnagroup-ks.com to donard@etnagroup-ks.com via /api/contact and /api/report.
+# [vars]
+# RESEND_API_KEY = "re_..."
 # NOTE: The Workers "[[ratelimits]]" binding is NOT supported by Cloudflare
 # Pages Functions (Pages ignores it with a config warning), so it is not
 # declared here. Limit usage instead via:

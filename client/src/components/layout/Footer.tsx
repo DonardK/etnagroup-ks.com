@@ -3,9 +3,11 @@ import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { assetUrl } from '../../utils/assetUrl'
 import { useLanguage } from '../../i18n/LanguageContext'
+import { ReportIssueDialog } from '../report/ReportIssueDialog'
 
 export const Footer = () => {
   const { t } = useLanguage()
+  const [reportOpen, setReportOpen] = useState(false)
   // Map URLs with markers - using coordinates with q parameter to show pins
   // Format: https://www.google.com/maps/embed?pb=...&q=lat,lng
   // Coordinates from user:
@@ -93,6 +95,13 @@ export const Footer = () => {
             >
               {t.footer.contact}
             </Link>
+            <button
+              type="button"
+              onClick={() => setReportOpen(true)}
+              className="text-[#657432]/70 transition-colors hover:text-[#657432]"
+            >
+              {t.report.footerLink}
+            </button>
           </div>
 
           {/* Social Media Icons */}
@@ -143,6 +152,7 @@ export const Footer = () => {
           © {new Date().getFullYear()} Etna Group. {t.footer.copyright}
         </div>
       </div>
+      <ReportIssueDialog open={reportOpen} onClose={() => setReportOpen(false)} />
     </footer>
   )
 }

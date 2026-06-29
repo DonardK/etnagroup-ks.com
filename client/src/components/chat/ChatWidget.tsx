@@ -13,7 +13,7 @@ import {
   type ApartmentMatchGroup,
 } from '../../data/apartmentCatalog'
 import { apartmentSpecs } from '../../data/apartmentSpecs'
-import { OPEN_CHAT_EVENT, REPLY_CLOSING, appendReplyClosing, getChatSessionId } from '../../utils/chat'
+import { getChatSessionId } from '../../utils/chat'
 import { useTouchDevice } from '../../hooks/useTouchDevice'
 import { useLanguage } from '../../i18n/LanguageContext'
 
@@ -168,15 +168,17 @@ const ApartmentButtons = ({ groups }: { groups: ApartmentMatchGroup[] }) => (
   </div>
 )
 
-const GREETING_TEXT = (intro: string) => `${intro}\n\n${REPLY_CLOSING}`
-
 const MAX_INPUT_LENGTH = 1000
 
-export const ChatWidget = () => {
+interface ChatWidgetProps {
+  isOpen: boolean
+  onOpenChange: (open: boolean) => void
+}
+
+export const ChatWidget = ({ isOpen, onOpenChange }: ChatWidgetProps) => {
   const { t, locale } = useLanguage()
-  const [isOpen, setIsOpen] = useState(false)
   const [messages, setMessages] = useState<ChatMessage[]>(() => [
-    { role: 'assistant', text: GREETING_TEXT(t.chat.greeting), ts: Date.now() },
+    { role: 'assistant', text: t.chat.greeting, ts: Date.now() },
   ])
   const [input, setInput] = useState('')
   const [loading, setLoading] = useState(false)
@@ -204,15 +206,9 @@ export const ChatWidget = () => {
   }, [isOpen, isTouch])
 
   useEffect(() => {
-    const open = () => setIsOpen(true)
-    window.addEventListener(OPEN_CHAT_EVENT, open)
-    return () => window.removeEventListener(OPEN_CHAT_EVENT, open)
-  }, [])
-
-  useEffect(() => {
     setMessages((prev) => {
       if (prev.length !== 1 || prev[0].role !== 'assistant') return prev
-      return [{ role: 'assistant', text: GREETING_TEXT(t.chat.greeting), ts: Date.now() }]
+      return [{ role: 'assistant', text: t.chat.greeting, ts: Date.now() }]
     })
   }, [locale, t.chat.greeting])
 
@@ -256,9 +252,8 @@ export const ChatWidget = () => {
         throw new Error(data?.error || 'Request failed')
       }
 
-      const reply = appendReplyClosing(
-        data.reply?.trim() || 'Më vjen keq, ndodhi një gabim. Ju lutem provoni përsëri.',
-      )
+      const reply =
+        data.reply?.trim() || 'Më vjen keq, ndodhi një gabim. Ju lutem provoni përsëri.'
 
       setMessages((prev) => [
         ...prev,
@@ -269,9 +264,8 @@ export const ChatWidget = () => {
         ...prev,
         {
           role: 'assistant',
-          text: appendReplyClosing(
+          text:
             'Më vjen keq, shërbimi nuk është i disponueshëm për momentin. Ju lutem provoni më vonë ose na kontaktoni në info@etnagroup-ks.com. / Sorry, the assistant is unavailable right now — please try again later or contact info@etnagroup-ks.com.',
-          ),
           ts: Date.now(),
         },
       ])
@@ -311,7 +305,7 @@ export const ChatWidget = () => {
                 </div>
               </div>
               <button
-                onClick={() => setIsOpen(false)}
+                onClick={() => onOpenChange(false)}
                 className="rounded-full p-1 text-[#F8F2DD]/80 transition-colors hover:bg-[#F8F2DD]/15 hover:text-[#F8F2DD]"
                 aria-label="Close chat"
               >
@@ -414,7 +408,7 @@ export const ChatWidget = () => {
         animate={{ scale: 1 }}
         whileHover={isTouch ? undefined : { scale: 1.08 }}
         whileTap={{ scale: 0.95 }}
-        onClick={() => setIsOpen((v) => !v)}
+        onClick={() => onOpenChange(!isOpen)}
         className="relative flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-full bg-[#657432] text-[#F8F2DD] shadow-lg transition-shadow hover:shadow-xl"
         aria-label={isOpen ? 'Close chat assistant' : 'Open AI chat assistant'}
       >

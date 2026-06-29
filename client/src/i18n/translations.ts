@@ -83,8 +83,25 @@ const sq = {
     success: 'Mesazhi u dërgua me sukses!',
     successDetail: '✓ Mesazhi u dërgua me sukses! Do t\'ju kontaktojmë së shpejti.',
     error: 'Gabim në dërgim. Ju lutem provoni përsëri.',
+    errorDetail:
+      '✗ Dërgimi dështoi. Ju lutem provoni përsëri ose na kontaktoni direkt në info@etnagroup-ks.com',
+    messagePlaceholder: 'Shkruani mesazhin tuaj këtu...',
     selectProject: 'Zgjidhni projektin',
     general: 'Informacion i Përgjithshëm',
+  },
+  report: {
+    title: 'Raporto një problem',
+    subtitle: 'Na tregoni çfarë nuk funksionon ose çfarë mund të përmirësohet në faqe.',
+    descriptionLabel: 'Përshkrimi i problemit *',
+    descriptionPlaceholder: 'P.sh. linku i planimetrisë nuk hapet, teksti i gabuar, etj.',
+    emailLabel: 'Email (opsional)',
+    emailPlaceholder: 'email@example.com',
+    submit: 'Dërgo raportin',
+    sending: 'Duke dërguar…',
+    success: 'Faleminderit! Raporti u dërgua.',
+    error: 'Dërgimi dështoi. Ju lutem provoni përsëri.',
+    close: 'Mbyll',
+    footerLink: 'Raporto problem',
   },
   status: {
     completed: 'I Përfunduar',
@@ -188,8 +205,25 @@ const en = {
     success: 'Message sent successfully!',
     successDetail: '✓ Message sent successfully! We will contact you soon.',
     error: 'Failed to send. Please try again.',
+    errorDetail:
+      '✗ Failed to send. Please try again or contact us directly at info@etnagroup-ks.com',
+    messagePlaceholder: 'Write your message here...',
     selectProject: 'Select project',
     general: 'General Inquiry',
+  },
+  report: {
+    title: 'Report an issue',
+    subtitle: 'Tell us what is broken or what we could improve on the site.',
+    descriptionLabel: 'Issue description *',
+    descriptionPlaceholder: 'E.g. floor plan link broken, wrong text, etc.',
+    emailLabel: 'Email (optional)',
+    emailPlaceholder: 'email@example.com',
+    submit: 'Send report',
+    sending: 'Sending…',
+    success: 'Thank you! Your report was sent.',
+    error: 'Failed to send. Please try again.',
+    close: 'Close',
+    footerLink: 'Report issue',
   },
   status: {
     completed: 'Completed',
@@ -285,13 +319,29 @@ export type TranslationTree = {
     projectInterested: string
     message: string
     messageLabel: string
+    messagePlaceholder: string
     send: string
     sending: string
     success: string
     successDetail: string
     error: string
+    errorDetail: string
     selectProject: string
     general: string
+  }
+  report: {
+    title: string
+    subtitle: string
+    descriptionLabel: string
+    descriptionPlaceholder: string
+    emailLabel: string
+    emailPlaceholder: string
+    submit: string
+    sending: string
+    success: string
+    error: string
+    close: string
+    footerLink: string
   }
   status: {
     completed: string
