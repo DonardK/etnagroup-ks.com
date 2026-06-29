@@ -218,7 +218,7 @@ export function parseRequestedArea(text: string): number | null {
 
   // 1) Number directly followed by an area unit (strongest signal).
   const withUnit = normalized.match(
-    /(\d{2,3}(?:\.\d+)?)\s*(?:m²|m2|m\^2|metra(?:\s*katror[ëe])?|metror|meter|sqm|m\b)/,
+    /(\d{2,3}(?:\.\d+)?)\s*(?:m²|m2|m\^2|qm|sqm|metra(?:\s*katror[ëe])?|metror|meter|quadratmeter|quadrat(?:meter)?|m\b)/,
   )
   if (withUnit) {
     const value = parseFloat(withUnit[1])
@@ -226,7 +226,11 @@ export function parseRequestedArea(text: string): number | null {
   }
 
   // 2) A size keyword present + a plausible 2–3 digit number anywhere.
-  if (/(metra|m²|m2|sipërfaqe|siperfaqe|banes|apartment|flat|katror)/.test(normalized)) {
+  if (
+    /(metra|m²|m2|sipërfaqe|siperfaqe|banes|apartment|flat|katror|quadratmeter|quadrat|qm|wohnfl|wohnung|größe|groesse|grösse|zimmer|wohn)/.test(
+      normalized,
+    )
+  ) {
     const num = normalized.match(/(\d{2,3}(?:\.\d+)?)/)
     if (num) {
       const value = parseFloat(num[1])

@@ -110,19 +110,93 @@ const parseLocale = (value: unknown): 'sq' | 'en' | 'de' => {
   return 'sq'
 }
 
-const buildSystemPrompt = (locale: 'sq' | 'en' | 'de', apartmentContext: string): string => {
+/** Locale used for the main AI generation (German UI uses English for accuracy). */
+const generationLocale = (locale: 'sq' | 'en' | 'de'): 'sq' | 'en' =>
+  locale === 'de' ? 'en' : locale
+
+const APT_LINK_RE = /\[([^\]]*)\]\(apt:(p\d+)\)/g
+
+/** Replace apt: markdown links with placeholders so translation cannot break them. */
+const preserveAptLinks = (text: string): { text: string; links: string[] } => {
+  const links: string[] = []
+  const stripped = text.replace(APT_LINK_RE, (match) => {
+    const token = `__APT${links.length}__`
+    links.push(match)
+    return token
+  })
+  return { text: stripped, links }
+}
+
+const restoreAptLinks = (text: string, links: string[]): string => {
+  let out = text
+  for (let i = 0; i < links.length; i++) {
+    out = out.replace(`__APT${i}__`, links[i])
+  }
+  return out
+}
+
+const runModel = async (
+  ai: NonNullable<Env['AI']>,
+  messages: ChatMessage[],
+  maxTokens = MAX_OUTPUT_TOKENS,
+): Promise<string> => {
+  const result = await ai.run(MODEL, {
+    messages,
+    max_tokens: maxTokens,
+    temperature: 0.3,
+  })
+  return result && typeof result.response === 'string' ? stripReasoning(result.response) : ''
+}
+
+/** Second pass: translate an English assistant reply to German, keeping apt: link tokens intact. */
+const translateToGerman = async (
+  ai: NonNullable<Env['AI']>,
+  english: string,
+): Promise<string> => {
+  const { text: stripped, links } = preserveAptLinks(english)
+  if (!stripped.trim()) return english
+
+  const translated = await runModel(
+    ai,
+    [
+      {
+        role: 'system',
+        content: `You are a professional translator. Translate the user's message to German (Deutsch).
+- Keep every placeholder token like __APT0__, __APT1__, etc. EXACTLY unchanged and in the same position.
+- Do not add commentary — output only the German translation.
+- Keep project names (Elsa Residence, Tiani Residence, etc.) and addresses unchanged.
+
+/no_think`,
+      },
+      { role: 'user', content: stripped },
+    ],
+    Math.min(MAX_OUTPUT_TOKENS, stripped.length + 400),
+  )
+
+  if (!translated) return english
+  const restored = restoreAptLinks(translated, links)
+  // If placeholders were dropped, fall back to the English reply (links still work).
+  if (links.length > 0 && !/\]\(apt:p\d+\)/.test(restored)) return english
+  return restored
+}
+
+const buildSystemPrompt = (
+  locale: 'sq' | 'en',
+  apartmentContext: string,
+  uiLocale: 'sq' | 'en' | 'de' = locale,
+): string => {
   const planLabel = PLAN_LABELS[locale]
+  const germanUserNote =
+    uiLocale === 'de'
+      ? '\n- The user may write in German; understand their message fully but still compose your reply in English.'
+      : ''
   const languageBlock =
-    locale === 'de'
+    locale === 'en'
       ? `# LANGUAGE
-- ALWAYS reply in German (Deutsch), matching the site's German locale.
+- ALWAYS reply in English.${germanUserNote}
 - Keep answers focused and easy to scan. Use short paragraphs or bullet points. Avoid long walls of text.`
-      : locale === 'en'
-        ? `# LANGUAGE
-- ALWAYS reply in English, matching the site's English locale.
-- Keep answers focused and easy to scan. Use short paragraphs or bullet points. Avoid long walls of text.`
-        : `# LANGUAGE
-- ALWAYS reply in Albanian (Shqip), matching the site's Albanian locale.
+      : `# LANGUAGE
+- ALWAYS reply in Albanian (Shqip).
 - Keep answers focused and easy to scan. Use short paragraphs or bullet points. Avoid long walls of text.`
 
   const planBlock = `The chat interface shows clickable "${planLabel}" buttons with the exact floor-plan PDFs for matching apartments. When verified apartment details are provided below, embed a Markdown link EXACTLY like [${planLabel}](apt:p1) right after each apartment you mention (use its matching id). NEVER paste raw PDF URLs.`
@@ -134,7 +208,7 @@ const buildSystemPrompt = (locale: 'sq' | 'en' | 'de', apartmentContext: string)
 
   return `${base}${
     apartmentContext
-      ? `\n\n# VERIFIED APARTMENT DETAILS FOR THIS QUERY\nThese are real, verified figures for apartments matching the user's request. Use ONLY these for room counts, room sizes, types and total areas — do NOT invent any others.\nEach apartment begins with an id in brackets, e.g. [p1]. To show its floor plan, embed a Markdown link EXACTLY like [${planLabel}](apt:p1) right after you mention that apartment, using its matching id. NEVER write a real URL and NEVER use a (#) link.\n${apartmentContext}`
+      ? `\n\n# VERIFIED APARTMENT DETAILS FOR THIS QUERY\nThese are real, verified figures for apartments matching the user's request. You MUST use ONLY these — do NOT invent others.\nYou MUST name specific apartments from this list (project, city, area in m²) and embed a floor-plan link for EACH one you mention.\nEach apartment begins with an id in brackets, e.g. [p1]. Embed a Markdown link EXACTLY like [${planLabel}](apt:p1) immediately after each apartment, using its matching id. NEVER write a real URL and NEVER use a (#) link.\nDo NOT reply with only vague generalities when this list is present — always cite concrete options from it.\n${apartmentContext}`
       : ''
   }\n\n/no_think`
 }
@@ -298,22 +372,27 @@ export const onRequestPost = async (context: PagesContext): Promise<Response> =>
     }
 
     const recent = cleaned.slice(-MAX_HISTORY_MESSAGES)
-    const systemContent = buildSystemPrompt(locale, apartmentContext)
+    const genLocale = generationLocale(locale)
+    const systemContent = buildSystemPrompt(genLocale, apartmentContext, locale)
     const messages: ChatMessage[] = [
       { role: 'system', content: systemContent },
       ...recent,
     ]
 
-    const result = await env.AI.run(MODEL, {
-      messages,
-      max_tokens: MAX_OUTPUT_TOKENS,
-      temperature: 0.3,
-    })
+    let reply = await runModel(env.AI, messages)
 
-    const raw =
-      result && typeof result.response === 'string' ? stripReasoning(result.response) : ''
-    const reply =
-      raw || 'Më vjen keq, nuk munda të gjeneroj një përgjigje. Ju lutem provoni përsëri.'
+    if (locale === 'de' && reply) {
+      reply = await translateToGerman(env.AI, reply)
+    }
+
+    if (!reply) {
+      reply =
+        locale === 'de'
+          ? 'Entschuldigung, ich konnte keine Antwort generieren. Bitte versuchen Sie es erneut.'
+          : locale === 'en'
+            ? 'Sorry, I could not generate a reply. Please try again.'
+            : 'Më vjen keq, nuk munda të gjeneroj një përgjigje. Ju lutem provoni përsëri.'
+    }
 
     const lastUser = [...recent].reverse().find((m) => m.role === 'user')
     if (env.CHAT_DB && sessionId && lastUser) {
