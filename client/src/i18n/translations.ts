@@ -70,6 +70,18 @@ const sq = {
     units: 'Njësi',
     residents: 'Banorë',
     learnMore: 'Mëso Më Shumë',
+    visionTitle: 'Vizioni Ynë',
+    visionBody:
+      'Etna Group synon të jetë lider në tregun e zhvillimit rezidencial në Kosovë, duke ofruar komplekse që kombinon arkitekturë moderne, teknologji të avancuar dhe jetesë premium. Ne besojmë në ndërtimin e komuniteteve që përmirësojnë jetën e banorëve tanë dhe kontribuojnë në zhvillimin e qëndrueshëm të qytetit.',
+    valueQualityTitle: 'Cilësi Premium',
+    valueQualityBody:
+      'Materiale dhe teknologji më të mira për rezultate të jashtëzakonshme',
+    valueSustainabilityTitle: 'Qëndrueshmëri',
+    valueSustainabilityBody:
+      'Dizajn që respekton mjedisin dhe promovon jetesë të qëndrueshme',
+    valueCommunityTitle: 'Komunitet',
+    valueCommunityBody:
+      'Krijimi i hapësirave që lidhin njerëzit dhe ndërtojnë komunitete të forta',
   },
   contact: {
     title: 'Na Kontaktoni',
@@ -193,6 +205,18 @@ const en = {
     units: 'Units',
     residents: 'Residents',
     learnMore: 'Learn More',
+    visionTitle: 'Our Vision',
+    visionBody:
+      'Etna Group aims to be a leader in Kosovo\'s residential development market, delivering complexes that combine modern architecture, advanced technology and premium living. We believe in building communities that improve residents\' lives and contribute to sustainable urban growth.',
+    valueQualityTitle: 'Premium Quality',
+    valueQualityBody:
+      'The finest materials and technology for exceptional results',
+    valueSustainabilityTitle: 'Sustainability',
+    valueSustainabilityBody:
+      'Design that respects the environment and promotes sustainable living',
+    valueCommunityTitle: 'Community',
+    valueCommunityBody:
+      'Creating spaces that connect people and build strong communities',
   },
   contact: {
     title: 'Contact Us',
@@ -321,6 +345,18 @@ const de = {
     units: 'Einheiten',
     residents: 'Bewohner',
     learnMore: 'Mehr erfahren',
+    visionTitle: 'Unsere Vision',
+    visionBody:
+      'Etna Group strebt danach, im kosovarischen Wohnungsmarkt führend zu sein und Anlagen anzubieten, die moderne Architektur, fortschrittliche Technologie und Premium-Wohnen vereinen. Wir glauben an den Aufbau von Gemeinschaften, die das Leben unserer Bewohner verbessern und zur nachhaltigen Stadtentwicklung beitragen.',
+    valueQualityTitle: 'Premium-Qualität',
+    valueQualityBody:
+      'Beste Materialien und Technologie für außergewöhnliche Ergebnisse',
+    valueSustainabilityTitle: 'Nachhaltigkeit',
+    valueSustainabilityBody:
+      'Design, das die Umwelt respektiert und nachhaltiges Wohnen fördert',
+    valueCommunityTitle: 'Gemeinschaft',
+    valueCommunityBody:
+      'Schaffung von Räumen, die Menschen verbinden und starke Gemeinschaften aufbauen',
   },
   contact: {
     title: 'Kontakt',
@@ -443,6 +479,14 @@ export type TranslationTree = {
     units: string
     residents: string
     learnMore: string
+    visionTitle: string
+    visionBody: string
+    valueQualityTitle: string
+    valueQualityBody: string
+    valueSustainabilityTitle: string
+    valueSustainabilityBody: string
+    valueCommunityTitle: string
+    valueCommunityBody: string
   }
   contact: {
     title: string

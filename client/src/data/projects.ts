@@ -12,6 +12,8 @@ export interface Project {
   cardImage?: string
   logo?: string
   features: string[]
+  featuresEn?: string[]
+  featuresDe?: string[]
   totalUnits: number
   availableUnits: number
   status: 'completed' | 'under-construction' | 'planning'
@@ -40,6 +42,22 @@ export const projects: Project[] = [
       'Materiale premium',
       'Pamje panoramike të qytetit',
     ],
+    featuresEn: [
+      'Integrated private terraces',
+      '24/7 security',
+      'Underground parking',
+      'Modern elevator',
+      'Premium materials',
+      'Panoramic city views',
+    ],
+    featuresDe: [
+      'Integrierte private Terrassen',
+      '24/7 Sicherheit',
+      'Tiefgarage',
+      'Moderner Aufzug',
+      'Premium-Materialien',
+      'Panoramablick auf die Stadt',
+    ],
     totalUnits: 0,
     availableUnits: 0,
     status: 'under-construction',
@@ -65,6 +83,22 @@ export const projects: Project[] = [
       'Parkim nëntokësor',
       'Premium flooring',
       'Energy efficient design',
+    ],
+    featuresEn: [
+      'Loft apartments with open floor plans',
+      'Garden area',
+      '24/7 security',
+      'Underground parking',
+      'Premium flooring',
+      'Energy-efficient design',
+    ],
+    featuresDe: [
+      'Loft-Wohnungen mit offenem Grundriss',
+      'Gartenbereich',
+      '24/7 Sicherheit',
+      'Tiefgarage',
+      'Premium-Bodenbeläge',
+      'Energieeffizientes Design',
     ],
     totalUnits: 100,
     availableUnits: 26,
@@ -92,6 +126,22 @@ export const projects: Project[] = [
       'Ventilated facade system',
       'Acoustic insulation premium',
     ],
+    featuresEn: [
+      'Penthouse with panoramic terrace',
+      'Rooftop terrace',
+      '24/7 security',
+      'Underground parking',
+      'Ventilated facade system',
+      'Premium acoustic insulation',
+    ],
+    featuresDe: [
+      'Penthouse mit Panoramterrasse',
+      'Dachterrasse',
+      '24/7 Sicherheit',
+      'Tiefgarage',
+      'Belüftete Fassade',
+      'Premium-Schallschutz',
+    ],
     totalUnits: 53,
     availableUnits: 2,
     status: 'under-construction',
@@ -118,6 +168,22 @@ export const projects: Project[] = [
       'Materiale premium',
       'Dizajn modern',
     ],
+    featuresEn: [
+      'Private terraces',
+      '24/7 security',
+      'Underground parking',
+      'Modern elevator',
+      'Premium materials',
+      'Modern design',
+    ],
+    featuresDe: [
+      'Private Terrassen',
+      '24/7 Sicherheit',
+      'Tiefgarage',
+      'Moderner Aufzug',
+      'Premium-Materialien',
+      'Modernes Design',
+    ],
     totalUnits: 0,
     availableUnits: 0,
     status: 'planning',
@@ -137,12 +203,28 @@ export const projects: Project[] = [
     heroImage: '/visuals/EtnaResidenceVisuals/BG_SLIDE1.jpg',
     cardImage: '/visuals/EtnaResidenceVisuals/objekti-scaled.jpg',
     features: [
+      'Terraza private të integruara',
+      'Siguri 24/7',
+      'Parkim nëntokësor',
+      'Elevator modern',
+      'Materiale premium në të gjitha njësitë',
+      'Amenities në çati',
+    ],
+    featuresEn: [
       'Integrated private terraces',
       '24/7 security',
       'Underground parking',
-      'Elevator modern',
-      'Premium materials në të gjitha njësitë',
+      'Modern elevator',
+      'Premium materials in every unit',
       'Rooftop amenities',
+    ],
+    featuresDe: [
+      'Integrierte private Terrassen',
+      '24/7 Sicherheit',
+      'Tiefgarage',
+      'Moderner Aufzug',
+      'Premium-Materialien in allen Einheiten',
+      'Dachterrassen-Ausstattung',
     ],
     totalUnits: 0,
     availableUnits: 0,
@@ -162,6 +244,11 @@ export const getProjectBySlug = (slug: string): Project | undefined => {
 }
 
 export const getLocalizedProject = (project: Project, locale: Locale): Project => {
-  if (locale === 'sq' || !project.descriptionEn) return project
-  return { ...project, description: project.descriptionEn }
+  if (locale === 'sq') return project
+  const description = project.descriptionEn ?? project.description
+  const features =
+    locale === 'de' && project.featuresDe
+      ? project.featuresDe
+      : project.featuresEn ?? project.features
+  return { ...project, description, features }
 }

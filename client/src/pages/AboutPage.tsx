@@ -118,11 +118,7 @@ export const AboutPage = () => {
                                     : 'bg-[#657432]/60 text-[#F8F2DD]'
                                 }`}
                               >
-                                {project.status === 'completed'
-                                  ? 'I Përfunduar'
-                                  : project.status === 'under-construction'
-                                  ? 'Në Ndërtim'
-                                  : 'Së Shpejti'}
+                                {t.status[project.status]}
                               </div>
                             </div>
 
@@ -151,7 +147,7 @@ export const AboutPage = () => {
                         {/* Year Badge */}
                         {project.completionDate && (
                           <div className="inline-block rounded-full bg-[#657432]/10 px-4 py-2 text-sm font-semibold text-[#657432]">
-                            {project.completionDate}
+                            {t.status[project.status]}
                           </div>
                         )}
 
@@ -165,7 +161,7 @@ export const AboutPage = () => {
 
                         {/* Features List */}
                         <div className="grid grid-cols-2 gap-3">
-                          {project.features.slice(0, 4).map((feature, idx) => (
+                          {p.features.slice(0, 4).map((feature, idx) => (
                             <div
                               key={idx}
                               className="flex items-center gap-2 text-[#657432]"
@@ -184,7 +180,7 @@ export const AboutPage = () => {
                           to={`/projektet/${project.id}`}
                           className="inline-block rounded-full bg-[#657432] px-6 py-3 font-semibold text-[#F8F2DD] transition-all hover:scale-105 hover:shadow-lg"
                         >
-                          Shiko Detajet →
+                          {t.home.viewDetails} →
                         </Link>
                   </motion.div>
                 </div>
@@ -204,13 +200,9 @@ export const AboutPage = () => {
             viewport={{ once: true }}
             className="text-center text-[#657432]"
           >
-            <h2 className="mb-6 text-5xl font-bold">Vizioni Ynë</h2>
+            <h2 className="mb-6 text-5xl font-bold">{t.about.visionTitle}</h2>
             <p className="mx-auto mb-12 max-w-3xl text-xl text-[#657432]/90 leading-relaxed">
-              Etna Group synon të jetë lider në tregun e zhvillimit rezidencial në
-              Kosovë, duke ofruar komplekse që kombinon arkitekturë moderne, teknologji
-              të avancuar dhe jetesë premium. Ne besojmë në ndërtimin e komuniteteve që
-              përmirësojnë jetën e banorëve tanë dhe kontribuojnë në zhvillimin e
-              qëndrueshëm të qytetit.
+              {t.about.visionBody}
             </p>
 
             {/* Values Grid */}
@@ -223,10 +215,8 @@ export const AboutPage = () => {
                 className="rounded-2xl bg-[#657432]/10 p-8 backdrop-blur-sm"
               >
                 <div className="mb-4 text-5xl">🏗️</div>
-                <h3 className="mb-2 text-2xl font-bold">Cilësi Premium</h3>
-                <p className="text-[#657432]/80">
-                  Materiale dhe teknologji më të mira për rezultate të jashtëzakonshme
-                </p>
+                <h3 className="mb-2 text-2xl font-bold">{t.about.valueQualityTitle}</h3>
+                <p className="text-[#657432]/80">{t.about.valueQualityBody}</p>
               </motion.div>
 
               <motion.div
@@ -237,10 +227,8 @@ export const AboutPage = () => {
                 className="rounded-2xl bg-[#657432]/10 p-8 backdrop-blur-sm"
               >
                 <div className="mb-4 text-5xl">🌱</div>
-                <h3 className="mb-2 text-2xl font-bold">Qëndrueshmëri</h3>
-                <p className="text-[#657432]/80">
-                  Dizajn që respekton mjedisin dhe promovon jetesë të qëndrueshme
-                </p>
+                <h3 className="mb-2 text-2xl font-bold">{t.about.valueSustainabilityTitle}</h3>
+                <p className="text-[#657432]/80">{t.about.valueSustainabilityBody}</p>
               </motion.div>
 
               <motion.div
@@ -251,11 +239,8 @@ export const AboutPage = () => {
                 className="rounded-2xl bg-[#657432]/10 p-8 backdrop-blur-sm"
               >
                 <div className="mb-4 text-5xl">🤝</div>
-                <h3 className="mb-2 text-2xl font-bold">Komunitet</h3>
-                <p className="text-[#657432]/80">
-                  Krijimi i hapësirave që lidhin njerëzit dhe ndërtojnë komunitete të
-                  forta
-                </p>
+                <h3 className="mb-2 text-2xl font-bold">{t.about.valueCommunityTitle}</h3>
+                <p className="text-[#657432]/80">{t.about.valueCommunityBody}</p>
               </motion.div>
             </div>
           </motion.div>
