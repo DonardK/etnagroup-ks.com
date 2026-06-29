@@ -23,7 +23,7 @@ export const Navbar = () => {
           <Link to="/" className="flex items-center gap-3">
             <img
               src={encodeURI(assetUrl('brand/Logo.png'))}
-              alt="Etna Group Logo"
+              alt={t.common.logoAlt}
               className="h-12 w-auto"
               loading="eager"
               decoding="async"
@@ -101,7 +101,7 @@ export const Navbar = () => {
               <span aria-hidden="true">🤖</span>
               {t.nav.chat}
               <span className="absolute -right-2 -top-2.5 rounded-full bg-red-600 px-1 py-0.5 text-[8px] font-extrabold uppercase leading-none tracking-wide text-white shadow">
-                New
+                {t.common.newBadge}
               </span>
             </button>
 
@@ -117,7 +117,7 @@ export const Navbar = () => {
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="text-[#657432]"
-              aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+              aria-label={isMenuOpen ? t.common.closeMenu : t.common.openMenu}
             >
               <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 {isMenuOpen ? (
@@ -187,7 +187,7 @@ export const Navbar = () => {
                 <span aria-hidden="true">🤖</span>
                 {t.nav.chat}
                 <span className="rounded-full bg-red-600 px-1.5 py-0.5 text-[9px] font-extrabold uppercase leading-none tracking-wide text-white">
-                  New
+                  {t.common.newBadge}
                 </span>
               </button>
               <Link

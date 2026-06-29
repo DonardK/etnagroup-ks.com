@@ -1,11 +1,11 @@
 import { useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useTouchDevice } from '../hooks/useTouchDevice'
+import { useLanguage } from '../i18n/LanguageContext'
 import { assetUrl } from '../utils/assetUrl'
 
 interface FloorArea {
   id: string
-  label: string
   path: string
   coordsRaw: string
 }
@@ -13,42 +13,36 @@ interface FloorArea {
 const FLOORS: FloorArea[] = [
   {
     id: '1',
-    label: 'Kati 1',
     path: '/joniresidence-kati-1',
     coordsRaw:
       '169,1269,2343,1271,2339,1362,479,1366,479,1403,124,1405,124,1348,172,1348',
   },
   {
     id: '2',
-    label: 'Kati 2',
     path: '/joniresidence-kati-2',
     coordsRaw:
       '127,1262,2429,1265,2427,1217,2345,1215,2343,1140,172,1136,172,1208,129,1208',
   },
   {
     id: '3',
-    label: 'Kati 3',
     path: '/joniresidence-kati-3',
     coordsRaw:
       '127,1124,2427,1131,2422,1075,2343,1077,2343,998,169,1000,169,1063,120,1068',
   },
   {
     id: '4',
-    label: 'Kati 4',
     path: '/joniresidence-kati-4',
     coordsRaw:
       '122,984,2427,993,2429,937,2345,935,2341,860,172,869,174,926,124,928',
   },
   {
     id: '5',
-    label: 'Kati 5',
     path: '/joniresidence-kati-5',
     coordsRaw:
       '2424,851,131,853,122,788,167,790,169,733,2343,733,2341,794,2427,797',
   },
   {
     id: '6',
-    label: 'Kati 6',
     path: '/joniresidence-kati-6',
     coordsRaw:
       '2427,717,131,713,124,652,163,654,160,575,2341,581,2343,661,2427,663',
@@ -66,6 +60,7 @@ function imageMapCoordsToPolygonPoints(raw: string): string {
 
 export const JoniResidenceBuildingMap = () => {
   const navigate = useNavigate()
+  const { t } = useLanguage()
   const alwaysShowZones = useTouchDevice()
   const [hoveredFloor, setHoveredFloor] = useState<string | null>(null)
 
@@ -92,7 +87,7 @@ export const JoniResidenceBuildingMap = () => {
     <div className="relative mx-auto w-full max-w-5xl">
       <img
         src={encodeURI(assetUrl('SVG Residences/Joni Residence.svg'))}
-        alt="Joni Residence"
+        alt={t.residence.joniResidenceAlt}
         className="block h-auto w-full"
         draggable={false}
       />
@@ -106,6 +101,7 @@ export const JoniResidenceBuildingMap = () => {
         {floorsWithPoints.map((floor) => {
           const isHighlighted = alwaysShowZones || hoveredFloor === floor.id
           const { cx, cy } = getCentroid(floor.points)
+          const label = t.group.floor(Number(floor.id))
 
           return (
             <g key={floor.id}>
@@ -139,7 +135,7 @@ export const JoniResidenceBuildingMap = () => {
                     fontWeight={600}
                     fontFamily="system-ui, sans-serif"
                   >
-                    {floor.label}
+                    {label}
                   </text>
                 </g>
               )}

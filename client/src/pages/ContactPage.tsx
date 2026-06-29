@@ -106,7 +106,7 @@ export const ContactPage = () => {
                   value={formData.email}
                   onChange={handleChange}
                   className="w-full rounded-lg border border-[#657432]/30 bg-[#F8F2DD] px-4 py-3 focus:border-[#657432] focus:outline-none focus:ring-2 focus:ring-[#657432]/20"
-                  placeholder="email@example.com"
+                  placeholder={t.contact.emailPlaceholder}
                 />
               </div>
 
@@ -122,7 +122,7 @@ export const ContactPage = () => {
                   value={formData.phone}
                   onChange={handleChange}
                   className="w-full rounded-lg border border-[#657432]/30 bg-[#F8F2DD] px-4 py-3 focus:border-[#657432] focus:outline-none focus:ring-2 focus:ring-[#657432]/20"
-                  placeholder="+383 XX XXX XXX"
+                  placeholder={t.contact.phonePlaceholder}
                 />
               </div>
 
@@ -138,11 +138,11 @@ export const ContactPage = () => {
                   className="w-full rounded-lg border border-[#657432]/30 bg-[#F8F2DD] px-4 py-3 focus:border-[#657432] focus:outline-none focus:ring-2 focus:ring-[#657432]/20"
                 >
                   <option value="">{t.contact.selectProject}</option>
-                  <option value="elsa">Elsa Residence</option>
-                  <option value="tara">Tara Residence</option>
-                  <option value="tiani">Tiani Residence</option>
-                  <option value="joni">Joni Residence</option>
-                  <option value="etna">Etna Residence</option>
+                  <option value="elsa">{t.contact.projectElsa}</option>
+                  <option value="tara">{t.contact.projectTara}</option>
+                  <option value="tiani">{t.contact.projectTiani}</option>
+                  <option value="joni">{t.contact.projectJoni}</option>
+                  <option value="etna">{t.contact.projectEtna}</option>
                   <option value="general">{t.contact.general}</option>
                 </select>
               </div>
@@ -202,7 +202,7 @@ export const ContactPage = () => {
             className="space-y-8"
           >
             <div className="rounded-3xl bg-[#F8F2DD] p-8 text-[#657432] border border-[#657432]/20">
-              <h2 className="mb-6 text-3xl font-bold">Informacioni i Kontaktit</h2>
+              <h2 className="mb-6 text-3xl font-bold">{t.contact.contactInfo}</h2>
               <div className="space-y-6">
                 <div className="flex items-start gap-4">
                   <div className="rounded-full bg-[#657432]/20 p-3">
@@ -212,16 +212,16 @@ export const ContactPage = () => {
                     </svg>
                   </div>
                   <div>
-                    <h3 className="mb-1 font-semibold text-[#657432]">Adresa</h3>
+                    <h3 className="mb-1 font-semibold text-[#657432]">{t.contact.address}</h3>
                     <p className="text-[#657432]/80">
-                      <strong className="text-[#657432]">Zyrë Prishtinë:</strong>
+                      <strong className="text-[#657432]">{t.contact.officePrishtina}</strong>
                       <br />
-                      Prishtinë, Rr. Malush Kosova
+                      {t.contact.addressPrishtina}
                       <br />
                       <br />
-                      <strong className="text-[#657432]">Zyrë Prizren:</strong>
+                      <strong className="text-[#657432]">{t.contact.officePrizren}</strong>
                       <br />
-                      Prizren, Rrethrrotullimi Ortakoll
+                      {t.contact.addressPrizren}
                     </p>
                   </div>
                 </div>
@@ -233,7 +233,7 @@ export const ContactPage = () => {
                     </svg>
                   </div>
                   <div>
-                    <h3 className="mb-1 font-semibold text-[#657432]">Telefoni</h3>
+                    <h3 className="mb-1 font-semibold text-[#657432]">{t.contact.phone}</h3>
                     <p className="text-[#657432]/80">
                       <a href="tel:+38346383838" className="hover:text-[#657432] text-[#657432]">
                         +383 46 38 38 38
@@ -253,7 +253,7 @@ export const ContactPage = () => {
                     </svg>
                   </div>
                   <div>
-                    <h3 className="mb-1 font-semibold text-[#657432]">Email</h3>
+                    <h3 className="mb-1 font-semibold text-[#657432]">{t.contact.email}</h3>
                     <p className="text-[#657432]/80">
                       <a href="mailto:info@etnagroup-ks.com" className="hover:text-[#657432] text-[#657432]">
                         info@etnagroup-ks.com
@@ -269,11 +269,11 @@ export const ContactPage = () => {
                     </svg>
                   </div>
                   <div>
-                    <h3 className="mb-1 font-semibold text-[#657432]">Orari i Punës</h3>
+                    <h3 className="mb-1 font-semibold text-[#657432]">{t.contact.workingHours}</h3>
                     <p className="text-[#657432]/80">
-                      E Hënë - E Shtunë: 08:00 - 16:00
+                      {t.contact.hoursWeekdays}
                       <br />
-                      E Diel: Mbyllur
+                      {t.contact.hoursSunday}
                     </p>
                   </div>
                 </div>
@@ -281,7 +281,7 @@ export const ContactPage = () => {
             </div>
 
             <div className="rounded-3xl bg-[#F8F2DD] p-8 shadow-xl border border-[#657432]/20">
-              <h3 className="mb-6 text-2xl font-bold text-[#657432]">Na Ndiqni</h3>
+              <h3 className="mb-6 text-2xl font-bold text-[#657432]">{t.contact.followUs}</h3>
               <div className="flex gap-4">
                 <motion.a
                   href="https://www.facebook.com/etnagroupks/"

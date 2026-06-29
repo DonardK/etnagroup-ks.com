@@ -7,13 +7,13 @@ interface LanguageSwitcherProps {
 }
 
 export const LanguageSwitcher = ({ className = '', compact = false }: LanguageSwitcherProps) => {
-  const { locale, setLocale } = useLanguage()
+  const { locale, setLocale, t } = useLanguage()
 
   return (
     <div
       className={`inline-flex rounded-full border border-[#657432]/25 bg-[#F8F2DD]/80 p-0.5 ${className}`}
       role="group"
-      aria-label="Language"
+      aria-label={t.common.languageAria}
     >
       {LOCALES.map(({ code, label }) => {
         const active = locale === code

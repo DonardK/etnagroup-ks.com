@@ -1,11 +1,12 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useTouchDevice } from '../hooks/useTouchDevice'
+import { useLanguage } from '../i18n/LanguageContext'
 import { assetUrl } from '../utils/assetUrl'
 
 interface BuildingBlock {
   id: string
-  label: string
+  blockLetter: string
   path: string
   points: string
 }
@@ -13,14 +14,14 @@ interface BuildingBlock {
 const BLOCKS: BuildingBlock[] = [
   {
     id: 'b',
-    label: 'Blloku B',
+    blockLetter: 'B',
     path: '/tianiresidence-blloku-b',
     points:
       '1712,425 1732,418 1729,401 1827,401 1827,302 3227,307 3227,429 3403,432 3403,534 3372,557 3372,629 3440,629 3437,683 3396,717 3372,717 3369,836 3403,839 3433,869 3430,924 3410,941 3372,944 3372,1029 3399,1032 3433,1056 3433,1110 3410,1124 3372,1124 3376,1202 3443,1202 3440,1256 3399,1276 3376,1273 3376,1392 3440,1392 3440,1449 3399,1459 3372,1459 3372,1578 3437,1582 3437,1639 3403,1643 3372,1643 3376,1768 3437,1771 3437,1826 3406,1829 3406,1870 3301,1877 3311,2086 1715,2083',
   },
   {
     id: 'a',
-    label: 'Blloku A',
+    blockLetter: 'A',
     path: '/tianiresidence-blloku-a',
     points:
       '1823,342 861,338 861,694 763,694 766,1729 478,1732 481,2081 1715,2085 1708,423 1729,423 1729,399 1823,399',
@@ -29,6 +30,7 @@ const BLOCKS: BuildingBlock[] = [
 
 export const TianiResidenceBuildingMap = () => {
   const navigate = useNavigate()
+  const { t } = useLanguage()
   const alwaysShowZones = useTouchDevice()
   const [hoveredBlock, setHoveredBlock] = useState<string | null>(null)
 
@@ -46,7 +48,7 @@ export const TianiResidenceBuildingMap = () => {
     <div className="relative mx-auto w-full max-w-5xl">
       <img
         src={encodeURI(assetUrl('SVG Residences/Tiani Residence.svg'))}
-        alt="Tiani Residence"
+        alt={t.residence.tianiResidenceAlt}
         className="block h-auto w-full"
         draggable={false}
       />
@@ -60,6 +62,7 @@ export const TianiResidenceBuildingMap = () => {
         {BLOCKS.map((block) => {
           const isHighlighted = alwaysShowZones || hoveredBlock === block.id
           const { cx, cy } = getCentroid(block.points)
+          const label = t.group.block(block.blockLetter)
 
           return (
             <g key={block.id}>
@@ -77,9 +80,9 @@ export const TianiResidenceBuildingMap = () => {
               {isHighlighted && (
                 <g style={{ pointerEvents: 'none' }}>
                   <rect
-                    x={cx - block.label.length * 24}
+                    x={cx - label.length * 24}
                     y={cy - 80}
-                    width={block.label.length * 48}
+                    width={label.length * 48}
                     height={100}
                     rx={20}
                     fill="#657432"
@@ -93,7 +96,7 @@ export const TianiResidenceBuildingMap = () => {
                     fontWeight={600}
                     fontFamily="system-ui, sans-serif"
                   >
-                    {block.label}
+                    {label}
                   </text>
                 </g>
               )}

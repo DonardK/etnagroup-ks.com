@@ -1,10 +1,12 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useTouchDevice } from '../hooks/useTouchDevice'
+import { useLanguage } from '../i18n/LanguageContext'
 import { assetUrl } from '../utils/assetUrl'
 
 export const TaraResidenceBuildingMap = () => {
   const navigate = useNavigate()
+  const { t } = useLanguage()
   const alwaysShowZones = useTouchDevice()
   const [isHovered, setIsHovered] = useState(false)
 
@@ -28,7 +30,7 @@ export const TaraResidenceBuildingMap = () => {
     <div className="relative mx-auto w-full max-w-5xl">
       <img
         src={encodeURI(assetUrl('SVG Residences/Tara Residence.svg'))}
-        alt="Tara Residence"
+        alt={t.residence.taraResidenceAlt}
         className="block h-auto w-full"
         draggable={false}
       />
@@ -69,7 +71,7 @@ export const TaraResidenceBuildingMap = () => {
               fontWeight={600}
               fontFamily="system-ui, sans-serif"
             >
-              Tara Residence
+              {t.residence.taraTitle}
             </text>
           </g>
         )}

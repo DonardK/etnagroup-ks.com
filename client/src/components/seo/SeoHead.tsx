@@ -92,7 +92,7 @@ export const SeoHead = () => {
 
 /** JSON-LD for homepage — mount once on HomePage. */
 export const HomeStructuredData = () => {
-  const { locale } = useLanguage()
+  const { locale, t } = useLanguage()
 
   useEffect(() => {
     const scriptId = 'etna-jsonld-org'
@@ -118,7 +118,7 @@ export const HomeStructuredData = () => {
           email: 'info@etnagroup-ks.com',
           address: {
             '@type': 'PostalAddress',
-            addressLocality: 'Prishtinë',
+            addressLocality: t.cities.prishtina,
             addressCountry: 'XK',
           },
           sameAs: [
@@ -146,7 +146,7 @@ export const HomeStructuredData = () => {
           name: 'Etna Group',
           url: SITE_URL,
           telephone: '+38346383838',
-          areaServed: ['Prishtinë', 'Prizren', 'Malishevë'],
+          areaServed: [t.cities.prishtina, t.cities.prizren, t.cities.malisheva],
         },
       ],
     }
@@ -155,7 +155,7 @@ export const HomeStructuredData = () => {
     return () => {
       script?.remove()
     }
-  }, [locale])
+  }, [locale, t])
 
   return null
 }

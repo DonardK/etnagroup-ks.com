@@ -1,12 +1,6 @@
-import { ApartmentList } from '../components/ApartmentList'
+import { ResidenceApartmentPage } from '../components/ResidenceApartmentPage'
 import { elsaBllokuAApartments } from '../data/elsaApartmentPdfs'
 
 export const ElsaBlockA = () => (
-  <ApartmentList
-    title="Elsa Residence — Blloku A"
-    subtitle="Tipet e banesave në Bllokun A"
-    backLink="/projektet/elsa"
-    backLabel="Kthehu te Elsa Residence"
-    apartments={elsaBllokuAApartments}
-  />
+  <ResidenceApartmentPage residence="elsa" block="A" apartments={elsaBllokuAApartments} />
 )

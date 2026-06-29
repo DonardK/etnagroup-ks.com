@@ -7,7 +7,7 @@ import {
   type SizeRangeId,
 } from '../../data/apartmentCatalog'
 import { useLanguage } from '../../i18n/LanguageContext'
-import type { Locale } from '../../i18n/translations'
+import { localizeCatalogApartment, localizeCity } from '../../i18n/labels'
 import { openChat } from '../../utils/chat'
 
 const PDF_BASE = import.meta.env.BASE_URL
@@ -21,12 +21,6 @@ const SIZE_OPTIONS: { id: SizeRangeId; labelSq: string; labelEn: string }[] = [
   { id: '100-120', labelSq: '100–120 m²', labelEn: '100–120 m²' },
   { id: 'over120', labelSq: '> 120 m²', labelEn: '> 120 m²' },
 ]
-
-const CITY_LABELS: Record<string, Record<Locale, string>> = {
-  Prishtinë: { sq: 'Prishtinë', en: 'Prishtina', de: 'Prishtina' },
-  Prizren: { sq: 'Prizren', en: 'Prizren', de: 'Prizren' },
-  Malishevë: { sq: 'Malishevë', en: 'Malisheva', de: 'Malisheva' },
-}
 
 const toggle = <T,>(list: T[], item: T): T[] =>
   list.includes(item) ? list.filter((x) => x !== item) : [...list, item]
@@ -89,7 +83,7 @@ export const FlatSelector = () => {
                   onClick={() => setCities((c) => toggle(c, city))}
                   className={chipClass(cities.includes(city))}
                 >
-                  {CITY_LABELS[city][locale]}
+                  {localizeCity(city, t)}
                 </button>
               ))}
             </div>
@@ -127,7 +121,7 @@ export const FlatSelector = () => {
                   }
                   className={chipClass(sizeRange === opt.id)}
                 >
-                  {opt.labelEn}
+                  {locale === 'sq' ? opt.labelSq : opt.labelEn}
                 </button>
               ))}
             </div>
@@ -166,6 +160,7 @@ export const FlatSelector = () => {
             {results.map((apt) => {
               const beds = getBedroomCount(apt.pdfPath)
               const spec = beds !== null ? `${beds}+` : null
+              const localized = localizeCatalogApartment(apt, t)
               return (
                 <motion.article
                   key={apt.pdfPath}
@@ -175,15 +170,15 @@ export const FlatSelector = () => {
                   className="flex flex-col rounded-2xl border border-[#657432]/15 bg-white p-5 shadow-sm transition-shadow hover:shadow-md"
                 >
                   <div className="mb-1 text-xs font-semibold uppercase tracking-wide text-[#657432]/50">
-                    {apt.city}
+                    {localized.city}
                   </div>
-                  <h4 className="mb-1 text-lg font-bold text-[#657432]">{apt.project}</h4>
-                  {apt.group && (
-                    <p className="mb-2 text-sm text-[#657432]/60">{apt.group}</p>
+                  <h4 className="mb-1 text-lg font-bold text-[#657432]">{localized.project}</h4>
+                  {localized.group && (
+                    <p className="mb-2 text-sm text-[#657432]/60">{localized.group}</p>
                   )}
                   <div className="mb-4 flex flex-wrap gap-2">
                     <span className="rounded-lg bg-[#657432]/10 px-2.5 py-1 text-sm font-semibold text-[#657432]">
-                      {apt.area} m²
+                      {t.common.areaSqm(apt.area)}
                     </span>
                     {spec && (
                       <span className="rounded-lg bg-[#657432]/10 px-2.5 py-1 text-sm text-[#657432]/80">

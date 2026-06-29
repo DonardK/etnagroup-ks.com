@@ -53,6 +53,16 @@ const sq = {
     placeholder: 'Shkruani mesazhin tuaj…',
     disclaimer: 'Etna mund të gabojë. Për çmime & rezervime, na kontaktoni.',
     viewPlan: 'Shiko Planimetrinë',
+    errorGeneric: 'Më vjen keq, ndodhi një gabim. Ju lutem provoni përsëri.',
+    errorUnavailable:
+      'Më vjen keq, shërbimi nuk është i disponueshëm për momentin. Ju lutem provoni më vonë ose na kontaktoni në info@etnagroup-ks.com.',
+    assistantName: 'Etna',
+    chatAria: 'Asistenti i chat-it Etna Group',
+    closeChat: 'Mbyll chat-in',
+    typeMessage: 'Shkruani mesazhin',
+    sendMessage: 'Dërgo mesazhin',
+    openChatAssistant: 'Hap asistentin AI të chat-it',
+    closeChatAssistant: 'Mbyll asistentin AI të chat-it',
   },
   footer: {
     locations: 'Lokacionet Tona',
@@ -61,6 +71,12 @@ const sq = {
     about: 'Për Ne',
     contact: 'Kontakt',
     copyright: 'Të gjitha të drejtat e rezervuara.',
+    mapElsaOffice: 'Elsa Residence & Zyrë Prishtinë',
+    mapPrizrenOffice: 'Zyrë Prizren',
+    mapTara: 'Tara Residence',
+    mapTiani: 'Tiani Residence',
+    mapJoni: 'Joni Residence',
+    companyName: 'Etna Group.',
   },
   about: {
     title: 'Për Ne',
@@ -108,6 +124,23 @@ const sq = {
     messagePlaceholder: 'Shkruani mesazhin tuaj këtu...',
     selectProject: 'Zgjidhni projektin',
     general: 'Informacion i Përgjithshëm',
+    contactInfo: 'Informacioni i Kontaktit',
+    address: 'Adresa',
+    officePrishtina: 'Zyrë Prishtinë:',
+    officePrizren: 'Zyrë Prizren:',
+    addressPrishtina: 'Prishtinë, Rr. Malush Kosova',
+    addressPrizren: 'Prizren, Rrethrrotullimi Ortakoll',
+    workingHours: 'Orari i Punës',
+    hoursWeekdays: 'E Hënë - E Shtunë: 08:00 - 16:00',
+    hoursSunday: 'E Diel: Mbyllur',
+    followUs: 'Na Ndiqni',
+    phonePlaceholder: '+383 XX XXX XXX',
+    emailPlaceholder: 'email@example.com',
+    projectElsa: 'Elsa Residence',
+    projectTara: 'Tara Residence',
+    projectTiani: 'Tiani Residence',
+    projectJoni: 'Joni Residence',
+    projectEtna: 'Etna Residence',
   },
   report: {
     title: 'Raporto një problem',
@@ -145,6 +178,87 @@ const sq = {
     projectTitle: (name: string) => `${name} — Etna Group`,
     projectDescription: (name: string, city: string) =>
       `${name} në ${city} — kompleks rezidencial premium nga Etna Group. Shikoni planimetritë dhe kontaktoni për vizita.`,
+  },
+  common: {
+    newBadge: 'E re',
+    logoAlt: 'Logo Etna Group',
+    heroVideoAria: 'Video hero Etna Group',
+    openMenu: 'Hap menunë',
+    closeMenu: 'Mbyll menunë',
+    languageAria: 'Gjuha',
+    brandName: 'Etna Group',
+    areaSqm: (n: number) => `${n} m²`,
+  },
+  project: {
+    notFound: 'Projekti nuk u gjet',
+    backToHome: 'Kthehu në Ballinë',
+    location: 'Lokacioni',
+    status: 'Statusi',
+    statusInPlanning: 'Në Planifikim',
+    buildings: 'Ndërtesat',
+    buildingSingular: 'Ndërtesë',
+    buildingPlural: (n: number) => `${n} Ndërtesa`,
+    features: 'Karakteristikat',
+    mapSelectFloor: 'Zgjedhni Katin Tuaj',
+    mapSelectApartment: 'Zgjidhni Banesën',
+    mapSelectBlock: 'Zgjidhni Bllokun',
+    mapHintFloor: 'Klikoni mbi katin për të parë tipet e banesave',
+    mapHintApartment: 'Klikoni për të parë tipet e banesave',
+    mapHintBlock: 'Klikoni mbi bllokun për të parë tipet e banesave',
+    sectionUnderConstruction: 'Në Ndërtim',
+    sectionUnderConstructionBody:
+      'Seksioni për zgjedhjen e banesave është në zhvillim dhe do të jetë i disponueshëm së shpejti.',
+    moreInfoPrefix: 'Për informacion më të detajuar, ju lutem',
+    contactUsLink: 'na kontaktoni',
+  },
+  residence: {
+    backToElsa: 'Kthehu te Elsa Residence',
+    backToTiani: 'Kthehu te Tiani Residence',
+    backToTara: 'Kthehu te Tara Residence',
+    backToJoni: 'Kthehu te Joni Residence',
+    blockTitle: (residence: string, block: string) => {
+      const name = residence === 'tiani' ? 'Tiani Residence' : 'Elsa Residence'
+      return `${name} — Blloku ${block}`
+    },
+    blockSubtitle: (block: string) => `Tipet e banesave në Bllokun ${block}`,
+    joniFloorTitle: (floor: number) => `Joni Residence — Kati ${floor}`,
+    joniFloorSubtitle: (floor: number) => `Tipet e banesave në Katin ${floor}`,
+    taraTitle: 'Tara Residence',
+    taraSubtitle: 'Tipet e banesave në Tara Residence',
+    blockEComingSoon: 'Planimetritë me m² për Bllokun E do të shtohen së shpejti.',
+    elsaResidenceAlt: 'Elsa Residence',
+    tianiResidenceAlt: 'Tiani Residence',
+    taraResidenceAlt: 'Tara Residence',
+    joniResidenceAlt: 'Joni Residence',
+  },
+  group: {
+    block: (letter: string) => `Blloku ${letter}`,
+    floor: (n: number) => `Kati ${n}`,
+  },
+  cities: {
+    prishtina: 'Prishtinë',
+    prizren: 'Prizren',
+    malisheva: 'Malishevë',
+  },
+  qr: {
+    website: 'Faqja Web',
+    phone: 'Telefoni',
+    officePrishtina: 'Zyrë Prishtinë',
+    officePrizren: 'Zyrë Prizren',
+    openMaps: 'Hap në Google Maps',
+    facebook: 'Facebook',
+    instagram: 'Instagram',
+    tiktok: 'TikTok',
+    tagline: 'Na ndiqni kudo',
+  },
+  error: {
+    title: 'Ups! Diçka shkoi keq',
+    message: 'Na vjen keq për shqetësimin. Ju lutem rifreskoni faqen.',
+    refresh: 'Rifresko Faqen',
+  },
+  whatsapp: {
+    prefilledMessage: 'Përshëndetje, jam i/e interesuar per një banesë.',
+    ariaLabel: 'Na kontaktoni në WhatsApp',
   },
 }
 
@@ -188,6 +302,16 @@ const en = {
     placeholder: 'Type your message…',
     disclaimer: 'Etna may make mistakes. For pricing & bookings, contact us.',
     viewPlan: 'View Floor Plan',
+    errorGeneric: 'Sorry, something went wrong. Please try again.',
+    errorUnavailable:
+      'Sorry, the assistant is unavailable right now. Please try again later or contact us at info@etnagroup-ks.com.',
+    assistantName: 'Etna',
+    chatAria: 'Etna Group chat assistant',
+    closeChat: 'Close chat',
+    typeMessage: 'Type your message',
+    sendMessage: 'Send message',
+    openChatAssistant: 'Open AI chat assistant',
+    closeChatAssistant: 'Close chat assistant',
   },
   footer: {
     locations: 'Our Locations',
@@ -196,6 +320,12 @@ const en = {
     about: 'About Us',
     contact: 'Contact',
     copyright: 'All rights reserved.',
+    mapElsaOffice: 'Elsa Residence & Prishtina Office',
+    mapPrizrenOffice: 'Prizren Office',
+    mapTara: 'Tara Residence',
+    mapTiani: 'Tiani Residence',
+    mapJoni: 'Joni Residence',
+    companyName: 'Etna Group.',
   },
   about: {
     title: 'About Us',
@@ -243,6 +373,23 @@ const en = {
     messagePlaceholder: 'Write your message here...',
     selectProject: 'Select project',
     general: 'General Inquiry',
+    contactInfo: 'Contact Information',
+    address: 'Address',
+    officePrishtina: 'Prishtina Office:',
+    officePrizren: 'Prizren Office:',
+    addressPrishtina: 'Prishtina, Rr. Malush Kosova',
+    addressPrizren: 'Prizren, Ortakoll Roundabout',
+    workingHours: 'Working Hours',
+    hoursWeekdays: 'Monday – Saturday: 08:00 – 16:00',
+    hoursSunday: 'Sunday: Closed',
+    followUs: 'Follow Us',
+    phonePlaceholder: '+383 XX XXX XXX',
+    emailPlaceholder: 'email@example.com',
+    projectElsa: 'Elsa Residence',
+    projectTara: 'Tara Residence',
+    projectTiani: 'Tiani Residence',
+    projectJoni: 'Joni Residence',
+    projectEtna: 'Etna Residence',
   },
   report: {
     title: 'Report an issue',
@@ -280,6 +427,87 @@ const en = {
     projectTitle: (name: string) => `${name} — Etna Group`,
     projectDescription: (name: string, city: string) =>
       `${name} in ${city} — a premium residential complex by Etna Group. View floor plans and book a visit.`,
+  },
+  common: {
+    newBadge: 'New',
+    logoAlt: 'Etna Group Logo',
+    heroVideoAria: 'Etna Group hero video',
+    openMenu: 'Open menu',
+    closeMenu: 'Close menu',
+    languageAria: 'Language',
+    brandName: 'Etna Group',
+    areaSqm: (n: number) => `${n} m²`,
+  },
+  project: {
+    notFound: 'Project not found',
+    backToHome: 'Back to Home',
+    location: 'Location',
+    status: 'Status',
+    statusInPlanning: 'In Planning',
+    buildings: 'Buildings',
+    buildingSingular: 'Building',
+    buildingPlural: (n: number) => `${n} Buildings`,
+    features: 'Features',
+    mapSelectFloor: 'Choose Your Floor',
+    mapSelectApartment: 'Choose Your Apartment',
+    mapSelectBlock: 'Choose Your Block',
+    mapHintFloor: 'Click on a floor to see apartment types',
+    mapHintApartment: 'Click to see apartment types',
+    mapHintBlock: 'Click on a block to see apartment types',
+    sectionUnderConstruction: 'Under Construction',
+    sectionUnderConstructionBody:
+      'The apartment selection section is under development and will be available soon.',
+    moreInfoPrefix: 'For more information, please',
+    contactUsLink: 'contact us',
+  },
+  residence: {
+    backToElsa: 'Back to Elsa Residence',
+    backToTiani: 'Back to Tiani Residence',
+    backToTara: 'Back to Tara Residence',
+    backToJoni: 'Back to Joni Residence',
+    blockTitle: (residence: string, block: string) => {
+      const name = residence === 'tiani' ? 'Tiani Residence' : 'Elsa Residence'
+      return `${name} — Block ${block}`
+    },
+    blockSubtitle: (block: string) => `Apartment types in Block ${block}`,
+    joniFloorTitle: (floor: number) => `Joni Residence — Floor ${floor}`,
+    joniFloorSubtitle: (floor: number) => `Apartment types on Floor ${floor}`,
+    taraTitle: 'Tara Residence',
+    taraSubtitle: 'Apartment types at Tara Residence',
+    blockEComingSoon: 'Floor plans with m² for Block E will be added soon.',
+    elsaResidenceAlt: 'Elsa Residence',
+    tianiResidenceAlt: 'Tiani Residence',
+    taraResidenceAlt: 'Tara Residence',
+    joniResidenceAlt: 'Joni Residence',
+  },
+  group: {
+    block: (letter: string) => `Block ${letter}`,
+    floor: (n: number) => `Floor ${n}`,
+  },
+  cities: {
+    prishtina: 'Prishtina',
+    prizren: 'Prizren',
+    malisheva: 'Malisheva',
+  },
+  qr: {
+    website: 'Website',
+    phone: 'Phone',
+    officePrishtina: 'Prishtina Office',
+    officePrizren: 'Prizren Office',
+    openMaps: 'Open in Google Maps',
+    facebook: 'Facebook',
+    instagram: 'Instagram',
+    tiktok: 'TikTok',
+    tagline: 'Follow us everywhere',
+  },
+  error: {
+    title: 'Oops! Something went wrong',
+    message: "We're sorry for the inconvenience. Please try refreshing the page.",
+    refresh: 'Refresh Page',
+  },
+  whatsapp: {
+    prefilledMessage: 'Hello, I am interested in an apartment.',
+    ariaLabel: 'Contact us on WhatsApp',
   },
 }
 
@@ -328,6 +556,16 @@ const de = {
     disclaimer:
       'Etna kann Fehler machen. Für Preise & Reservierungen kontaktieren Sie uns bitte.',
     viewPlan: 'Grundriss ansehen',
+    errorGeneric: 'Entschuldigung, etwas ist schiefgelaufen. Bitte versuchen Sie es erneut.',
+    errorUnavailable:
+      'Entschuldigung, der Assistent ist derzeit nicht verfügbar. Bitte versuchen Sie es später erneut oder kontaktieren Sie uns unter info@etnagroup-ks.com.',
+    assistantName: 'Etna',
+    chatAria: 'Etna Group Chat-Assistent',
+    closeChat: 'Chat schließen',
+    typeMessage: 'Nachricht eingeben',
+    sendMessage: 'Nachricht senden',
+    openChatAssistant: 'KI-Chat-Assistenten öffnen',
+    closeChatAssistant: 'KI-Chat-Assistenten schließen',
   },
   footer: {
     locations: 'Unsere Standorte',
@@ -336,6 +574,12 @@ const de = {
     about: 'Über uns',
     contact: 'Kontakt',
     copyright: 'Alle Rechte vorbehalten.',
+    mapElsaOffice: 'Elsa Residence & Büro Prishtina',
+    mapPrizrenOffice: 'Büro Prizren',
+    mapTara: 'Tara Residence',
+    mapTiani: 'Tiani Residence',
+    mapJoni: 'Joni Residence',
+    companyName: 'Etna Group.',
   },
   about: {
     title: 'Über uns',
@@ -383,6 +627,23 @@ const de = {
     messagePlaceholder: 'Schreiben Sie hier Ihre Nachricht...',
     selectProject: 'Projekt auswählen',
     general: 'Allgemeine Anfrage',
+    contactInfo: 'Kontaktinformationen',
+    address: 'Adresse',
+    officePrishtina: 'Büro Prishtina:',
+    officePrizren: 'Büro Prizren:',
+    addressPrishtina: 'Prishtina, Rr. Malush Kosova',
+    addressPrizren: 'Prizren, Ortakoll-Kreisverkehr',
+    workingHours: 'Öffnungszeiten',
+    hoursWeekdays: 'Montag – Samstag: 08:00 – 16:00',
+    hoursSunday: 'Sonntag: Geschlossen',
+    followUs: 'Folgen Sie uns',
+    phonePlaceholder: '+383 XX XXX XXX',
+    emailPlaceholder: 'email@beispiel.de',
+    projectElsa: 'Elsa Residence',
+    projectTara: 'Tara Residence',
+    projectTiani: 'Tiani Residence',
+    projectJoni: 'Joni Residence',
+    projectEtna: 'Etna Residence',
   },
   report: {
     title: 'Problem melden',
@@ -421,6 +682,87 @@ const de = {
     projectTitle: (name: string) => `${name} — Etna Group`,
     projectDescription: (name: string, city: string) =>
       `${name} in ${city} — eine erstklassige Wohnanlage von Etna Group. Grundrisse ansehen und Besichtigung vereinbaren.`,
+  },
+  common: {
+    newBadge: 'Neu',
+    logoAlt: 'Etna Group Logo',
+    heroVideoAria: 'Etna Group Hero-Video',
+    openMenu: 'Menü öffnen',
+    closeMenu: 'Menü schließen',
+    languageAria: 'Sprache',
+    brandName: 'Etna Group',
+    areaSqm: (n: number) => `${n} m²`,
+  },
+  project: {
+    notFound: 'Projekt nicht gefunden',
+    backToHome: 'Zurück zur Startseite',
+    location: 'Standort',
+    status: 'Status',
+    statusInPlanning: 'In Planung',
+    buildings: 'Gebäude',
+    buildingSingular: 'Gebäude',
+    buildingPlural: (n: number) => `${n} Gebäude`,
+    features: 'Ausstattung',
+    mapSelectFloor: 'Wählen Sie Ihre Etage',
+    mapSelectApartment: 'Wählen Sie Ihre Wohnung',
+    mapSelectBlock: 'Wählen Sie Ihren Block',
+    mapHintFloor: 'Klicken Sie auf eine Etage, um Wohnungstypen zu sehen',
+    mapHintApartment: 'Klicken Sie, um Wohnungstypen zu sehen',
+    mapHintBlock: 'Klicken Sie auf einen Block, um Wohnungstypen zu sehen',
+    sectionUnderConstruction: 'Im Bau',
+    sectionUnderConstructionBody:
+      'Der Bereich zur Wohnungsauswahl befindet sich in Entwicklung und wird bald verfügbar sein.',
+    moreInfoPrefix: 'Für weitere Informationen bitte',
+    contactUsLink: 'kontaktieren Sie uns',
+  },
+  residence: {
+    backToElsa: 'Zurück zu Elsa Residence',
+    backToTiani: 'Zurück zu Tiani Residence',
+    backToTara: 'Zurück zu Tara Residence',
+    backToJoni: 'Zurück zu Joni Residence',
+    blockTitle: (residence: string, block: string) => {
+      const name = residence === 'tiani' ? 'Tiani Residence' : 'Elsa Residence'
+      return `${name} — Block ${block}`
+    },
+    blockSubtitle: (block: string) => `Wohnungstypen in Block ${block}`,
+    joniFloorTitle: (floor: number) => `Joni Residence — Etage ${floor}`,
+    joniFloorSubtitle: (floor: number) => `Wohnungstypen auf Etage ${floor}`,
+    taraTitle: 'Tara Residence',
+    taraSubtitle: 'Wohnungstypen in Tara Residence',
+    blockEComingSoon: 'Grundrisse mit m² für Block E werden bald hinzugefügt.',
+    elsaResidenceAlt: 'Elsa Residence',
+    tianiResidenceAlt: 'Tiani Residence',
+    taraResidenceAlt: 'Tara Residence',
+    joniResidenceAlt: 'Joni Residence',
+  },
+  group: {
+    block: (letter: string) => `Block ${letter}`,
+    floor: (n: number) => `Etage ${n}`,
+  },
+  cities: {
+    prishtina: 'Prishtina',
+    prizren: 'Prizren',
+    malisheva: 'Malisheva',
+  },
+  qr: {
+    website: 'Webseite',
+    phone: 'Telefon',
+    officePrishtina: 'Büro Prishtina',
+    officePrizren: 'Büro Prizren',
+    openMaps: 'In Google Maps öffnen',
+    facebook: 'Facebook',
+    instagram: 'Instagram',
+    tiktok: 'TikTok',
+    tagline: 'Folgen Sie uns überall',
+  },
+  error: {
+    title: 'Ups! Etwas ist schiefgelaufen',
+    message: 'Entschuldigung für die Unannehmlichkeiten. Bitte laden Sie die Seite neu.',
+    refresh: 'Seite neu laden',
+  },
+  whatsapp: {
+    prefilledMessage: 'Hallo, ich interessiere mich für eine Wohnung.',
+    ariaLabel: 'Kontaktieren Sie uns auf WhatsApp',
   },
 }
 
@@ -463,6 +805,15 @@ export type TranslationTree = {
     placeholder: string
     disclaimer: string
     viewPlan: string
+    errorGeneric: string
+    errorUnavailable: string
+    assistantName: string
+    chatAria: string
+    closeChat: string
+    typeMessage: string
+    sendMessage: string
+    openChatAssistant: string
+    closeChatAssistant: string
   }
   footer: {
     locations: string
@@ -471,6 +822,12 @@ export type TranslationTree = {
     about: string
     contact: string
     copyright: string
+    mapElsaOffice: string
+    mapPrizrenOffice: string
+    mapTara: string
+    mapTiani: string
+    mapJoni: string
+    companyName: string
   }
   about: {
     title: string
@@ -511,6 +868,23 @@ export type TranslationTree = {
     errorDetail: string
     selectProject: string
     general: string
+    contactInfo: string
+    address: string
+    officePrishtina: string
+    officePrizren: string
+    addressPrishtina: string
+    addressPrizren: string
+    workingHours: string
+    hoursWeekdays: string
+    hoursSunday: string
+    followUs: string
+    phonePlaceholder: string
+    emailPlaceholder: string
+    projectElsa: string
+    projectTara: string
+    projectTiani: string
+    projectJoni: string
+    projectEtna: string
   }
   report: {
     title: string
@@ -543,6 +917,83 @@ export type TranslationTree = {
     contactDescription: string
     projectTitle: (name: string) => string
     projectDescription: (name: string, city: string) => string
+  }
+  common: {
+    newBadge: string
+    logoAlt: string
+    heroVideoAria: string
+    openMenu: string
+    closeMenu: string
+    languageAria: string
+    brandName: string
+    areaSqm: (n: number) => string
+  }
+  project: {
+    notFound: string
+    backToHome: string
+    location: string
+    status: string
+    statusInPlanning: string
+    buildings: string
+    buildingSingular: string
+    buildingPlural: (n: number) => string
+    features: string
+    mapSelectFloor: string
+    mapSelectApartment: string
+    mapSelectBlock: string
+    mapHintFloor: string
+    mapHintApartment: string
+    mapHintBlock: string
+    sectionUnderConstruction: string
+    sectionUnderConstructionBody: string
+    moreInfoPrefix: string
+    contactUsLink: string
+  }
+  residence: {
+    backToElsa: string
+    backToTiani: string
+    backToTara: string
+    backToJoni: string
+    blockTitle: (residence: string, block: string) => string
+    blockSubtitle: (block: string) => string
+    joniFloorTitle: (floor: number) => string
+    joniFloorSubtitle: (floor: number) => string
+    taraTitle: string
+    taraSubtitle: string
+    blockEComingSoon: string
+    elsaResidenceAlt: string
+    tianiResidenceAlt: string
+    taraResidenceAlt: string
+    joniResidenceAlt: string
+  }
+  group: {
+    block: (letter: string) => string
+    floor: (n: number) => string
+  }
+  cities: {
+    prishtina: string
+    prizren: string
+    malisheva: string
+  }
+  qr: {
+    website: string
+    phone: string
+    officePrishtina: string
+    officePrizren: string
+    openMaps: string
+    facebook: string
+    instagram: string
+    tiktok: string
+    tagline: string
+  }
+  error: {
+    title: string
+    message: string
+    refresh: string
+  }
+  whatsapp: {
+    prefilledMessage: string
+    ariaLabel: string
   }
 }
 

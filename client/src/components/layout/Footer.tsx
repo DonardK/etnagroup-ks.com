@@ -39,11 +39,11 @@ export const Footer = () => {
               onChange={(e) => setSelectedMap(e.target.value)}
               className="rounded-lg border border-[#657432]/30 bg-[#F8F2DD] px-4 py-2 text-sm text-[#657432] focus:border-[#657432] focus:outline-none focus:ring-2 focus:ring-[#657432]/20"
             >
-              <option value={mapUrls.elsa}>Elsa Residence & Zyrë Prishtinë</option>
-              <option value={mapUrls.prizren}>Zyrë Prizren</option>
-              <option value={mapUrls.tara}>Tara Residence</option>
-              <option value={mapUrls.tiani}>Tiani Residence</option>
-              <option value={mapUrls.joni}>Joni Residence</option>
+              <option value={mapUrls.elsa}>{t.footer.mapElsaOffice}</option>
+              <option value={mapUrls.prizren}>{t.footer.mapPrizrenOffice}</option>
+              <option value={mapUrls.tara}>{t.footer.mapTara}</option>
+              <option value={mapUrls.tiani}>{t.footer.mapTiani}</option>
+              <option value={mapUrls.joni}>{t.footer.mapJoni}</option>
             </select>
           </div>
           <div className="overflow-hidden rounded-lg">
@@ -65,7 +65,7 @@ export const Footer = () => {
           <div className="flex items-center gap-4">
             <img
               src={encodeURI(assetUrl('brand/Logo.png'))}
-              alt="Etna Group Logo"
+              alt={t.common.logoAlt}
               className="h-10 w-auto"
               loading="lazy"
               decoding="async"
@@ -149,7 +149,7 @@ export const Footer = () => {
 
         {/* Copyright */}
         <div className="mt-4 border-t border-[#657432]/20 pt-4 text-center text-xs text-[#657432]/60">
-          © {new Date().getFullYear()} Etna Group. {t.footer.copyright}
+          © {new Date().getFullYear()} {t.footer.companyName} {t.footer.copyright}
         </div>
       </div>
       <ReportIssueDialog open={reportOpen} onClose={() => setReportOpen(false)} />

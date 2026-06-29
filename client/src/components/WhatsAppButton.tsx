@@ -1,9 +1,13 @@
 import { motion } from 'framer-motion'
+import { useLanguage } from '../i18n/LanguageContext'
 
 export const WhatsAppButton = () => {
+  const { t } = useLanguage()
+  const message = encodeURIComponent(t.whatsapp.prefilledMessage)
+
   return (
     <motion.a
-      href="https://wa.me/38346383838?text=Përshëndetje,%20jam%20i/e%20interesuar%20per%20një%20banesë."
+      href={`https://wa.me/38346383838?text=${message}`}
       target="_blank"
       rel="noopener noreferrer"
       initial={{ scale: 0 }}
@@ -14,10 +18,10 @@ export const WhatsAppButton = () => {
         position: 'fixed',
         bottom: '24px',
         left: '24px',
-        zIndex: 9999
+        zIndex: 9999,
       }}
       className="flex h-14 w-14 items-center justify-center rounded-full bg-transparent shadow-lg transition-all hover:shadow-xl"
-      aria-label="Contact us on WhatsApp"
+      aria-label={t.whatsapp.ariaLabel}
     >
       <svg
         className="h-8 w-8"

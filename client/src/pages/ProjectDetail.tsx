@@ -1,8 +1,10 @@
 import { useParams, Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { getProjectById } from '../data/projects'
+import { getProjectById, getLocalizedProject } from '../data/projects'
 import { getResidenceHeroImage } from '../data/residenceVisuals'
 import { assetUrl } from '../utils/assetUrl'
+import { useLanguage } from '../i18n/LanguageContext'
+import { buildingCountLabel } from '../i18n/labels'
 import { ElsaResidenceBuildingMap } from '../components/ElsaResidenceBuildingMap'
 import { TianiResidenceBuildingMap } from '../components/TianiResidenceBuildingMap'
 import { TaraResidenceBuildingMap } from '../components/TaraResidenceBuildingMap'
@@ -10,27 +12,46 @@ import { JoniResidenceBuildingMap } from '../components/JoniResidenceBuildingMap
 
 export const ProjectDetail = () => {
   const { id } = useParams<{ id: string }>()
+  const { locale, t } = useLanguage()
   const project = id ? getProjectById(id) : null
 
   if (!project) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-[#F8F2DD] text-[#657432]">
         <div className="text-center">
-          <h2 className="mb-4 text-3xl font-bold">Projekti nuk u gjet</h2>
+          <h2 className="mb-4 text-3xl font-bold">{t.project.notFound}</h2>
           <Link to="/" className="text-[#657432] hover:underline">
-            Kthehu në Ballinë
+            {t.project.backToHome}
           </Link>
         </div>
       </div>
     )
   }
 
-  // Hero image for the top section (paths with spaces encoded so they load)
+  const p = getLocalizedProject(project, locale)
   const heroImage = project.heroImage || getResidenceHeroImage(project.id) || ''
+
+  const statusLabel =
+    project.status === 'planning'
+      ? t.project.statusInPlanning
+      : t.status[project.status]
+
+  const mapTitle =
+    project.id === 'joni'
+      ? t.project.mapSelectFloor
+      : project.id === 'tara'
+        ? t.project.mapSelectApartment
+        : t.project.mapSelectBlock
+
+  const mapHint =
+    project.id === 'joni'
+      ? t.project.mapHintFloor
+      : project.id === 'tara'
+        ? t.project.mapHintApartment
+        : t.project.mapHintBlock
 
   return (
     <div className="min-h-screen bg-[#F8F2DD]">
-      {/* Hero Section - background image */}
       <section className="relative h-[60vh] overflow-hidden">
         {heroImage && (
           <img
@@ -43,45 +64,35 @@ export const ProjectDetail = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-[#F8F2DD]/80 to-[#F8F2DD]" />
         <div className="relative z-10 flex h-full items-end">
           <div className="mx-auto w-full max-w-7xl px-4 pb-12">
-            <h1 className="mb-4 text-5xl font-bold text-[#657432] md:text-6xl">
-              {project.name}
-            </h1>
-            <p className="max-w-3xl text-xl text-[#657432]/90">{project.description}</p>
+            <h1 className="mb-4 text-5xl font-bold text-[#657432] md:text-6xl">{project.name}</h1>
+            <p className="max-w-3xl text-xl text-[#657432]/90">{p.description}</p>
           </div>
         </div>
       </section>
 
-      {/* Project Info */}
       <section className="border-b border-[#657432]/20 bg-[#F8F2DD] py-12">
         <div className="mx-auto max-w-7xl px-4">
           <div className="grid gap-8 md:grid-cols-3">
             <div className="rounded-2xl bg-[#657432]/10 p-6 backdrop-blur-sm">
-              <div className="mb-2 text-sm text-[#657432]/60">Lokacioni</div>
+              <div className="mb-2 text-sm text-[#657432]/60">{t.project.location}</div>
               <div className="text-xl font-semibold text-[#657432]">{project.location}</div>
             </div>
             <div className="rounded-2xl bg-[#657432]/10 p-6 backdrop-blur-sm">
-              <div className="mb-2 text-sm text-[#657432]/60">Statusi</div>
-              <div className="text-xl font-semibold text-[#657432]">
-                {project.status === 'completed'
-                  ? 'I Përfunduar'
-                  : project.status === 'under-construction'
-                  ? 'Në Ndërtim'
-                  : 'Në Planifikim'}
-              </div>
+              <div className="mb-2 text-sm text-[#657432]/60">{t.project.status}</div>
+              <div className="text-xl font-semibold text-[#657432]">{statusLabel}</div>
             </div>
             <div className="rounded-2xl bg-[#657432]/10 p-6 backdrop-blur-sm">
-              <div className="mb-2 text-sm text-[#657432]/60">Ndërtesat</div>
+              <div className="mb-2 text-sm text-[#657432]/60">{t.project.buildings}</div>
               <div className="text-xl font-semibold text-[#657432]">
-                {project.buildingCount} {project.buildingCount === 1 ? 'Ndërtesë' : 'Ndërtesa'}
+                {buildingCountLabel(project.buildingCount, t)}
               </div>
             </div>
           </div>
 
-          {/* Features */}
           <div className="mt-8">
-            <h3 className="mb-4 text-2xl font-bold text-[#657432]">Karakteristikat</h3>
+            <h3 className="mb-4 text-2xl font-bold text-[#657432]">{t.project.features}</h3>
             <div className="grid gap-4 md:grid-cols-3">
-              {project.features.map((feature, index) => (
+              {p.features.map((feature, index) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, x: -20 }}
@@ -99,7 +110,6 @@ export const ProjectDetail = () => {
         </div>
       </section>
 
-      {/* Interactive Building Map */}
       {['elsa', 'tiani', 'tara', 'joni'].includes(project.id) && (
         <section className="bg-[#F8F2DD] py-20">
           <div className="mx-auto max-w-7xl px-4">
@@ -110,19 +120,9 @@ export const ProjectDetail = () => {
               transition={{ duration: 0.5 }}
             >
               <h2 className="mb-2 text-center text-3xl font-bold text-[#657432] md:text-4xl">
-                {project.id === 'joni'
-                  ? 'Zgjedhni Katin Tuaj'
-                  : project.id === 'tara'
-                    ? 'Zgjidhni Banesën'
-                    : 'Zgjidhni Bllokun'}
+                {mapTitle}
               </h2>
-              <p className="mb-10 text-center text-[#657432]/70">
-                {project.id === 'joni'
-                  ? 'Klikoni mbi katin për të parë tipet e banesave'
-                  : project.id === 'tara'
-                    ? 'Klikoni për të parë tipet e banesave'
-                    : 'Klikoni mbi bllokun për të parë tipet e banesave'}
-              </p>
+              <p className="mb-10 text-center text-[#657432]/70">{mapHint}</p>
               {project.id === 'elsa' && <ElsaResidenceBuildingMap />}
               {project.id === 'tiani' && <TianiResidenceBuildingMap />}
               {project.id === 'tara' && <TaraResidenceBuildingMap />}
@@ -132,7 +132,6 @@ export const ProjectDetail = () => {
         </section>
       )}
 
-      {/* Apartment Selection Section - Under Construction */}
       <section className="hidden bg-gradient-to-b from-[#F8F2DD] to-[#F8F2DD] py-20">
         <div className="mx-auto max-w-7xl px-4">
           <motion.div
@@ -158,18 +157,18 @@ export const ProjectDetail = () => {
               </div>
             </div>
             <h2 className="mb-4 text-4xl font-bold text-[#657432] md:text-5xl">
-              Në Ndërtim
+              {t.project.sectionUnderConstruction}
             </h2>
             <p className="mx-auto max-w-2xl text-lg text-[#657432]/70 mb-8">
-              Seksioni për zgjedhjen e banesave është në zhvillim dhe do të jetë i disponueshëm së shpejti.
+              {t.project.sectionUnderConstructionBody}
             </p>
             <p className="text-[#657432]/80">
-              Për informacion më të detajuar, ju lutem{' '}
+              {t.project.moreInfoPrefix}{' '}
               <Link
                 to="/kontakt"
                 className="font-semibold text-[#657432] underline hover:text-[#657432]/80"
               >
-                na kontaktoni
+                {t.project.contactUsLink}
               </Link>
               .
             </p>

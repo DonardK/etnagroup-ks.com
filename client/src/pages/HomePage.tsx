@@ -40,7 +40,7 @@ export const HomePage = () => {
             playsInline
             preload="auto"
             className="absolute left-1/2 top-1/2 h-full w-full -translate-x-1/2 -translate-y-1/2 object-cover"
-            aria-label="Etna Group Hero Video"
+            aria-label={t.common.heroVideoAria}
             onEnded={(e) => {
               const v = e.currentTarget
               v.currentTime = 0

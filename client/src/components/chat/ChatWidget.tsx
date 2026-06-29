@@ -16,6 +16,8 @@ import { apartmentSpecs } from '../../data/apartmentSpecs'
 import { getChatSessionId } from '../../utils/chat'
 import { useTouchDevice } from '../../hooks/useTouchDevice'
 import { useLanguage } from '../../i18n/LanguageContext'
+import { localizeCity, localizeGroup } from '../../i18n/labels'
+import type { TranslationTree } from '../../i18n/translations'
 
 const APARTMENT_CONTEXT_CAP = 3500
 
@@ -126,7 +128,13 @@ const renderRichText = (text: string, links?: Record<string, string>): ReactNode
   return out
 }
 
-const ApartmentButtons = ({ groups }: { groups: ApartmentMatchGroup[] }) => (
+const ApartmentButtons = ({
+  groups,
+  t,
+}: {
+  groups: ApartmentMatchGroup[]
+  t: TranslationTree
+}) => (
   <div className="space-y-2 pl-1">
     {groups.map((g) => (
       <div
@@ -134,7 +142,7 @@ const ApartmentButtons = ({ groups }: { groups: ApartmentMatchGroup[] }) => (
         className="rounded-xl border border-[#657432]/15 bg-white/70 p-3"
       >
         <div className="mb-2 text-xs font-semibold text-[#657432]">
-          {g.project} · {g.city}
+          {g.project} · {localizeCity(g.city, t)}
         </div>
         <div className="flex flex-wrap gap-2">
           {g.apartments.map((apt) => (
@@ -159,7 +167,7 @@ const ApartmentButtons = ({ groups }: { groups: ApartmentMatchGroup[] }) => (
                 />
               </svg>
               {formatArea(apt.area)}
-              {apt.group ? ` · ${apt.group}` : ''}
+              {apt.group ? ` · ${localizeGroup(apt.group, t)}` : ''}
             </a>
           ))}
         </div>
@@ -252,8 +260,7 @@ export const ChatWidget = ({ isOpen, onOpenChange }: ChatWidgetProps) => {
         throw new Error(data?.error || 'Request failed')
       }
 
-      const reply =
-        data.reply?.trim() || 'Më vjen keq, ndodhi një gabim. Ju lutem provoni përsëri.'
+      const reply = data.reply?.trim() || t.chat.errorGeneric
 
       setMessages((prev) => [
         ...prev,
@@ -264,8 +271,7 @@ export const ChatWidget = ({ isOpen, onOpenChange }: ChatWidgetProps) => {
         ...prev,
         {
           role: 'assistant',
-          text:
-            'Më vjen keq, shërbimi nuk është i disponueshëm për momentin. Ju lutem provoni më vonë ose na kontaktoni në info@etnagroup-ks.com. / Sorry, the assistant is unavailable right now — please try again later or contact info@etnagroup-ks.com.',
+          text: t.chat.errorUnavailable,
           ts: Date.now(),
         },
       ])
@@ -292,7 +298,7 @@ export const ChatWidget = ({ isOpen, onOpenChange }: ChatWidgetProps) => {
             transition={{ duration: 0.2, ease: 'easeOut' }}
             className="mb-4 flex h-[70vh] max-h-[560px] w-[min(380px,calc(100vw-3rem))] max-w-[380px] flex-col overflow-hidden rounded-2xl border border-[#657432]/20 bg-[#F8F2DD] shadow-2xl"
             role="dialog"
-            aria-label="Etna Group chat assistant"
+            aria-label={t.chat.chatAria}
           >
             <div className="flex items-center justify-between bg-[#657432] px-5 py-4">
               <div className="flex items-center gap-3">
@@ -300,14 +306,14 @@ export const ChatWidget = ({ isOpen, onOpenChange }: ChatWidgetProps) => {
                   E
                 </div>
                 <div>
-                  <div className="font-semibold leading-tight text-[#F8F2DD]">Etna</div>
+                  <div className="font-semibold leading-tight text-[#F8F2DD]">{t.chat.assistantName}</div>
                   <div className="text-xs text-[#F8F2DD]/70">{t.chat.assistant}</div>
                 </div>
               </div>
               <button
                 onClick={() => onOpenChange(false)}
                 className="rounded-full p-1 text-[#F8F2DD]/80 transition-colors hover:bg-[#F8F2DD]/15 hover:text-[#F8F2DD]"
-                aria-label="Close chat"
+                aria-label={t.chat.closeChat}
               >
                 <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path
@@ -346,7 +352,7 @@ export const ChatWidget = ({ isOpen, onOpenChange }: ChatWidgetProps) => {
                   {m.matches &&
                     m.matches.length > 0 &&
                     !(m.links && /\]\(apt:/.test(m.text)) && (
-                      <ApartmentButtons groups={m.matches} />
+                      <ApartmentButtons groups={m.matches} t={t} />
                     )}
                 </div>
               ))}
@@ -378,13 +384,13 @@ export const ChatWidget = ({ isOpen, onOpenChange }: ChatWidgetProps) => {
                   onKeyDown={handleKeyDown}
                   placeholder={t.chat.placeholder}
                   className="flex-1 rounded-full border border-[#657432]/25 bg-white px-4 py-2.5 text-base text-[#3a3a2e] outline-none transition-colors placeholder:text-[#657432]/40 focus:border-[#657432]"
-                  aria-label="Type your message"
+                  aria-label={t.chat.typeMessage}
                 />
                 <button
                   onClick={() => void sendMessage()}
                   disabled={loading || !input.trim()}
                   className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-[#657432] text-[#F8F2DD] transition-all hover:scale-105 disabled:cursor-not-allowed disabled:opacity-40"
-                  aria-label="Send message"
+                  aria-label={t.chat.sendMessage}
                 >
                   <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path
@@ -410,7 +416,7 @@ export const ChatWidget = ({ isOpen, onOpenChange }: ChatWidgetProps) => {
         whileTap={{ scale: 0.95 }}
         onClick={() => onOpenChange(!isOpen)}
         className="relative flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-full bg-[#657432] text-[#F8F2DD] shadow-lg transition-shadow hover:shadow-xl"
-        aria-label={isOpen ? 'Close chat assistant' : 'Open AI chat assistant'}
+        aria-label={isOpen ? t.chat.closeChatAssistant : t.chat.openChatAssistant}
       >
         {isOpen ? (
           <svg
@@ -444,7 +450,7 @@ export const ChatWidget = ({ isOpen, onOpenChange }: ChatWidgetProps) => {
 
         {!isOpen && (
           <span className="pointer-events-none absolute -right-2 -top-1.5 select-none rounded-full bg-red-600 px-1.5 py-0.5 text-[9px] font-extrabold uppercase leading-none tracking-wide text-white shadow-md ring-2 ring-[#F8F2DD]">
-            New
+            {t.common.newBadge}
           </span>
         )}
       </motion.button>
