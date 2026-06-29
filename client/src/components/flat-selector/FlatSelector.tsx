@@ -7,6 +7,7 @@ import {
   type SizeRangeId,
 } from '../../data/apartmentCatalog'
 import { useLanguage } from '../../i18n/LanguageContext'
+import type { Locale } from '../../i18n/translations'
 import { openChat } from '../../utils/chat'
 
 const PDF_BASE = import.meta.env.BASE_URL
@@ -21,10 +22,10 @@ const SIZE_OPTIONS: { id: SizeRangeId; labelSq: string; labelEn: string }[] = [
   { id: 'over120', labelSq: '> 120 m²', labelEn: '> 120 m²' },
 ]
 
-const CITY_LABELS: Record<string, { sq: string; en: string }> = {
-  Prishtinë: { sq: 'Prishtinë', en: 'Prishtina' },
-  Prizren: { sq: 'Prizren', en: 'Prizren' },
-  Malishevë: { sq: 'Malishevë', en: 'Malisheva' },
+const CITY_LABELS: Record<string, Record<Locale, string>> = {
+  Prishtinë: { sq: 'Prishtinë', en: 'Prishtina', de: 'Prishtina' },
+  Prizren: { sq: 'Prizren', en: 'Prizren', de: 'Prizren' },
+  Malishevë: { sq: 'Malishevë', en: 'Malisheva', de: 'Malisheva' },
 }
 
 const toggle = <T,>(list: T[], item: T): T[] =>
@@ -88,7 +89,7 @@ export const FlatSelector = () => {
                   onClick={() => setCities((c) => toggle(c, city))}
                   className={chipClass(cities.includes(city))}
                 >
-                  {locale === 'en' ? CITY_LABELS[city].en : CITY_LABELS[city].sq}
+                  {CITY_LABELS[city][locale]}
                 </button>
               ))}
             </div>
@@ -126,7 +127,7 @@ export const FlatSelector = () => {
                   }
                   className={chipClass(sizeRange === opt.id)}
                 >
-                  {locale === 'en' ? opt.labelEn : opt.labelSq}
+                  {opt.labelEn}
                 </button>
               ))}
             </div>
@@ -154,9 +155,7 @@ export const FlatSelector = () => {
 
         {!hasFilters ? (
           <p className="rounded-2xl border border-dashed border-[#657432]/25 bg-white/50 px-6 py-10 text-center text-[#657432]/60">
-            {locale === 'sq'
-              ? 'Zgjidhni të paktën një filtër për të parë banesat e disponueshme.'
-              : 'Select at least one filter to see available apartments.'}
+            {t.home.filterSelectHint}
           </p>
         ) : results.length === 0 ? (
           <p className="rounded-2xl border border-[#657432]/20 bg-white px-6 py-10 text-center text-[#657432]/70">

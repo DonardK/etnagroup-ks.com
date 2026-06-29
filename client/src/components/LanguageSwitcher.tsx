@@ -1,4 +1,4 @@
-import { LOCALES } from '../i18n/translations'
+import { LOCALES, LOCALE_ARIA_LABELS } from '../i18n/translations'
 import { useLanguage } from '../i18n/LanguageContext'
 
 interface LanguageSwitcherProps {
@@ -28,7 +28,7 @@ export const LanguageSwitcher = ({ className = '', compact = false }: LanguageSw
                 : 'text-[#657432]/70 hover:text-[#657432]'
             } ${compact ? 'px-2 py-0.5 text-[10px]' : ''}`}
             aria-pressed={active}
-            aria-label={code === 'sq' ? 'Shqip' : 'English'}
+            aria-label={LOCALE_ARIA_LABELS[code]}
           >
             {label}
           </button>

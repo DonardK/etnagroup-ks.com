@@ -2,8 +2,21 @@ import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import { getProjectById } from '../../data/projects'
 import { useLanguage } from '../../i18n/LanguageContext'
+import type { Locale } from '../../i18n/translations'
 
 const SITE_URL = 'https://etnagroup-ks.com'
+
+const OG_LOCALE: Record<Locale, string> = {
+  sq: 'sq_AL',
+  en: 'en_US',
+  de: 'de_DE',
+}
+
+const ORG_DESCRIPTION: Record<Locale, string> = {
+  sq: 'Komplekse rezidenciale premium në Kosovë — Elsa, Tiani, Tara dhe Joni Residence.',
+  en: 'Premium residential complexes in Kosovo — Elsa, Tiani, Tara and Joni Residence.',
+  de: 'Erstklassige Wohnanlagen im Kosovo — Elsa, Tiani, Tara und Joni Residence.',
+}
 
 const upsertMeta = (attr: 'name' | 'property', key: string, content: string) => {
   let el = document.querySelector(`meta[${attr}="${key}"]`) as HTMLMetaElement | null
@@ -62,7 +75,7 @@ export const SeoHead = () => {
     upsertMeta('property', 'og:title', title)
     upsertMeta('property', 'og:description', description)
     upsertMeta('property', 'og:url', url)
-    upsertMeta('property', 'og:locale', locale === 'sq' ? 'sq_AL' : 'en_US')
+    upsertMeta('property', 'og:locale', OG_LOCALE[locale])
     upsertMeta(
       'property',
       'og:image',
@@ -100,10 +113,7 @@ export const HomeStructuredData = () => {
           name: 'Etna Group',
           url: SITE_URL,
           logo: 'https://media.etnagroup-ks.com/brand/Logo.png',
-          description:
-            locale === 'sq'
-              ? 'Komplekse rezidenciale premium në Kosovë — Elsa, Tiani, Tara dhe Joni Residence.'
-              : 'Premium residential complexes in Kosovo — Elsa, Tiani, Tara and Joni Residence.',
+          description: ORG_DESCRIPTION[locale],
           telephone: '+38346383838',
           email: 'info@etnagroup-ks.com',
           address: {
@@ -123,7 +133,7 @@ export const HomeStructuredData = () => {
           url: SITE_URL,
           name: 'Etna Group',
           publisher: { '@id': `${SITE_URL}/#organization` },
-          inLanguage: ['sq', 'en'],
+          inLanguage: ['sq', 'en', 'de'],
           potentialAction: {
             '@type': 'SearchAction',
             target: `${SITE_URL}/#gjej-banesen`,

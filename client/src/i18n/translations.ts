@@ -1,9 +1,16 @@
-export type Locale = 'sq' | 'en'
+export type Locale = 'sq' | 'en' | 'de'
 
 export const LOCALES: { code: Locale; label: string }[] = [
   { code: 'sq', label: 'SQ' },
   { code: 'en', label: 'EN' },
+  { code: 'de', label: 'DE' },
 ]
+
+export const LOCALE_ARIA_LABELS: Record<Locale, string> = {
+  sq: 'Shqip',
+  en: 'English',
+  de: 'Deutsch',
+}
 
 const sq = {
   nav: {
@@ -32,6 +39,7 @@ const sq = {
     filterAll: 'Të gjitha',
     filterResults: 'Rezultatet',
     filterNoResults: 'Nuk u gjet asnjë banesë me këto filtra. Provoni të zgjeroni kriteret.',
+    filterSelectHint: 'Zgjidhni të paktën një filtër për të parë banesat e disponueshme.',
     viewPlan: 'Shiko Planimetrinë',
     bedroom: (n: number) => (n === 1 ? '1 dhomë gjumi' : `${n} dhoma gjumi`),
     orUseAi: 'Ose bisedoni me asistentin tonë AI për rekomandime të personalizuara.',
@@ -155,6 +163,7 @@ const en = {
     filterAll: 'All',
     filterResults: 'Results',
     filterNoResults: 'No apartments match these filters. Try broadening your criteria.',
+    filterSelectHint: 'Select at least one filter to see available apartments.',
     viewPlan: 'View Floor Plan',
     bedroom: (n: number) => (n === 1 ? '1 bedroom' : `${n} bedrooms`),
     orUseAi: 'Or chat with our AI assistant for personalized recommendations.',
@@ -250,6 +259,135 @@ const en = {
   },
 }
 
+const de = {
+  nav: {
+    home: 'Startseite',
+    projects: 'Projekte',
+    about: 'Über uns',
+    contact: 'Kontakt',
+    chat: 'Mit mir chatten',
+    chatAria: 'Mit dem KI-Assistenten chatten',
+  },
+  home: {
+    tagline: 'Wir gestalten die Zukunft',
+    projectsTitle: 'Unsere Projekte',
+    projectsSubtitle: 'Ein Portfolio erstklassiger Wohnanlagen',
+    location: 'Standort',
+    viewDetails: 'Details ansehen',
+    statusCompleted: 'Fertiggestellt',
+    statusConstruction: 'Im Bau',
+    statusSoon: 'Demnächst',
+    flatSelectorTitle: 'Finden Sie Ihre Wohnung',
+    flatSelectorSubtitle:
+      'Manuell nach Stadt, Zimmern und Größe filtern — oder nutzen Sie unseren KI-Assistenten.',
+    filterCity: 'Stadt',
+    filterBedrooms: 'Schlafzimmer',
+    filterSize: 'Fläche (m²)',
+    filterAll: 'Alle',
+    filterResults: 'Ergebnisse',
+    filterNoResults:
+      'Keine Wohnungen entsprechen diesen Filtern. Versuchen Sie, Ihre Kriterien zu erweitern.',
+    filterSelectHint:
+      'Wählen Sie mindestens einen Filter, um verfügbare Wohnungen anzuzeigen.',
+    viewPlan: 'Grundriss ansehen',
+    bedroom: (n: number) => (n === 1 ? '1 Schlafzimmer' : `${n} Schlafzimmer`),
+    orUseAi:
+      'Oder chatten Sie mit unserem KI-Assistenten für personalisierte Empfehlungen.',
+  },
+  chat: {
+    promo:
+      'Finden Sie Ihre Traumwohnung in 30 Sekunden mit unserem fortschrittlichen KI-Assistenten',
+    promoAria: 'KI-Assistenten öffnen, um die ideale Wohnung zu finden',
+    assistant: 'Digitaler Assistent',
+    greeting: `Hallo! Ich bin Etna, Ihre digitale Assistentin von Etna Group. Wie kann ich Ihnen helfen?`,
+    placeholder: 'Nachricht eingeben…',
+    disclaimer:
+      'Etna kann Fehler machen. Für Preise & Reservierungen kontaktieren Sie uns bitte.',
+    viewPlan: 'Grundriss ansehen',
+  },
+  footer: {
+    locations: 'Unsere Standorte',
+    tagline: 'Premium-Wohnräume',
+    home: 'Startseite',
+    about: 'Über uns',
+    contact: 'Kontakt',
+    copyright: 'Alle Rechte vorbehalten.',
+  },
+  about: {
+    title: 'Über uns',
+    hero:
+      'Etna Group ist ein Unternehmen, das sich auf die Entwicklung erstklassiger Wohnanlagen im Kosovo spezialisiert hat',
+    projects: 'Projekte',
+    units: 'Einheiten',
+    residents: 'Bewohner',
+    learnMore: 'Mehr erfahren',
+  },
+  contact: {
+    title: 'Kontakt',
+    subtitle: 'Wir helfen Ihnen, Ihr Traumhaus zu finden',
+    formIntro:
+      'Wir sind für Sie da. Füllen Sie das Formular unten aus und wir melden uns so schnell wie möglich bei Ihnen.',
+    name: 'Name',
+    nameFull: 'Vollständiger Name *',
+    namePlaceholder: 'Ihren Namen eingeben',
+    email: 'E-Mail',
+    phone: 'Telefon',
+    phoneFull: 'Telefonnummer *',
+    project: 'Projekt',
+    projectInterested: 'Interessiertes Projekt',
+    message: 'Nachricht',
+    messageLabel: 'Nachricht *',
+    send: 'Nachricht senden',
+    sending: 'Wird gesendet…',
+    success: 'Nachricht erfolgreich gesendet!',
+    successDetail: '✓ Nachricht erfolgreich gesendet! Wir melden uns in Kürze bei Ihnen.',
+    error: 'Senden fehlgeschlagen. Bitte versuchen Sie es erneut.',
+    errorDetail:
+      '✗ Senden fehlgeschlagen. Bitte versuchen Sie es erneut oder kontaktieren Sie uns direkt unter info@etnagroup-ks.com',
+    messagePlaceholder: 'Schreiben Sie hier Ihre Nachricht...',
+    selectProject: 'Projekt auswählen',
+    general: 'Allgemeine Anfrage',
+  },
+  report: {
+    title: 'Problem melden',
+    subtitle:
+      'Teilen Sie uns mit, was nicht funktioniert oder was wir auf der Website verbessern könnten.',
+    descriptionLabel: 'Problembeschreibung *',
+    descriptionPlaceholder: 'Z. B. Grundriss-Link funktioniert nicht, falscher Text usw.',
+    emailLabel: 'E-Mail (optional)',
+    emailPlaceholder: 'email@beispiel.de',
+    submit: 'Bericht senden',
+    sending: 'Wird gesendet…',
+    success: 'Vielen Dank! Ihr Bericht wurde gesendet.',
+    error: 'Senden fehlgeschlagen. Bitte versuchen Sie es erneut.',
+    close: 'Schließen',
+    footerLink: 'Problem melden',
+  },
+  status: {
+    completed: 'Fertiggestellt',
+    'under-construction': 'Im Bau',
+    planning: 'Demnächst',
+  },
+  seo: {
+    siteName: 'Etna Group',
+    defaultTitle: 'Etna Group — Premium-Wohnungen im Kosovo',
+    defaultDescription:
+      'Etna Group — erstklassige Wohnanlagen in Prishtina, Prizren und Malisheva. Elsa, Tiani, Tara und Joni Residence. Finden Sie Ihre ideale Wohnung mit unserem KI-Assistenten.',
+    homeTitle: 'Etna Group — Premium-Wohnungen & Residenzen im Kosovo',
+    homeDescription:
+      'Entdecken Sie Elsa, Tiani, Tara und Joni Residence — Premium-Wohnungen von Etna Group im Kosovo. Filtern Sie nach Stadt und Quadratmetern oder nutzen Sie unseren KI-Assistenten.',
+    aboutTitle: 'Über uns — Etna Group Kosovo',
+    aboutDescription:
+      'Erfahren Sie mehr über Etna Group, das kosovarische Bauunternehmen, das erstklassige Wohnanlagen in Prishtina, Prizren und Malisheva entwickelt.',
+    contactTitle: 'Kontakt — Etna Group',
+    contactDescription:
+      'Kontaktieren Sie Etna Group zu Wohnungen in Elsa, Tiani, Tara und Joni Residence. Telefon, E-Mail und Kontaktformular.',
+    projectTitle: (name: string) => `${name} — Etna Group`,
+    projectDescription: (name: string, city: string) =>
+      `${name} in ${city} — eine erstklassige Wohnanlage von Etna Group. Grundrisse ansehen und Besichtigung vereinbaren.`,
+  },
+}
+
 export type TranslationTree = {
   nav: {
     home: string
@@ -276,6 +414,7 @@ export type TranslationTree = {
     filterAll: string
     filterResults: string
     filterNoResults: string
+    filterSelectHint: string
     viewPlan: string
     bedroom: (n: number) => string
     orUseAi: string
@@ -363,4 +502,4 @@ export type TranslationTree = {
   }
 }
 
-export const translations: Record<'sq' | 'en', TranslationTree> = { sq, en }
+export const translations: Record<Locale, TranslationTree> = { sq, en, de }

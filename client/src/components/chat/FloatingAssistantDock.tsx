@@ -8,6 +8,7 @@ import { ChatWidget } from './ChatWidget'
 /** Sticky bottom-right dock: promo banner + AI chat (scrolls with viewport). */
 export const FloatingAssistantDock = () => {
   const [isOpen, setIsOpen] = useState(false)
+  const [showBanner, setShowBanner] = useState(true)
 
   useEffect(() => {
     const open = () => setIsOpen(true)
@@ -15,10 +16,14 @@ export const FloatingAssistantDock = () => {
     return () => window.removeEventListener(OPEN_CHAT_EVENT, open)
   }, [])
 
+  useEffect(() => {
+    if (isOpen) setShowBanner(false)
+  }, [isOpen])
+
   return (
     <div style={FLOATING_DOCK_STYLE} className="flex flex-row items-end justify-end">
       <AnimatePresence mode="wait">
-        {!isOpen && (
+        {showBanner && (
           <motion.div
             key="banner"
             initial={{ opacity: 0, x: 12 }}

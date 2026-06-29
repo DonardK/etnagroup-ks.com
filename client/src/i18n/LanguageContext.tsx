@@ -11,6 +11,12 @@ import { translations, type Locale, type TranslationTree } from './translations'
 
 const STORAGE_KEY = 'etna-locale'
 
+const HTML_LANG: Record<Locale, string> = {
+  sq: 'sq',
+  en: 'en',
+  de: 'de',
+}
+
 interface LanguageContextValue {
   locale: Locale
   setLocale: (locale: Locale) => void
@@ -22,7 +28,7 @@ const LanguageContext = createContext<LanguageContextValue | null>(null)
 const readStoredLocale = (): Locale => {
   try {
     const stored = localStorage.getItem(STORAGE_KEY)
-    if (stored === 'en' || stored === 'sq') return stored
+    if (stored === 'en' || stored === 'sq' || stored === 'de') return stored
   } catch {
     /* private browsing */
   }
@@ -42,7 +48,7 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
   }, [])
 
   useEffect(() => {
-    document.documentElement.lang = locale === 'sq' ? 'sq' : 'en'
+    document.documentElement.lang = HTML_LANG[locale]
   }, [locale])
 
   const value = useMemo(

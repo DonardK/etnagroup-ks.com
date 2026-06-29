@@ -162,6 +162,6 @@ export const getProjectBySlug = (slug: string): Project | undefined => {
 }
 
 export const getLocalizedProject = (project: Project, locale: Locale): Project => {
-  if (locale !== 'en' || !project.descriptionEn) return project
+  if (locale === 'sq' || !project.descriptionEn) return project
   return { ...project, description: project.descriptionEn }
 }
