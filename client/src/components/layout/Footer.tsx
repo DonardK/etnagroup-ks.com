@@ -2,8 +2,10 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { assetUrl } from '../../utils/assetUrl'
+import { useLanguage } from '../../i18n/LanguageContext'
 
 export const Footer = () => {
+  const { t } = useLanguage()
   // Map URLs with markers - using coordinates with q parameter to show pins
   // Format: https://www.google.com/maps/embed?pb=...&q=lat,lng
   // Coordinates from user:
@@ -29,7 +31,7 @@ export const Footer = () => {
         {/* Map Section - Moved to top */}
         <div className="mb-8 border-b border-[#657432]/20 pb-6">
           <div className="mb-4 text-center">
-            <h3 className="mb-2 text-lg font-bold text-[#657432]">Lokacionet Tona</h3>
+            <h3 className="mb-2 text-lg font-bold text-[#657432]">{t.footer.locations}</h3>
             <select
               value={selectedMap}
               onChange={(e) => setSelectedMap(e.target.value)}
@@ -67,9 +69,7 @@ export const Footer = () => {
               decoding="async"
             />
             <div>
-              <div className="text-xs text-[#657432]/60">
-                Hapësira Rezidenciale Premium
-              </div>
+              <div className="text-xs text-[#657432]/60">{t.footer.tagline}</div>
             </div>
           </div>
 
@@ -79,19 +79,19 @@ export const Footer = () => {
               to="/"
               className="text-[#657432]/70 transition-colors hover:text-[#657432]"
             >
-              Ballina
+              {t.footer.home}
             </Link>
             <Link
               to="/per-ne"
               className="text-[#657432]/70 transition-colors hover:text-[#657432]"
             >
-              Për Ne
+              {t.footer.about}
             </Link>
             <Link
               to="/kontakt"
               className="text-[#657432]/70 transition-colors hover:text-[#657432]"
             >
-              Kontakt
+              {t.footer.contact}
             </Link>
           </div>
 
@@ -140,7 +140,7 @@ export const Footer = () => {
 
         {/* Copyright */}
         <div className="mt-4 border-t border-[#657432]/20 pt-4 text-center text-xs text-[#657432]/60">
-          © {new Date().getFullYear()} Etna Group. Të gjitha të drejtat e rezervuara.
+          © {new Date().getFullYear()} Etna Group. {t.footer.copyright}
         </div>
       </div>
     </footer>

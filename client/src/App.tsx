@@ -3,7 +3,8 @@ import { useEffect } from 'react'
 import { Navbar } from './components/layout/Navbar'
 import { Footer } from './components/layout/Footer'
 import { WhatsAppButton } from './components/WhatsAppButton'
-import { ChatWidget } from './components/chat/ChatWidget'
+import { FloatingAssistantDock } from './components/chat/FloatingAssistantDock'
+import { SeoHead } from './components/seo/SeoHead'
 import { HomePage } from './pages/HomePage'
 import { ProjectDetail } from './pages/ProjectDetail'
 import { AboutPage } from './pages/AboutPage'
@@ -36,6 +37,7 @@ function App() {
   return (
     <div className="min-h-screen bg-[#F8F2DD] flex flex-col overflow-x-hidden">
       <ScrollToTop />
+      <SeoHead />
       {!hideSiteLayout && <Navbar />}
       <div className={hideSiteLayout ? 'flex-grow' : 'pt-20 flex-grow'}>
         <Routes>
@@ -66,7 +68,7 @@ function App() {
       </div>
       {!hideSiteLayout && <Footer />}
       {!hideSiteLayout && <WhatsAppButton />}
-      {!hideSiteLayout && <ChatWidget />}
+      {!hideSiteLayout && <FloatingAssistantDock />}
     </div>
   )
 }

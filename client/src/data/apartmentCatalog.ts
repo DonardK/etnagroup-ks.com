@@ -4,6 +4,7 @@
 // client/public/Residences Apartments/. Keep in sync when plans change.
 
 import type { Apartment } from '../components/ApartmentList'
+import { apartmentSpecs } from './apartmentSpecs'
 
 export interface CatalogApartment {
   project: string
@@ -308,4 +309,53 @@ export function findApartmentsByArea(
   const bestDistance = (g: ApartmentMatchGroup) => Math.min(...g.apartments.map(distance))
   groups.sort((a, b) => bestDistance(a) - bestDistance(b))
   return groups
+}
+
+// --- Visual flat selector filters ---
+
+export const FILTER_CITIES = ['Prishtinë', 'Prizren', 'Malishevë'] as const
+
+export type SizeRangeId = 'under60' | '60-80' | '80-100' | '100-120' | 'over120'
+
+export const SIZE_RANGES: Record<SizeRangeId, { min: number; max: number }> = {
+  under60: { min: 0, max: 59.99 },
+  '60-80': { min: 60, max: 80 },
+  '80-100': { min: 80, max: 100 },
+  '100-120': { min: 100, max: 120 },
+  over120: { min: 120.01, max: 9999 },
+}
+
+/** Bedroom count from spec type (e.g. "2+1" → 2) or room names. */
+export function getBedroomCount(pdfPath: string): number | null {
+  const spec = apartmentSpecs[pdfPath]
+  if (spec?.type) {
+    const m = spec.type.match(/^(\d+)\+/)
+    if (m) return parseInt(m[1], 10)
+  }
+  if (spec?.rooms?.length) {
+    const n = spec.rooms.filter((r) => /dhomë gjumi/i.test(r.name)).length
+    if (n > 0) return n
+  }
+  return null
+}
+
+export interface FlatFilter {
+  cities: string[]
+  bedrooms: number[]
+  sizeRange: SizeRangeId | null
+}
+
+export function filterApartments(filter: FlatFilter): CatalogApartment[] {
+  return apartmentCatalog.filter((apt) => {
+    if (filter.cities.length > 0 && !filter.cities.includes(apt.city)) return false
+    if (filter.bedrooms.length > 0) {
+      const beds = getBedroomCount(apt.pdfPath)
+      if (beds === null || !filter.bedrooms.includes(beds)) return false
+    }
+    if (filter.sizeRange) {
+      const { min, max } = SIZE_RANGES[filter.sizeRange]
+      if (apt.area < min || apt.area > max) return false
+    }
+    return true
+  })
 }

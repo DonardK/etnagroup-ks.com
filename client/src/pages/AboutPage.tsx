@@ -1,9 +1,11 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import { projects } from '../data/projects'
+import { projects, getLocalizedProject } from '../data/projects'
 import { assetUrl } from '../utils/assetUrl'
+import { useLanguage } from '../i18n/LanguageContext'
 
 export const AboutPage = () => {
+  const { locale, t } = useLanguage()
   return (
     <div className="min-h-screen bg-[#F8F2DD] overflow-x-hidden">
 
@@ -21,26 +23,25 @@ export const AboutPage = () => {
           className="relative z-10 mx-auto max-w-4xl px-4 text-center"
         >
           <h1 className="mb-6 text-6xl font-bold text-[#657432] md:text-7xl">
-            Për Ne
+            {t.about.title}
           </h1>
           <p className="mb-8 text-xl text-[#657432]/90 md:text-2xl">
-            Etna Group është një kompani e specializuar në zhvillimin e komplekseve
-            rezidenciale premium në Kosovë
+            {t.about.hero}
           </p>
           <div className="flex flex-wrap justify-center gap-6 text-[#657432]/80">
             <div className="text-center">
               <div className="text-3xl font-bold text-[#657432]">4</div>
-              <div className="text-sm">Projekte</div>
+              <div className="text-sm">{t.about.projects}</div>
             </div>
             <div className="h-12 w-px bg-[#657432]/20" />
             <div className="text-center">
               <div className="text-3xl font-bold text-[#657432]">450+</div>
-              <div className="text-sm">Njësi</div>
+              <div className="text-sm">{t.about.units}</div>
             </div>
             <div className="h-12 w-px bg-[#657432]/20" />
             <div className="text-center">
               <div className="text-3xl font-bold text-[#657432]">200+</div>
-              <div className="text-sm">Banorë</div>
+              <div className="text-sm">{t.about.residents}</div>
             </div>
           </div>
         </motion.div>
@@ -69,6 +70,7 @@ export const AboutPage = () => {
           <div className="space-y-32">
             {projects.map((project, index) => {
               const isEven = index % 2 === 0
+              const p = getLocalizedProject(project, locale)
 
               return (
                 <motion.div
@@ -158,7 +160,7 @@ export const AboutPage = () => {
                         </h2>
 
                         <p className="text-lg text-[#657432] leading-relaxed">
-                          {project.description}
+                          {p.description}
                         </p>
 
                         {/* Features List */}

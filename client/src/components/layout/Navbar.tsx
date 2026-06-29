@@ -4,10 +4,13 @@ import { Link } from 'react-router-dom'
 import { assetUrl } from '../../utils/assetUrl'
 import { projects } from '../../data/projects'
 import { openChat } from '../../utils/chat'
+import { LanguageSwitcher } from '../LanguageSwitcher'
+import { useLanguage } from '../../i18n/LanguageContext'
 
 export const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isProjectsOpen, setIsProjectsOpen] = useState(false)
+  const { t } = useLanguage()
 
   return (
     <motion.nav
@@ -17,7 +20,6 @@ export const Navbar = () => {
     >
       <div className="mx-auto max-w-7xl px-4">
         <div className="flex h-20 items-center justify-between">
-          {/* Logo */}
           <Link to="/" className="flex items-center gap-3">
             <img
               src={encodeURI(assetUrl('brand/Logo.png'))}
@@ -28,23 +30,21 @@ export const Navbar = () => {
             />
           </Link>
 
-          {/* Desktop Menu */}
           <div className="hidden items-center gap-8 md:flex">
             <Link
               to="/"
               className="text-[#657432]/90 transition-colors hover:text-[#657432]"
             >
-              Ballina
+              {t.nav.home}
             </Link>
 
-            {/* Projects Dropdown */}
             <div
               className="relative"
               onMouseEnter={() => setIsProjectsOpen(true)}
               onMouseLeave={() => setIsProjectsOpen(false)}
             >
               <button className="flex items-center gap-2 text-[#657432]/90 transition-colors hover:text-[#657432]">
-                Projektet
+                {t.nav.projects}
                 <motion.svg
                   animate={{ rotate: isProjectsOpen ? 180 : 0 }}
                   className="h-4 w-4"
@@ -88,16 +88,18 @@ export const Navbar = () => {
               to="/per-ne"
               className="text-[#657432]/90 transition-colors hover:text-[#657432]"
             >
-              Për Ne
+              {t.nav.about}
             </Link>
+
+            <LanguageSwitcher />
 
             <button
               onClick={openChat}
               className="relative flex items-center gap-1.5 whitespace-nowrap text-[#657432]/90 transition-colors hover:text-[#657432]"
-              aria-label="Bisedo me asistentin AI"
+              aria-label={t.nav.chatAria}
             >
               <span aria-hidden="true">🤖</span>
-              Bisedo me mua
+              {t.nav.chat}
               <span className="absolute -right-2 -top-2.5 rounded-full bg-red-600 px-1 py-0.5 text-[8px] font-extrabold uppercase leading-none tracking-wide text-white shadow">
                 New
               </span>
@@ -107,41 +109,38 @@ export const Navbar = () => {
               to="/kontakt"
               className="rounded-full bg-[#657432] px-6 py-2 font-semibold text-[#F8F2DD] transition-all hover:scale-105 hover:shadow-lg"
             >
-              Na Kontaktoni
+              {t.nav.contact}
             </Link>
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden text-[#657432]"
-          >
-            <svg
-              className="h-6 w-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
+          <div className="flex items-center gap-2 md:hidden">
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="text-[#657432]"
+              aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
             >
-              {isMenuOpen ? (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              ) : (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              )}
-            </svg>
-          </button>
+              <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                {isMenuOpen ? (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                ) : (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                )}
+              </svg>
+            </button>
+            <LanguageSwitcher compact />
+          </div>
         </div>
 
-        {/* Mobile Menu */}
         <AnimatePresence>
           {isMenuOpen && (
             <motion.div
@@ -155,10 +154,10 @@ export const Navbar = () => {
                 onClick={() => setIsMenuOpen(false)}
                 className="block text-[#657432]/90 hover:text-[#657432]"
               >
-                Ballina
+                {t.nav.home}
               </Link>
               <div className="space-y-2">
-                <div className="text-[#657432]/90 font-semibold">Projektet</div>
+                <div className="text-[#657432]/90 font-semibold">{t.nav.projects}</div>
                 {projects.map((project) => (
                   <Link
                     key={project.id}
@@ -175,7 +174,7 @@ export const Navbar = () => {
                 onClick={() => setIsMenuOpen(false)}
                 className="block text-[#657432]/90 hover:text-[#657432]"
               >
-                Për Ne
+                {t.nav.about}
               </Link>
               <button
                 onClick={() => {
@@ -183,10 +182,10 @@ export const Navbar = () => {
                   openChat()
                 }}
                 className="flex items-center gap-2 text-[#657432]/90 hover:text-[#657432]"
-                aria-label="Bisedo me asistentin AI"
+                aria-label={t.nav.chatAria}
               >
                 <span aria-hidden="true">🤖</span>
-                Bisedo me mua
+                {t.nav.chat}
                 <span className="rounded-full bg-red-600 px-1.5 py-0.5 text-[9px] font-extrabold uppercase leading-none tracking-wide text-white">
                   New
                 </span>
@@ -196,7 +195,7 @@ export const Navbar = () => {
                 onClick={() => setIsMenuOpen(false)}
                 className="block rounded-full bg-[#657432] px-6 py-2 text-center font-semibold text-[#F8F2DD]"
               >
-                Na Kontaktoni
+                {t.nav.contact}
               </Link>
             </motion.div>
           )}

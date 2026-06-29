@@ -2,7 +2,6 @@ import {
   useEffect,
   useRef,
   useState,
-  type CSSProperties,
   type KeyboardEvent,
   type ReactNode,
 } from 'react'
@@ -16,6 +15,7 @@ import {
 import { apartmentSpecs } from '../../data/apartmentSpecs'
 import { OPEN_CHAT_EVENT, REPLY_CLOSING, appendReplyClosing, getChatSessionId } from '../../utils/chat'
 import { useTouchDevice } from '../../hooks/useTouchDevice'
+import { useLanguage } from '../../i18n/LanguageContext'
 
 const APARTMENT_CONTEXT_CAP = 3500
 
@@ -168,27 +168,16 @@ const ApartmentButtons = ({ groups }: { groups: ApartmentMatchGroup[] }) => (
   </div>
 )
 
-const GREETING: ChatMessage = {
-  role: 'assistant',
-  text: `Përshëndetje! Unë jam Etna, asistentja juaj dixhitale e Etna Group. Si mund t'ju ndihmoj? (How can I help you today?)
-
-${REPLY_CLOSING}`,
-  ts: Date.now(),
-}
+const GREETING_TEXT = (intro: string) => `${intro}\n\n${REPLY_CLOSING}`
 
 const MAX_INPUT_LENGTH = 1000
 
-/** Fixed bottom-right anchor — inline styles so positioning always works (Tailwind can't see dynamic class strings). */
-const WIDGET_ANCHOR_STYLE: CSSProperties = {
-  position: 'fixed',
-  bottom: 'max(24px, env(safe-area-inset-bottom, 0px))',
-  right: 'max(24px, env(safe-area-inset-right, 0px))',
-  zIndex: 9999,
-}
-
 export const ChatWidget = () => {
+  const { t, locale } = useLanguage()
   const [isOpen, setIsOpen] = useState(false)
-  const [messages, setMessages] = useState<ChatMessage[]>([GREETING])
+  const [messages, setMessages] = useState<ChatMessage[]>(() => [
+    { role: 'assistant', text: GREETING_TEXT(t.chat.greeting), ts: Date.now() },
+  ])
   const [input, setInput] = useState('')
   const [loading, setLoading] = useState(false)
   const scrollRef = useRef<HTMLDivElement>(null)
@@ -219,6 +208,13 @@ export const ChatWidget = () => {
     window.addEventListener(OPEN_CHAT_EVENT, open)
     return () => window.removeEventListener(OPEN_CHAT_EVENT, open)
   }, [])
+
+  useEffect(() => {
+    setMessages((prev) => {
+      if (prev.length !== 1 || prev[0].role !== 'assistant') return prev
+      return [{ role: 'assistant', text: GREETING_TEXT(t.chat.greeting), ts: Date.now() }]
+    })
+  }, [locale, t.chat.greeting])
 
   const sendMessage = async () => {
     const text = input.trim()
@@ -292,7 +288,7 @@ export const ChatWidget = () => {
   }
 
   return (
-    <div style={WIDGET_ANCHOR_STYLE} className="flex flex-col items-end">
+    <div className="flex flex-col items-end">
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -311,7 +307,7 @@ export const ChatWidget = () => {
                 </div>
                 <div>
                   <div className="font-semibold leading-tight text-[#F8F2DD]">Etna</div>
-                  <div className="text-xs text-[#F8F2DD]/70">Asistente Dixhitale</div>
+                  <div className="text-xs text-[#F8F2DD]/70">{t.chat.assistant}</div>
                 </div>
               </div>
               <button
@@ -386,7 +382,7 @@ export const ChatWidget = () => {
                   maxLength={MAX_INPUT_LENGTH}
                   onChange={(e) => setInput(e.target.value)}
                   onKeyDown={handleKeyDown}
-                  placeholder="Shkruani mesazhin tuaj…"
+                  placeholder={t.chat.placeholder}
                   className="flex-1 rounded-full border border-[#657432]/25 bg-white px-4 py-2.5 text-base text-[#3a3a2e] outline-none transition-colors placeholder:text-[#657432]/40 focus:border-[#657432]"
                   aria-label="Type your message"
                 />
@@ -406,9 +402,7 @@ export const ChatWidget = () => {
                   </svg>
                 </button>
               </div>
-              <p className="mt-2 text-center text-[10px] text-[#657432]/50">
-                Etna mund të gabojë. Për çmime &amp; rezervime, na kontaktoni.
-              </p>
+              <p className="mt-2 text-center text-[10px] text-[#657432]/50">{t.chat.disclaimer}</p>
             </div>
           </motion.div>
         )}

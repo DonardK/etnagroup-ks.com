@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import emailjs from '@emailjs/browser'
+import { useLanguage } from '../i18n/LanguageContext'
 
 interface FormData {
   name: string
@@ -11,6 +12,7 @@ interface FormData {
 }
 
 export const ContactPage = () => {
+  const { t } = useLanguage()
   const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
@@ -128,11 +130,10 @@ export const ContactPage = () => {
           className="mb-16 text-center"
         >
           <h1 className="mb-4 text-6xl font-bold text-[#657432] md:text-7xl">
-            Na Kontaktoni
+            {t.contact.title}
           </h1>
           <p className="mx-auto max-w-2xl text-xl text-[#657432]/80">
-            Jemi këtu për t'ju ndihmuar. Plotësoni formularin më poshtë dhe ne do t'ju
-            kontaktojmë sa më shpejt të jetë e mundur.
+            {t.contact.formIntro}
           </p>
         </motion.div>
 
@@ -147,7 +148,7 @@ export const ContactPage = () => {
               {/* Name */}
               <div>
                 <label htmlFor="name" className="mb-2 block text-sm font-semibold text-[#657432]">
-                  Emri dhe Mbiemri *
+                  {t.contact.nameFull}
                 </label>
                 <input
                   type="text"
@@ -157,14 +158,14 @@ export const ContactPage = () => {
                   value={formData.name}
                   onChange={handleChange}
                   className="w-full rounded-lg border border-[#657432]/30 bg-[#F8F2DD] px-4 py-3 focus:border-[#657432] focus:outline-none focus:ring-2 focus:ring-[#657432]/20"
-                  placeholder="Shkruani emrin tuaj"
+                  placeholder={t.contact.namePlaceholder}
                 />
               </div>
 
               {/* Email */}
               <div>
                 <label htmlFor="email" className="mb-2 block text-sm font-semibold text-[#657432]">
-                  Email *
+                  {t.contact.email} *
                 </label>
                 <input
                   type="email"
@@ -181,7 +182,7 @@ export const ContactPage = () => {
               {/* Phone */}
               <div>
                 <label htmlFor="phone" className="mb-2 block text-sm font-semibold text-[#657432]">
-                  Numri i Telefonit *
+                  {t.contact.phoneFull}
                 </label>
                 <input
                   type="tel"
@@ -198,7 +199,7 @@ export const ContactPage = () => {
               {/* Project Selection */}
               <div>
                 <label htmlFor="project" className="mb-2 block text-sm font-semibold text-[#657432]">
-                  Projekti i Interesuar
+                  {t.contact.projectInterested}
                 </label>
                 <select
                   id="project"
@@ -207,20 +208,20 @@ export const ContactPage = () => {
                   onChange={handleChange}
                   className="w-full rounded-lg border border-[#657432]/30 bg-[#F8F2DD] px-4 py-3 focus:border-[#657432] focus:outline-none focus:ring-2 focus:ring-[#657432]/20"
                 >
-                  <option value="">Zgjidhni një projekt</option>
+                  <option value="">{t.contact.selectProject}</option>
                   <option value="elsa">Elsa Residence</option>
                   <option value="tara">Tara Residence</option>
                   <option value="tiani">Tiani Residence</option>
                   <option value="joni">Joni Residence</option>
                   <option value="etna">Etna Residence</option>
-                  <option value="general">Informacion i Përgjithshëm</option>
+                  <option value="general">{t.contact.general}</option>
                 </select>
               </div>
 
               {/* Message */}
               <div>
                 <label htmlFor="message" className="mb-2 block text-sm font-semibold text-[#657432]">
-                  Mesazhi *
+                  {t.contact.messageLabel}
                 </label>
                 <textarea
                   id="message"
@@ -242,7 +243,7 @@ export const ContactPage = () => {
                 whileTap={{ scale: 0.98 }}
                 className="w-full rounded-full bg-[#657432] px-8 py-4 text-lg font-semibold text-[#F8F2DD] transition-all hover:shadow-xl disabled:opacity-50"
               >
-                {isSubmitting ? 'Duke dërguar...' : 'Dërgo Mesazhin'}
+                {isSubmitting ? t.contact.sending : t.contact.send}
               </motion.button>
 
               {/* Success Message */}
@@ -252,7 +253,7 @@ export const ContactPage = () => {
                   animate={{ opacity: 1, y: 0 }}
                   className="rounded-lg bg-green-100 border border-green-400 p-4 text-green-800"
                 >
-                  ✓ Mesazhi u dërgua me sukses! Do t'ju kontaktojmë së shpejti.
+                  {t.contact.successDetail}
                 </motion.div>
               )}
 
