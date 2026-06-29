@@ -85,7 +85,11 @@ const renderInline = (segment: string, keyBase: string): ReactNode[] =>
   })
 
 /** Render markdown bold + [text](href) links. apt:ID hrefs resolve to PDF buttons via the links map. */
-const renderRichText = (text: string, links?: Record<string, string>): ReactNode => {
+const renderRichText = (
+  text: string,
+  links?: Record<string, string>,
+  planLabel?: string,
+): ReactNode => {
   const out: ReactNode[] = []
   const linkRe = /\[([^\]]+)\]\(([^)\s]+)\)/g
   let last = 0
@@ -99,6 +103,7 @@ const renderRichText = (text: string, links?: Record<string, string>): ReactNode
     if (href.startsWith('apt:')) url = links?.[href.slice(4)] ?? null
     else if (/^https?:\/\//i.test(href)) url = href
     if (url) {
+      const displayLabel = href.startsWith('apt:') && planLabel ? planLabel : label
       out.push(
         <a
           key={`lnk${k}`}
@@ -115,7 +120,7 @@ const renderRichText = (text: string, links?: Record<string, string>): ReactNode
               d={PLAN_ICON_PATH}
             />
           </svg>
-          {label}
+          {displayLabel}
         </a>,
       )
     } else {
@@ -126,6 +131,16 @@ const renderRichText = (text: string, links?: Record<string, string>): ReactNode
   }
   if (last < text.length) out.push(...renderInline(text.slice(last), `seg${k}`))
   return out
+}
+
+const hasResolvedAptLinks = (text: string, links?: Record<string, string>): boolean => {
+  const linkRe = /\[([^\]]+)\]\(([^)\s]+)\)/g
+  let m: RegExpExecArray | null
+  while ((m = linkRe.exec(text)) !== null) {
+    const href = m[2]
+    if (href.startsWith('apt:') && links?.[href.slice(4)]) return true
+  }
+  return false
 }
 
 const ApartmentButtons = ({
@@ -249,6 +264,7 @@ export const ChatWidget = ({ isOpen, onOpenChange }: ChatWidgetProps) => {
           sessionId: getChatSessionId(),
           messages: nextMessages.map((m) => ({ role: m.role, content: m.text })),
           apartmentContext,
+          locale,
         }),
       })
 
@@ -346,12 +362,12 @@ export const ChatWidget = ({ isOpen, onOpenChange }: ChatWidgetProps) => {
                           : 'rounded-bl-sm border border-[#657432]/15 bg-white text-[#3a3a2e]'
                       }`}
                     >
-                      {renderRichText(m.text, m.links)}
+                      {renderRichText(m.text, m.links, t.chat.viewPlan)}
                     </div>
                   </div>
                   {m.matches &&
                     m.matches.length > 0 &&
-                    !(m.links && /\]\(apt:/.test(m.text)) && (
+                    !hasResolvedAptLinks(m.text, m.links) && (
                       <ApartmentButtons groups={m.matches} t={t} />
                     )}
                 </div>

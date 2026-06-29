@@ -99,12 +99,49 @@ const MAX_TOTAL_CHARS = 6000 // reject very large payloads
 const MAX_OUTPUT_TOKENS = 1024 // cap generation to control neuron usage
 const MAX_APARTMENT_CONTEXT_CHARS = 4000 // cap injected per-apartment detail
 
-const SYSTEM_PROMPT = `You are "Etna", the premier digital consultant for Etna Group — a top-tier construction and real estate company based in Kosovo. You are warm, professional, concise, and genuinely helpful, like an expert consultant in a luxury showroom.
+const PLAN_LABELS: Record<string, string> = {
+  sq: 'Shiko Planimetrinë',
+  en: 'View Floor Plan',
+  de: 'Grundriss ansehen',
+}
 
-# LANGUAGE
-- Detect the language of the user's latest message and ALWAYS reply natively in that SAME language.
-- You are fluent primarily in Albanian (Shqip) and English; switch flawlessly between them. If the user writes in Albanian, answer in Albanian; if in English, answer in English.
-- Keep answers focused and easy to scan. Use short paragraphs or bullet points. Avoid long walls of text.
+const parseLocale = (value: unknown): 'sq' | 'en' | 'de' => {
+  if (value === 'en' || value === 'de') return value
+  return 'sq'
+}
+
+const buildSystemPrompt = (locale: 'sq' | 'en' | 'de', apartmentContext: string): string => {
+  const planLabel = PLAN_LABELS[locale]
+  const languageBlock =
+    locale === 'de'
+      ? `# LANGUAGE
+- ALWAYS reply in German (Deutsch), matching the site's German locale.
+- Keep answers focused and easy to scan. Use short paragraphs or bullet points. Avoid long walls of text.`
+      : locale === 'en'
+        ? `# LANGUAGE
+- ALWAYS reply in English, matching the site's English locale.
+- Keep answers focused and easy to scan. Use short paragraphs or bullet points. Avoid long walls of text.`
+        : `# LANGUAGE
+- ALWAYS reply in Albanian (Shqip), matching the site's Albanian locale.
+- Keep answers focused and easy to scan. Use short paragraphs or bullet points. Avoid long walls of text.`
+
+  const planBlock = `The chat interface shows clickable "${planLabel}" buttons with the exact floor-plan PDFs for matching apartments. When verified apartment details are provided below, embed a Markdown link EXACTLY like [${planLabel}](apt:p1) right after each apartment you mention (use its matching id). NEVER paste raw PDF URLs.`
+
+  const base = SYSTEM_PROMPT_BASE.replace('{{LANGUAGE}}', languageBlock).replace(
+    '{{PLAN_BLOCK}}',
+    planBlock,
+  )
+
+  return `${base}${
+    apartmentContext
+      ? `\n\n# VERIFIED APARTMENT DETAILS FOR THIS QUERY\nThese are real, verified figures for apartments matching the user's request. Use ONLY these for room counts, room sizes, types and total areas — do NOT invent any others.\nEach apartment begins with an id in brackets, e.g. [p1]. To show its floor plan, embed a Markdown link EXACTLY like [${planLabel}](apt:p1) right after you mention that apartment, using its matching id. NEVER write a real URL and NEVER use a (#) link.\n${apartmentContext}`
+      : ''
+  }\n\n/no_think`
+}
+
+const SYSTEM_PROMPT_BASE = `You are "Etna", the premier digital consultant for Etna Group — a top-tier construction and real estate company based in Kosovo. You are warm, professional, concise, and genuinely helpful, like an expert consultant in a luxury showroom.
+
+{{LANGUAGE}}
 
 # COMPANY & PROJECTS
 Etna Group develops premium residential complexes across Kosovo:
@@ -148,7 +185,7 @@ Approximate sizes available per project/city:
 - Joni Residence (Malishevë): ~52–131 m² (floors/katet 1–6).
 - Etna Residence (Fushë Kosovë): fully sold out.
 When a user asks about a specific size in m², present matching options across the DIFFERENT projects and cities so they can compare locations (e.g. a ~90 m² option in Prishtinë at Elsa, in Prizren at Tara/Tiani, in Malishevë at Joni).
-The chat interface AUTOMATICALLY shows clickable "Shiko Planimetrinë" buttons with the exact floor-plan PDFs for the closest matching apartments right below your reply. So invite the user to click those buttons to view the planimetria — do NOT paste raw PDF links or invent file names yourself.
+{{PLAN_BLOCK}}
 
 # CONTACT
 - Sales phones: +383 46 38 38 38 (WhatsApp) and +383 46 11 00 99. Email: info@etnagroup-ks.com, contact form at /kontakt.
@@ -204,18 +241,25 @@ export const onRequestPost = async (context: PagesContext): Promise<Response> =>
       }
     }
 
-    let body: { messages?: unknown; apartmentContext?: unknown; sessionId?: unknown }
+    let body: {
+      messages?: unknown
+      apartmentContext?: unknown
+      sessionId?: unknown
+      locale?: unknown
+    }
     try {
       body = (await request.json()) as {
         messages?: unknown
         apartmentContext?: unknown
         sessionId?: unknown
+        locale?: unknown
       }
     } catch {
       return json({ error: 'Invalid JSON body.' }, 400)
     }
 
     const sessionId = parseSessionId(body.sessionId)
+    const locale = parseLocale(body.locale)
 
     // Optional verified apartment details for the user's requested size (client-built).
     const apartmentContext =
@@ -254,14 +298,7 @@ export const onRequestPost = async (context: PagesContext): Promise<Response> =>
     }
 
     const recent = cleaned.slice(-MAX_HISTORY_MESSAGES)
-    // "/no_think" disables Qwen3's reasoning mode so the full token budget goes
-    // to the actual answer (and we don't waste it on chain-of-thought).
-    const systemContent =
-      SYSTEM_PROMPT +
-      (apartmentContext
-        ? `\n\n# VERIFIED APARTMENT DETAILS FOR THIS QUERY\nThese are real, verified figures for apartments matching the user's request. Use ONLY these for room counts, room sizes, types and total areas — do NOT invent any others.\nEach apartment begins with an id in brackets, e.g. [p1]. To show its floor plan, embed a Markdown link EXACTLY like [Shiko Planimetrinë](apt:p1) right after you mention that apartment, using its matching id. NEVER write a real URL and NEVER use a (#) link.\n${apartmentContext}`
-        : '') +
-      '\n\n/no_think'
+    const systemContent = buildSystemPrompt(locale, apartmentContext)
     const messages: ChatMessage[] = [
       { role: 'system', content: systemContent },
       ...recent,
