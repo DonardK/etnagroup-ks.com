@@ -19,6 +19,7 @@ import { TianiBlockB } from './pages/TianiBlockB'
 import { TaraApartments } from './pages/TaraApartments'
 import { JoniKati } from './pages/JoniKati'
 import { QrCodePage } from './pages/QrCodePage'
+import { PrivacyPolicyPage } from './pages/PrivacyPolicyPage'
 
 const HIDDEN_LAYOUT_PATHS = ['/qr-code']
 
@@ -45,6 +46,7 @@ function App() {
           <Route path="/projektet/:id" element={<ProjectDetail />} />
           <Route path="/per-ne" element={<AboutPage />} />
           <Route path="/kontakt" element={<ContactPage />} />
+          <Route path="/privacy" element={<PrivacyPolicyPage />} />
           <Route path="/elsaresidence-bllokua" element={<ElsaBlockA />} />
           <Route path="/elsaresidence-bllokub" element={<ElsaBlockB />} />
           <Route path="/elsaresidence-bllokuc" element={<ElsaBlockC />} />

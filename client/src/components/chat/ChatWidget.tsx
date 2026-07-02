@@ -6,6 +6,7 @@ import {
   type ReactNode,
 } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
 import {
   findApartmentsByArea,
   parseRequestedArea,
@@ -418,7 +419,12 @@ export const ChatWidget = ({ isOpen, onOpenChange }: ChatWidgetProps) => {
                   </svg>
                 </button>
               </div>
-              <p className="mt-2 text-center text-[10px] text-[#657432]/50">{t.chat.disclaimer}</p>
+              <p className="mt-2 text-center text-[10px] text-[#657432]/50">
+                {t.chat.disclaimer}{' '}
+                <Link to="/privacy" className="underline hover:text-[#657432]">
+                  {t.chat.privacyLink}
+                </Link>
+              </p>
             </div>
           </motion.div>
         )}

@@ -55,6 +55,9 @@ export const SeoHead = () => {
     } else if (pathname === '/kontakt') {
       title = t.seo.contactTitle
       description = t.seo.contactDescription
+    } else if (pathname === '/privacy') {
+      title = t.seo.privacyTitle
+      description = t.seo.privacyDescription
     } else if (pathname.startsWith('/projektet/')) {
       const id = pathname.split('/')[2]
       const project = id ? getProjectById(id) : undefined

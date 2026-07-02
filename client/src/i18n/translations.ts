@@ -51,7 +51,9 @@ const sq = {
     assistant: 'Asistente Dixhitale',
     greeting: `Përshëndetje! Unë jam Etna, asistentja juaj dixhitale e Etna Group. Si mund t'ju ndihmoj?`,
     placeholder: 'Shkruani mesazhin tuaj…',
-    disclaimer: 'Etna mund të gabojë. Për çmime & rezervime, na kontaktoni.',
+    disclaimer:
+      'Etna mund të gabojë. Bisedat tuaja ruhen dhe lexohen nga Etna Group për të përmirësuar shërbimin.',
+    privacyLink: 'Politika e privatësisë',
     viewPlan: 'Shiko Planimetrinë',
     errorGeneric: 'Më vjen keq, ndodhi një gabim. Ju lutem provoni përsëri.',
     errorUnavailable:
@@ -70,6 +72,7 @@ const sq = {
     home: 'Ballina',
     about: 'Për Ne',
     contact: 'Kontakt',
+    privacy: 'Privatësia',
     copyright: 'Të gjitha të drejtat e rezervuara.',
     mapElsaOffice: 'Elsa Residence & Zyrë Prishtinë',
     mapPrizrenOffice: 'Zyrë Prizren',
@@ -156,6 +159,40 @@ const sq = {
     close: 'Mbyll',
     footerLink: 'Raporto problem',
   },
+  privacy: {
+    title: 'Politika e Privatësisë',
+    lastUpdated: 'Përditësuar më: 2 korrik 2026',
+    sections: [
+      {
+        heading: 'Përmbledhje',
+        body: 'Kjo politikë shpjegon si Etna Group ("ne", "na") mbledh dhe përdor informacionin kur përdorni faqen etnagroup-ks.com dhe asistentin tonë AI "Etna". Duke përdorur asistentin, ju pranoni që bisedat tuaja mund të ruhen dhe të lexohen nga ekipi ynë.',
+      },
+      {
+        heading: 'Çfarë mbledhim',
+        body: 'Kur përdorni chat-in me Etna, ne ruajmë mesazhet që dërgoni dhe përgjigjet e asistentit. Gjithashtu mund të ruajmë metadate të sesionit si data dhe ora, vendi i përafërt (nga adresa IP), dhe informacion bazë për shfletuesin tuaj. Nuk kërkojmë emër, email apo numër telefoni për të përdorur chat-in.',
+      },
+      {
+        heading: 'Si i përdorim bisedat',
+        body: 'Ekipi i Etna Group lexon bisedat për të kuptuar çfarë pyesin vizitorët — për shembull, çfarë lloj banesash kërkojnë, çfarë pyetjesh kanë për projektet tona, dhe si mund ta përmirësojmë faqen, shërbimin dhe asistentin AI. Ne nuk i shesim bisedat palëve të treta.',
+      },
+      {
+        heading: 'Kush ka qasje',
+        body: 'Qasja në regjistrat e bisedave është e kufizuar te stafi i autorizuar i Etna Group që punon në përmirësimin e faqes, marketingut dhe shërbimit ndaj klientëve.',
+      },
+      {
+        heading: 'Ruajtja e të dhënave',
+        body: 'Bisedat ruhen derisa të fshihen për qëllime biznesi ose ligjore. Ne mund të fshijmë të dhëna të vjetra periodikisht.',
+      },
+      {
+        heading: 'Të drejtat tuaja',
+        body: 'Mund të na kontaktoni në info@etnagroup-ks.com për pyetje rreth të dhënave tuaja ose për të kërkuar informacion mbi bisedat e ruajtura. Do t\'ju përgjigjemi brenda një afati të arsyeshëm.',
+      },
+      {
+        heading: 'Kontakt',
+        body: 'Për çdo pyetje rreth kësaj politike:\n\nEtna Group\nEmail: info@etnagroup-ks.com\nTelefon: +383 46 38 38 38',
+      },
+    ],
+  },
   status: {
     completed: 'I Përfunduar',
     'under-construction': 'Në Ndërtim',
@@ -175,6 +212,9 @@ const sq = {
     contactTitle: 'Kontakt — Etna Group',
     contactDescription:
       'Kontaktoni Etna Group për banesa në Elsa, Tiani, Tara dhe Joni Residence. Telefon, email dhe formular kontakti.',
+    privacyTitle: 'Politika e Privatësisë — Etna Group',
+    privacyDescription:
+      'Si Etna Group mbledh dhe përdor bisedat me asistentin AI Etna për të përmirësuar shërbimin dhe faqen.',
     projectTitle: (name: string) => `${name} — Etna Group`,
     projectDescription: (name: string, city: string) =>
       `${name} në ${city} — kompleks rezidencial premium nga Etna Group. Shikoni planimetritë dhe kontaktoni për vizita.`,
@@ -300,7 +340,9 @@ const en = {
     assistant: 'Digital Assistant',
     greeting: `Hello! I'm Etna, your Etna Group digital assistant. How can I help you today?`,
     placeholder: 'Type your message…',
-    disclaimer: 'Etna may make mistakes. For pricing & bookings, contact us.',
+    disclaimer:
+      'Etna may make mistakes. Your chats are stored and read by Etna Group to improve our service.',
+    privacyLink: 'Privacy policy',
     viewPlan: 'View Floor Plan',
     errorGeneric: 'Sorry, something went wrong. Please try again.',
     errorUnavailable:
@@ -319,6 +361,7 @@ const en = {
     home: 'Home',
     about: 'About Us',
     contact: 'Contact',
+    privacy: 'Privacy',
     copyright: 'All rights reserved.',
     mapElsaOffice: 'Elsa Residence & Prishtina Office',
     mapPrizrenOffice: 'Prizren Office',
@@ -405,6 +448,40 @@ const en = {
     close: 'Close',
     footerLink: 'Report issue',
   },
+  privacy: {
+    title: 'Privacy Policy',
+    lastUpdated: 'Last updated: 2 July 2026',
+    sections: [
+      {
+        heading: 'Overview',
+        body: 'This policy explains how Etna Group ("we", "us") collects and uses information when you use etnagroup-ks.com and our AI assistant "Etna". By using the assistant, you agree that your conversations may be stored and reviewed by our team.',
+      },
+      {
+        heading: 'What we collect',
+        body: 'When you use the Etna chat, we store the messages you send and the assistant\'s replies. We may also store session metadata such as date and time, approximate location (from IP address), and basic browser information. We do not require your name, email, or phone number to use the chat.',
+      },
+      {
+        heading: 'How we use chats',
+        body: 'The Etna Group team reads conversations to understand what visitors are asking — for example, what types of apartments they are looking for, questions about our projects, and how we can improve the website, our service, and the AI assistant. We do not sell chat data to third parties.',
+      },
+      {
+        heading: 'Who has access',
+        body: 'Access to chat logs is limited to authorized Etna Group staff working on website improvement, marketing, and customer service.',
+      },
+      {
+        heading: 'Data retention',
+        body: 'Chats are kept until deleted for business or legal purposes. We may delete older data periodically.',
+      },
+      {
+        heading: 'Your rights',
+        body: 'You may contact us at info@etnagroup-ks.com with questions about your data or to request information about stored conversations. We will respond within a reasonable timeframe.',
+      },
+      {
+        heading: 'Contact',
+        body: 'For any questions about this policy:\n\nEtna Group\nEmail: info@etnagroup-ks.com\nPhone: +383 46 38 38 38',
+      },
+    ],
+  },
   status: {
     completed: 'Completed',
     'under-construction': 'Under Construction',
@@ -424,6 +501,9 @@ const en = {
     contactTitle: 'Contact — Etna Group',
     contactDescription:
       'Contact Etna Group about apartments at Elsa, Tiani, Tara and Joni Residence. Phone, email and contact form.',
+    privacyTitle: 'Privacy Policy — Etna Group',
+    privacyDescription:
+      'How Etna Group collects and uses AI chat conversations to improve our website and assistant.',
     projectTitle: (name: string) => `${name} — Etna Group`,
     projectDescription: (name: string, city: string) =>
       `${name} in ${city} — a premium residential complex by Etna Group. View floor plans and book a visit.`,
@@ -554,7 +634,8 @@ const de = {
     greeting: `Hallo! Ich bin Etna, Ihre digitale Assistentin von Etna Group. Wie kann ich Ihnen helfen?`,
     placeholder: 'Nachricht eingeben…',
     disclaimer:
-      'Etna kann Fehler machen. Für Preise & Reservierungen kontaktieren Sie uns bitte.',
+      'Etna kann Fehler machen. Ihre Chats werden gespeichert und von Etna Group gelesen, um unseren Service zu verbessern.',
+    privacyLink: 'Datenschutzerklärung',
     viewPlan: 'Grundriss ansehen',
     errorGeneric: 'Entschuldigung, etwas ist schiefgelaufen. Bitte versuchen Sie es erneut.',
     errorUnavailable:
@@ -573,6 +654,7 @@ const de = {
     home: 'Startseite',
     about: 'Über uns',
     contact: 'Kontakt',
+    privacy: 'Datenschutz',
     copyright: 'Alle Rechte vorbehalten.',
     mapElsaOffice: 'Elsa Residence & Büro Prishtina',
     mapPrizrenOffice: 'Büro Prizren',
@@ -660,6 +742,40 @@ const de = {
     close: 'Schließen',
     footerLink: 'Problem melden',
   },
+  privacy: {
+    title: 'Datenschutzerklärung',
+    lastUpdated: 'Zuletzt aktualisiert: 2. Juli 2026',
+    sections: [
+      {
+        heading: 'Überblick',
+        body: 'Diese Richtlinie erklärt, wie Etna Group („wir“, „uns“) Informationen sammelt und verwendet, wenn Sie etnagroup-ks.com und unseren KI-Assistenten „Etna“ nutzen. Durch die Nutzung des Assistenten stimmen Sie zu, dass Ihre Unterhaltungen gespeichert und von unserem Team gelesen werden können.',
+      },
+      {
+        heading: 'Was wir erfassen',
+        body: 'Wenn Sie den Etna-Chat nutzen, speichern wir die von Ihnen gesendeten Nachrichten und die Antworten des Assistenten. Wir können auch Sitzungsmetadaten wie Datum und Uhrzeit, ungefähren Standort (aus der IP-Adresse) und grundlegende Browserinformationen speichern. Für die Chat-Nutzung sind Name, E-Mail oder Telefonnummer nicht erforderlich.',
+      },
+      {
+        heading: 'Wie wir Chats verwenden',
+        body: 'Das Etna Group-Team liest Unterhaltungen, um zu verstehen, was Besucher fragen — z. B. welche Wohnungstypen sie suchen, Fragen zu unseren Projekten und wie wir Website, Service und KI-Assistent verbessern können. Wir verkaufen Chat-Daten nicht an Dritte.',
+      },
+      {
+        heading: 'Wer Zugriff hat',
+        body: 'Der Zugriff auf Chat-Protokolle ist auf autorisierte Mitarbeiter von Etna Group beschränkt, die an Website-Verbesserung, Marketing und Kundenservice arbeiten.',
+      },
+      {
+        heading: 'Datenspeicherung',
+        body: 'Chats werden aufbewahrt, bis sie aus geschäftlichen oder rechtlichen Gründen gelöscht werden. Wir können ältere Daten regelmäßig löschen.',
+      },
+      {
+        heading: 'Ihre Rechte',
+        body: 'Sie können uns unter info@etnagroup-ks.com Fragen zu Ihren Daten stellen oder Informationen über gespeicherte Unterhaltungen anfordern. Wir antworten innerhalb einer angemessenen Frist.',
+      },
+      {
+        heading: 'Kontakt',
+        body: 'Bei Fragen zu dieser Richtlinie:\n\nEtna Group\nE-Mail: info@etnagroup-ks.com\nTelefon: +383 46 38 38 38',
+      },
+    ],
+  },
   status: {
     completed: 'Fertiggestellt',
     'under-construction': 'Im Bau',
@@ -679,6 +795,9 @@ const de = {
     contactTitle: 'Kontakt — Etna Group',
     contactDescription:
       'Kontaktieren Sie Etna Group zu Wohnungen in Elsa, Tiani, Tara und Joni Residence. Telefon, E-Mail und Kontaktformular.',
+    privacyTitle: 'Datenschutzerklärung — Etna Group',
+    privacyDescription:
+      'Wie Etna Group KI-Chat-Unterhaltungen erfasst und nutzt, um Website und Assistenten zu verbessern.',
     projectTitle: (name: string) => `${name} — Etna Group`,
     projectDescription: (name: string, city: string) =>
       `${name} in ${city} — eine erstklassige Wohnanlage von Etna Group. Grundrisse ansehen und Besichtigung vereinbaren.`,
@@ -804,6 +923,7 @@ export type TranslationTree = {
     greeting: string
     placeholder: string
     disclaimer: string
+    privacyLink: string
     viewPlan: string
     errorGeneric: string
     errorUnavailable: string
@@ -821,6 +941,7 @@ export type TranslationTree = {
     home: string
     about: string
     contact: string
+    privacy: string
     copyright: string
     mapElsaOffice: string
     mapPrizrenOffice: string
@@ -900,6 +1021,11 @@ export type TranslationTree = {
     close: string
     footerLink: string
   }
+  privacy: {
+    title: string
+    lastUpdated: string
+    sections: { heading: string; body: string }[]
+  }
   status: {
     completed: string
     'under-construction': string
@@ -915,6 +1041,8 @@ export type TranslationTree = {
     aboutDescription: string
     contactTitle: string
     contactDescription: string
+    privacyTitle: string
+    privacyDescription: string
     projectTitle: (name: string) => string
     projectDescription: (name: string, city: string) => string
   }

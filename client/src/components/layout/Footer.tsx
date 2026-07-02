@@ -95,6 +95,12 @@ export const Footer = () => {
             >
               {t.footer.contact}
             </Link>
+            <Link
+              to="/privacy"
+              className="text-[#657432]/70 transition-colors hover:text-[#657432]"
+            >
+              {t.footer.privacy}
+            </Link>
             <button
               type="button"
               onClick={() => setReportOpen(true)}
