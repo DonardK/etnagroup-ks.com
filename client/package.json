@@ -12,7 +12,8 @@
     "preview": "vite preview",
     "lint": "tsc --noEmit",
     "clean": "rm -rf dist node_modules",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "clear-chat-logs": "wrangler d1 execute etna-chat-logs --remote --yes --file=scripts/clear-chat-logs.sql"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
