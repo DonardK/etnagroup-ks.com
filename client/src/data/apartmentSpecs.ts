@@ -51,7 +51,7 @@ export const apartmentSpecs: Record<string, ApartmentSpec> = {
         "area": 4.48
       },
       {
-        "name": "Banjo",
+        "name": "Dhomë gjumi",
         "area": 11.28,
         "floor": "Laminat"
       }

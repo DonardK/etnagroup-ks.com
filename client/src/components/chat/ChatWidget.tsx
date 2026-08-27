@@ -22,6 +22,25 @@ import type { TranslationTree } from '../../i18n/translations'
 
 const APARTMENT_CONTEXT_CAP = 6500
 
+const buildQueryNotes = (text: string): string => {
+  const notes: string[] = []
+  if (/sa banesa|sa nj[eë]si|how many|gjithsej|wie viele/i.test(text)) {
+    notes.push(
+      'NOTE: The visitor asked for a unit count. You do NOT know how many apartments exist or are for sale. Never invent a number such as “48 apartments”. You may list published layout types (exact m² and 1+1/2+1/3+1) from CATALOG. Send them to +383 46 38 38 38 for current availability.',
+    )
+  }
+  if (
+    /[çc]mim|price|preis|kushton|kostet|pages[aë]|payment|zbrit|discount|financ|metri katror|p[eë]r m[²2]|per m[²2]|qm[-\s]?preis|\beuro\b|€/i.test(
+      text,
+    )
+  ) {
+    notes.push(
+      'NOTE: This is a price/payment question. Do not quote €, €/m², discounts, or payment plans. Two short sentences max, then WhatsApp +383 46 38 38 38. Then you may still show matching layouts.',
+    )
+  }
+  return notes.join('\n')
+}
+
 const PDF_BASE = import.meta.env.BASE_URL
 
 const formatArea = (area: number): string => `${area} m²`
@@ -238,12 +257,16 @@ export const ChatWidget = ({ isOpen, onOpenChange }: ChatWidgetProps) => {
     const text = input.trim()
     if (!text || loading) return
 
-    const matchesRaw = findApartmentsForQuery(text)
+    const previousUserTexts = messages
+      .filter((m) => m.role === 'user')
+      .map((m) => m.text)
+    const matchesRaw = findApartmentsForQuery(text, previousUserTexts)
     const matches =
       matchesRaw && matchesRaw.length > 0 ? matchesRaw : undefined
     const ctx = matches ? buildApartmentContext(matches) : undefined
     const inventory = formatCatalogInventory()
-    const apartmentContext = [ctx?.context, inventory]
+    const queryNotes = buildQueryNotes(text)
+    const apartmentContext = [queryNotes, ctx?.context, inventory]
       .filter(Boolean)
       .join('\n\n')
       .slice(0, APARTMENT_CONTEXT_CAP)
@@ -254,12 +277,15 @@ export const ChatWidget = ({ isOpen, onOpenChange }: ChatWidgetProps) => {
     setLoading(true)
 
     try {
+      const historyForModel = nextMessages.filter(
+        (m, i) => !(i === 0 && m.role === 'assistant'),
+      )
       const res = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify({
           sessionId: getChatSessionId(),
-          messages: nextMessages.map((m) => ({ role: m.role, content: m.text })),
+          messages: historyForModel.map((m) => ({ role: m.role, content: m.text })),
           apartmentContext,
           locale,
         }),

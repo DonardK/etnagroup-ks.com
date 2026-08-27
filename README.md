@@ -321,7 +321,12 @@ Upload new media to the R2 bucket at `media.etnagroup-ks.com`, keeping the same 
 
 ### Chat behaviour
 
-Edit the system prompt and guardrails in `client/functions/api/chat.ts`. Redeploy to Cloudflare Pages for changes to take effect.
+The Cloudflare Workers AI assistant ("Etna") is configured in `client/functions/api/chat.ts`:
+- `SYSTEM_PROMPT_BASE` — company facts, construction status, and sales guardrails
+- Reply checks in the same file — rewrite if the model invents counts, prices, or sizes
+- Catalog matching in `client/src/data/apartmentCatalog.ts` (injected every turn)
+
+Redeploy to Cloudflare Pages for prompt changes to take effect.
 
 ---
 

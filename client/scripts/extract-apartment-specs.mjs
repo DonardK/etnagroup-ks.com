@@ -95,6 +95,14 @@ function extractSpec(text) {
     spec.rooms.push(floor ? { name: room, area, floor } : { name: room, area })
   }
 
+  spec.rooms = spec.rooms.map((r) => {
+    // Laminate "bathrooms" this large are almost always a misread bedroom.
+    if (r.name === 'Banjo' && r.floor && /laminat/i.test(r.floor) && r.area >= 8) {
+      return { ...r, name: 'Dhomë gjumi' }
+    }
+    return r
+  })
+
   // Drop OCR/layout misreads: tiny "bedrooms" (usually WC) and huge "storage"
   // rooms that copied the living-room area.
   spec.rooms = spec.rooms.filter((r) => {

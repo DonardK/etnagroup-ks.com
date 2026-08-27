@@ -247,12 +247,15 @@ const PROJECT_ALIASES: Record<string, RegExp> = {
   tiani: /\btiani\b/i,
   tara: /\btara\b/i,
   joni: /\bjoni\b/i,
+  // Only the sold-out flagship — do not match the company name "Etna Group".
+  etna: /\betna\s+residence\b/i,
 }
 
 const CITY_TO_PROJECTS: { re: RegExp; ids: string[] }[] = [
   { re: /prishtin/i, ids: ['elsa'] },
   { re: /prizren/i, ids: ['tiani', 'tara'] },
   { re: /malishev/i, ids: ['joni'] },
+  { re: /fush[eë]\s*kosov/i, ids: ['etna'] },
 ]
 
 /**
@@ -429,7 +432,7 @@ export function parseRequestedGroups(text: string): string[] {
 export function parseRequestedBedrooms(text: string): number[] {
   const beds = new Set<number>()
   const normalized = text.toLowerCase()
-  for (const m of normalized.matchAll(/\b([1-3])\s*\+\s*1\b/g)) {
+  for (const m of normalized.matchAll(/\b([1-4])\s*\+\s*1\b/g)) {
     beds.add(parseInt(m[1], 10))
   }
   if (
@@ -454,7 +457,43 @@ export function parseRequestedBedrooms(text: string): number[] {
 }
 
 const LISTING_INTENT_RE =
-  /planimetr|apartament|banes|layout|tipi|available|disponueshm|gjend|show me|m[ëe] trego|cilat|which|lista|list of|offer|ofro/i
+  /planimetr|apartament|banes|layout|tipi|available|disponueshm|gjend|show me|m[ëe] trego|cilat|which|lista|list of|offer|ofro|opsion|optionen|wohnungen/i
+
+const CHITCHAT_RE =
+  /^(?:faleminderit|falemnderit|thanks?|thank you|danke|ok+|okej|okey|mir[eë]|hi|hey|hello|ciao|pershendetje|p[eë]rsh[eë]ndetje|çkemi|si je|si jeni)[\s!.]*$/i
+
+/** Spread types/sizes so a project listing is not only the smallest 1+1 units. */
+function pickDiverseApartments(list: CatalogApartment[], max: number): CatalogApartment[] {
+  const sorted = [...list].sort((a, b) => a.area - b.area)
+  if (sorted.length <= max) return sorted
+  const byType = new Map<string, CatalogApartment[]>()
+  for (const apt of sorted) {
+    const t = inferApartmentType(apt.pdfPath) ?? 'other'
+    const arr = byType.get(t) ?? []
+    arr.push(apt)
+    byType.set(t, arr)
+  }
+  const picked: CatalogApartment[] = []
+  const used = new Set<string>()
+  const types = [...byType.keys()].sort()
+  let round = 0
+  while (picked.length < max) {
+    let added = false
+    for (const t of types) {
+      const arr = byType.get(t)
+      const apt = arr?.[Math.min(round, (arr?.length ?? 1) - 1)]
+      if (apt && !used.has(apt.pdfPath)) {
+        used.add(apt.pdfPath)
+        picked.push(apt)
+        added = true
+        if (picked.length >= max) break
+      }
+    }
+    if (!added) break
+    round += 1
+  }
+  return picked.sort((a, b) => a.area - b.area)
+}
 
 function groupByProject(list: CatalogApartment[]): ApartmentMatchGroup[] {
   const byProject = new Map<string, CatalogApartment[]>()
@@ -479,19 +518,46 @@ function groupByProject(list: CatalogApartment[]): ApartmentMatchGroup[] {
 
 /**
  * Resolve apartments for a chat turn: size, project/city, block/floor, and/or bedrooms.
+ * Optional previous user messages fill in missing filters so follow-ups like
+ * "90m²" after "Elsa 2+1" stay on the same search.
  * Returns undefined when the message is too vague to pick units (the catalog overview still goes to the model).
  */
-export function findApartmentsForQuery(text: string): ApartmentMatchGroup[] | undefined {
-  const area = parseRequestedArea(text)
-  const projectIds = parseRequestedProjects(text)
-  const groups = parseRequestedGroups(text)
-  const bedrooms = parseRequestedBedrooms(text)
+export function findApartmentsForQuery(
+  text: string,
+  previousUserTexts: string[] = [],
+): ApartmentMatchGroup[] | undefined {
+  if (CHITCHAT_RE.test(text.trim())) return undefined
+
+  const namedProjectThisTurn = parseRequestedProjects(text)
+  let area = parseRequestedArea(text)
+  let projectIds = namedProjectThisTurn
+  let groups = parseRequestedGroups(text)
+  let bedrooms = parseRequestedBedrooms(text)
   const wantsList = LISTING_INTENT_RE.test(text)
+
+  for (let i = previousUserTexts.length - 1; i >= 0; i--) {
+    const prev = previousUserTexts[i]
+    if (CHITCHAT_RE.test(prev.trim())) continue
+    if (area == null) area = parseRequestedArea(prev)
+    if (projectIds.length === 0) projectIds = parseRequestedProjects(prev)
+    // A newly named project must not keep the previous block/floor filter
+    // (Elsa "Blloku B" then "Tara" would otherwise match nothing).
+    if (groups.length === 0 && namedProjectThisTurn.length === 0) {
+      groups = parseRequestedGroups(prev)
+    }
+    if (bedrooms.length === 0) bedrooms = parseRequestedBedrooms(prev)
+  }
 
   if (area == null && projectIds.length === 0 && groups.length === 0 && bedrooms.length === 0) {
     return undefined
   }
-  if (area == null && groups.length === 0 && bedrooms.length === 0 && !wantsList) {
+  if (
+    area == null &&
+    groups.length === 0 &&
+    bedrooms.length === 0 &&
+    projectIds.length === 0 &&
+    !wantsList
+  ) {
     return undefined
   }
 
@@ -507,7 +573,10 @@ export function findApartmentsForQuery(text: string): ApartmentMatchGroup[] | un
 
   const grouped = groupByProject(source)
   for (const g of grouped) {
-    g.apartments = g.apartments.slice(0, maxPerProject)
+    g.apartments =
+      groups.length > 0
+        ? g.apartments.slice(0, maxPerProject)
+        : pickDiverseApartments(g.apartments, maxPerProject)
   }
   return grouped
 }
@@ -522,7 +591,7 @@ export function formatCatalogInventory(): string {
     by.set(key, list)
   }
   const lines = [
-    'CATALOG — real published layouts only. Never invent other sizes or blocks.',
+    'CATALOG — published LAYOUT TYPES only (not unit counts, not “available to buy”). Never invent other sizes, blocks, or how many apartments exist.',
   ]
   for (const [key, list] of by) {
     const bits = list.map((a) => {
