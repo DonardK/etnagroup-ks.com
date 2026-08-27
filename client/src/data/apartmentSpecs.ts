@@ -101,7 +101,8 @@ export const apartmentSpecs: Record<string, ApartmentSpec> = {
         "floor": "Laminat"
       }
     ],
-    "totalArea": 114.52
+    "totalArea": 114.52,
+    "type": "3+1"
   },
   "Residences Apartments/Elsa Residence PDF/Elsa Blloku A/Elsa-A-66.39m².pdf": {
     "rooms": [
@@ -184,7 +185,8 @@ export const apartmentSpecs: Record<string, ApartmentSpec> = {
         "floor": "Laminat"
       }
     ],
-    "totalArea": 74.4
+    "totalArea": 74.4,
+    "type": "2+1"
   },
   "Residences Apartments/Elsa Residence PDF/Elsa Blloku A/Elsa-A-82.3m².pdf": {
     "rooms": [
@@ -221,7 +223,8 @@ export const apartmentSpecs: Record<string, ApartmentSpec> = {
         "floor": "Qeramike"
       }
     ],
-    "totalArea": 82.3
+    "totalArea": 82.3,
+    "type": "2+1"
   },
   "Residences Apartments/Elsa Residence PDF/Elsa Blloku A/Elsa-A-93.37m².pdf": {
     "rooms": [
@@ -312,7 +315,8 @@ export const apartmentSpecs: Record<string, ApartmentSpec> = {
         "floor": "Laminat"
       }
     ],
-    "totalArea": 113.4
+    "totalArea": 113.4,
+    "type": "3+1"
   },
   "Residences Apartments/Elsa Residence PDF/Elsa Blloku B/Elsa-B-115.99m².pdf": {
     "rooms": [
@@ -366,7 +370,8 @@ export const apartmentSpecs: Record<string, ApartmentSpec> = {
         "floor": "Laminat"
       }
     ],
-    "totalArea": 115.99
+    "totalArea": 115.99,
+    "type": "3+1"
   },
   "Residences Apartments/Elsa Residence PDF/Elsa Blloku B/Elsa-B-127.11m².pdf": {
     "rooms": [
@@ -416,7 +421,8 @@ export const apartmentSpecs: Record<string, ApartmentSpec> = {
         "floor": "Qeramike"
       }
     ],
-    "totalArea": 127.11
+    "totalArea": 127.11,
+    "type": "3+1"
   },
   "Residences Apartments/Elsa Residence PDF/Elsa Blloku B/Elsa-B-132.21m².pdf": {
     "rooms": [
@@ -495,7 +501,8 @@ export const apartmentSpecs: Record<string, ApartmentSpec> = {
         "floor": "Qeramike"
       }
     ],
-    "totalArea": 53.35
+    "totalArea": 53.35,
+    "type": "1+1"
   },
   "Residences Apartments/Elsa Residence PDF/Elsa Blloku B/Elsa-B-66.26m².pdf": {
     "rooms": [
@@ -525,7 +532,8 @@ export const apartmentSpecs: Record<string, ApartmentSpec> = {
         "floor": "Laminat"
       }
     ],
-    "totalArea": 66.26
+    "totalArea": 66.26,
+    "type": "1+1"
   },
   "Residences Apartments/Elsa Residence PDF/Elsa Blloku B/Elsa-B-84.34m².pdf": {
     "rooms": [
@@ -558,14 +566,10 @@ export const apartmentSpecs: Record<string, ApartmentSpec> = {
         "name": "Dhomë gjumi",
         "area": 8.72,
         "floor": "Laminat"
-      },
-      {
-        "name": "Dhomë gjumi",
-        "area": 2.13,
-        "floor": "Qeramike"
       }
     ],
-    "totalArea": 84.34
+    "totalArea": 84.34,
+    "type": "2+1"
   },
   "Residences Apartments/Elsa Residence PDF/Elsa Blloku B/Elsa-B-90.65m².pdf": {
     "rooms": [
@@ -573,11 +577,6 @@ export const apartmentSpecs: Record<string, ApartmentSpec> = {
         "name": "Qëndrimi ditor",
         "area": 32.23,
         "floor": "Laminat"
-      },
-      {
-        "name": "Depo",
-        "area": 32.236,
-        "floor": "Qeramike"
       },
       {
         "name": "Dhomë gjumi",
@@ -644,7 +643,8 @@ export const apartmentSpecs: Record<string, ApartmentSpec> = {
         "floor": "Laminat"
       }
     ],
-    "totalArea": 91.11
+    "totalArea": 91.11,
+    "type": "2+1"
   },
   "Residences Apartments/Elsa Residence PDF/Elsa Blloku B/Elsa-B-99.65m².pdf": {
     "rooms": [
@@ -685,7 +685,8 @@ export const apartmentSpecs: Record<string, ApartmentSpec> = {
         "floor": "Qeramike"
       }
     ],
-    "totalArea": 99.65
+    "totalArea": 99.65,
+    "type": "2+1"
   },
   "Residences Apartments/Elsa Residence PDF/Elsa Blloku C/Elsa-C-104.46m².pdf": {
     "rooms": [

@@ -95,6 +95,19 @@ function extractSpec(text) {
     spec.rooms.push(floor ? { name: room, area, floor } : { name: room, area })
   }
 
+  // Drop OCR/layout misreads: tiny "bedrooms" (usually WC) and huge "storage"
+  // rooms that copied the living-room area.
+  spec.rooms = spec.rooms.filter((r) => {
+    if (r.name === 'Dhomë gjumi' && r.area < 5) return false
+    if (r.name === 'Depo' && r.area > 15) return false
+    return true
+  })
+
+  if (!spec.type) {
+    const beds = spec.rooms.filter((r) => r.name === 'Dhomë gjumi').length
+    if (beds > 0) spec.type = `${beds}+1`
+  }
+
   return spec
 }
 

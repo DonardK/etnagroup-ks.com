@@ -49,7 +49,7 @@ const sq = {
       'Gjeje banesën ideale në 30 sekonda me Ndihmësin tonë të avancuar AI',
     promoAria: 'Hap asistentin AI për të gjetur banesën ideale',
     assistant: 'Asistente Dixhitale',
-    greeting: `Përshëndetje! Unë jam Etna, asistentja juaj dixhitale e Etna Group. Si mund t'ju ndihmoj?`,
+    greeting: `Përshëndetje! Unë jam Etna, këshilltarja dixhitale e Etna Group. Më tregoni qytetin (Prishtinë, Prizren ose Malishevë), sa m² ose sa dhoma gjumi ju duhen — ose cilin projekt (Elsa, Tiani, Tara, Joni).`,
     placeholder: 'Shkruani mesazhin tuaj…',
     disclaimer:
       'Etna mund të gabojë. Bisedat tuaja ruhen dhe lexohen nga Etna Group për të përmirësuar shërbimin.',
@@ -338,7 +338,7 @@ const en = {
     promo: 'Find your ideal apartment in 30 seconds with our advanced AI assistant',
     promoAria: 'Open AI assistant to find your ideal apartment',
     assistant: 'Digital Assistant',
-    greeting: `Hello! I'm Etna, your Etna Group digital assistant. How can I help you today?`,
+    greeting: `Hello! I'm Etna, Etna Group's digital consultant. Tell me the city (Prishtinë, Prizren, or Malishevë), the size in m² or how many bedrooms you need — or which project (Elsa, Tiani, Tara, Joni).`,
     placeholder: 'Type your message…',
     disclaimer:
       'Etna may make mistakes. Your chats are stored and read by Etna Group to improve our service.',
@@ -631,7 +631,7 @@ const de = {
       'Finden Sie Ihre Traumwohnung in 30 Sekunden mit unserem fortschrittlichen KI-Assistenten',
     promoAria: 'KI-Assistenten öffnen, um die ideale Wohnung zu finden',
     assistant: 'Digitaler Assistent',
-    greeting: `Hallo! Ich bin Etna, Ihre digitale Assistentin von Etna Group. Wie kann ich Ihnen helfen?`,
+    greeting: `Hallo! Ich bin Etna, die digitale Beraterin von Etna Group. Nennen Sie mir die Stadt (Prishtinë, Prizren oder Malishevë), die Größe in m² oder die Anzahl der Schlafzimmer — oder das Projekt (Elsa, Tiani, Tara, Joni).`,
     placeholder: 'Nachricht eingeben…',
     disclaimer:
       'Etna kann Fehler machen. Ihre Chats werden gespeichert und von Etna Group gelesen, um unseren Service zu verbessern.',

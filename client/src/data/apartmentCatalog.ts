@@ -47,6 +47,7 @@ export const apartmentCatalog: CatalogApartment[] = [
     { area: 108.4, pdfPath: `${ELSA_BASE}/Elsa Blloku A/Elsa-A-108.4m².pdf` },
     { area: 114, pdfPath: `${ELSA_BASE}/Elsa Blloku A/Elsa-A-114m².pdf` },
   ]),
+  // Elsa Blloku B filenames: Elsa-B-{area}m².pdf (not B_{area}m2.pdf).
   ...make('Elsa Residence', 'elsa', 'Prishtinë', 'Blloku B', [
     { area: 53.35, pdfPath: `${ELSA_BASE}/Elsa Blloku B/Elsa-B-53.35m².pdf` },
     { area: 66.26, pdfPath: `${ELSA_BASE}/Elsa Blloku B/Elsa-B-66.26m².pdf` },
@@ -276,15 +277,18 @@ export function parseRequestedProjects(text: string): string[] {
  */
 export function findApartmentsByArea(
   targetArea: number,
-  opts?: { tolerance?: number; maxPerProject?: number; projectIds?: string[] },
+  opts?: {
+    tolerance?: number
+    maxPerProject?: number
+    projectIds?: string[]
+    groups?: string[]
+    bedrooms?: number[]
+  },
 ): ApartmentMatchGroup[] {
   const tolerance = opts?.tolerance ?? 12
   const maxPerProject = opts?.maxPerProject ?? 4
-  const allowed =
-    opts?.projectIds && opts.projectIds.length > 0 ? new Set(opts.projectIds) : null
-  const source = allowed
-    ? apartmentCatalog.filter((a) => allowed.has(a.projectId))
-    : apartmentCatalog
+  const source = filterCatalog(apartmentCatalog, opts)
+  if (source.length === 0) return []
 
   const byProject = new Map<string, CatalogApartment[]>()
   for (const apt of source) {
@@ -362,4 +366,173 @@ export function filterApartments(filter: FlatFilter): CatalogApartment[] {
     }
     return true
   })
+}
+
+function filterCatalog(
+  list: CatalogApartment[],
+  opts?: { projectIds?: string[]; groups?: string[]; bedrooms?: number[] },
+): CatalogApartment[] {
+  let source = list
+  if (opts?.projectIds && opts.projectIds.length > 0) {
+    const allowed = new Set(opts.projectIds)
+    source = source.filter((a) => allowed.has(a.projectId))
+  }
+  if (opts?.groups && opts.groups.length > 0) {
+    const groups = new Set(opts.groups)
+    source = source.filter((a) => groups.has(a.group))
+  }
+  if (opts?.bedrooms && opts.bedrooms.length > 0) {
+    const beds = new Set(opts.bedrooms)
+    source = source.filter((a) => {
+      const n = getBedroomCount(a.pdfPath)
+      return n !== null && beds.has(n)
+    })
+  }
+  return source
+}
+
+/** Layout type from the PDF spec, or inferred from bedroom count (e.g. 2 bedrooms → "2+1"). */
+export function inferApartmentType(pdfPath: string): string | undefined {
+  const spec = apartmentSpecs[pdfPath]
+  if (spec?.type) return spec.type
+  const beds = getBedroomCount(pdfPath)
+  return beds && beds > 0 ? `${beds}+1` : undefined
+}
+
+/**
+ * Detect block / floor grouping: "Blloku B", "block A", "kati 3", "floor 1".
+ */
+export function parseRequestedGroups(text: string): string[] {
+  const groups = new Set<string>()
+  const blockRe = /\bbllok(?:u|un|ut)?\s*([a-e])\b|\bblock\s*([a-e])\b|\bblok(?:k)?\s*([a-e])\b/gi
+  for (const m of text.matchAll(blockRe)) {
+    const letter = (m[1] || m[2] || m[3] || '').toUpperCase()
+    if (letter) groups.add(`Blloku ${letter}`)
+  }
+  const floorRe = /\bkati(?:t)?\s*(\d)\b|\bfloor\s*(\d)\b|\betage\s*(\d)\b/gi
+  for (const m of text.matchAll(floorRe)) {
+    const n = parseInt(m[1] || m[2] || m[3], 10)
+    if (n === 1) {
+      groups.add('Kati 1')
+      groups.add('Kati 1–6')
+    } else if (n >= 2 && n <= 6) {
+      groups.add('Kati 2–6')
+      groups.add('Kati 1–6')
+    }
+  }
+  return [...groups]
+}
+
+/**
+ * Detect bedroom count / tipi: "2+1", "dy dhoma gjumi", "3 bedrooms".
+ */
+export function parseRequestedBedrooms(text: string): number[] {
+  const beds = new Set<number>()
+  const normalized = text.toLowerCase()
+  for (const m of normalized.matchAll(/\b([1-3])\s*\+\s*1\b/g)) {
+    beds.add(parseInt(m[1], 10))
+  }
+  if (
+    /\b(?:nj[ëe]|one|ein)\s+(?:dhom|bed|schlaf)/.test(normalized) ||
+    /\b1\s*(?:dhom[ëe]\s*gjumi|bedroom|schlafzimmer)\b/.test(normalized)
+  ) {
+    beds.add(1)
+  }
+  if (
+    /\b(?:dy|two|zwei)\s+(?:dhom|bed|schlaf)/.test(normalized) ||
+    /\b2\s*(?:dhoma?\s*gjumi|bedrooms?|schlafzimmer)\b/.test(normalized)
+  ) {
+    beds.add(2)
+  }
+  if (
+    /\b(?:tre|tri|three|drei)\s+(?:dhom|bed|schlaf)/.test(normalized) ||
+    /\b3\s*(?:dhoma?\s*gjumi|bedrooms?|schlafzimmer)\b/.test(normalized)
+  ) {
+    beds.add(3)
+  }
+  return [...beds]
+}
+
+const LISTING_INTENT_RE =
+  /planimetr|apartament|banes|layout|tipi|available|disponueshm|gjend|show me|m[ëe] trego|cilat|which|lista|list of|offer|ofro/i
+
+function groupByProject(list: CatalogApartment[]): ApartmentMatchGroup[] {
+  const byProject = new Map<string, CatalogApartment[]>()
+  for (const apt of list) {
+    const items = byProject.get(apt.projectId) ?? []
+    items.push(apt)
+    byProject.set(apt.projectId, items)
+  }
+  const groups: ApartmentMatchGroup[] = []
+  for (const items of byProject.values()) {
+    const sorted = [...items].sort((a, b) => a.area - b.area)
+    const head = sorted[0]
+    groups.push({
+      project: head.project,
+      projectId: head.projectId,
+      city: head.city,
+      apartments: sorted,
+    })
+  }
+  return groups
+}
+
+/**
+ * Resolve apartments for a chat turn: size, project/city, block/floor, and/or bedrooms.
+ * Returns undefined when the message is too vague to pick units (the catalog overview still goes to the model).
+ */
+export function findApartmentsForQuery(text: string): ApartmentMatchGroup[] | undefined {
+  const area = parseRequestedArea(text)
+  const projectIds = parseRequestedProjects(text)
+  const groups = parseRequestedGroups(text)
+  const bedrooms = parseRequestedBedrooms(text)
+  const wantsList = LISTING_INTENT_RE.test(text)
+
+  if (area == null && projectIds.length === 0 && groups.length === 0 && bedrooms.length === 0) {
+    return undefined
+  }
+  if (area == null && groups.length === 0 && bedrooms.length === 0 && !wantsList) {
+    return undefined
+  }
+
+  const maxPerProject =
+    groups.length > 0 ? 12 : projectIds.length === 1 || bedrooms.length > 0 ? 6 : 4
+
+  if (area != null) {
+    return findApartmentsByArea(area, { projectIds, groups, bedrooms, maxPerProject })
+  }
+
+  const source = filterCatalog(apartmentCatalog, { projectIds, groups, bedrooms })
+  if (source.length === 0) return []
+
+  const grouped = groupByProject(source)
+  for (const g of grouped) {
+    g.apartments = g.apartments.slice(0, maxPerProject)
+  }
+  return grouped
+}
+
+/** Compact real-unit list injected into every chat turn so the model cannot invent sizes. */
+export function formatCatalogInventory(): string {
+  const by = new Map<string, CatalogApartment[]>()
+  for (const apt of apartmentCatalog) {
+    const key = `${apt.project} (${apt.city})${apt.group ? `, ${apt.group}` : ''}`
+    const list = by.get(key) ?? []
+    list.push(apt)
+    by.set(key, list)
+  }
+  const lines = [
+    'CATALOG — real published layouts only. Never invent other sizes or blocks.',
+  ]
+  for (const [key, list] of by) {
+    const bits = list.map((a) => {
+      const type = inferApartmentType(a.pdfPath)
+      return type ? `${a.area} m² (${type})` : `${a.area} m²`
+    })
+    lines.push(`- ${key}: ${bits.join(', ')}`)
+  }
+  lines.push(
+    '- Elsa Residence (Prishtinë), Blloku E: planimetri not published yet (coming soon).',
+  )
+  return lines.join('\n')
 }

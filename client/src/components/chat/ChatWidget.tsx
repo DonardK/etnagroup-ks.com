@@ -8,9 +8,9 @@ import {
 import { AnimatePresence, motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import {
-  findApartmentsByArea,
-  parseRequestedArea,
-  parseRequestedProjects,
+  findApartmentsForQuery,
+  formatCatalogInventory,
+  inferApartmentType,
   type ApartmentMatchGroup,
 } from '../../data/apartmentCatalog'
 import { apartmentSpecs } from '../../data/apartmentSpecs'
@@ -20,7 +20,7 @@ import { useLanguage } from '../../i18n/LanguageContext'
 import { localizeCity, localizeGroup } from '../../i18n/labels'
 import type { TranslationTree } from '../../i18n/translations'
 
-const APARTMENT_CONTEXT_CAP = 3500
+const APARTMENT_CONTEXT_CAP = 6500
 
 const PDF_BASE = import.meta.env.BASE_URL
 
@@ -47,23 +47,21 @@ const buildApartmentContext = (
       const id = `p${n}`
       links[id] = encodeURI(`${PDF_BASE}${apt.pdfPath}`)
       const spec = apartmentSpecs[apt.pdfPath]
+      const type = inferApartmentType(apt.pdfPath)
       const head = `[${id}] ${g.project} (${g.city})${apt.group ? `, ${apt.group}` : ''}, ${apt.area} m²`
-      const type = spec?.type ? `, ${spec.type}` : ''
+      const typeBit = type ? `, ${type}` : ''
       if (spec && spec.rooms.length > 0) {
         const rooms = spec.rooms
           .map((r) => `${r.name} ${r.area} m²${r.floor ? ` (${r.floor})` : ''}`)
           .join('; ')
-        lines.push(`- ${head}${type}: ${rooms}`)
+        lines.push(`- ${head}${typeBit}: ${rooms}`)
       } else {
-        lines.push(`- ${head}${type}`)
+        lines.push(`- ${head}${typeBit}`)
       }
     }
   }
   if (lines.length === 0) return undefined
-  const joined = lines.join('\n')
-  const context =
-    joined.length > APARTMENT_CONTEXT_CAP ? joined.slice(0, APARTMENT_CONTEXT_CAP) : joined
-  return { context, links }
+  return { context: lines.join('\n'), links }
 }
 
 interface ChatMessage {
@@ -240,17 +238,15 @@ export const ChatWidget = ({ isOpen, onOpenChange }: ChatWidgetProps) => {
     const text = input.trim()
     if (!text || loading) return
 
-    const requestedArea = parseRequestedArea(text)
-    const requestedProjects = parseRequestedProjects(text)
+    const matchesRaw = findApartmentsForQuery(text)
     const matches =
-      requestedArea !== null
-        ? findApartmentsByArea(requestedArea, {
-            projectIds: requestedProjects,
-            maxPerProject: requestedProjects.length === 1 ? 6 : 4,
-          })
-        : undefined
+      matchesRaw && matchesRaw.length > 0 ? matchesRaw : undefined
     const ctx = matches ? buildApartmentContext(matches) : undefined
-    const apartmentContext = ctx?.context
+    const inventory = formatCatalogInventory()
+    const apartmentContext = [ctx?.context, inventory]
+      .filter(Boolean)
+      .join('\n\n')
+      .slice(0, APARTMENT_CONTEXT_CAP)
     const userMessage: ChatMessage = { role: 'user', text, ts: Date.now() }
     const nextMessages = [...messages, userMessage]
     setMessages(nextMessages)
