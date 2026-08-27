@@ -1,5 +1,5 @@
 // Cloudflare Pages Function — Etna Group AI assistant ("Etna").
-// Runs on Cloudflare's edge using Workers AI (@cf/qwen/qwen3-30b-a3b-fp8).
+// Runs on Cloudflare's edge using Workers AI (@cf/google/gemma-4-26b-a4b-it).
 // Endpoint: POST /api/chat  { sessionId?, messages: [{ role, content }] } -> { reply }
 
 interface D1PreparedStatement {
@@ -23,7 +23,7 @@ interface RateLimiter {
 interface Env {
   // Workers AI binding (bind in Cloudflare Pages settings as "AI").
   AI?: {
-    run: (model: string, inputs: Record<string, unknown>) => Promise<{ response?: string }>
+    run: (model: string, inputs: Record<string, unknown>) => Promise<unknown>
   }
   // D1 binding for chat logs (bind as "CHAT_DB" in wrangler.toml).
   CHAT_DB?: D1Database
@@ -86,11 +86,10 @@ const persistChatTurn = async (
   ])
 }
 
-// Qwen3-30B-A3B: MoE model covering ~119 languages (incl. Albanian), cheap and
-// fast (only 3B params active per token). It is a reasoning model that emits
-// <think>...</think> by default, so we disable that via the "/no_think" switch
-// appended to the system prompt and strip any residual reasoning from replies.
-const MODEL = '@cf/qwen/qwen3-30b-a3b-fp8'
+// Gemma 4 26B A4B: Google open model (Gemini 3 family), ~3.8B active params,
+// 140+ languages. Stronger EN/DE than Qwen3-30B-A3B; Albanian should be tested.
+// It can emit a thought channel — we request low reasoning and strip leftovers.
+const MODEL = '@cf/google/gemma-4-26b-a4b-it'
 
 // --- Abuse / free-tier protection limits ---
 const MAX_HISTORY_MESSAGES = 12 // keep only the most recent turns
@@ -135,6 +134,30 @@ const restoreAptLinks = (text: string, links: string[]): string => {
   return out
 }
 
+const extractModelText = (result: unknown): string => {
+  if (!result || typeof result !== 'object') return ''
+  const r = result as Record<string, unknown>
+  if (typeof r.response === 'string') return r.response
+
+  const choices = r.choices
+  if (Array.isArray(choices) && choices[0] && typeof choices[0] === 'object') {
+    const message = (choices[0] as { message?: { content?: unknown } }).message
+    const content = message?.content
+    if (typeof content === 'string') return content
+    if (Array.isArray(content)) {
+      return content
+        .map((part) => {
+          if (!part || typeof part !== 'object') return ''
+          const p = part as { text?: unknown; thought?: unknown }
+          if (p.thought === true) return ''
+          return typeof p.text === 'string' ? p.text : ''
+        })
+        .join('')
+    }
+  }
+  return ''
+}
+
 const runModel = async (
   ai: NonNullable<Env['AI']>,
   messages: ChatMessage[],
@@ -144,8 +167,9 @@ const runModel = async (
     messages,
     max_tokens: maxTokens,
     temperature: 0.2,
+    reasoning_effort: 'low',
   })
-  return result && typeof result.response === 'string' ? stripReasoning(result.response) : ''
+  return stripReasoning(extractModelText(result))
 }
 
 /** Second pass: translate an English assistant reply to German, keeping apt: link tokens intact. */
@@ -167,9 +191,7 @@ const translateToGerman = async (
 - Do not add commentary — output only the German translation.
 - Keep addresses unchanged.
 - Do not turn “has NOT started” or “not ready” into “fertig” or “bezugsfertig”. Grey structure completed + finishing remaining must stay unfinished.
-- Elsa Block B: “the first floor above the parking is being finished” refers only to that floor — never translate it as “Block B is finished” or “bezugsfertig”.
-
-/no_think`,
+- Elsa Block B: “the first floor above the parking is being finished” refers only to that floor — never translate it as “Block B is finished” or “bezugsfertig”.`,
       },
       { role: 'user', content: stripped },
     ],
@@ -228,9 +250,7 @@ ${apartmentContext}`
 3. Construction status matches the status lines in this prompt — not a paraphrase that sounds “started” or “ready”.
 4. You did not say any project except Etna Residence is finished or move-in ready.
 5. You used [${planLabel}](apt:pN) for each matched unit you named.
-6. If a figure is missing, you said so and gave +383 46 38 38 38 instead of guessing.
-
-/no_think`
+6. If a figure is missing, you said so and gave +383 46 38 38 38 instead of guessing.`
 }
 
 const SYSTEM_PROMPT_BASE = `You are "Etna", the digital sales consultant for Etna Group — a Kosovo developer that designs, builds, and sells its own residences. Warm, precise, concise, never pushy. Accuracy beats persuasion: a wrong figure to a buyer is unacceptable.
@@ -321,12 +341,20 @@ Do not list "factors that affect price". Do not invent a price range.
 
 Keep every reply helpful, accurate, and brand-appropriate.`
 
-// Reasoning models (e.g. Qwen3) emit chain-of-thought wrapped in
-// <think>...</think>. Keep only the final answer that follows it.
+// Reasoning models may emit chain-of-thought (<think>, <|think|>, etc.).
+// Keep only the final answer that follows it.
 const stripReasoning = (text: string): string => {
-  const closeIdx = text.lastIndexOf('</think>')
-  const tail = closeIdx !== -1 ? text.slice(closeIdx + '</think>'.length) : text
-  return tail.replace(/<\/?think>/gi, '').trim()
+  let out = text
+  const closeIdx = out.lastIndexOf('</think>')
+  if (closeIdx !== -1) out = out.slice(closeIdx + '</think>'.length)
+  out = out.replace(/<\/?think>/gi, '')
+  out = out.replace(/<\|think\|>[\s\S]*?(?:<\|answer\|>|<\|\/think\|>)/gi, '')
+  const thinkOpen = out.lastIndexOf('<|think|>')
+  if (thinkOpen !== -1) {
+    const answerOpen = out.indexOf('<|answer|>', thinkOpen)
+    out = answerOpen !== -1 ? out.slice(answerOpen + '<|answer|>'.length) : out.slice(0, thinkOpen)
+  }
+  return out.replace(/<\|answer\|>/g, '').trim()
 }
 
 const extractSqmFigures = (text: string): number[] => {

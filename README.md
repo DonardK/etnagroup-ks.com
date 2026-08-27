@@ -44,7 +44,7 @@ The **Etna** AI assistant runs on a **Cloudflare Pages Function** (`POST /api/ch
 | Animations | Framer Motion |
 | Routing | React Router 7 |
 | Contact form | EmailJS |
-| AI assistant | Cloudflare Workers AI (`@cf/qwen/qwen3-30b-a3b-fp8`) via Pages Functions |
+| AI assistant | Cloudflare Workers AI (`@cf/google/gemma-4-26b-a4b-it`) via Pages Functions |
 | Media CDN | Cloudflare R2 (`media.etnagroup-ks.com`) |
 | Hosting (production) | Cloudflare Pages (`client/wrangler.toml`) |
 | Hosting (mirror) | GitHub Pages (CI on push to `main`) |
@@ -155,7 +155,7 @@ Override the CDN base URL with `VITE_MEDIA_BASE_URL` in `client/.env` if needed.
 | API endpoint | `client/functions/api/chat.ts` → `POST /api/chat` |
 | Cloudflare config | `client/wrangler.toml` (Workers AI binding, `pages_build_output_dir = "./dist"`) |
 
-**Model:** `@cf/qwen/qwen3-30b-a3b-fp8` (multilingual, including Albanian). The function caps history length, message size, and output tokens to control cost.
+**Model:** `@cf/google/gemma-4-26b-a4b-it` (Gemma 4 26B, 140+ languages). The function caps history length, message size, and output tokens to control cost.
 
 ### Rate limiting
 
