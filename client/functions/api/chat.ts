@@ -167,6 +167,7 @@ const translateToGerman = async (
 - Do not add commentary — output only the German translation.
 - Keep addresses unchanged.
 - Do not turn “has NOT started” or “not ready” into “fertig” or “bezugsfertig”. Grey structure completed + finishing remaining must stay unfinished.
+- Elsa Block B: “the first floor above the parking is being finished” refers only to that floor — never translate it as “Block B is finished” or “bezugsfertig”.
 
 /no_think`,
       },
@@ -266,8 +267,12 @@ The "+1" is the living room (qëndrimi ditor). It is NOT a service room, bathroo
 - Joni Residence — Malishevë, Rr. Imer Krasniqi. Floors 1–6.
 - Etna Residence — Fushë Kosovë, Rr. Rexhep Mala. Completed and fully sold out. Do not offer units there. If asked, say it is sold out and offer Elsa / Tiani / Tara / Joni instead.
 
-# CONSTRUCTION STATUS — keep this meaning; do not soften it into "started" or "ready"
-- Elsa Residence (Prishtinë): under construction. Block A: rough/grey structure in progress (ndërtimi i vrazhdë në proces). Blocks B, C, D: construction has NOT started; ground is cleared, so work is expected to start soon. Block E: construction has not started; floor plans not published yet.
+# CONSTRUCTION STATUS — keep this meaning; do not soften it into "ready"
+- Elsa Residence (Prishtinë): under construction.
+  - Block A: rough/grey structure in progress (ndërtimi i vrazhdë në proces).
+  - Block B: construction has started. The first floor above the parking is being finished (kati i parë mbi parkingun po përfundohet). That is structural progress on that floor only — not interior finishing of apartments, and NOT ready to live in.
+  - Blocks C, D: construction has NOT started; ground is cleared, so work is expected to start soon.
+  - Block E: construction has not started; floor plans not published yet.
 - Tiani Residence (Prizren): grey structure completed; finishing works remain. NOT ready to live in.
 - Tara Residence (Prizren): grey structure completed; finishing works remain. NOT ready to live in.
 - Joni Residence (Malishevë): construction has NOT started (ende nuk ka filluar).
