@@ -10,7 +10,7 @@ function areaLabel(area) {
 }
 
 function areaFromFilename(filename) {
-  const m = path.basename(filename).match(/(\d+(?:\.\d+)?)m²/i)
+  const m = path.basename(filename).match(/(\d+(?:\.\d+)?)\s*m[²2]/i)
   return m ? m[1] : null
 }
 

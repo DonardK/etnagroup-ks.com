@@ -61,18 +61,23 @@ export const apartmentCatalog: CatalogApartment[] = [
     { area: 132.21, pdfPath: `${ELSA_BASE}/Elsa Blloku B/Elsa-B-132.21m².pdf` },
   ]),
   ...make('Elsa Residence', 'elsa', 'Prishtinë', 'Blloku C', [
-    { area: 53.35, pdfPath: `${ELSA_BASE}/Elsa Blloku C/Elsa-C-53.35m².pdf` },
-    { area: 66.26, pdfPath: `${ELSA_BASE}/Elsa Blloku C/Elsa-C-66.26m².pdf` },
-    { area: 67.98, pdfPath: `${ELSA_BASE}/Elsa Blloku C/Elsa-C-67.98m².pdf` },
-    { area: 84.34, pdfPath: `${ELSA_BASE}/Elsa Blloku C/Elsa-C-84.34m².pdf` },
-    { area: 91.11, pdfPath: `${ELSA_BASE}/Elsa Blloku C/Elsa-C-91.11m².pdf` },
-    { area: 99.65, pdfPath: `${ELSA_BASE}/Elsa Blloku C/Elsa-C-99.65m².pdf` },
-    { area: 104.46, pdfPath: `${ELSA_BASE}/Elsa Blloku C/Elsa-C-104.46m².pdf` },
-    { area: 113.97, pdfPath: `${ELSA_BASE}/Elsa Blloku C/Elsa-C-113.97m².pdf` },
-    { area: 115.99, pdfPath: `${ELSA_BASE}/Elsa Blloku C/Elsa-C-115.99m².pdf` },
-    { area: 118.88, pdfPath: `${ELSA_BASE}/Elsa Blloku C/Elsa-C-118.88m².pdf` },
-    { area: 127.8, pdfPath: `${ELSA_BASE}/Elsa Blloku C/Elsa-C-127.8m².pdf` },
-    { area: 128.18, pdfPath: `${ELSA_BASE}/Elsa Blloku C/Elsa-C-128.18m².pdf` },
+    { area: 53.35, pdfPath: `${ELSA_BASE}/Elsa Blloku C/C-53.35 m2.pdf` },
+    { area: 53.35, pdfPath: `${ELSA_BASE}/Elsa Blloku C/CP-53.35 m2.pdf` },
+    { area: 66.26, pdfPath: `${ELSA_BASE}/Elsa Blloku C/C-66.26 m2.pdf` },
+    { area: 66.26, pdfPath: `${ELSA_BASE}/Elsa Blloku C/CP-66.26 m2.pdf` },
+    { area: 67.98, pdfPath: `${ELSA_BASE}/Elsa Blloku C/C-67.98 m2.pdf` },
+    { area: 84.34, pdfPath: `${ELSA_BASE}/Elsa Blloku C/C-84.34 m2.pdf` },
+    { area: 84.34, pdfPath: `${ELSA_BASE}/Elsa Blloku C/CP-84.34 m2.pdf` },
+    { area: 91.11, pdfPath: `${ELSA_BASE}/Elsa Blloku C/C-91.11 m2.pdf` },
+    { area: 91.11, pdfPath: `${ELSA_BASE}/Elsa Blloku C/CP-91.11 m2.pdf` },
+    { area: 99.65, pdfPath: `${ELSA_BASE}/Elsa Blloku C/C-99.65 m2.pdf` },
+    { area: 99.65, pdfPath: `${ELSA_BASE}/Elsa Blloku C/CP-99.65 m2.pdf` },
+    { area: 104.46, pdfPath: `${ELSA_BASE}/Elsa Blloku C/C-104.46 m2.pdf` },
+    { area: 113.97, pdfPath: `${ELSA_BASE}/Elsa Blloku C/C-113.97 m2.pdf` },
+    { area: 115.99, pdfPath: `${ELSA_BASE}/Elsa Blloku C/C-115.99 m2.pdf` },
+    { area: 118.88, pdfPath: `${ELSA_BASE}/Elsa Blloku C/C-118.88 m2.pdf` },
+    { area: 127.8, pdfPath: `${ELSA_BASE}/Elsa Blloku C/C-127.8 m2.pdf` },
+    { area: 128.18, pdfPath: `${ELSA_BASE}/Elsa Blloku C/C-128.18 m2.pdf` },
   ]),
   ...make('Elsa Residence', 'elsa', 'Prishtinë', 'Blloku D', [
     { area: 53.35, pdfPath: `${ELSA_BASE}/Elsa Blloku D/Elsa-D-53.35m².pdf` },
@@ -166,7 +171,7 @@ export const apartmentCatalog: CatalogApartment[] = [
 const areaLabelFromPath = (pdfPath: string): string => {
   const file = pdfPath.split('/').pop() ?? ''
   const token = file.replace(/\.pdf$/i, '').split('-').pop() ?? ''
-  return token.replace(/m²$/i, ' m²').trim()
+  return token.replace(/\s*m[²2]$/i, ' m²').trim()
 }
 
 const blockLetter = (group: string): string => {
@@ -562,7 +567,7 @@ export function findApartmentsForQuery(
   }
 
   const maxPerProject =
-    groups.length > 0 ? 12 : projectIds.length === 1 || bedrooms.length > 0 ? 6 : 4
+    groups.length > 0 ? 20 : projectIds.length === 1 || bedrooms.length > 0 ? 6 : 4
 
   if (area != null) {
     return findApartmentsByArea(area, { projectIds, groups, bedrooms, maxPerProject })
@@ -594,10 +599,15 @@ export function formatCatalogInventory(): string {
     'CATALOG — published LAYOUT TYPES only (not unit counts, not “available to buy”). Never invent other sizes, blocks, or how many apartments exist.',
   ]
   for (const [key, list] of by) {
-    const bits = list.map((a) => {
+    const bits: string[] = []
+    const seen = new Set<string>()
+    for (const a of list) {
       const type = inferApartmentType(a.pdfPath)
-      return type ? `${a.area} m² (${type})` : `${a.area} m²`
-    })
+      const bit = type ? `${a.area} m² (${type})` : `${a.area} m²`
+      if (seen.has(bit)) continue
+      seen.add(bit)
+      bits.push(bit)
+    }
     lines.push(`- ${key}: ${bits.join(', ')}`)
   }
   lines.push(
