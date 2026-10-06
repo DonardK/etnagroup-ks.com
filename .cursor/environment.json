@@ -1,0 +1,10 @@
+{
+  "name": "Etna Group Website",
+  "install": "cd client && npm ci",
+  "terminals": [
+    {
+      "name": "Vite dev server",
+      "command": "cd client && npm run dev"
+    }
+  ]
+}
