@@ -20,7 +20,7 @@ const OUT_FILE = join(__dirname, '..', 'src', 'data', 'apartmentSpecs.ts')
 
 const ROOM_KEYWORDS = [
   ['Dhomë gjumi', /dhom[ëe]\s*(e\s*)?gjumi/i],
-  ['Qëndrimi ditor', /q[ëe]ndrimi\s*ditor/i],
+  ['Qëndrimi ditor', /q[ëe]ndrim(?:i)?\s*ditor/i],
   ['Kuzhina/Tryezaria', /kuzhin/i],
   ['Banjo', /banjo/i],
   ['WC', /\bwc\b/i],

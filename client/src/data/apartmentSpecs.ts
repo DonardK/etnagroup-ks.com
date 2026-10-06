@@ -267,6 +267,51 @@ export const apartmentSpecs: Record<string, ApartmentSpec> = {
     "type": "2+1",
     "totalArea": 93.37
   },
+  "Residences Apartments/Elsa Residence PDF/Elsa Blloku B/Elsa-B-106.5m².pdf": {
+    "rooms": [
+      {
+        "name": "Qëndrimi ditor",
+        "area": 28.81,
+        "floor": "Laminat"
+      },
+      {
+        "name": "Dhomë gjumi",
+        "area": 14.98,
+        "floor": "Laminat"
+      },
+      {
+        "name": "Dhomë gjumi",
+        "area": 12.93,
+        "floor": "Laminat"
+      },
+      {
+        "name": "Depo",
+        "area": 3.18,
+        "floor": "Qeramike"
+      },
+      {
+        "name": "Banjo",
+        "area": 4.35
+      },
+      {
+        "name": "Dhomë gjumi",
+        "area": 10.75,
+        "floor": "Laminat"
+      },
+      {
+        "name": "Dhomë gjumi",
+        "area": 9.06,
+        "floor": "Laminat"
+      },
+      {
+        "name": "Terasë",
+        "area": 5.4,
+        "floor": "Qeramike"
+      }
+    ],
+    "type": "3+1",
+    "totalArea": 106.5
+  },
   "Residences Apartments/Elsa Residence PDF/Elsa Blloku B/Elsa-B-113.40m².pdf": {
     "rooms": [
       {
@@ -644,48 +689,6 @@ export const apartmentSpecs: Record<string, ApartmentSpec> = {
       }
     ],
     "totalArea": 91.11,
-    "type": "2+1"
-  },
-  "Residences Apartments/Elsa Residence PDF/Elsa Blloku B/Elsa-B-99.65m².pdf": {
-    "rooms": [
-      {
-        "name": "Terasë",
-        "area": 5.41
-      },
-      {
-        "name": "Qëndrimi ditor",
-        "area": 34.64
-      },
-      {
-        "name": "Depo",
-        "area": 2.78
-      },
-      {
-        "name": "Banjo",
-        "area": 4.39
-      },
-      {
-        "name": "Dhomë gjumi",
-        "area": 15.79,
-        "floor": "Laminat"
-      },
-      {
-        "name": "Koridori",
-        "area": 6.55,
-        "floor": "Laminat"
-      },
-      {
-        "name": "Dhomë gjumi",
-        "area": 14.88,
-        "floor": "Laminat"
-      },
-      {
-        "name": "WC",
-        "area": 2.26,
-        "floor": "Qeramike"
-      }
-    ],
-    "totalArea": 99.65,
     "type": "2+1"
   },
   "Residences Apartments/Elsa Residence PDF/Elsa Blloku C/C-104.46 m2.pdf": {

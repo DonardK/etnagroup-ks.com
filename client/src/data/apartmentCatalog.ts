@@ -54,7 +54,7 @@ export const apartmentCatalog: CatalogApartment[] = [
     { area: 84.34, pdfPath: `${ELSA_BASE}/Elsa Blloku B/Elsa-B-84.34m².pdf` },
     { area: 90.65, pdfPath: `${ELSA_BASE}/Elsa Blloku B/Elsa-B-90.65m².pdf` },
     { area: 91.11, pdfPath: `${ELSA_BASE}/Elsa Blloku B/Elsa-B-91.11m².pdf` },
-    { area: 99.65, pdfPath: `${ELSA_BASE}/Elsa Blloku B/Elsa-B-99.65m².pdf` },
+    { area: 106.5, pdfPath: `${ELSA_BASE}/Elsa Blloku B/Elsa-B-106.5m².pdf` },
     { area: 113.4, pdfPath: `${ELSA_BASE}/Elsa Blloku B/Elsa-B-113.40m².pdf` },
     { area: 115.99, pdfPath: `${ELSA_BASE}/Elsa Blloku B/Elsa-B-115.99m².pdf` },
     { area: 127.11, pdfPath: `${ELSA_BASE}/Elsa Blloku B/Elsa-B-127.11m².pdf` },
