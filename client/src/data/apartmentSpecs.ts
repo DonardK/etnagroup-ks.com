@@ -147,6 +147,11 @@ export const apartmentSpecs: Record<string, ApartmentSpec> = {
         "floor": "Laminat"
       },
       {
+        "name": "Koridori",
+        "area": 7.46,
+        "floor": "Laminat"
+      },
+      {
         "name": "Banjo",
         "area": 4.93,
         "floor": "Qeramike"
@@ -252,6 +257,11 @@ export const apartmentSpecs: Record<string, ApartmentSpec> = {
         "name": "WC",
         "area": 2.38,
         "floor": "Qeramike"
+      },
+      {
+        "name": "Koridori",
+        "area": 2.71,
+        "floor": "Laminat"
       },
       {
         "name": "Depo",
@@ -643,6 +653,11 @@ export const apartmentSpecs: Record<string, ApartmentSpec> = {
         "area": 2.29
       },
       {
+        "name": "Koridori",
+        "area": 8.09,
+        "floor": "Laminat"
+      },
+      {
         "name": "Ballkoni",
         "area": 5.1,
         "floor": "Qeramike"
@@ -712,6 +727,11 @@ export const apartmentSpecs: Record<string, ApartmentSpec> = {
         "name": "Banjo",
         "area": 4.05,
         "floor": "Qeramike"
+      },
+      {
+        "name": "Koridori",
+        "area": 13.78,
+        "floor": "Laminat"
       },
       {
         "name": "Depo",
@@ -803,6 +823,11 @@ export const apartmentSpecs: Record<string, ApartmentSpec> = {
       {
         "name": "Depo",
         "area": 1.6
+      },
+      {
+        "name": "Koridori",
+        "area": 9.3,
+        "floor": "Laminat"
       },
       {
         "name": "Ballkoni",
@@ -997,6 +1022,11 @@ export const apartmentSpecs: Record<string, ApartmentSpec> = {
         "name": "Banjo",
         "area": 4.02,
         "floor": "Qeramike"
+      },
+      {
+        "name": "Koridori",
+        "area": 5.72,
+        "floor": "Laminat"
       }
     ],
     "type": "1+1",
@@ -1017,6 +1047,11 @@ export const apartmentSpecs: Record<string, ApartmentSpec> = {
       {
         "name": "Dhomë gjumi",
         "area": 15.87,
+        "floor": "Laminat"
+      },
+      {
+        "name": "Koridori",
+        "area": 4.96,
         "floor": "Laminat"
       }
     ],
@@ -1042,6 +1077,11 @@ export const apartmentSpecs: Record<string, ApartmentSpec> = {
       {
         "name": "Dhomë gjumi",
         "area": 8.72,
+        "floor": "Laminat"
+      },
+      {
+        "name": "Koridori",
+        "area": 10.04,
         "floor": "Laminat"
       },
       {
@@ -1167,6 +1207,11 @@ export const apartmentSpecs: Record<string, ApartmentSpec> = {
         "name": "Banjo",
         "area": 4.02,
         "floor": "Qeramike"
+      },
+      {
+        "name": "Koridori",
+        "area": 5.72,
+        "floor": "Laminat"
       }
     ],
     "type": "1+1",
@@ -1192,6 +1237,11 @@ export const apartmentSpecs: Record<string, ApartmentSpec> = {
       {
         "name": "Dhomë gjumi",
         "area": 8.72,
+        "floor": "Laminat"
+      },
+      {
+        "name": "Koridori",
+        "area": 10.04,
         "floor": "Laminat"
       },
       {
@@ -1671,28 +1721,23 @@ export const apartmentSpecs: Record<string, ApartmentSpec> = {
     "rooms": [
       {
         "name": "Qëndrimi ditor",
-        "area": 28.14,
-        "floor": "Parket"
+        "area": 28.08,
+        "floor": "Laminat"
       },
       {
         "name": "Banjo",
-        "area": 5.63,
-        "floor": "Pllakë keramike"
+        "area": 5.62,
+        "floor": "Qeramike"
       },
       {
         "name": "Dhomë gjumi",
         "area": 15.87,
-        "floor": "Parket"
+        "floor": "Laminat"
       },
       {
         "name": "Koridori",
-        "area": 4.97,
-        "floor": "Parket"
-      },
-      {
-        "name": "Ballkoni",
-        "area": 4.02,
-        "floor": "Pllakë Qeramike"
+        "area": 4.96,
+        "floor": "Laminat"
       }
     ],
     "type": "1+1",

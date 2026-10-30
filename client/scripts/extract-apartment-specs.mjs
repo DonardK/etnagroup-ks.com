@@ -24,7 +24,7 @@ const ROOM_KEYWORDS = [
   ['Kuzhina/Tryezaria', /kuzhin/i],
   ['Banjo', /banjo/i],
   ['WC', /\bwc\b/i],
-  ['Koridori', /kor+idori/i],
+  ['Koridori', /kor+idor(?:i)?/i],
   ['Ballkoni', /ballkon/i],
   ['Terasë', /teras[ëe]/i],
   ['Tarracë', /tar+ac/i],
