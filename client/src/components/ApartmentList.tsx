@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { useLanguage } from '../i18n/LanguageContext'
+import { pdfUrl } from '../utils/assetUrl'
 
 export interface Apartment {
   name: string
@@ -25,7 +26,6 @@ export const ApartmentList = ({
   apartments,
 }: ApartmentListProps) => {
   const { t } = useLanguage()
-  const baseUrl = import.meta.env.BASE_URL
 
   return (
     <div className="min-h-screen bg-[#F8F2DD]">
@@ -79,7 +79,7 @@ export const ApartmentList = ({
               </div>
 
               <a
-                href={encodeURI(`${baseUrl}${apt.pdfPath}`)}
+                href={encodeURI(pdfUrl(apt.pdfPath))}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-4 flex items-center justify-center gap-2 rounded-xl bg-[#657432] px-4 py-2.5 text-sm font-semibold text-[#F8F2DD] transition-all hover:bg-[#657432]/85 active:scale-[0.97]"

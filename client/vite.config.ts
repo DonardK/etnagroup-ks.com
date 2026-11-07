@@ -4,7 +4,15 @@ import { rmSync } from 'node:fs'
 import { join } from 'node:path'
 
 /** Media served from R2 — must not ship in Cloudflare Pages dist (25 MiB/file limit). */
-const R2_MEDIA_DIRS = ['visuals', 'SVG Residences', 'brand', 'buildings', 'home page']
+const R2_MEDIA_DIRS = [
+  'visuals',
+  'SVG Residences',
+  'brand',
+  'buildings',
+  'home page',
+  // Elsa Blloku D PDFs exceed the 25 MiB/file Pages limit; served from R2 via pdfUrl().
+  join('Residences Apartments', 'Elsa Residence PDF', 'Elsa Blloku D'),
+]
 
 function excludeR2MediaFromDist(): Plugin {
   return {

@@ -15,6 +15,7 @@ import {
 } from '../../data/apartmentCatalog'
 import { apartmentSpecs } from '../../data/apartmentSpecs'
 import { getChatSessionId } from '../../utils/chat'
+import { pdfUrl } from '../../utils/assetUrl'
 import { useTouchDevice } from '../../hooks/useTouchDevice'
 import { useLanguage } from '../../i18n/LanguageContext'
 import { localizeCity, localizeGroup } from '../../i18n/labels'
@@ -41,8 +42,6 @@ const buildQueryNotes = (text: string): string => {
   return notes.join('\n')
 }
 
-const PDF_BASE = import.meta.env.BASE_URL
-
 const formatArea = (area: number): string => `${area} m²`
 
 const PLAN_ICON_PATH =
@@ -64,7 +63,7 @@ const buildApartmentContext = (
     for (const apt of g.apartments) {
       n += 1
       const id = `p${n}`
-      links[id] = encodeURI(`${PDF_BASE}${apt.pdfPath}`)
+      links[id] = encodeURI(pdfUrl(apt.pdfPath))
       const spec = apartmentSpecs[apt.pdfPath]
       const type = inferApartmentType(apt.pdfPath)
       const head = `[${id}] ${g.project} (${g.city})${apt.group ? `, ${apt.group}` : ''}, ${apt.area} m²`
@@ -181,7 +180,7 @@ const ApartmentButtons = ({
           {g.apartments.map((apt) => (
             <a
               key={apt.pdfPath}
-              href={encodeURI(`${PDF_BASE}${apt.pdfPath}`)}
+              href={encodeURI(pdfUrl(apt.pdfPath))}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 rounded-lg bg-[#657432] px-3 py-1.5 text-xs font-medium text-[#F8F2DD] transition-all hover:bg-[#657432]/85 active:scale-[0.97]"

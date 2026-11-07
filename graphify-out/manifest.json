@@ -1,0 +1,1022 @@
+{
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\postcss.config.js": {
+    "mtime": 1781078159.1976624,
+    "hash": "5b84f4567208c7c747079c0477373231"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\tailwind.config.js": {
+    "mtime": 1781078164.221511,
+    "hash": "375d3909aebb386d06efab6137afea48"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\vite.config.ts": {
+    "mtime": 1794062714.9001796,
+    "hash": "890cf003e3e3239edafd0ed5b1f18112"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\functions\\api\\chat.ts": {
+    "mtime": 1787832470.6021829,
+    "hash": "8aef44b01db022fe6e7b8c4cd5c611bc"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\functions\\api\\contact.ts": {
+    "mtime": 1782720244.5511515,
+    "hash": "fd78fad66ab01807ed0362d3c80f9de4"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\functions\\api\\report.ts": {
+    "mtime": 1782720248.7703643,
+    "hash": "f73ac5b3bbce8152a8f244147d01b8e8"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\functions\\utils\\sendEmail.ts": {
+    "mtime": 1782720239.9867935,
+    "hash": "029947e9532e0b26c8707a4ff39ce35f"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\migrations\\0001_chat_logs.sql": {
+    "mtime": 1782560697.6605496,
+    "hash": "d35c3a5d118cc55ba7b0695aa48ef367"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\scripts\\clear-chat-logs.sql": {
+    "mtime": 1782987575.5574567,
+    "hash": "960e98193a9093315bd028a4bb854313"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\scripts\\extract-apartment-specs.mjs": {
+    "mtime": 1793347073.6423697,
+    "hash": "e293c70a01f99df0689aaa01a44f7260"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\scripts\\smoke-chat-match.mjs": {
+    "mtime": 1787831172.9215164,
+    "hash": "dd5726021a0cbf42796e4f1c531ae6a3"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\src\\App.tsx": {
+    "mtime": 1782987575.6048594,
+    "hash": "b4dc0f7862f1b28c535ab5828c614221"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\src\\main.tsx": {
+    "mtime": 1782734452.194971,
+    "hash": "cfc56942fa401e2972db82200a66dabe"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\src\\vite-env.d.ts": {
+    "mtime": 1781080680.9199736,
+    "hash": "8f68c27c3fc38817b2726b20e2d4f1ee"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\src\\components\\ApartmentList.tsx": {
+    "mtime": 1794062717.026606,
+    "hash": "8a7196f8c3cc0929e0fa08ecd7cea214"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\src\\components\\ElsaResidenceBuildingMap.tsx": {
+    "mtime": 1782734513.8194692,
+    "hash": "22ab947e6e5c13b15a558dabd043488e"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\src\\components\\ErrorBoundary.tsx": {
+    "mtime": 1782734444.2479942,
+    "hash": "01c155d839473b1a4066f51672dd8634"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\src\\components\\ErrorFallback.tsx": {
+    "mtime": 1782734281.714751,
+    "hash": "3899a03246d0d9b289ced6fd8352a8fe"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\src\\components\\JoniResidenceBuildingMap.tsx": {
+    "mtime": 1782734540.740132,
+    "hash": "d53519b817519d67e193247903fd493e"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\src\\components\\LanguageSwitcher.tsx": {
+    "mtime": 1782734682.8641088,
+    "hash": "c864383e2c27da03ec8949f2ab4b7c6d"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\src\\components\\ResidenceApartmentPage.tsx": {
+    "mtime": 1782734277.987665,
+    "hash": "9e3152d8bf6c3827c5924e1620e6fb01"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\src\\components\\TaraResidenceBuildingMap.tsx": {
+    "mtime": 1782734544.8933685,
+    "hash": "eadad452d7b5915e5e5a2b28179ef687"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\src\\components\\TianiResidenceBuildingMap.tsx": {
+    "mtime": 1782734526.7488225,
+    "hash": "1cf360086479cb622b2c4ed32d01ae73"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\src\\components\\WhatsAppButton.tsx": {
+    "mtime": 1782734466.0392766,
+    "hash": "38fb3049c3d12180a36412332ebb314e"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\src\\components\\chat\\ChatPromoBanner.tsx": {
+    "mtime": 1782719155.6913128,
+    "hash": "3f92a7a208965b80d3aac21ceba20c7b"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\src\\components\\chat\\ChatWidget.tsx": {
+    "mtime": 1794062732.8394084,
+    "hash": "c9f0f002524c0cfebbed392a0da87660"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\src\\components\\chat\\FloatingAssistantDock.tsx": {
+    "mtime": 1782732136.2763627,
+    "hash": "3e31ac9721e3976ae1197f8185dcad26"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\src\\components\\flat-selector\\FlatSelector.tsx": {
+    "mtime": 1794062733.5374248,
+    "hash": "4b99fdd239fa685e27b665c45ad0518d"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\src\\components\\layout\\Footer.tsx": {
+    "mtime": 1782987575.6068647,
+    "hash": "ab331eca941c289541174a4994e5e1ac"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\src\\components\\layout\\Navbar.tsx": {
+    "mtime": 1782734636.6006763,
+    "hash": "e0e5f09bab28ef47034c5c7f907297ed"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\src\\components\\report\\ReportIssueDialog.tsx": {
+    "mtime": 1782720262.1013987,
+    "hash": "00096bc39b521eee4297f161aa57b4a9"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\src\\components\\seo\\SeoHead.tsx": {
+    "mtime": 1782987575.6078641,
+    "hash": "f489ad941ffe38a16ff3daa3b2ece100"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\src\\data\\apartmentCatalog.ts": {
+    "mtime": 1794062531.1741621,
+    "hash": "c620f58d187f26f1b3e2b013cbaadc96"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\src\\data\\apartmentSpecs.ts": {
+    "mtime": 1794062761.2325888,
+    "hash": "41c64dd1fc887403c875da678edaf0bf"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\src\\data\\elsaApartmentPdfs.ts": {
+    "mtime": 1782544578.451749,
+    "hash": "a266f186acdafb3854c078dc03a1a6c1"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\src\\data\\joniApartmentPdfs.ts": {
+    "mtime": 1782544584.026571,
+    "hash": "a4a92a681bd71bf17621e9753f27fc7e"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\src\\data\\projects.ts": {
+    "mtime": 1782735112.15889,
+    "hash": "580e2c60e2e99b30ec9b6b2df9ad6710"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\src\\data\\residenceVisuals.ts": {
+    "mtime": 1782372773.4649918,
+    "hash": "62e3d1631f4bbe5d8903c9f9ad8f748d"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\src\\hooks\\useTouchDevice.ts": {
+    "mtime": 1781954756.165105,
+    "hash": "1e2e6dc76dca4c0c4b9f475cacfd3e62"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\src\\i18n\\apartmentPages.ts": {
+    "mtime": 1782734276.2448761,
+    "hash": "91c6ee6c138d3779fdf55ca914592b34"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\src\\i18n\\labels.ts": {
+    "mtime": 1782734699.2642202,
+    "hash": "5018c8f4d955ab6e4830bde58c82cb77"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\src\\i18n\\LanguageContext.tsx": {
+    "mtime": 1782732327.1768305,
+    "hash": "774e558a09e80a8fb191a3aaf4e07e07"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\src\\i18n\\translations.ts": {
+    "mtime": 1787818486.842067,
+    "hash": "edefd2b4c9f24b1fd6c9aaa06c43413a"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\src\\pages\\AboutPage.tsx": {
+    "mtime": 1782733965.948601,
+    "hash": "51bdfc70f46e231f2f68669302fcc597"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\src\\pages\\ContactPage.tsx": {
+    "mtime": 1782734563.330952,
+    "hash": "9d6dba33436fc36fba53e141bedf0122"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\src\\pages\\ElsaBlockA.tsx": {
+    "mtime": 1782734387.3756385,
+    "hash": "602e31237b5cf926211c19455464f9e6"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\src\\pages\\ElsaBlockB.tsx": {
+    "mtime": 1782734388.5122983,
+    "hash": "b1a36c4281894ebea520942714852235"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\src\\pages\\ElsaBlockC.tsx": {
+    "mtime": 1782734389.9680026,
+    "hash": "afeb43908632ffb108af0e86960e4129"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\src\\pages\\ElsaBlockD.tsx": {
+    "mtime": 1782734390.8738058,
+    "hash": "35103396001a709f86870e83bde1f120"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\src\\pages\\ElsaBlockE.tsx": {
+    "mtime": 1782734391.8389328,
+    "hash": "8ee01aa4275e5dcb91fff39eb6b712cf"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\src\\pages\\HomePage.tsx": {
+    "mtime": 1782734624.9702146,
+    "hash": "5831ebb2a592da202c2f147ba7ee9f38"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\src\\pages\\JoniKati.tsx": {
+    "mtime": 1782734395.6524055,
+    "hash": "dbbbddebe5df8341e67364358ada7a10"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\src\\pages\\PrivacyPolicyPage.tsx": {
+    "mtime": 1782987575.609865,
+    "hash": "8f2f7d364380444aef418bd64fed21df"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\src\\pages\\ProjectDetail.tsx": {
+    "mtime": 1782734493.1299188,
+    "hash": "45c22100e3ff75ff2c1d15d2a59625d1"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\src\\pages\\QrCodePage.tsx": {
+    "mtime": 1782734619.3341842,
+    "hash": "32eaafe2e237f52963ade3c1bd47bd51"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\src\\pages\\TaraApartments.tsx": {
+    "mtime": 1782734421.681522,
+    "hash": "9633fdbcfb9079e4952b6623ac1ecea9"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\src\\pages\\TianiBlockA.tsx": {
+    "mtime": 1782734419.1625276,
+    "hash": "a07b180a140dc268ff02c1501abb4c68"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\src\\pages\\TianiBlockB.tsx": {
+    "mtime": 1782734420.2821045,
+    "hash": "86351d782a9dee620318ba709ded7288"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\src\\utils\\assetUrl.ts": {
+    "mtime": 1794062711.1197476,
+    "hash": "730f34e3e07288318d9a49ae1fe9dc24"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\src\\utils\\chat.ts": {
+    "mtime": 1782731853.3190877,
+    "hash": "3930a8bb2c747d4f1b03be22ebfc8c4d"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\src\\utils\\floatingDock.ts": {
+    "mtime": 1782719078.7276888,
+    "hash": "e3807cb20d716ce80c839c0594344957"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\scripts\\dedupe-apartment-pdfs.mjs": {
+    "mtime": 1782473780.2731695,
+    "hash": "905ceeaab71c735f9a8164ff52347d50"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\scripts\\generate-apartment-data.mjs": {
+    "mtime": 1790095214.0454273,
+    "hash": "c193a819bbd524653f0feaa66f4e087f"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\scripts\\rename-apartment-pdfs.mjs": {
+    "mtime": 1782473228.119944,
+    "hash": "53d40cf96f16ffea3590bcb8e5234218"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\README.md": {
+    "mtime": 1787832472.4347546,
+    "hash": "bdd53f50fb8f2abe2543624ed31ac805"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\index.html": {
+    "mtime": 1782719262.6904519,
+    "hash": "419f22ac8668d72713ac35f75db71e8c"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\404.html": {
+    "mtime": 1781078159.1986623,
+    "hash": "113c52ab9add51fb85a78b4b5f18a510"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\robots.txt": {
+    "mtime": 1782719262.8172047,
+    "hash": "9c9faaa8ec6d88599b897060917d2482"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\buildings\\README.md": {
+    "mtime": 1781078160.839584,
+    "hash": "094132675ac9c419176557cfae2ce9aa"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Elsa Residence PDF\\Elsa Blloku A\\Elsa-A-108.4m\u00b2.pdf": {
+    "mtime": 1781091275.2318234,
+    "hash": "235454bc26292810db03b83b5b5483f2"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Elsa Residence PDF\\Elsa Blloku A\\Elsa-A-114m\u00b2.pdf": {
+    "mtime": 1781091275.2167993,
+    "hash": "2504cba720ffc36d541f6efabfe18236"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Elsa Residence PDF\\Elsa Blloku A\\Elsa-A-66.39m\u00b2.pdf": {
+    "mtime": 1781173946.2347705,
+    "hash": "eb724895607b602cd4b4aafc9173b0ff"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Elsa Residence PDF\\Elsa Blloku A\\Elsa-A-74.43m\u00b2.pdf": {
+    "mtime": 1781173929.3873425,
+    "hash": "fe1a51e896ce79bb23b5532d007ce5c8"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Elsa Residence PDF\\Elsa Blloku A\\Elsa-A-74.4m\u00b2.pdf": {
+    "mtime": 1781091275.0617836,
+    "hash": "a4e00ac31bb2bfd3267534fd366997d8"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Elsa Residence PDF\\Elsa Blloku A\\Elsa-A-82.3m\u00b2.pdf": {
+    "mtime": 1781091275.0777833,
+    "hash": "2fe025676fc0d7d9c66eba22c2486158"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Elsa Residence PDF\\Elsa Blloku A\\Elsa-A-93.37m\u00b2.pdf": {
+    "mtime": 1781091275.2022815,
+    "hash": "050a1f17236b6377921322109dc667ce"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Elsa Residence PDF\\Elsa Blloku B\\Elsa-B-106.5m\u00b2.pdf": {
+    "mtime": 1791272131.7578602,
+    "hash": "a0dff58175bb8413ebf9858132087726"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Elsa Residence PDF\\Elsa Blloku B\\Elsa-B-113.40m\u00b2.pdf": {
+    "mtime": 1781697616.3529806,
+    "hash": "d05171a971524b17dd8bdc05d48a0320"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Elsa Residence PDF\\Elsa Blloku B\\Elsa-B-115.99m\u00b2.pdf": {
+    "mtime": 1781697616.4005535,
+    "hash": "1d0b9d2033fd5e4530bc2eef924fdc3d"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Elsa Residence PDF\\Elsa Blloku B\\Elsa-B-127.11m\u00b2.pdf": {
+    "mtime": 1781697616.385514,
+    "hash": "69477b359e2ba2f4ec5df930cf39ea4e"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Elsa Residence PDF\\Elsa Blloku B\\Elsa-B-132.21m\u00b2.pdf": {
+    "mtime": 1781697616.5322435,
+    "hash": "3fde7444053d4e614efae53a89a01a68"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Elsa Residence PDF\\Elsa Blloku B\\Elsa-B-53.35m\u00b2.pdf": {
+    "mtime": 1781697616.4445877,
+    "hash": "88102e8a236b75c2666ce643683ac9d4"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Elsa Residence PDF\\Elsa Blloku B\\Elsa-B-66.26m\u00b2.pdf": {
+    "mtime": 1781697616.4305856,
+    "hash": "711a105400d52db733ee5780478ac2c0"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Elsa Residence PDF\\Elsa Blloku B\\Elsa-B-84.34m\u00b2.pdf": {
+    "mtime": 1781697616.459705,
+    "hash": "e4488b0e8410da9a48a263981eeca2e4"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Elsa Residence PDF\\Elsa Blloku B\\Elsa-B-90.65m\u00b2.pdf": {
+    "mtime": 1781697616.4992437,
+    "hash": "6c470a59b5024056cd7d1de0a6a79afd"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Elsa Residence PDF\\Elsa Blloku B\\Elsa-B-91.11m\u00b2.pdf": {
+    "mtime": 1781697616.4155135,
+    "hash": "9082858d308d3435d59623530986f7c3"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Elsa Residence PDF\\Elsa Blloku C\\C-104.46 m2.pdf": {
+    "mtime": 1790094411.1966207,
+    "hash": "637eda562d69f30b6dd8f75973946272"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Elsa Residence PDF\\Elsa Blloku C\\C-113.97 m2.pdf": {
+    "mtime": 1790094424.7547336,
+    "hash": "d0ad9a0f0e09df9cf58da52684155953"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Elsa Residence PDF\\Elsa Blloku C\\C-115.99 m2.pdf": {
+    "mtime": 1790094447.3295548,
+    "hash": "ab4dfa49a1f3c87dfe7584669d684628"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Elsa Residence PDF\\Elsa Blloku C\\C-118.88 m2.pdf": {
+    "mtime": 1790094466.940001,
+    "hash": "13f4601623d2b0d95e8d73bf630cf91e"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Elsa Residence PDF\\Elsa Blloku C\\C-127.8 m2.pdf": {
+    "mtime": 1790094478.9775214,
+    "hash": "77683d4629e7f18a76f45f56041d81d7"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Elsa Residence PDF\\Elsa Blloku C\\C-128.18 m2.pdf": {
+    "mtime": 1790094490.1240513,
+    "hash": "4d5aa886c16cbbe073e234eeb17085da"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Elsa Residence PDF\\Elsa Blloku C\\C-53.35 m2.pdf": {
+    "mtime": 1790094240.00482,
+    "hash": "48a7a3a45839543859767ba325e5bd1b"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Elsa Residence PDF\\Elsa Blloku C\\C-66.26 m2.pdf": {
+    "mtime": 1790094333.1522944,
+    "hash": "5d7b86eb457ee240697624fdb8b10650"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Elsa Residence PDF\\Elsa Blloku C\\C-67.98 m2.pdf": {
+    "mtime": 1793346673.6236668,
+    "hash": "a386d9093a8ab068c292583ba358bd6e"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Elsa Residence PDF\\Elsa Blloku C\\C-84.34 m2.pdf": {
+    "mtime": 1790094367.3784592,
+    "hash": "a009f6c2cc1760c6778051eb680dcb4c"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Elsa Residence PDF\\Elsa Blloku C\\C-91.11 m2.pdf": {
+    "mtime": 1790094382.7048402,
+    "hash": "0a6d2e19d2290819e3d06a09ef3f45d0"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Elsa Residence PDF\\Elsa Blloku C\\C-99.65 m2.pdf": {
+    "mtime": 1790094399.656419,
+    "hash": "70a5118e44ebbac759eddde6883940cb"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Elsa Residence PDF\\Elsa Blloku C\\CP-53.35 m2.pdf": {
+    "mtime": 1790094503.8771446,
+    "hash": "7a1bf414af5af01414bb6b2084d2ba8c"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Elsa Residence PDF\\Elsa Blloku C\\CP-66.26 m2.pdf": {
+    "mtime": 1790094515.040367,
+    "hash": "0386b6e322be8ed1e39de9ec865465ce"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Elsa Residence PDF\\Elsa Blloku C\\CP-84.34 m2.pdf": {
+    "mtime": 1790094527.56657,
+    "hash": "b01f9f5981f37851bef2433ac28b60e0"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Elsa Residence PDF\\Elsa Blloku C\\CP-91.11 m2.pdf": {
+    "mtime": 1790094539.9416795,
+    "hash": "e0f15c9ff920935bc20648c0542c5a1e"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Elsa Residence PDF\\Elsa Blloku C\\CP-99.65 m2.pdf": {
+    "mtime": 1790094549.830114,
+    "hash": "d98f0c50b386143d52920a6a981c0bde"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Elsa Residence PDF\\Elsa Blloku D\\D-01_P_99.65 m\u00b2.pdf": {
+    "mtime": 1782909524.0,
+    "hash": "a7e2b48ea82df13997f83bf0c1cdbba0"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Elsa Residence PDF\\Elsa Blloku D\\D-02_P_84.34m2.pdf": {
+    "mtime": 1784645348.0,
+    "hash": "83d842a35897932ade9234381abab599"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Elsa Residence PDF\\Elsa Blloku D\\D-03_P_53.35m2.pdf": {
+    "mtime": 1784645344.0,
+    "hash": "7d48ed4df2783d0ff19398153ef3bb7b"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Elsa Residence PDF\\Elsa Blloku D\\D-04_P_91.11m2.pdf": {
+    "mtime": 1784645350.0,
+    "hash": "ac8055c3b4714dae9f53021bc368c766"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Elsa Residence PDF\\Elsa Blloku D\\D-104.46 m2 K7.pdf": {
+    "mtime": 1782387668.0,
+    "hash": "4dbb56cd5d30644b9a2cd722a9fd3ad2"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Elsa Residence PDF\\Elsa Blloku D\\D-106.5 m\u00b2 K1,2,5.pdf": {
+    "mtime": 1793347097.1224396,
+    "hash": "73f1556f22f9c106fbf6ec7f13d7ba89"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Elsa Residence PDF\\Elsa Blloku D\\D-118.88 m2 K6.pdf": {
+    "mtime": 1782389540.0,
+    "hash": "ce90166fda2ead0239890db1676b99ce"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Elsa Residence PDF\\Elsa Blloku D\\D-128.18 m2 K7.pdf": {
+    "mtime": 1782722828.0,
+    "hash": "d860dc8715e47516e0ab491ce25e8496"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Elsa Residence PDF\\Elsa Blloku D\\D-66.26 m2 K1-5.pdf": {
+    "mtime": 1782827870.0,
+    "hash": "cd7b9890a938d689e32e350b9169b615"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Elsa Residence PDF\\Elsa Blloku D\\D-67.89 m\u00b2 K6-24.pdf": {
+    "mtime": 1793347814.167709,
+    "hash": "06327e1da0e902a04c52f9ba8b13bc58"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Elsa Residence PDF\\Elsa Blloku D\\D-84.34 m2 K2-3.pdf": {
+    "mtime": 1782471852.0,
+    "hash": "eaf2f990252c650d967055271b263f5a"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Elsa Residence PDF\\Elsa Blloku D\\D-91.11 m2 K2-3.pdf": {
+    "mtime": 1782480492.0,
+    "hash": "346accbc5d489d998464d68ed965c6af"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Elsa Residence PDF\\Elsa Blloku D\\DP-66.26 m2 KP-05.pdf": {
+    "mtime": 1783496766.0,
+    "hash": "9c511f3dd47b445377080075ed9644de"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Elsa Residence PDF\\Elsa Blloku D\\D_113.40 m2 K4-5.pdf": {
+    "mtime": 1784639566.0,
+    "hash": "36bf423b1ea8b125d21e26531df2f649"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Elsa Residence PDF\\Elsa Blloku D\\D_113.97 m2 K1-2.pdf": {
+    "mtime": 1784639572.0,
+    "hash": "0beb930910077bb6228eb790e1516f69"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Elsa Residence PDF\\Elsa Blloku D\\D_115.41 m2 K4-5.pdf": {
+    "mtime": 1784639590.0,
+    "hash": "bcb1f94e036c350d9237f4b98091efaa"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Elsa Residence PDF\\Elsa Blloku D\\D_115.99 m2 K1.pdf": {
+    "mtime": 1784639606.0,
+    "hash": "487202ab45448e4e8352c5444b1473f7"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Elsa Residence PDF\\Elsa Blloku D\\D_127.80 m2 K6.pdf": {
+    "mtime": 1784639620.0,
+    "hash": "20f3412af2ee0362ba837dcd6291a402"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Elsa Residence PDF\\Elsa Blloku D\\D_53.35 m2 K2-3.pdf": {
+    "mtime": 1784639540.0,
+    "hash": "91f5cabcb7c538df5f9d42f62dfd091b"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Joni Residence PDF\\Kati 1\\Joni-K1-102.8m\u00b2.pdf": {
+    "mtime": 1781604842.6993983,
+    "hash": "d3e5097650ac20f4117ffd23750721af"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Joni Residence PDF\\Kati 1\\Joni-K1-112.3m\u00b2.pdf": {
+    "mtime": 1781604842.6823876,
+    "hash": "c1993bb64aadf7142ffe63cb3877e36c"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Joni Residence PDF\\Kati 1\\Joni-K1-130.6m\u00b2.pdf": {
+    "mtime": 1781604842.663206,
+    "hash": "aa85501dc62bef2cd04595dbd1a64d50"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Joni Residence PDF\\Kati 1\\Joni-K1-91.2m\u00b2.pdf": {
+    "mtime": 1781604842.7138999,
+    "hash": "a5c217dd7c75d17786ea28c5632eee2a"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Joni Residence PDF\\Kati 1-6\\Joni-K1-6-108.5m\u00b2.pdf": {
+    "mtime": 1781604842.7422495,
+    "hash": "825ebe4bf428e62113e4a4775f5fdd52"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Joni Residence PDF\\Kati 1-6\\Joni-K1-6-109.0m\u00b2.pdf": {
+    "mtime": 1781604842.754255,
+    "hash": "feba278d3c50ffd59a83e8494cded29f"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Joni Residence PDF\\Kati 1-6\\Joni-K1-6-52.0m\u00b2.pdf": {
+    "mtime": 1781604842.7249002,
+    "hash": "c584d5a5ecea6c9c7cbd0690309a4daf"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Joni Residence PDF\\Kati 1-6\\Joni-K1-6-83.6m\u00b2.pdf": {
+    "mtime": 1781604842.766255,
+    "hash": "31ab71d75705e3e3488bdf1e6db051f5"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Joni Residence PDF\\Kati 2-6\\Joni-K2-6-106.8m\u00b2.pdf": {
+    "mtime": 1781604842.7822554,
+    "hash": "950b01126eb35be4091006ecacabd3cc"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Joni Residence PDF\\Kati 2-6\\Joni-K2-6-80.4m\u00b2.pdf": {
+    "mtime": 1781604842.7945633,
+    "hash": "696fdff6fdd68a903b87a46860306548"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Joni Residence PDF\\Kati 2-6\\Joni-K2-6-83.5m\u00b2.pdf": {
+    "mtime": 1781604842.822626,
+    "hash": "96e5b07a3ce193052528c050001afc8f"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Joni Residence PDF\\Kati 2-6\\Joni-K2-6-85.3m\u00b2.pdf": {
+    "mtime": 1781604842.809042,
+    "hash": "0659d5cd347150a7635c13fd1acc86c8"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Tara Residence PDF\\Tara-115m\u00b2.pdf": {
+    "mtime": 1781078159.7651763,
+    "hash": "f88a94b519c46096af80fccd014b3bf7"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Tara Residence PDF\\Tara-120.1m\u00b2.pdf": {
+    "mtime": 1781078159.7801578,
+    "hash": "734c6196bba4c896701ddf9910889c23"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Tara Residence PDF\\Tara-122.5m\u00b2.pdf": {
+    "mtime": 1781078159.7881618,
+    "hash": "b7e335ea15f72b134bfb68cfa60d8131"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Tara Residence PDF\\Tara-129.0m\u00b2.pdf": {
+    "mtime": 1781078159.7961853,
+    "hash": "7fd902ebe52cee471f06a2f475365a08"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Tara Residence PDF\\Tara-129.4m\u00b2.pdf": {
+    "mtime": 1781078159.8021717,
+    "hash": "f68df79a3cac56a626734627731fa8f6"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Tara Residence PDF\\Tara-139.5m\u00b2.pdf": {
+    "mtime": 1781078159.8096745,
+    "hash": "9e91e1c17d700457a92e569921d7410b"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Tara Residence PDF\\Tara-145.1m\u00b2.pdf": {
+    "mtime": 1781078159.8177013,
+    "hash": "08da09091d7eed9096663b569c6e8369"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Tara Residence PDF\\Tara-159.1m\u00b2.pdf": {
+    "mtime": 1781078159.8256743,
+    "hash": "9b7d8f1284e30c638ccba31d8e656c9d"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Tara Residence PDF\\Tara-183.3m\u00b2.pdf": {
+    "mtime": 1781078159.8346941,
+    "hash": "50f21d9b56a44139cba90fe679e9abb0"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Tara Residence PDF\\Tara-46.1m\u00b2.pdf": {
+    "mtime": 1781078159.8436782,
+    "hash": "d78e965473850f322e8348d2872a2a74"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Tara Residence PDF\\Tara-64.3m\u00b2.pdf": {
+    "mtime": 1781078159.7591777,
+    "hash": "4fd6f1373a340b63eb90fcc1e0d7f72e"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Tara Residence PDF\\Tara-74.13m\u00b2.pdf": {
+    "mtime": 1781078159.8910794,
+    "hash": "d256c2373968a2e2eaf113ce6c58cff8"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Tara Residence PDF\\Tara-74.3m\u00b2.pdf": {
+    "mtime": 1781078159.8980618,
+    "hash": "900005e892d47452cb3a759a9ea6abf3"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Tara Residence PDF\\Tara-76.7m\u00b2.pdf": {
+    "mtime": 1781078159.9058301,
+    "hash": "2393a5d008795c954d952a6a93b16f43"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Tara Residence PDF\\Tara-91.2m\u00b2.pdf": {
+    "mtime": 1781078159.9294121,
+    "hash": "f9550fea232178abbf1879802ced800e"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Tara Residence PDF\\Tara-93.8m\u00b2.pdf": {
+    "mtime": 1781078159.9518995,
+    "hash": "20090801e4254bfb29343b2982085f7d"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Tiani Residence PDF\\Tiani Blloku A\\Tiani-A-107.4m\u00b2.pdf": {
+    "mtime": 1781078159.9811056,
+    "hash": "7e7871eeb4cf06bda0fb135233671402"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Tiani Residence PDF\\Tiani Blloku A\\Tiani-A-115.5m\u00b2.pdf": {
+    "mtime": 1781078159.9880857,
+    "hash": "0972983409d7439f7c8a943f66542e55"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Tiani Residence PDF\\Tiani Blloku A\\Tiani-A-116.6m\u00b2.pdf": {
+    "mtime": 1781078159.9941447,
+    "hash": "e1e15983354589e0ca2fbf6d346e4e8d"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Tiani Residence PDF\\Tiani Blloku A\\Tiani-A-130.7m\u00b2.pdf": {
+    "mtime": 1781078160.0011282,
+    "hash": "fab4bd63ab90504adaee567f0731efec"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Tiani Residence PDF\\Tiani Blloku A\\Tiani-A-130.9m\u00b2.pdf": {
+    "mtime": 1781078160.009676,
+    "hash": "373666b0413462c7bbf3499d143d7fe8"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Tiani Residence PDF\\Tiani Blloku A\\Tiani-A-138.8m\u00b2.pdf": {
+    "mtime": 1781078160.0166783,
+    "hash": "72c9ff72e399cb2582282233bf30b0cc"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Tiani Residence PDF\\Tiani Blloku A\\Tiani-A-184.8m\u00b2.pdf": {
+    "mtime": 1781078160.022696,
+    "hash": "00028b2a2ad6097a31a12585a5a2ee30"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Tiani Residence PDF\\Tiani Blloku A\\Tiani-A-90.2m\u00b2.pdf": {
+    "mtime": 1781078159.9588976,
+    "hash": "4fcbe5aad962bec4c1bba57faf032218"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Tiani Residence PDF\\Tiani Blloku A\\Tiani-A-92.1m\u00b2.pdf": {
+    "mtime": 1781078160.0356953,
+    "hash": "729f52f1ef78e52516ce2afb9796305c"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Tiani Residence PDF\\Tiani Blloku A\\Tiani-A-93.5m\u00b2.pdf": {
+    "mtime": 1781078160.0386949,
+    "hash": "2614b159ba7d7bd14d0fdb1d8bc52b68"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Tiani Residence PDF\\Tiani Blloku A\\Tiani-A-94.4m\u00b2.pdf": {
+    "mtime": 1781078159.9678986,
+    "hash": "b5f424aa61d0ba1727e1c2c80584a019"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Tiani Residence PDF\\Tiani Blloku A\\Tiani-A-99.0m\u00b2.pdf": {
+    "mtime": 1781078160.0506773,
+    "hash": "8cb33cfa12b9b0d9f047677768d1dbbc"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Tiani Residence PDF\\Tiani Blloku A\\Tiani-A-99.1m\u00b2.pdf": {
+    "mtime": 1781078160.0566945,
+    "hash": "9c47ef3a5ad1e56ba24470f7ba60b9ad"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Tiani Residence PDF\\Tiani Blloku B\\Tiani-B-144.7m\u00b2.pdf": {
+    "mtime": 1781078160.075677,
+    "hash": "2143decafa8ce7bab9965fb85ac4211a"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Tiani Residence PDF\\Tiani Blloku B\\Tiani-B-150.5m\u00b2.pdf": {
+    "mtime": 1781078160.0816782,
+    "hash": "7e54475470a1431adbe1223874fc328e"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Tiani Residence PDF\\Tiani Blloku B\\Tiani-B-179.1m\u00b2.pdf": {
+    "mtime": 1781078160.087675,
+    "hash": "8bac2f18bdd6b99e094901fd449849da"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Tiani Residence PDF\\Tiani Blloku B\\Tiani-B-68.6m\u00b2.pdf": {
+    "mtime": 1781078160.0926812,
+    "hash": "d9c409d8c11a0f70ab1fda3568b94c24"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Tiani Residence PDF\\Tiani Blloku B\\Tiani-B-84.9m\u00b2.pdf": {
+    "mtime": 1781078160.0986845,
+    "hash": "576a922f00288343867218c10d68d822"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Tiani Residence PDF\\Tiani Blloku B\\Tiani-B-87.8m\u00b2.pdf": {
+    "mtime": 1781078160.1036813,
+    "hash": "36df3bfc96063a7080967ecf690e6909"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Tiani Residence PDF\\Tiani Blloku B\\Tiani-B-88.0m\u00b2.pdf": {
+    "mtime": 1781078160.062678,
+    "hash": "1b8f6f1e142cd4d76e0c2173176fef05"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Tiani Residence PDF\\Tiani Blloku B\\Tiani-B-88.7m\u00b2.pdf": {
+    "mtime": 1781078160.1151977,
+    "hash": "8f6cc6deb127a9d5896dd80d67710c90"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Tiani Residence PDF\\Tiani Blloku B\\Tiani-B-88.8m\u00b2.pdf": {
+    "mtime": 1781078160.1206264,
+    "hash": "fc6e7d302ae9283d8e518467794125a7"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Tiani Residence PDF\\Tiani Blloku B\\Tiani-B-90.0m\u00b2.pdf": {
+    "mtime": 1781078160.1265016,
+    "hash": "1ca57e80bc811718820f0997254dd8dd"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\Residences Apartments\\Tiani Residence PDF\\Tiani Blloku B\\Tiani-B-92.6m\u00b2.pdf": {
+    "mtime": 1781078160.1345048,
+    "hash": "0e60ce994c5021bc9df54f2f7d80e88a"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\vite.svg": {
+    "mtime": 1781078164.1895363,
+    "hash": "8e3a10e157f75ada21ab742c022d5430"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\brand\\logo-e-zez-pa-bg.png": {
+    "mtime": 1781078160.838572,
+    "hash": "b4a456ebf38c7b0fca0dd00e4d4f3471"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\brand\\logo-me-shkrim.png": {
+    "mtime": 1781078160.839584,
+    "hash": "95313a982ee27252d4e8973fab9cf7ba"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\brand\\Logo-pa-shkrim(1).png": {
+    "mtime": 1781078160.8325727,
+    "hash": "430c1dffa1719d2f5ce2f58758def4cd"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\brand\\Logo-pa-shkrim-256.png": {
+    "mtime": 1781078160.833652,
+    "hash": "53750582cff539b4db2cca79434ff97e"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\brand\\Logo-pa-shkrim.png": {
+    "mtime": 1781078160.835572,
+    "hash": "00c2eb290fe701327db3c3f95d1ecd2e"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\brand\\Logo-pa-shkrim.svg": {
+    "mtime": 1781078160.8365853,
+    "hash": "a299ca7237d144090f814caca1cd5c54"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\brand\\Logo.png": {
+    "mtime": 1781078160.8375766,
+    "hash": "b7380f0d4a81e4c55f2417e43d105c27"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\brand\\Logo.svg": {
+    "mtime": 1781078160.838572,
+    "hash": "0847bde9311208a1982e8e7c372788fe"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\SVG Residences\\Elsa Residence.svg": {
+    "mtime": 1781078160.7623703,
+    "hash": "8bf51827f75dc694fe4712a009829372"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\SVG Residences\\Joni Residence.svg": {
+    "mtime": 1781078160.777271,
+    "hash": "9b854f089db900d4a244d48904a80641"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\SVG Residences\\Tara Residence.svg": {
+    "mtime": 1781078160.8105717,
+    "hash": "60bee5d4046d61e9e2f0da755318a811"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\SVG Residences\\Tiani Residence.svg": {
+    "mtime": 1781078160.831572,
+    "hash": "be120cbfc3e3e5fcbd6e30687280b600"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\visuals\\ElsaResidenceVisuals\\1.jpg": {
+    "mtime": 1781078160.9863663,
+    "hash": "bd74965661c9b7e88d51f1cb36962d96"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\visuals\\ElsaResidenceVisuals\\10.jpg": {
+    "mtime": 1781078161.0843942,
+    "hash": "8081152c65ddb3b503b91dc9f6811ddb"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\visuals\\ElsaResidenceVisuals\\2.jpg": {
+    "mtime": 1781078161.1949298,
+    "hash": "e5dc7f215d91ee52f946a9b117608b51"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\visuals\\ElsaResidenceVisuals\\3.jpg": {
+    "mtime": 1781078161.3337486,
+    "hash": "96f77d899344aec6af8f487736bae909"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\visuals\\ElsaResidenceVisuals\\4.jpg": {
+    "mtime": 1781078161.4814537,
+    "hash": "c79edb03be488f8f947af67b26c4a714"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\visuals\\ElsaResidenceVisuals\\5.jpg": {
+    "mtime": 1781078161.6240597,
+    "hash": "6711216eacd4715d980096341b2e95b0"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\visuals\\ElsaResidenceVisuals\\6.jpg": {
+    "mtime": 1781078161.7813706,
+    "hash": "df1e20d576aefad29673edb20264751f"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\visuals\\ElsaResidenceVisuals\\7.jpg": {
+    "mtime": 1781078161.904246,
+    "hash": "3270b2feea55c3a56588258dbd3d74fe"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\visuals\\ElsaResidenceVisuals\\8.jpg": {
+    "mtime": 1781078162.0261123,
+    "hash": "50d3f13a013e8eacd12d8915fb97e22f"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\visuals\\ElsaResidenceVisuals\\9.jpg": {
+    "mtime": 1781078162.1651857,
+    "hash": "6f01f81116121c971e7e9b5e385aa404"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\visuals\\ElsaResidenceVisuals\\Renderi 1.jpg": {
+    "mtime": 1781078162.2217784,
+    "hash": "fc6c7594d91a5dd42aa3c120c3105e65"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\visuals\\ElsaResidenceVisuals\\Renderi 2.jpg": {
+    "mtime": 1781078162.283172,
+    "hash": "22aeee161d7a3ac5b853d0c593436084"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\visuals\\ElsaResidenceVisuals\\Renderi 3.jpg": {
+    "mtime": 1781078162.332125,
+    "hash": "fb00b7e3e8c936c05a56744a2e1b9aee"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\visuals\\ElsaResidenceVisuals\\Renderi 4.jpg": {
+    "mtime": 1781078162.3879461,
+    "hash": "5fe1cbe8c847a142de98975129c6051a"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\visuals\\ElsaResidenceVisuals\\Renderi 5.jpg": {
+    "mtime": 1781078162.4480762,
+    "hash": "1a398221274081fbf3fe3456a40d399e"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\visuals\\ElsaResidenceVisuals\\Renderi 6.jpg": {
+    "mtime": 1781078162.5310993,
+    "hash": "fe1d79f80ab6b483897ba5ac6b41ba0f"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\visuals\\EtnaResidenceVisuals\\BG_SLIDE1.jpg": {
+    "mtime": 1781078162.5351055,
+    "hash": "0b456c1df57bc641936771bce66570b2"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\visuals\\EtnaResidenceVisuals\\image_pro_2.jpg": {
+    "mtime": 1781078162.5431035,
+    "hash": "e0930024d68d8789f275ad18097d0154"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\visuals\\EtnaResidenceVisuals\\objekti-scaled.jpg": {
+    "mtime": 1781078162.5472908,
+    "hash": "131426cc25aa434f862580e0b7ba3956"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\visuals\\JoniResidenceVisuals\\01_10 - Photo (1).jpg": {
+    "mtime": 1781078162.565638,
+    "hash": "aa43c6710d8c000bc6775314dbce0754"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\visuals\\JoniResidenceVisuals\\01_12 - Photo.jpg": {
+    "mtime": 1781078162.5826366,
+    "hash": "71b0ce3bda2ca024426ddb037fca9255"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\visuals\\JoniResidenceVisuals\\01_19 - Photo (1).jpg": {
+    "mtime": 1781078162.6011224,
+    "hash": "8e3cbf7f552b31ff6fe5bc7b250b19ec"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\visuals\\JoniResidenceVisuals\\01_20 - Photo.jpg": {
+    "mtime": 1781078162.619228,
+    "hash": "0f0e22b26353055066af0fb3963abd13"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\visuals\\JoniResidenceVisuals\\01_24 - Photo.jpg": {
+    "mtime": 1781078162.6370006,
+    "hash": "b8e7888692edc38dc7ed768a3b9effe7"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\visuals\\JoniResidenceVisuals\\01_27 - Photo (1).jpg": {
+    "mtime": 1781078162.6570084,
+    "hash": "d8b0652fdf0f7e14908889755fa3740b"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\visuals\\JoniResidenceVisuals\\01_27 - Photo.jpg": {
+    "mtime": 1781078162.6760025,
+    "hash": "d8b0652fdf0f7e14908889755fa3740b"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\visuals\\JoniResidenceVisuals\\01_3 - Photo.jpg": {
+    "mtime": 1781078162.6950254,
+    "hash": "962f009375ab53473213336541e18579"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\visuals\\JoniResidenceVisuals\\01_4 - Photo.jpg": {
+    "mtime": 1781078162.7105296,
+    "hash": "88489b0b8519798777dab351b9a8ca99"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\visuals\\JoniResidenceVisuals\\01_5 - Photo.jpg": {
+    "mtime": 1781078162.7275288,
+    "hash": "3f9ab44a0f218d02449a69e0fcafbbc3"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\visuals\\TaraResidenceVisuals\\A1.jpg": {
+    "mtime": 1781078162.789547,
+    "hash": "bc1c7cdf075a2489ff44c90634aa8795"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\visuals\\TaraResidenceVisuals\\A10.jpg": {
+    "mtime": 1781078162.8380992,
+    "hash": "8008387b2b19b9b1e7fde28e5bb44f4e"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\visuals\\TaraResidenceVisuals\\A11.jpg": {
+    "mtime": 1781078162.8731878,
+    "hash": "92dfc2c49a10a1d7003fb3e92fef7e89"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\visuals\\TaraResidenceVisuals\\A12.jpg": {
+    "mtime": 1781078162.9161668,
+    "hash": "999b55cc8c64631c84d133bf173b4fe4"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\visuals\\TaraResidenceVisuals\\A13.jpg": {
+    "mtime": 1781078162.9760792,
+    "hash": "3e7f534f384648d3e3936d0ba3f1fdfa"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\visuals\\TaraResidenceVisuals\\A14.jpg": {
+    "mtime": 1781078163.0251489,
+    "hash": "7e44a754fd3f2ccca7771eb53f5b0070"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\visuals\\TaraResidenceVisuals\\a15.jpg": {
+    "mtime": 1781078163.6994376,
+    "hash": "507a6edbae47f8a3d1c03be2f5fe197f"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\visuals\\TaraResidenceVisuals\\a16.jpg": {
+    "mtime": 1781078163.7298665,
+    "hash": "61608b6d7287496ef08880563938ea95"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\visuals\\TaraResidenceVisuals\\a17.jpg": {
+    "mtime": 1781078163.7658849,
+    "hash": "dac7fb9b4bd069a248b8a2009a0f0e55"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\visuals\\TaraResidenceVisuals\\a18.jpg": {
+    "mtime": 1781078163.7913847,
+    "hash": "9d77d18a72d3fd504e9741762ef2366f"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\visuals\\TaraResidenceVisuals\\a19.jpg": {
+    "mtime": 1781078163.818582,
+    "hash": "2ff4d8adbe3d09e199fc7b6b31fabee5"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\visuals\\TaraResidenceVisuals\\A2.jpg": {
+    "mtime": 1781078163.0642135,
+    "hash": "db50b9a56dfd9924c92e892f87957c4c"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\visuals\\TaraResidenceVisuals\\a20.jpg": {
+    "mtime": 1781078163.8476667,
+    "hash": "645ec27e54eea9ed684e610f29591b14"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\visuals\\TaraResidenceVisuals\\A21.jpg": {
+    "mtime": 1781078163.0942228,
+    "hash": "898194499ec7bbcbf81c1e571c8f18cc"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\visuals\\TaraResidenceVisuals\\A22.jpg": {
+    "mtime": 1781078163.1229067,
+    "hash": "0b93eca07a5a1c24c0bdfce9c1bbd638"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\visuals\\TaraResidenceVisuals\\A23.jpg": {
+    "mtime": 1781078163.1638527,
+    "hash": "a84d8a0879574eef5d4b01da3dce6144"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\visuals\\TaraResidenceVisuals\\A24.jpg": {
+    "mtime": 1781078163.2074945,
+    "hash": "eaea0477d15b73ba19ecf3a13b86eced"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\visuals\\TaraResidenceVisuals\\A25.jpg": {
+    "mtime": 1781078163.243533,
+    "hash": "7e98e97a9824c3ce84b9f8f1c65c0771"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\visuals\\TaraResidenceVisuals\\A26.jpg": {
+    "mtime": 1781078163.2968862,
+    "hash": "60ebeca3700ec9066c53c8240207e059"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\visuals\\TaraResidenceVisuals\\A27.jpg": {
+    "mtime": 1781078163.3498137,
+    "hash": "16b29e26a0ae73259126a1d15af94047"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\visuals\\TaraResidenceVisuals\\A3.jpg": {
+    "mtime": 1781078163.3948214,
+    "hash": "f4e2f12ab3fe8af8249530a542cbaa16"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\visuals\\TaraResidenceVisuals\\A4.jpg": {
+    "mtime": 1781078163.432597,
+    "hash": "5f1bf8861f6c55e1cd23b0ad6f743582"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\visuals\\TaraResidenceVisuals\\A5.jpg": {
+    "mtime": 1781078163.4769466,
+    "hash": "80c47f2ce47a8afac237fb6f5b1c784c"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\visuals\\TaraResidenceVisuals\\A6.jpg": {
+    "mtime": 1781078163.5262733,
+    "hash": "fa1807982288c4f30fb53704db7101e2"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\visuals\\TaraResidenceVisuals\\A7.jpg": {
+    "mtime": 1781078163.5571873,
+    "hash": "fe91a430277f02e567f320a73b1bc3ae"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\visuals\\TaraResidenceVisuals\\A8.jpg": {
+    "mtime": 1781078163.6002796,
+    "hash": "e30b9ddc13163db1c9f77c95b619c59d"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\visuals\\TaraResidenceVisuals\\A9.jpg": {
+    "mtime": 1781078163.642465,
+    "hash": "72dd0be8b22f298bad7a29ce370a49bb"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\visuals\\TianiResidenceVisuals\\01_1 - Photo.jpg": {
+    "mtime": 1781078163.8835838,
+    "hash": "188723ecd8d570a61261f0d46f856e44"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\visuals\\TianiResidenceVisuals\\01_14 - Photo copy.jpg": {
+    "mtime": 1781078163.9202754,
+    "hash": "68d3eedac6a9769ae4881ea08f3842f1"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\visuals\\TianiResidenceVisuals\\01_2 - Photo.jpg": {
+    "mtime": 1781078163.9547865,
+    "hash": "b31325522684cf3b7c9bd411d8b9d17b"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\visuals\\TianiResidenceVisuals\\01_3 - Photo.jpg": {
+    "mtime": 1781078163.9869368,
+    "hash": "eddd04ef7c3767851d40fedab42a58ce"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\visuals\\TianiResidenceVisuals\\01_4 - Photo.jpg": {
+    "mtime": 1781078164.0152586,
+    "hash": "f5819aedda53e3bf55707e7dddea7d52"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\visuals\\TianiResidenceVisuals\\01_45 - Photo.jpg": {
+    "mtime": 1781078164.0453942,
+    "hash": "03391de1c99167535ca0b52e9bfde7f0"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\visuals\\TianiResidenceVisuals\\01_46 - Photo.jpg": {
+    "mtime": 1781078164.0524898,
+    "hash": "ea72bee5bdd569d27372400cf13c8ced"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\visuals\\TianiResidenceVisuals\\01_48 - Photo.jpg": {
+    "mtime": 1781078164.0844777,
+    "hash": "773c4579231d97e907e2190f4a3b2042"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\visuals\\TianiResidenceVisuals\\01_5 - Photo.jpg": {
+    "mtime": 1781078164.1161647,
+    "hash": "c5052feeb0206372ac961cb33cce1d7b"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\visuals\\TianiResidenceVisuals\\01_7 - Photo.jpg": {
+    "mtime": 1781078164.151623,
+    "hash": "a7512fbf3391405d73de693f5d3ccf60"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\public\\visuals\\TianiResidenceVisuals\\01_9 - Photo.jpg": {
+    "mtime": 1781078164.1886215,
+    "hash": "09b2212ee9db9860d489753a1334b8ee"
+  },
+  "C:\\Users\\donar\\Documents\\DesktopFolder\\CursorPrograms\\etnagroup-ks.com\\client\\src\\typescript.svg": {
+    "mtime": 1781078164.220512,
+    "hash": "7167f7caac27a336c58b0c16cc5003d7"
+  }
+}

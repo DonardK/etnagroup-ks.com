@@ -9,8 +9,7 @@ import {
 import { useLanguage } from '../../i18n/LanguageContext'
 import { localizeCatalogApartment, localizeCity } from '../../i18n/labels'
 import { openChat } from '../../utils/chat'
-
-const PDF_BASE = import.meta.env.BASE_URL
+import { pdfUrl } from '../../utils/assetUrl'
 
 const BEDROOM_OPTIONS = [1, 2, 3, 4] as const
 
@@ -187,7 +186,7 @@ export const FlatSelector = () => {
                     )}
                   </div>
                   <a
-                    href={encodeURI(`${PDF_BASE}${apt.pdfPath}`)}
+                    href={encodeURI(pdfUrl(apt.pdfPath))}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="mt-auto inline-flex items-center justify-center gap-2 rounded-xl bg-[#657432] px-4 py-2.5 text-sm font-medium text-[#F8F2DD] transition-all hover:bg-[#657432]/90"

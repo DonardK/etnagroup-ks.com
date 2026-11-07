@@ -238,90 +238,6 @@
     "relDir": "Elsa Residence PDF/Elsa Blloku C"
   },
   {
-    "relPdf": "Residences Apartments/Elsa Residence PDF/Elsa Blloku D/Elsa-D-104.46m².pdf",
-    "building": "Elsa",
-    "block": "D",
-    "filename": "Elsa-D-104.46m².pdf",
-    "relDir": "Elsa Residence PDF/Elsa Blloku D"
-  },
-  {
-    "relPdf": "Residences Apartments/Elsa Residence PDF/Elsa Blloku D/Elsa-D-113.97m².pdf",
-    "building": "Elsa",
-    "block": "D",
-    "filename": "Elsa-D-113.97m².pdf",
-    "relDir": "Elsa Residence PDF/Elsa Blloku D"
-  },
-  {
-    "relPdf": "Residences Apartments/Elsa Residence PDF/Elsa Blloku D/Elsa-D-115.9m².pdf",
-    "building": "Elsa",
-    "block": "D",
-    "filename": "Elsa-D-115.9m².pdf",
-    "relDir": "Elsa Residence PDF/Elsa Blloku D"
-  },
-  {
-    "relPdf": "Residences Apartments/Elsa Residence PDF/Elsa Blloku D/Elsa-D-118.88m².pdf",
-    "building": "Elsa",
-    "block": "D",
-    "filename": "Elsa-D-118.88m².pdf",
-    "relDir": "Elsa Residence PDF/Elsa Blloku D"
-  },
-  {
-    "relPdf": "Residences Apartments/Elsa Residence PDF/Elsa Blloku D/Elsa-D-127.80m².pdf",
-    "building": "Elsa",
-    "block": "D",
-    "filename": "Elsa-D-127.80m².pdf",
-    "relDir": "Elsa Residence PDF/Elsa Blloku D"
-  },
-  {
-    "relPdf": "Residences Apartments/Elsa Residence PDF/Elsa Blloku D/Elsa-D-128.18m².pdf",
-    "building": "Elsa",
-    "block": "D",
-    "filename": "Elsa-D-128.18m².pdf",
-    "relDir": "Elsa Residence PDF/Elsa Blloku D"
-  },
-  {
-    "relPdf": "Residences Apartments/Elsa Residence PDF/Elsa Blloku D/Elsa-D-53.35m².pdf",
-    "building": "Elsa",
-    "block": "D",
-    "filename": "Elsa-D-53.35m².pdf",
-    "relDir": "Elsa Residence PDF/Elsa Blloku D"
-  },
-  {
-    "relPdf": "Residences Apartments/Elsa Residence PDF/Elsa Blloku D/Elsa-D-66.26m².pdf",
-    "building": "Elsa",
-    "block": "D",
-    "filename": "Elsa-D-66.26m².pdf",
-    "relDir": "Elsa Residence PDF/Elsa Blloku D"
-  },
-  {
-    "relPdf": "Residences Apartments/Elsa Residence PDF/Elsa Blloku D/Elsa-D-67.98m².pdf",
-    "building": "Elsa",
-    "block": "D",
-    "filename": "Elsa-D-67.98m².pdf",
-    "relDir": "Elsa Residence PDF/Elsa Blloku D"
-  },
-  {
-    "relPdf": "Residences Apartments/Elsa Residence PDF/Elsa Blloku D/Elsa-D-84.34m².pdf",
-    "building": "Elsa",
-    "block": "D",
-    "filename": "Elsa-D-84.34m².pdf",
-    "relDir": "Elsa Residence PDF/Elsa Blloku D"
-  },
-  {
-    "relPdf": "Residences Apartments/Elsa Residence PDF/Elsa Blloku D/Elsa-D-91.11m².pdf",
-    "building": "Elsa",
-    "block": "D",
-    "filename": "Elsa-D-91.11m².pdf",
-    "relDir": "Elsa Residence PDF/Elsa Blloku D"
-  },
-  {
-    "relPdf": "Residences Apartments/Elsa Residence PDF/Elsa Blloku D/Elsa-D-99.65m².pdf",
-    "building": "Elsa",
-    "block": "D",
-    "filename": "Elsa-D-99.65m².pdf",
-    "relDir": "Elsa Residence PDF/Elsa Blloku D"
-  },
-  {
     "relPdf": "Residences Apartments/Joni Residence PDF/Kati 1/Joni-K1-102.8m².pdf",
     "building": "Joni",
     "block": "K1",
@@ -684,5 +600,138 @@
     "block": "B",
     "filename": "Tiani-B-92.6m².pdf",
     "relDir": "Tiani Residence PDF/Tiani Blloku B"
+  },
+  {
+    "relPdf": "Residences Apartments/Elsa Residence PDF/Elsa Blloku D/D_113.40 m2 K4-5.pdf",
+    "building": "Elsa",
+    "block": "D",
+    "filename": "D_113.40 m2 K4-5.pdf",
+    "relDir": "Elsa Residence PDF/Elsa Blloku D"
+  },
+  {
+    "relPdf": "Residences Apartments/Elsa Residence PDF/Elsa Blloku D/D_113.97 m2 K1-2.pdf",
+    "building": "Elsa",
+    "block": "D",
+    "filename": "D_113.97 m2 K1-2.pdf",
+    "relDir": "Elsa Residence PDF/Elsa Blloku D"
+  },
+  {
+    "relPdf": "Residences Apartments/Elsa Residence PDF/Elsa Blloku D/D_115.41 m2 K4-5.pdf",
+    "building": "Elsa",
+    "block": "D",
+    "filename": "D_115.41 m2 K4-5.pdf",
+    "relDir": "Elsa Residence PDF/Elsa Blloku D"
+  },
+  {
+    "relPdf": "Residences Apartments/Elsa Residence PDF/Elsa Blloku D/D_115.99 m2 K1.pdf",
+    "building": "Elsa",
+    "block": "D",
+    "filename": "D_115.99 m2 K1.pdf",
+    "relDir": "Elsa Residence PDF/Elsa Blloku D"
+  },
+  {
+    "relPdf": "Residences Apartments/Elsa Residence PDF/Elsa Blloku D/D_127.80 m2 K6.pdf",
+    "building": "Elsa",
+    "block": "D",
+    "filename": "D_127.80 m2 K6.pdf",
+    "relDir": "Elsa Residence PDF/Elsa Blloku D"
+  },
+  {
+    "relPdf": "Residences Apartments/Elsa Residence PDF/Elsa Blloku D/D_53.35 m2 K2-3.pdf",
+    "building": "Elsa",
+    "block": "D",
+    "filename": "D_53.35 m2 K2-3.pdf",
+    "relDir": "Elsa Residence PDF/Elsa Blloku D"
+  },
+  {
+    "relPdf": "Residences Apartments/Elsa Residence PDF/Elsa Blloku D/D-01_P_99.65 m².pdf",
+    "building": "Elsa",
+    "block": "D",
+    "filename": "D-01_P_99.65 m².pdf",
+    "relDir": "Elsa Residence PDF/Elsa Blloku D"
+  },
+  {
+    "relPdf": "Residences Apartments/Elsa Residence PDF/Elsa Blloku D/D-02_P_84.34m2.pdf",
+    "building": "Elsa",
+    "block": "D",
+    "filename": "D-02_P_84.34m2.pdf",
+    "relDir": "Elsa Residence PDF/Elsa Blloku D"
+  },
+  {
+    "relPdf": "Residences Apartments/Elsa Residence PDF/Elsa Blloku D/D-03_P_53.35m2.pdf",
+    "building": "Elsa",
+    "block": "D",
+    "filename": "D-03_P_53.35m2.pdf",
+    "relDir": "Elsa Residence PDF/Elsa Blloku D"
+  },
+  {
+    "relPdf": "Residences Apartments/Elsa Residence PDF/Elsa Blloku D/D-04_P_91.11m2.pdf",
+    "building": "Elsa",
+    "block": "D",
+    "filename": "D-04_P_91.11m2.pdf",
+    "relDir": "Elsa Residence PDF/Elsa Blloku D"
+  },
+  {
+    "relPdf": "Residences Apartments/Elsa Residence PDF/Elsa Blloku D/D-104.46 m2 K7.pdf",
+    "building": "Elsa",
+    "block": "D",
+    "filename": "D-104.46 m2 K7.pdf",
+    "relDir": "Elsa Residence PDF/Elsa Blloku D"
+  },
+  {
+    "relPdf": "Residences Apartments/Elsa Residence PDF/Elsa Blloku D/D-106.5 m² K1,2,5.pdf",
+    "building": "Elsa",
+    "block": "D",
+    "filename": "D-106.5 m² K1,2,5.pdf",
+    "relDir": "Elsa Residence PDF/Elsa Blloku D"
+  },
+  {
+    "relPdf": "Residences Apartments/Elsa Residence PDF/Elsa Blloku D/D-118.88 m2 K6.pdf",
+    "building": "Elsa",
+    "block": "D",
+    "filename": "D-118.88 m2 K6.pdf",
+    "relDir": "Elsa Residence PDF/Elsa Blloku D"
+  },
+  {
+    "relPdf": "Residences Apartments/Elsa Residence PDF/Elsa Blloku D/D-128.18 m2 K7.pdf",
+    "building": "Elsa",
+    "block": "D",
+    "filename": "D-128.18 m2 K7.pdf",
+    "relDir": "Elsa Residence PDF/Elsa Blloku D"
+  },
+  {
+    "relPdf": "Residences Apartments/Elsa Residence PDF/Elsa Blloku D/D-66.26 m2 K1-5.pdf",
+    "building": "Elsa",
+    "block": "D",
+    "filename": "D-66.26 m2 K1-5.pdf",
+    "relDir": "Elsa Residence PDF/Elsa Blloku D"
+  },
+  {
+    "relPdf": "Residences Apartments/Elsa Residence PDF/Elsa Blloku D/D-67.89 m² K6-24.pdf",
+    "building": "Elsa",
+    "block": "D",
+    "filename": "D-67.89 m² K6-24.pdf",
+    "relDir": "Elsa Residence PDF/Elsa Blloku D"
+  },
+  {
+    "relPdf": "Residences Apartments/Elsa Residence PDF/Elsa Blloku D/D-84.34 m2 K2-3.pdf",
+    "building": "Elsa",
+    "block": "D",
+    "filename": "D-84.34 m2 K2-3.pdf",
+    "relDir": "Elsa Residence PDF/Elsa Blloku D"
+  },
+  {
+    "relPdf": "Residences Apartments/Elsa Residence PDF/Elsa Blloku D/D-91.11 m2 K2-3.pdf",
+    "building": "Elsa",
+    "block": "D",
+    "filename": "D-91.11 m2 K2-3.pdf",
+    "relDir": "Elsa Residence PDF/Elsa Blloku D"
+  },
+  {
+    "relPdf": "Residences Apartments/Elsa Residence PDF/Elsa Blloku D/DP-66.26 m2 KP-05.pdf",
+    "building": "Elsa",
+    "block": "D",
+    "filename": "DP-66.26 m2 KP-05.pdf",
+    "relDir": "Elsa Residence PDF/Elsa Blloku D"
   }
 ]

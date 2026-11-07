@@ -1334,390 +1334,361 @@ export const apartmentSpecs: Record<string, ApartmentSpec> = {
     "type": "2+1",
     "totalArea": 99.65
   },
-  "Residences Apartments/Elsa Residence PDF/Elsa Blloku D/Elsa-D-104.46m².pdf": {
+  "Residences Apartments/Elsa Residence PDF/Elsa Blloku D/D-01_P_99.65 m².pdf": {
     "rooms": [
       {
-        "name": "Qëndrimi ditor",
-        "area": 36.53,
-        "floor": "Parket"
-      },
-      {
-        "name": "WC",
-        "area": 4.19,
-        "floor": "Pllakë keramike"
-      },
-      {
-        "name": "Depo",
-        "area": 1.98,
-        "floor": "Parket"
-      },
-      {
-        "name": "Dhomë gjumi",
-        "area": 12.85,
-        "floor": "Parket"
-      },
-      {
-        "name": "Dhomë gjumi",
-        "area": 16.34,
-        "floor": "Parket"
-      },
-      {
-        "name": "Koridori",
-        "area": 13.78,
-        "floor": "Parket"
-      },
-      {
-        "name": "Banjo",
-        "area": 4.05,
-        "floor": "Pllakë keramike"
-      },
-      {
-        "name": "Ballkoni",
-        "area": 5.49,
-        "floor": "Pllakë Qeramike"
-      }
-    ],
-    "type": "2+1",
-    "totalArea": 104.46
-  },
-  "Residences Apartments/Elsa Residence PDF/Elsa Blloku D/Elsa-D-113.97m².pdf": {
-    "rooms": [
-      {
-        "name": "Dhomë gjumi",
-        "area": 11.02,
-        "floor": "Parket"
-      },
-      {
-        "name": "Dhomë gjumi",
-        "area": 11.12,
-        "floor": "Parket"
-      },
-      {
-        "name": "Dhomë gjumi",
-        "area": 13.15,
-        "floor": "Parket"
-      },
-      {
-        "name": "Banjo",
-        "area": 4.18,
-        "floor": "Pllakë keramike"
-      },
-      {
-        "name": "Banjo",
-        "area": 5.69,
-        "floor": "Pllakë keramike"
-      },
-      {
-        "name": "Depo",
-        "area": 4.47,
-        "floor": "Pllakë keramike"
-      },
-      {
-        "name": "Koridori",
-        "area": 9.83,
-        "floor": "Parket"
-      },
-      {
-        "name": "Ballkoni",
-        "area": 5.78,
-        "floor": "Pllakë Qeramike"
+        "name": "Terasë",
+        "area": 5.41
       },
       {
         "name": "Qëndrimi ditor",
-        "area": 17.68,
-        "floor": "Parket"
-      },
-      {
-        "name": "Kuzhina/Tryezaria",
-        "area": 16.56,
-        "floor": "Parket"
-      }
-    ],
-    "type": "3+1",
-    "totalArea": 113.97
-  },
-  "Residences Apartments/Elsa Residence PDF/Elsa Blloku D/Elsa-D-115.9m².pdf": {
-    "rooms": [
-      {
-        "name": "Dhomë gjumi",
-        "area": 13.69,
-        "floor": "Parket"
-      },
-      {
-        "name": "Dhomë gjumi",
-        "area": 11.11,
-        "floor": "Parket"
-      },
-      {
-        "name": "Dhomë gjumi",
-        "area": 11.16,
-        "floor": "Parket"
-      },
-      {
-        "name": "Ballkoni",
-        "area": 3.2,
-        "floor": "Pllakë Qeramike"
-      },
-      {
-        "name": "Ballkoni",
-        "area": 5.78,
-        "floor": "Pllakë Qeramike"
-      },
-      {
-        "name": "Qëndrimi ditor",
-        "area": 20.2,
-        "floor": "Parket"
-      },
-      {
-        "name": "Kuzhina/Tryezaria",
-        "area": 16.86,
-        "floor": "Parket"
-      },
-      {
-        "name": "Banjo",
-        "area": 4.47,
-        "floor": "Pllakë keramike"
-      },
-      {
-        "name": "Banjo",
-        "area": 4.06,
-        "floor": "Pllakë keramike"
-      },
-      {
-        "name": "Koridori",
-        "area": 9.29,
-        "floor": "Parket"
+        "area": 34.64
       },
       {
         "name": "Depo",
-        "area": 1.6,
-        "floor": "Pllakë keramike"
-      }
-    ],
-    "type": "3+1",
-    "totalArea": 115.99
-  },
-  "Residences Apartments/Elsa Residence PDF/Elsa Blloku D/Elsa-D-118.88m².pdf": {
-    "rooms": [
-      {
-        "name": "Qëndrimi ditor",
-        "area": 34.18,
-        "floor": "Parket"
+        "area": 2.78
       },
       {
         "name": "Banjo",
-        "area": 3.42,
-        "floor": "Pllakë keramike"
-      },
-      {
-        "name": "Banjo",
-        "area": 4.04,
-        "floor": "Pllakë keramike"
-      },
-      {
-        "name": "Dhomë gjumi",
-        "area": 13.42,
-        "floor": "Parket"
-      },
-      {
-        "name": "Dhomë gjumi",
-        "area": 11.72,
-        "floor": "Parket"
-      },
-      {
-        "name": "Dhomë gjumi",
-        "area": 13.57,
-        "floor": "Parket"
-      },
-      {
-        "name": "Koridori",
-        "area": 10.75,
-        "floor": "Parket"
-      },
-      {
-        "name": "Depo",
-        "area": 2.79,
-        "floor": "Pllakë keramike"
-      },
-      {
-        "name": "Ballkoni",
-        "area": 5.49,
-        "floor": "Pllakë Qeramike"
-      }
-    ],
-    "type": "3+1",
-    "totalArea": 118.88
-  },
-  "Residences Apartments/Elsa Residence PDF/Elsa Blloku D/Elsa-D-127.80m².pdf": {
-    "rooms": [
-      {
-        "name": "Qëndrimi ditor",
-        "area": 34.7,
-        "floor": "Parket"
-      },
-      {
-        "name": "Banjo",
-        "area": 5.65,
-        "floor": "Pllakë keramike"
-      },
-      {
-        "name": "Banjo",
-        "area": 4.12,
-        "floor": "Pllakë keramike"
-      },
-      {
-        "name": "Dhomë gjumi",
-        "area": 15.46,
-        "floor": "Parket"
-      },
-      {
-        "name": "Dhomë gjumi",
-        "area": 13.58,
-        "floor": "Parket"
-      },
-      {
-        "name": "Dhomë gjumi",
-        "area": 17.04,
-        "floor": "Parket"
-      },
-      {
-        "name": "Depo",
-        "area": 1.69,
-        "floor": "Pllakë keramike"
-      },
-      {
-        "name": "Koridori",
-        "area": 4.64,
-        "floor": "Parket"
-      },
-      {
-        "name": "Ballkoni",
-        "area": 5.41,
-        "floor": "Pllakë Qeramike"
-      }
-    ],
-    "type": "3+1",
-    "totalArea": 127.8
-  },
-  "Residences Apartments/Elsa Residence PDF/Elsa Blloku D/Elsa-D-128.18m².pdf": {
-    "rooms": [
-      {
-        "name": "Ballkoni",
-        "area": 5.49,
-        "floor": "Pllakë Qeramike"
-      },
-      {
-        "name": "Dhomë gjumi",
-        "area": 14.15,
-        "floor": "Parket"
+        "area": 4.39
       },
       {
         "name": "Dhomë gjumi",
         "area": 15.79,
-        "floor": "Parket"
-      },
-      {
-        "name": "Dhomë gjumi",
-        "area": 12.16,
-        "floor": "Parket"
-      },
-      {
-        "name": "Qëndrimi ditor",
-        "area": 38,
-        "floor": "Parket"
-      },
-      {
-        "name": "Depo",
-        "area": 2.45,
-        "floor": "Parket"
+        "floor": "Laminat"
       },
       {
         "name": "Koridori",
-        "area": 13.78,
-        "floor": "Parket"
+        "area": 6.55,
+        "floor": "Laminat"
       },
       {
-        "name": "Banjo",
-        "area": 5.02,
-        "floor": "Pllakë keramike"
+        "name": "Dhomë gjumi",
+        "area": 14.88,
+        "floor": "Laminat"
       },
       {
         "name": "WC",
-        "area": 3.94,
-        "floor": "Pllakë keramike"
-      }
-    ],
-    "type": "3+1",
-    "totalArea": 128.18
-  },
-  "Residences Apartments/Elsa Residence PDF/Elsa Blloku D/Elsa-D-53.35m².pdf": {
-    "rooms": [
-      {
-        "name": "Dhomë gjumi",
-        "area": 13.18,
-        "floor": "Parket"
-      },
-      {
-        "name": "Qëndrimi ditor",
-        "area": 14.04,
-        "floor": "Parket"
-      },
-      {
-        "name": "Kuzhina/Tryezaria",
-        "area": 14,
-        "floor": "Parket"
-      },
-      {
-        "name": "Banjo",
-        "area": 4.91,
-        "floor": "Pllakë keramike"
-      },
-      {
-        "name": "Ballkoni",
-        "area": 3.2,
-        "floor": "Pllakë Qeramike"
+        "area": 2.26,
+        "floor": "Qeramike"
       }
     ],
     "type": "1+1",
     "totalArea": 53.35
   },
-  "Residences Apartments/Elsa Residence PDF/Elsa Blloku D/Elsa-D-66.26m².pdf": {
+  "Residences Apartments/Elsa Residence PDF/Elsa Blloku D/D-02_P_84.34m2.pdf": {
     "rooms": [
       {
+        "name": "Qëndrimi ditor",
+        "area": 29.16,
+        "floor": "Laminat"
+      },
+      {
         "name": "Dhomë gjumi",
-        "area": 13.02,
-        "floor": "Parket"
+        "area": 13.31,
+        "floor": "Laminat"
       },
       {
         "name": "Ballkoni",
-        "area": 5.48,
-        "floor": "Pllakë Qeramike"
+        "area": 5.77,
+        "floor": "Qeramike"
       },
       {
-        "name": "Qëndrimi ditor",
-        "area": 16.24,
-        "floor": "Parket"
-      },
-      {
-        "name": "Kuzhina/Tryezaria",
-        "area": 11.72,
-        "floor": "Parket"
-      },
-      {
-        "name": "Banjo",
-        "area": 4.54,
-        "floor": "Pllakë keramike"
+        "name": "Dhomë gjumi",
+        "area": 8.72,
+        "floor": "Laminat"
       },
       {
         "name": "Koridori",
+        "area": 10.04
+      },
+      {
+        "name": "Banjo",
+        "area": 4.11,
+        "floor": "Qeramike"
+      },
+      {
+        "name": "WC",
+        "area": 2.11
+      }
+    ],
+    "type": "1+1",
+    "totalArea": 53.35
+  },
+  "Residences Apartments/Elsa Residence PDF/Elsa Blloku D/D-03_P_53.35m2.pdf": {
+    "rooms": [
+      {
+        "name": "Dhomë gjumi",
+        "area": 13.18,
+        "floor": "Laminat"
+      },
+      {
+        "name": "Banjo",
+        "area": 4.91,
+        "floor": "Qeramike"
+      },
+      {
+        "name": "Ballkoni",
+        "area": 3.2
+      }
+    ],
+    "type": "1+1",
+    "totalArea": 53.35
+  },
+  "Residences Apartments/Elsa Residence PDF/Elsa Blloku D/D-04_P_91.11m2.pdf": {
+    "rooms": [
+      {
+        "name": "Qëndrimi ditor",
+        "area": 33.93,
+        "floor": "Laminat"
+      },
+      {
+        "name": "Dhomë gjumi",
+        "area": 13.02,
+        "floor": "Laminat"
+      },
+      {
+        "name": "Dhomë gjumi",
+        "area": 11.12,
+        "floor": "Laminat"
+      },
+      {
+        "name": "Banjo",
+        "area": 4.25,
+        "floor": "Qeramike"
+      },
+      {
+        "name": "WC",
+        "area": 1.92
+      },
+      {
+        "name": "Ballkoni",
+        "area": 5.77,
+        "floor": "Qeramike"
+      },
+      {
+        "name": "Terasë",
+        "area": 70.55
+      }
+    ],
+    "type": "2+1",
+    "totalArea": 91.11
+  },
+  "Residences Apartments/Elsa Residence PDF/Elsa Blloku D/D-104.46 m2 K7.pdf": {
+    "rooms": [
+      {
+        "name": "Qëndrimi ditor",
+        "area": 36.53,
+        "floor": "Laminat"
+      },
+      {
+        "name": "Dhomë gjumi",
+        "area": 16.34,
+        "floor": "Laminat"
+      },
+      {
+        "name": "Dhomë gjumi",
+        "area": 12.85,
+        "floor": "Laminat"
+      },
+      {
+        "name": "Banjo",
+        "area": 13.78,
+        "floor": "Qeramike"
+      },
+      {
+        "name": "Koridori",
+        "area": 4.05,
+        "floor": "Qeramike"
+      },
+      {
+        "name": "Banjo",
+        "area": 4.05,
+        "floor": "Qeramike"
+      },
+      {
+        "name": "Depo",
+        "area": 1.98
+      }
+    ],
+    "type": "2+1"
+  },
+  "Residences Apartments/Elsa Residence PDF/Elsa Blloku D/D-106.5 m² K1,2,5.pdf": {
+    "rooms": [
+      {
+        "name": "Qëndrimi ditor",
+        "area": 28.81,
+        "floor": "Laminat"
+      },
+      {
+        "name": "Dhomë gjumi",
+        "area": 14.98,
+        "floor": "Laminat"
+      },
+      {
+        "name": "Dhomë gjumi",
+        "area": 12.93,
+        "floor": "Laminat"
+      },
+      {
+        "name": "Depo",
+        "area": 3.18,
+        "floor": "Qeramike"
+      },
+      {
+        "name": "Banjo",
+        "area": 4.35
+      },
+      {
+        "name": "Dhomë gjumi",
+        "area": 10.75,
+        "floor": "Laminat"
+      },
+      {
+        "name": "Dhomë gjumi",
+        "area": 9.06,
+        "floor": "Laminat"
+      },
+      {
+        "name": "Terasë",
+        "area": 5.4,
+        "floor": "Qeramike"
+      }
+    ],
+    "type": "3+1",
+    "totalArea": 106.5
+  },
+  "Residences Apartments/Elsa Residence PDF/Elsa Blloku D/D-118.88 m2 K6.pdf": {
+    "rooms": [
+      {
+        "name": "Dhomë gjumi",
+        "area": 13.42,
+        "floor": "Laminat"
+      },
+      {
+        "name": "Qëndrimi ditor",
+        "area": 34.18,
+        "floor": "Laminat"
+      },
+      {
+        "name": "Depo",
+        "area": 2.79,
+        "floor": "Qeramike"
+      },
+      {
+        "name": "Koridori",
+        "area": 10.75,
+        "floor": "Laminat"
+      },
+      {
+        "name": "Banjo",
+        "area": 3.42,
+        "floor": "Qeramike"
+      },
+      {
+        "name": "Banjo",
+        "area": 4.04,
+        "floor": "Qeramike"
+      },
+      {
+        "name": "Dhomë gjumi",
+        "area": 13.57,
+        "floor": "Laminat"
+      },
+      {
+        "name": "Dhomë gjumi",
+        "area": 11.72,
+        "floor": "Laminat"
+      },
+      {
+        "name": "Ballkoni",
         "area": 5.49,
-        "floor": "Parket"
+        "floor": "Qeramike"
+      }
+    ],
+    "type": "3+1",
+    "totalArea": 118.88
+  },
+  "Residences Apartments/Elsa Residence PDF/Elsa Blloku D/D-128.18 m2 K7.pdf": {
+    "rooms": [
+      {
+        "name": "Qëndrimi ditor",
+        "area": 38,
+        "floor": "Laminat"
+      },
+      {
+        "name": "Koridori",
+        "area": 13.78,
+        "floor": "Laminat"
+      },
+      {
+        "name": "Banjo",
+        "area": 5.02
+      },
+      {
+        "name": "WC",
+        "area": 3.94
+      },
+      {
+        "name": "Dhomë gjumi",
+        "area": 14.15,
+        "floor": "Laminat"
+      },
+      {
+        "name": "Dhomë gjumi",
+        "area": 15.79,
+        "floor": "Laminat"
+      },
+      {
+        "name": "Dhomë gjumi",
+        "area": 12.16,
+        "floor": "Laminat"
+      },
+      {
+        "name": "Ballkoni",
+        "area": 5.49,
+        "floor": "Qeramike"
+      },
+      {
+        "name": "Depo",
+        "area": 2.45
+      }
+    ],
+    "type": "3+1",
+    "totalArea": 128.18
+  },
+  "Residences Apartments/Elsa Residence PDF/Elsa Blloku D/D-66.26 m2 K1-5.pdf": {
+    "rooms": [
+      {
+        "name": "Qëndrimi ditor",
+        "area": 27.96,
+        "floor": "Laminat"
+      },
+      {
+        "name": "Ballkoni",
+        "area": 5.47,
+        "floor": "Qeramike"
+      },
+      {
+        "name": "Dhomë gjumi",
+        "area": 13.91,
+        "floor": "Laminat"
+      },
+      {
+        "name": "Banjo",
+        "area": 4.02,
+        "floor": "Qeramike"
+      },
+      {
+        "name": "Koridori",
+        "area": 5.72,
+        "floor": "Laminat"
       }
     ],
     "type": "1+1",
     "totalArea": 66.26
   },
-  "Residences Apartments/Elsa Residence PDF/Elsa Blloku D/Elsa-D-67.98m².pdf": {
+  "Residences Apartments/Elsa Residence PDF/Elsa Blloku D/D-67.89 m² K6-24.pdf": {
     "rooms": [
       {
         "name": "Qëndrimi ditor",
@@ -1743,148 +1714,390 @@ export const apartmentSpecs: Record<string, ApartmentSpec> = {
     "type": "1+1",
     "totalArea": 67.98
   },
-  "Residences Apartments/Elsa Residence PDF/Elsa Blloku D/Elsa-D-84.34m².pdf": {
+  "Residences Apartments/Elsa Residence PDF/Elsa Blloku D/D-84.34 m2 K2-3.pdf": {
     "rooms": [
+      {
+        "name": "Qëndrimi ditor",
+        "area": 29.16,
+        "floor": "Laminat"
+      },
       {
         "name": "Dhomë gjumi",
         "area": 13.31,
-        "floor": "Parket"
+        "floor": "Laminat"
       },
       {
         "name": "Ballkoni",
-        "area": 5.2,
-        "floor": "Pllakë Qeramike"
-      },
-      {
-        "name": "Qëndrimi ditor",
-        "area": 16.65,
-        "floor": "Parket"
-      },
-      {
-        "name": "Kuzhina/Tryezaria",
-        "area": 12.51,
-        "floor": "Parket"
-      },
-      {
-        "name": "Banjo",
-        "area": 4.11,
-        "floor": "Pllakë keramike"
-      },
-      {
-        "name": "Koridori",
-        "area": 10.05,
-        "floor": "Parket"
+        "area": 5.77,
+        "floor": "Qeramike"
       },
       {
         "name": "Dhomë gjumi",
         "area": 8.72,
-        "floor": "Parket"
+        "floor": "Laminat"
+      },
+      {
+        "name": "Koridori",
+        "area": 10.04
+      },
+      {
+        "name": "Banjo",
+        "area": 4.11,
+        "floor": "Qeramike"
       },
       {
         "name": "WC",
-        "area": 2.13,
-        "floor": "Pllakë keramike"
+        "area": 2.11
       }
     ],
     "type": "2+1",
     "totalArea": 84.34
   },
-  "Residences Apartments/Elsa Residence PDF/Elsa Blloku D/Elsa-D-91.11m².pdf": {
+  "Residences Apartments/Elsa Residence PDF/Elsa Blloku D/D-91.11 m2 K2-3.pdf": {
     "rooms": [
       {
-        "name": "Dhomë gjumi",
-        "area": 11.11,
-        "floor": "Parket"
+        "name": "Qëndrimi ditor",
+        "area": 33.93,
+        "floor": "Laminat"
       },
       {
         "name": "Dhomë gjumi",
         "area": 13.02,
-        "floor": "Parket"
+        "floor": "Laminat"
       },
       {
-        "name": "Ballkoni",
-        "area": 5.2,
-        "floor": "Pllakë Qeramike"
-      },
-      {
-        "name": "Qëndrimi ditor",
-        "area": 20.2,
-        "floor": "Parket"
-      },
-      {
-        "name": "Kuzhina/Tryezaria",
-        "area": 16.86,
-        "floor": "Parket"
+        "name": "Dhomë gjumi",
+        "area": 11.12,
+        "floor": "Laminat"
       },
       {
         "name": "Banjo",
         "area": 4.25,
-        "floor": "Pllakë keramike"
-      },
-      {
-        "name": "Koridori",
-        "area": 9.79,
-        "floor": "Parket"
+        "floor": "Qeramike"
       },
       {
         "name": "WC",
-        "area": 1.92,
-        "floor": "Pllakë keramike"
+        "area": 1.92
+      },
+      {
+        "name": "Ballkoni",
+        "area": 5.77,
+        "floor": "Qeramike"
       }
     ],
     "type": "2+1",
     "totalArea": 91.11
   },
-  "Residences Apartments/Elsa Residence PDF/Elsa Blloku D/Elsa-D-99.65m².pdf": {
+  "Residences Apartments/Elsa Residence PDF/Elsa Blloku D/DP-66.26 m2 KP-05.pdf": {
     "rooms": [
       {
+        "name": "Qëndrimi ditor",
+        "area": 27.96,
+        "floor": "Laminat"
+      },
+      {
         "name": "Ballkoni",
-        "area": 5.41,
-        "floor": "Pllakë Qeramike"
+        "area": 5.47,
+        "floor": "Qeramike"
       },
       {
         "name": "Dhomë gjumi",
-        "area": 15.79,
-        "floor": "Parket"
-      },
-      {
-        "name": "Dhomë gjumi",
-        "area": 14.88,
-        "floor": "Parket"
-      },
-      {
-        "name": "WC",
-        "area": 2.26,
-        "floor": "Pllakë keramike"
+        "area": 13.91,
+        "floor": "Laminat"
       },
       {
         "name": "Banjo",
-        "area": 4.35,
-        "floor": "Pllakë keramike"
-      },
-      {
-        "name": "Depo",
-        "area": 2.78,
-        "floor": "Pllakë keramike"
+        "area": 4.02,
+        "floor": "Qeramike"
       },
       {
         "name": "Koridori",
-        "area": 6.55,
-        "floor": "Parket"
+        "area": 5.72,
+        "floor": "Laminat"
+      }
+    ],
+    "type": "1+1",
+    "totalArea": 66.26
+  },
+  "Residences Apartments/Elsa Residence PDF/Elsa Blloku D/D_113.40 m2 K4-5.pdf": {
+    "rooms": [
+      {
+        "name": "Terasë",
+        "area": 5.78,
+        "floor": "Qeramike"
       },
       {
         "name": "Qëndrimi ditor",
-        "area": 14.75,
-        "floor": "Parket"
+        "area": 34.24,
+        "floor": "Laminat"
       },
       {
-        "name": "Kuzhina/Tryezaria",
-        "area": 19.89,
-        "floor": "Parket"
+        "name": "Dhomë gjumi",
+        "area": 11.02,
+        "floor": "Laminat"
+      },
+      {
+        "name": "Depo",
+        "area": 4.47,
+        "floor": "Qeramike"
+      },
+      {
+        "name": "Koridori",
+        "area": 9.83,
+        "floor": "Laminat"
+      },
+      {
+        "name": "Dhomë gjumi",
+        "area": 11.12,
+        "floor": "Laminat"
+      },
+      {
+        "name": "Banjo",
+        "area": 4.18,
+        "floor": "Qeramike"
+      },
+      {
+        "name": "Banjo",
+        "area": 5.69,
+        "floor": "Qeramike"
+      },
+      {
+        "name": "Dhomë gjumi",
+        "area": 13.15,
+        "floor": "Laminat"
       }
     ],
-    "type": "2+1",
-    "totalArea": 99.65
+    "type": "1+1",
+    "totalArea": 53.35
+  },
+  "Residences Apartments/Elsa Residence PDF/Elsa Blloku D/D_113.97 m2 K1-2.pdf": {
+    "rooms": [
+      {
+        "name": "Terasë",
+        "area": 5.78,
+        "floor": "Qeramike"
+      },
+      {
+        "name": "Qëndrimi ditor",
+        "area": 34.24,
+        "floor": "Laminat"
+      },
+      {
+        "name": "Dhomë gjumi",
+        "area": 11.02,
+        "floor": "Laminat"
+      },
+      {
+        "name": "Depo",
+        "area": 4.47,
+        "floor": "Qeramike"
+      },
+      {
+        "name": "Koridori",
+        "area": 9.83,
+        "floor": "Laminat"
+      },
+      {
+        "name": "Dhomë gjumi",
+        "area": 11.12,
+        "floor": "Laminat"
+      },
+      {
+        "name": "Banjo",
+        "area": 4.18,
+        "floor": "Qeramike"
+      },
+      {
+        "name": "Banjo",
+        "area": 5.69,
+        "floor": "Qeramike"
+      },
+      {
+        "name": "Dhomë gjumi",
+        "area": 13.15,
+        "floor": "Laminat"
+      }
+    ],
+    "type": "1+1",
+    "totalArea": 53.35
+  },
+  "Residences Apartments/Elsa Residence PDF/Elsa Blloku D/D_115.41 m2 K4-5.pdf": {
+    "rooms": [
+      {
+        "name": "Terasë",
+        "area": 3.2
+      },
+      {
+        "name": "Banjo",
+        "area": 4.47,
+        "floor": "Qeramike"
+      },
+      {
+        "name": "Dhomë gjumi",
+        "area": 13.69,
+        "floor": "Laminat"
+      },
+      {
+        "name": "Koridori",
+        "area": 9.29,
+        "floor": "Laminat"
+      },
+      {
+        "name": "Dhomë gjumi",
+        "area": 11.11,
+        "floor": "Laminat"
+      },
+      {
+        "name": "Banjo",
+        "area": 4.06,
+        "floor": "Qeramike"
+      },
+      {
+        "name": "Dhomë gjumi",
+        "area": 11.16,
+        "floor": "Laminat"
+      },
+      {
+        "name": "Depo",
+        "area": 1.6,
+        "floor": "Qeramike"
+      },
+      {
+        "name": "Terasë",
+        "area": 5.78,
+        "floor": "Qeramike"
+      },
+      {
+        "name": "Qëndrimi ditor",
+        "area": 37.06,
+        "floor": "Laminat"
+      }
+    ],
+    "type": "1+1",
+    "totalArea": 53.35
+  },
+  "Residences Apartments/Elsa Residence PDF/Elsa Blloku D/D_115.99 m2 K1.pdf": {
+    "rooms": [
+      {
+        "name": "Terasë",
+        "area": 3.2
+      },
+      {
+        "name": "Banjo",
+        "area": 4.47,
+        "floor": "Qeramike"
+      },
+      {
+        "name": "Dhomë gjumi",
+        "area": 13.69,
+        "floor": "Laminat"
+      },
+      {
+        "name": "Koridori",
+        "area": 9.29,
+        "floor": "Laminat"
+      },
+      {
+        "name": "Dhomë gjumi",
+        "area": 11.11,
+        "floor": "Laminat"
+      },
+      {
+        "name": "Banjo",
+        "area": 4.06,
+        "floor": "Qeramike"
+      },
+      {
+        "name": "Dhomë gjumi",
+        "area": 11.16,
+        "floor": "Laminat"
+      },
+      {
+        "name": "Depo",
+        "area": 1.6,
+        "floor": "Qeramike"
+      },
+      {
+        "name": "Terasë",
+        "area": 5.78,
+        "floor": "Qeramike"
+      },
+      {
+        "name": "Qëndrimi ditor",
+        "area": 37.06,
+        "floor": "Laminat"
+      }
+    ],
+    "type": "1+1",
+    "totalArea": 53.35
+  },
+  "Residences Apartments/Elsa Residence PDF/Elsa Blloku D/D_127.80 m2 K6.pdf": {
+    "rooms": [
+      {
+        "name": "Qëndrimi ditor",
+        "area": 34.7,
+        "floor": "Laminat"
+      },
+      {
+        "name": "Koridori",
+        "area": 4.64,
+        "floor": "Laminat"
+      },
+      {
+        "name": "Depo",
+        "area": 1.69
+      },
+      {
+        "name": "Banjo",
+        "area": 4.12
+      },
+      {
+        "name": "Dhomë gjumi",
+        "area": 15.46,
+        "floor": "Laminat"
+      },
+      {
+        "name": "Dhomë gjumi",
+        "area": 13.58,
+        "floor": "Laminat"
+      },
+      {
+        "name": "Dhomë gjumi",
+        "area": 17.04,
+        "floor": "Laminat"
+      },
+      {
+        "name": "Banjo",
+        "area": 5.65,
+        "floor": "Qeramike"
+      }
+    ],
+    "type": "1+1",
+    "totalArea": 53.35
+  },
+  "Residences Apartments/Elsa Residence PDF/Elsa Blloku D/D_53.35 m2 K2-3.pdf": {
+    "rooms": [
+      {
+        "name": "Qëndrimi ditor",
+        "area": 28.04
+      },
+      {
+        "name": "Banjo",
+        "area": 4.91
+      },
+      {
+        "name": "Dhomë gjumi",
+        "area": 13.18,
+        "floor": "Laminat"
+      },
+      {
+        "name": "Terasë",
+        "area": 3.2,
+        "floor": "Qeramike"
+      }
+    ],
+    "totalArea": 53.35,
+    "type": "1+1"
   },
   "Residences Apartments/Joni Residence PDF/Kati 1-6/Joni-K1-6-108.5m².pdf": {
     "rooms": [

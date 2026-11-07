@@ -80,18 +80,25 @@ export const apartmentCatalog: CatalogApartment[] = [
     { area: 128.18, pdfPath: `${ELSA_BASE}/Elsa Blloku C/C-128.18 m2.pdf` },
   ]),
   ...make('Elsa Residence', 'elsa', 'Prishtinë', 'Blloku D', [
-    { area: 53.35, pdfPath: `${ELSA_BASE}/Elsa Blloku D/Elsa-D-53.35m².pdf` },
-    { area: 66.26, pdfPath: `${ELSA_BASE}/Elsa Blloku D/Elsa-D-66.26m².pdf` },
-    { area: 67.98, pdfPath: `${ELSA_BASE}/Elsa Blloku D/Elsa-D-67.98m².pdf` },
-    { area: 84.34, pdfPath: `${ELSA_BASE}/Elsa Blloku D/Elsa-D-84.34m².pdf` },
-    { area: 91.11, pdfPath: `${ELSA_BASE}/Elsa Blloku D/Elsa-D-91.11m².pdf` },
-    { area: 99.65, pdfPath: `${ELSA_BASE}/Elsa Blloku D/Elsa-D-99.65m².pdf` },
-    { area: 104.46, pdfPath: `${ELSA_BASE}/Elsa Blloku D/Elsa-D-104.46m².pdf` },
-    { area: 113.97, pdfPath: `${ELSA_BASE}/Elsa Blloku D/Elsa-D-113.97m².pdf` },
-    { area: 115.9, pdfPath: `${ELSA_BASE}/Elsa Blloku D/Elsa-D-115.9m².pdf` },
-    { area: 118.88, pdfPath: `${ELSA_BASE}/Elsa Blloku D/Elsa-D-118.88m².pdf` },
-    { area: 127.8, pdfPath: `${ELSA_BASE}/Elsa Blloku D/Elsa-D-127.80m².pdf` },
-    { area: 128.18, pdfPath: `${ELSA_BASE}/Elsa Blloku D/Elsa-D-128.18m².pdf` },
+    { area: 53.35, pdfPath: `${ELSA_BASE}/Elsa Blloku D/D_53.35 m2 K2-3.pdf` },
+    { area: 53.35, pdfPath: `${ELSA_BASE}/Elsa Blloku D/D-03_P_53.35m2.pdf` },
+    { area: 66.26, pdfPath: `${ELSA_BASE}/Elsa Blloku D/D-66.26 m2 K1-5.pdf` },
+    { area: 66.26, pdfPath: `${ELSA_BASE}/Elsa Blloku D/DP-66.26 m2 KP-05.pdf` },
+    { area: 67.89, pdfPath: `${ELSA_BASE}/Elsa Blloku D/D-67.89 m² K6-24.pdf` },
+    { area: 84.34, pdfPath: `${ELSA_BASE}/Elsa Blloku D/D-84.34 m2 K2-3.pdf` },
+    { area: 84.34, pdfPath: `${ELSA_BASE}/Elsa Blloku D/D-02_P_84.34m2.pdf` },
+    { area: 91.11, pdfPath: `${ELSA_BASE}/Elsa Blloku D/D-91.11 m2 K2-3.pdf` },
+    { area: 91.11, pdfPath: `${ELSA_BASE}/Elsa Blloku D/D-04_P_91.11m2.pdf` },
+    { area: 99.65, pdfPath: `${ELSA_BASE}/Elsa Blloku D/D-01_P_99.65 m².pdf` },
+    { area: 104.46, pdfPath: `${ELSA_BASE}/Elsa Blloku D/D-104.46 m2 K7.pdf` },
+    { area: 106.5, pdfPath: `${ELSA_BASE}/Elsa Blloku D/D-106.5 m² K1,2,5.pdf` },
+    { area: 113.4, pdfPath: `${ELSA_BASE}/Elsa Blloku D/D_113.40 m2 K4-5.pdf` },
+    { area: 113.97, pdfPath: `${ELSA_BASE}/Elsa Blloku D/D_113.97 m2 K1-2.pdf` },
+    { area: 115.41, pdfPath: `${ELSA_BASE}/Elsa Blloku D/D_115.41 m2 K4-5.pdf` },
+    { area: 115.99, pdfPath: `${ELSA_BASE}/Elsa Blloku D/D_115.99 m2 K1.pdf` },
+    { area: 118.88, pdfPath: `${ELSA_BASE}/Elsa Blloku D/D-118.88 m2 K6.pdf` },
+    { area: 127.8, pdfPath: `${ELSA_BASE}/Elsa Blloku D/D_127.80 m2 K6.pdf` },
+    { area: 128.18, pdfPath: `${ELSA_BASE}/Elsa Blloku D/D-128.18 m2 K7.pdf` },
   ]),
 
   // --- Tiani Residence — Prizren ---
@@ -170,6 +177,8 @@ export const apartmentCatalog: CatalogApartment[] = [
 /** Reproduce the exact area label from the PDF filename, e.g. "127.80 m²". */
 const areaLabelFromPath = (pdfPath: string): string => {
   const file = pdfPath.split('/').pop() ?? ''
+  const match = file.match(/(\d+(?:\.\d+)?)\s*m[²2]/i)
+  if (match) return `${match[1]} m²`
   const token = file.replace(/\.pdf$/i, '').split('-').pop() ?? ''
   return token.replace(/\s*m[²2]$/i, ' m²').trim()
 }
